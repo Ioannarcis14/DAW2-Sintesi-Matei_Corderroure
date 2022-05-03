@@ -6,13 +6,28 @@ class CreateAuthTables extends Migration
 {
     public function up()
     {
-        /*
-         * Users
-         */
-        $this->forge->addField([
+        /* Users
             'id'               => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+            'id_restaurant'               => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'null' => true],
             'email'            => ['type' => 'varchar', 'constraint' => 255],
-            'username'         => ['type' => 'varchar', 'constraint' => 30, 'null' => true],
+            'username' => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
+            'name'             => ['type' => 'varchar', 'constraint' => 30, 'null' => true],
+            'surname'          => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
+            'dni'              => ['type' => 'varchar', 'constraint' => 9, 'null' => true],
+            'ciutat'        => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
+            'carrer'        => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
+         */
+
+        $this->forge->addField([
+            'id'               => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+            'id_restaurant'    => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
+            'name'             => ['type' => 'VARCHAR', 'constraint' => '30'],
+            'surname'          => ['type' => 'VARCHAR', 'constraint' => '255'],
+            'img_profile'      => ['type' => 'VARCHAR', 'constraint' => '255', 'null' => true],
+            'phone'            => ['type' => 'INT', 'constraint' => 9, 'unsigned' => true],
+            'city'             => ['type' => 'VARCHAR', 'constraint' => '255'],
+            'street'           => ['type' => 'VARCHAR', 'constraint' => '255'],
+            'postal_code'      => ['type' => 'INT', 'constraint' => 5, 'unsigned' => true],
             'password_hash'    => ['type' => 'varchar', 'constraint' => 255],
             'reset_hash'       => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'reset_at'         => ['type' => 'datetime', 'null' => true],
@@ -28,9 +43,7 @@ class CreateAuthTables extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addUniqueKey('email');
-        $this->forge->addUniqueKey('username');
-
+        $this->forge->addForeignKey('id_restaurant', 'restaurant', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('users', true);
 
         /*
