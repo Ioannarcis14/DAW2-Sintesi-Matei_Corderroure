@@ -23,6 +23,7 @@ class CreateAuthTables extends Migration
             'id_restaurant'    => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
             'name'             => ['type' => 'VARCHAR', 'constraint' => '30'],
             'surname'          => ['type' => 'VARCHAR', 'constraint' => '255'],
+            'email'      => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'img_profile'      => ['type' => 'VARCHAR', 'constraint' => '255', 'null' => true],
             'phone'            => ['type' => 'INT', 'constraint' => 9, 'unsigned' => true],
             'city'             => ['type' => 'VARCHAR', 'constraint' => '255'],
