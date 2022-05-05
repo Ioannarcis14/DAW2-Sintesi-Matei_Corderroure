@@ -21,7 +21,6 @@ class AddAuthUsers extends Seeder
             'username' => 'default',
             'name' => 'Josep M',
             'surname' => 'FR',
-            'dni' => '12345678A',
             'ciutat' => 'Lleida',
             'carrer' => 'Carrer de les Palmes',
         ];
@@ -36,7 +35,6 @@ class AddAuthUsers extends Seeder
         $user->username = 'idk';
         $user->name = 'Angels';
         $user->surname = 'Cerveró';
-        $user->dni = '12345678A';
         $user->ciutat = 'Barcelona';
         $user->carrer = 'Carrer de les Palmes';
 
@@ -50,7 +48,6 @@ class AddAuthUsers extends Seeder
         $user->username = 'idkkk';
         $user->name = 'Andreu';
         $user->surname = 'Ribes';
-        $user->dni = '12345678A';
         $user->ciutat = 'Barcelona';
         $user->carrer = 'Carrer de les Palmes';
         
@@ -63,7 +60,6 @@ class AddAuthUsers extends Seeder
         $user->username = 'idkk';
         $user->name = 'Joan';
         $user->surname = 'Ribes';
-        $user->dni = '12345678A';
         $user->ciutat = 'Barcelona';
         $user->carrer = 'Carrer de les Palmes';
 
@@ -76,7 +72,6 @@ class AddAuthUsers extends Seeder
         $user->username = 'odddddd';
         $user->name = 'Ricardo';
         $user->surname = 'Ribes';
-        $user->dni = '12345678A';
         $user->ciutat = 'Barcelona';
         $user->carrer = 'Carrer de les Palmes';
        

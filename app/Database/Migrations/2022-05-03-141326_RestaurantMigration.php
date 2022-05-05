@@ -66,6 +66,12 @@ class RestaurantMigration extends Migration
                 'type'           => 'TEXT',
                 'null'           => false,
             ],
+            'discharged'          => [
+                'type'           => 'int',
+                'constraint'     => 1,
+                'unsigned'       => true,
+                'null'           => true,
+            ],
         ]);
         $this->forge->addPrimaryKey('id_restaurant', true);
         $this->forge->createTable('restaurant');
