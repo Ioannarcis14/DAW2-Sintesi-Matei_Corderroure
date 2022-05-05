@@ -61,9 +61,9 @@ class DishMigration extends Migration
                     'null'           => false,
             ],
         ]);
-        $this->forge->createTable('dish_category');
         $this->forge->addForeignKey('id_category', 'category', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_dish', 'dish', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('dish_category');
 
         /*
          * Dish/Allergen Table
@@ -83,9 +83,9 @@ class DishMigration extends Migration
                     'null'           => false,
             ],
         ]);
-        $this->forge->createTable('dish_allergen');
         $this->forge->addForeignKey('id_allergen', 'allergen', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_dish', 'dish', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('dish_allergen');
 
         /*
          * Dish/Supplement Table
@@ -105,9 +105,9 @@ class DishMigration extends Migration
                     'null'           => false,
             ],
         ]);
-        $this->forge->createTable('dish_supplement');
         $this->forge->addForeignKey('id_supplement', 'supplement', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_dish', 'dish', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('dish_supplement');
 }
 
 public function down()

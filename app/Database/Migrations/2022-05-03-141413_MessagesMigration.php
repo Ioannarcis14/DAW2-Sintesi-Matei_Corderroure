@@ -19,7 +19,7 @@ class MessagesMigration extends Migration
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
-                'null'           => true,
+                'null'           => false,
             ],
             'theme'          => [
                 'type'           => 'VARCHAR',
@@ -31,10 +31,10 @@ class MessagesMigration extends Migration
                 'null'           => false,
             ],
         ]);
-        $this->forge->createTable('message');
         $this->forge->addForeignKey('id_user', 'users', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('id_restaurant', 'restaurants', 'id', 'CASCADE', 'CASCADE');
-
+        $this->forge->addForeignKey('id_restaurant', 'restaurant', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('messages');
+        
         $this->forge->addField([
             'name'          => [
                 'type'           => 'VARCHAR',
@@ -48,7 +48,7 @@ class MessagesMigration extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('message');
+        $this->forge->dropTable('messages');
         $this->forge->dropTable('theme');
     }
 }

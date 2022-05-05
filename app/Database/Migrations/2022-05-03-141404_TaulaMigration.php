@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class TableMigration extends Migration
+class TaulaMigration extends Migration
 {
     public function up()
     {
@@ -29,8 +29,8 @@ class TableMigration extends Migration
                     ],
             ]);
             $this->forge->addPrimaryKey('id', true);
-            $this->forge->createTable('table');
             $this->forge->addForeignKey('id_restaurant', 'restaurant', 'id', 'CASCADE', 'CASCADE');
+            $this->forge->createTable('table');
 
     }
     

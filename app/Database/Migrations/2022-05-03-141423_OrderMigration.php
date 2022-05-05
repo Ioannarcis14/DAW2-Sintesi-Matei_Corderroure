@@ -20,7 +20,7 @@ class OrderMigration extends Migration
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
-                'null'           => false,
+                'null'           => true,
             ],
             'id_client'          => [
                 'type'           => 'INT',
@@ -53,11 +53,11 @@ class OrderMigration extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id', true);
-        $this->forge->createTable('order');
         $this->forge->addForeignKey('id_restaurant', 'restaurant', 'id');
-        $this->forge->addForeignKey('id_client', 'user', 'id');
-        $this->forge->addForeignKey('id_cambrer', 'user', 'id');
+        $this->forge->addForeignKey('id_client', 'users', 'id');
+        $this->forge->addForeignKey('id_cambrer', 'users', 'id');
         $this->forge->addForeignKey('id_taula', 'table', 'id');
+        $this->forge->createTable('order');
 
 
         $this->forge->addField([
@@ -92,12 +92,10 @@ class OrderMigration extends Migration
             ],
             'startTime'          => [
                 'type'           => 'TIMESTAMP',
-                'unsigned'       => true,
                 'null'           => true,
             ],
             'finishedTime'          => [
                 'type'           => 'TIMESTAMP',
-                'unsigned'       => true,
                 'null'           => true,
             ],
             'state'          => [
@@ -107,16 +105,14 @@ class OrderMigration extends Migration
             ],
             'lastTimeAction'          => [
                 'type'           => 'TIMESTAMP',
-                'unsigned'       => true,
-                'null'           => true,
+                'null'           => true,   
             ],
         ]);
         $this->forge->addPrimaryKey('id', true);
+        $this->forge->addForeignKey('id_order', 'order', 'id');
+        $this->forge->addForeignKey('id_dish', 'dish', 'id');
         $this->forge->createTable('order_dish');
-        $this->forge->addForeignKey('id_order', 'restaurant', 'id');
-        $this->forge->addForeignKey('id_dish', 'user', 'id');
-        $this->forge->addForeignKey('quantity', 'user', 'id');
-        $this->forge->addForeignKey('observation', 'table', 'id');
+
 
         $this->forge->addField([
             'id'          => [
@@ -140,9 +136,28 @@ class OrderMigration extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id', true);
-        $this->forge->createTable('order_dish_supplement');
         $this->forge->addForeignKey('id_order_dish', 'order_dish', 'id');
         $this->forge->addForeignKey('id_supplement', 'supplement', 'id');
+        $this->forge->createTable('order_dish_supplement');
+
+
+        $this->forge->addField([
+            'id_user'          => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
+                'null'           => false,
+            ],
+            'id_restaurant'          => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
+                'null'           => false,
+            ],
+        ]);
+        $this->forge->addForeignKey('id_user', 'users', 'id');
+        $this->forge->addForeignKey('id_restaurant', 'restaurant', 'id');
+        $this->forge->createTable('user_restaurant');
     }
 
 

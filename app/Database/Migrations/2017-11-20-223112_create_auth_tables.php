@@ -20,7 +20,6 @@ class CreateAuthTables extends Migration
 
         $this->forge->addField([
             'id'               => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'id_restaurant'    => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
             'name'             => ['type' => 'VARCHAR', 'constraint' => '30'],
             'surname'          => ['type' => 'VARCHAR', 'constraint' => '255'],
             'email'      => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
@@ -44,7 +43,6 @@ class CreateAuthTables extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('id_restaurant', 'restaurant', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('users', true);
 
         /*
@@ -174,6 +172,7 @@ class CreateAuthTables extends Migration
         $this->forge->addForeignKey('user_id', 'users', 'id', '', 'CASCADE');
         $this->forge->addForeignKey('permission_id', 'auth_permissions', 'id', '', 'CASCADE');
         $this->forge->createTable('auth_users_permissions', true);
+
     }
 
     //--------------------------------------------------------------------

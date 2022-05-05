@@ -41,9 +41,9 @@ class TableMigration extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id', true);
-        $this->forge->createTable('category');
         $this->forge->addForeignKey('id_restaurant', 'restaurant', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_category_parent', 'category', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('category');
 
         $this->db->enableForeignKeyChecks();
     }

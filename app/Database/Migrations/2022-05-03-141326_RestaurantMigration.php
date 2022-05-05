@@ -21,11 +21,6 @@ class RestaurantMigration extends Migration
                 'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,
-            ],
-            'id_admin'          => [
-                'type'           => 'INT',
-                'constraint'     => 11,
-                'unsigned'       => true,
                 'null'           => false,
             ],
             'name'          => [
@@ -73,9 +68,9 @@ class RestaurantMigration extends Migration
                 'null'           => true,
             ],
         ]);
-        $this->forge->addPrimaryKey('id_restaurant', true);
+        $this->forge->addPrimaryKey('id', true);
         $this->forge->createTable('restaurant');
-        $this->forge->addForeignKey('id_admin', 'users', 'id', 'CASCADE', 'CASCADE');
+
     }
 
     public function down()
