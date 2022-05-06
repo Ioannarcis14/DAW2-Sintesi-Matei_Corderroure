@@ -1,0 +1,28 @@
+version: "3.4"
+
+services:
+
+    codeigniter4:
+        build:
+          context: ./docker/php
+        container_name: 'codeigniter4'
+        hostname: codeigniter4
+        ports:
+          - 80:80
+        links:
+          - mysql       
+        volumes:
+          - ./www:/var/www/html
+
+    mysql:
+      build:
+        context: .\docker\mysql 
+      container_name: docker-mysql
+      hostname: dockermysql
+      environment:  
+        MYSQL_DATABASE: restdb
+        MYSQL_ROOT_PASSWORD: 1234
+      ports:
+        - "3306:3306"
+      restart: always
+
