@@ -10,11 +10,11 @@ class AddAuthGroups extends Seeder
     {
         //
         $authorize = $auth = service('authorization');
-        $authorize->createGroup('administradors', 'Usuaris administradors del sistema');
-        $authorize->createGroup('responsables', 'Responsables del restaurant');
-        $authorize->createGroup('cuiners','Usuaris cuiner');
-        $authorize->createGroup('cambrers','Usuaris cambrer');
-        $authorize->createGroup('maitres','Usuaris maitre');
-        $authorize->createGroup('usuaris','Usuaris generals');
+        $authorize->createGroup('administrador', 'Usuaris administradors del sistema');
+        $authorize->createGroup('responsable', 'Responsables del restaurant');
+        $authorize->createGroup('cuiner','Usuaris cuiner');
+        $authorize->createGroup('cambrer','Usuaris cambrer');
+        $authorize->createGroup('maitre','Usuaris maitre');
+        $authorize->createGroup('usuari','Usuaris generals');
     }
 }

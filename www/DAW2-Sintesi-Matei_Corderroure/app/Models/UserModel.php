@@ -37,7 +37,7 @@ class UserModel extends Model
      *
      * @var int|null
      */
-    protected $assignGroup;
+    protected $assignGroup = "usuari";
 
     /**
      * Logs a password reset attempt for posterity sake.
