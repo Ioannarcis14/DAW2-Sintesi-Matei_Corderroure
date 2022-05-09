@@ -33,6 +33,35 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+
+//API ROUTES
+
+
+
+//ADMIN ROUTES
+
+
+
+
+//RESPONSABLE ROUTES
+
+
+
+
+//CAMBRER CUINER ROUTES
+
+
+
+
+//MAITRE ROUTES
+
+
+
+
+//CLIENT ROUTES
+
+
+
 /*
 *-----------------------------------------------------------------------
 *   MYTH AUTH SERVICE ROUTES

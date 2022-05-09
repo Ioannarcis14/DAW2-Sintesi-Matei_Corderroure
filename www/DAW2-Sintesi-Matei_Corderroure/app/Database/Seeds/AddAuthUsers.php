@@ -16,65 +16,80 @@ class AddAuthUsers extends Seeder
 
         $row = [
             'active'   => 1,
+            'username' => 'admin',
             'password' => '1234',
+            'name' => 'Josep',
+            'surname' => 'Maria Flix',
             'email' => 'admin@me.local',
-            'username' => 'default',
-            'name' => 'Josep M',
-            'surname' => 'FR',
-            'ciutat' => 'Lleida',
-            'carrer' => 'Carrer de les Palmes',
+            'img_profile' => null,
+            'phone' => 985848448,
+            'city'  => 'Lleida',
+            'street' => 'Carrer de les Palmes',
+            'postal_code' => 25000
         ];
 
         $user = new User($row);
         $userId = $users->insert($user);
         $authorize->addUserToGroup($userId, 'administrador');
-        $authorize->addUserToGroup($userId, 'usuari');
-       
-        $user->email = 'user@me.local';
-        $user->active = 2;
-        $user->username = 'idk';
-        $user->name = 'Angels';
-        $user->surname = 'Cerveró';
-        $user->ciutat = 'Barcelona';
-        $user->carrer = 'Carrer de les Palmes';
+
+        $user->active = 1;
+        $user->username = 'responsable';
+        $user->password = '1234';
+        $user->name = 'Maria';
+        $user->surname = 'Angels Cerveró';
+        $user->email = 'responsable@me.local';
+        $user->img_profile = null;
+        $user->phone = 985872129;
+        $user->city = 'Barcelona';
+        $user->street = 'Carrer Vall De Aran';
+        $user->postal_code = 25940;
+
 
         $userId = $users->insert($user);
-
         $authorize->addUserToGroup($userId, 'responsable');
-        $authorize->addUserToGroup($userId, 'usuari');
 
-        $user->email = 'convidat@me.local';
         $user->active = 1;
-        $user->username = 'idkkk';
-        $user->name = 'Andreu';
-        $user->surname = 'Ribes';
-        $user->ciutat = 'Barcelona';
-        $user->carrer = 'Carrer de les Palmes';
-        
+        $user->username = 'maitre';
+        $user->password = '1234';
+        $user->name = 'Marc';
+        $user->surname = 'Iborra Mòdol';
+        $user->email = 'maitre@me.local';
+        $user->img_profile = null;
+        $user->phone = 967248372;
+        $user->city = 'Barcelona';
+        $user->street = 'Carrer Vall De Aran';
+        $user->postal_code = 25940;
+
         $userId = $users->insert($user);
         $authorize->addUserToGroup($userId, 'maitre');
-        $authorize->addUserToGroup($userId, 'usuari');
 
-        $user->email = 'cambrer@me.local';
         $user->active = 1;
-        $user->username = 'idkk';
+        $user->username = 'cambrer';
+        $user->password = '1234';
         $user->name = 'Joan';
-        $user->surname = 'Ribes';
-        $user->ciutat = 'Barcelona';
-        $user->carrer = 'Carrer de les Palmes';
+        $user->surname = 'Corderroure ';
+        $user->email = 'cambrer@me.local';
+        $user->img_profile = 'Barcelona';
+        $user->phone = 'Carrer de les Palmes';
+        $user->city = 'Angels';
+        $user->street = 'Cerveró';
+        $user->postal_code = 'Carrer de les Palmes';
 
         $userId = $users->insert($user);
         $authorize->addUserToGroup($userId, 'cambrer');
-        $authorize->addUserToGroup($userId, 'usuari');
 
-        $user->email = 'convida23t@me.local';
         $user->active = 1;
-        $user->username = 'odddddd';
-        $user->name = 'Ricardo';
-        $user->surname = 'Ribes';
-        $user->ciutat = 'Barcelona';
-        $user->carrer = 'Carrer de les Palmes';
-       
+        $user->username = 'usuari';
+        $user->password = '1234';
+        $user->name = 'Ioan';
+        $user->surname = 'Matei';
+        $user->email = 'user@me.local';
+        $user->img_profile = 'Barcelona';
+        $user->phone = 'Carrer de les Palmes';
+        $user->city = 'Angels';
+        $user->street = 'Cerveró';
+        $user->postal_code = 'Carrer de les Palmes';
+
         $userId = $users->insert($user);
         $authorize->addUserToGroup($userId, 'usuari');
     }

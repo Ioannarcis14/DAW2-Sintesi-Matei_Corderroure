@@ -51,9 +51,16 @@ class RestaurantModel extends Model
     }
 
     /*
+    Selects all the restaurants that are not discharged  
+    */
+    public function getAllRestaurantsNotDischarged() {
+        return $this->where('discharged', null)->all();
+    }
+
+    /*
     Selects the restaurants that the responsable owns
     */
-    public function getSpecificRestaurants($id_admin) {
+    public function getSpecificRestaurants($id_responsable) {
         return $this->whereNotIn('discharged', null)->all();
     }
 
