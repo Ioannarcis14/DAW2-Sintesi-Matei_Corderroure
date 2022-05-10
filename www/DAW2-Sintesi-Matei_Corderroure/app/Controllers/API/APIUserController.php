@@ -47,6 +47,12 @@ class APIUserController extends ResourceController
         return $this->respond($response);
     }
 
+
+
+/** 
+ * 
+ * 
+*/
     public function login()
     {
         $auth = service('authentication');
@@ -92,4 +98,55 @@ class APIUserController extends ResourceController
         }
         return $this->respond($response);
     }
+
+    public function logout()
+    {
+        $auth = service('authentication');
+        
+        if ($auth->check())
+		{
+			$auth->logout();
+		}        
+        
+        $current_user = $auth->check();
+
+        if (empty($current_user)) {
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => 'The user has been logged off succesfully',
+            ];
+        } else {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'There is been an error with the log off process',
+            ];
+        }
+        return $this->respond($response);
+    }
+
+    public function isUserAuthenticated() {
+
+        $auth = service('authentication');
+        $current_user = $auth->check();
+
+        if (!empty($current_user)) {
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => 'The user is currently logged',
+            ];
+        } else {
+            $response = [
+                'status' => 200,
+                "error" => true,
+                'messages' => 'The user is not logged',
+            ];
+        }
+        return $this->respond($response);
+    }
+
+
+
 }

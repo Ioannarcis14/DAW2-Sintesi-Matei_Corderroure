@@ -27,7 +27,7 @@ if (!function_exists('getToken')) {
             }
         }
 
-        $token_data = JWT::decode($token, new Key($cfgAPI->tokenSecret, $cfgAPI->hash));
+        $token_data = JWT::decode((array)$token, new Key($cfgAPI->tokenSecret, $cfgAPI->hash));
 
         $data = [
             "encoded" => $token,
