@@ -38,6 +38,16 @@ $routes->get('/', 'Home::index');
 
 
 
+$routes->group("api/users", function ($routes) {
+
+    $routes->get("getAll", "API\APIUserController::getAllUsers");
+    
+    $routes->options("login", "API\APIUserController::login");
+    $routes->post("login", "API\APIUserController::login");
+
+});
+
+
 //ADMIN ROUTES
 
 

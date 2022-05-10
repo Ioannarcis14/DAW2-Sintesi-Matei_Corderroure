@@ -70,7 +70,7 @@ class AddAuthUsers extends Seeder
         $user->surname = 'Corderroure ';
         $user->email = 'cambrer@me.local';
         $user->img_profile = 'Barcelona';
-        $user->phone = 'Carrer de les Palmes';
+        $user->phone = 967248372;
         $user->city = 'Angels';
         $user->street = 'Cerveró';
         $user->postal_code = 'Carrer de les Palmes';
@@ -85,7 +85,7 @@ class AddAuthUsers extends Seeder
         $user->surname = 'Matei';
         $user->email = 'user@me.local';
         $user->img_profile = 'Barcelona';
-        $user->phone = 'Carrer de les Palmes';
+        $user->phone = 967248372;
         $user->city = 'Angels';
         $user->street = 'Cerveró';
         $user->postal_code = 'Carrer de les Palmes';
