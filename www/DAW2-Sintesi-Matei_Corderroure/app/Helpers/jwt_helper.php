@@ -62,7 +62,7 @@ if (!function_exists('renewTokenJWT')) {
         $token_raw->nbf = $iat;
         $token_raw->jti = App\Libraries\UUID::v4();
 
-        $newtoken = JWT::encode($token_raw, $cfgAPI->tokenSecret, $cfgAPI->hash);
+        $newtoken = JWT::encode((array)$token_raw, $cfgAPI->tokenSecret, $cfgAPI->hash);
 
         return $newtoken;
     }
