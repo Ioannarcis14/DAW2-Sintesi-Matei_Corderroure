@@ -38,12 +38,12 @@ $routes->get('/', 'Home::index');
 
 
 
-$routes->group("api/", function ($routes) {
+$routes->group("api", function ($routes) {
 
     $routes->options("login", "API\APIUserController::login");
     $routes->post("login", "API\APIUserController::login");
 
-    $routes->get("logout", "API\APIUserController::logout");
+    $routes->get("logout", "API\APIUserController::logout", ['filter' => 'jwt']);
 
     $routes->options("validate", "API\APIUserController::login");
     $routes->post("validate", "API\APIUserController::login");
@@ -52,6 +52,37 @@ $routes->group("api/", function ($routes) {
         $routes->get("getAll", "API\APIAdministracioController::getAllUsers");
     });
  
+    $routes->group("allergen", function ($routes) {
+        $routes->get("getAll", "API\APIAdministracioController::getAllAllergens");
+    });
+
+    $routes->group("category", function ($routes) {
+        $routes->get("getAll", "API\APIAdministracioController::getAllCategories");
+    });
+
+    $routes->group("dish", function ($routes) {
+        $routes->get("getAll", "API\APIAdministracioController::getAllDishes");
+    });
+
+    $routes->group("messages", function ($routes) {
+        $routes->get("getAll", "API\APIAdministracioController::getAllMessages");
+    });
+
+    $routes->group("order", function ($routes) {
+        $routes->get("getAll", "API\APIAdministracioController::getAllOrders");
+    });
+
+    $routes->group("restaurant", function ($routes) {
+        $routes->get("getAll", "API\APIAdministracioController::getAllRestaurants");
+    });
+
+    $routes->group("supplement", function ($routes) {
+        $routes->get("getAll", "API\APIAdministracioController::getAllSupplements");
+    });
+
+    $routes->group("taula", function ($routes) {
+        $routes->get("getAll", "API\APIAdministracioController::getAllTaules");
+    });
 
 });
 

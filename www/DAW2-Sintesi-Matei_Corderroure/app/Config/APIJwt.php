@@ -69,7 +69,6 @@ class APIJwt extends BaseConfig
      */
     public $policyName = "default"; // Defines default policy name, to use by Library/Filter     
     public $default = [
-    
         'tokenSecret'  => '5beb74d7e00dec0549cd3f990f180ef4166f77cfe7377d3eaec5a2a181e7751c', //hex2bin.
         'hash'         => "HS256",
         'authTimeout'  => 30 * MINUTE,
@@ -78,19 +77,6 @@ class APIJwt extends BaseConfig
         'subject'      => "secure.jwt.v1.daw",
         'autoRenew'    => false,
         'oneTimeToken' => true,
-        'renewTokenField' => 'refreshToken',
-        'includePolicy' => true,
-    ];
-    
-    public $test = [
-        'tokenSecret'  => 'b952674c72eff0e5e482b7525cde57a1fcdddc486a89658fd8985169cda341e9', //hex2bin.
-        'hash'         => "HS256",
-        'authTimeout'  => 24 * HOUR,
-        'issuer'       => "test-company",
-        'audience'     => "test-company.user-db",
-        'subject'      => "secure.jwt.v1.test",
-        'autoRenew'    => false,
-        'oneTimeToken' => false,
         'renewTokenField' => 'refreshToken',
         'includePolicy' => true,
     ];
