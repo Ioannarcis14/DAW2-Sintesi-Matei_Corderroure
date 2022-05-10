@@ -38,12 +38,20 @@ $routes->get('/', 'Home::index');
 
 
 
-$routes->group("api/users", function ($routes) {
+$routes->group("api/", function ($routes) {
 
-    $routes->get("getAll", "API\APIUserController::getAllUsers");
-    
     $routes->options("login", "API\APIUserController::login");
     $routes->post("login", "API\APIUserController::login");
+
+    $routes->get("logout", "API\APIUserController::logout");
+
+    $routes->options("validate", "API\APIUserController::login");
+    $routes->post("validate", "API\APIUserController::login");
+
+    $routes->group("users", function ($routes) {
+        $routes->get("getAll", "API\APIAdministracioController::getAllUsers");
+    });
+ 
 
 });
 

@@ -32,7 +32,7 @@ class Database extends Config
      */
     public $default = [
         'DSN'      => '',
-        'hostname' => 'localhost',
+        'hostname' => 'dockermysql',
         'username' => 'root',
         'password' => '1234',
         'database' => 'restdb',
