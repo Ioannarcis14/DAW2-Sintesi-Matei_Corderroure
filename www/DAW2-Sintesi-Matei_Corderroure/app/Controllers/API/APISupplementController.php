@@ -2,9 +2,9 @@
 
 namespace App\Controllers\API;
 
-use App\Controllers\BaseController;
+use CodeIgniter\RESTful\ResourceController;
 
-class APISupplementController extends BaseController
+class APISupplementController extends ResourceController
 {
     public function index()
     {

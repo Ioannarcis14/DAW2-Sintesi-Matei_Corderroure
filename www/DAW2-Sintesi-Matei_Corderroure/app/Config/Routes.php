@@ -41,14 +41,14 @@ $routes->get('/', 'HomePageController::index');
 
 $routes->group("api", function ($routes) {
 
-
     $routes->options("register", "API\APIUserController::register");
     $routes->post("register", "API\APIUserController::register");
 
     $routes->options("login", "API\APIUserController::login");
     $routes->post("login", "API\APIUserController::login");
 
-    $routes->get("logout", "API\APIUserController::logout");
+    $routes->options("logout", "API\APIUserController::logout");
+    $routes->post("logout", "API\APIUserController::logout");
 
     $routes->options("validate", "API\APIUserController::isUserAuthenticated");
     $routes->post("validate", "API\APIUserController::isUserAuthenticated");
@@ -80,7 +80,9 @@ $routes->group("api", function ($routes) {
     });
 
     $routes->group("restaurant", function ($routes) {
-        $routes->get("getAll", "API\APIAdministracioController::getAllRestaurants");
+        $routes->get("getAll", "API\APIRestaurantController::getAllRestaurants");
+        $routes->get("getRestaurant/(:any)", "API\APIRestaurantController::getSpecificRestaurant/$1");
+
     });
 
     $routes->group("supplement", function ($routes) {

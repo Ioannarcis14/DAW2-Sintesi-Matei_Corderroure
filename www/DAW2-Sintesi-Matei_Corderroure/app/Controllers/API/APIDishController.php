@@ -2,9 +2,9 @@
 
 namespace App\Controllers\API;
 
-use App\Controllers\BaseController;
+use CodeIgniter\RESTful\ResourceController;
 
-class APIDishController extends BaseController
+class APIDishController extends ResourceController
 {
     public function index()
     {

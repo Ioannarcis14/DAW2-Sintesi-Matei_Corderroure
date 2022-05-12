@@ -19,6 +19,12 @@ class Install extends Seeder
         $this->call("AddSupplementSeeder");
         $this->call("AddRestaurantSeeder");
         $this->call("AddMessageSeeder");
-
+        $this->call("DishAllergenSeeder");
+        $this->call("DishCategorySeeder");
+        $this->call("DishSupplementSeeder");
+        $this->call("OrderDishSeeder");
+        $this->call("OrderDishSupplementSeeder");
+        $this->call("UserRestaurantSeeder");
+        $this->call("ValorationSeeder");
     }
 }

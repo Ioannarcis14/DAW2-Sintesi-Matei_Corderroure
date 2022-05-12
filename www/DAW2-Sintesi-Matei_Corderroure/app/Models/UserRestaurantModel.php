@@ -4,18 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class RestaurantModel extends Model
+class UserRestaurantModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'restaurants';
+    protected $table            = 'userrestaurants';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id', 'name', 'city', 'street', 'postal_code', 'description', 'phone', 'social_websites',
-        'img_gallery', 'discharged'];
+    protected $allowedFields    = [];
 
     // Dates
     protected $useTimestamps = false;
@@ -40,42 +39,4 @@ class RestaurantModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-
-    //Functions to get data
-
-    /**
-     * Selects all the restaurants that are discharged  
-     * 
-     */
-    public function getAllRestaurantsDischarged() {
-        return $this->whereNotIn('discharged', null)->all();
-    }
-
-    /**
-     * Selects all the restaurants that are not discharged  
-     * 
-     * 
-     */
-    public function getAllRestaurantsNotDischarged() {
-        return $this->where('discharged', null)->all();
-    }
-
-    /*
-    Selects the restaurants that the responsable owns
-    */
-    public function getSpecificRestaurants($id_responsable) {
-        return $this->whereNotIn('discharged', null)->all();
-    }
-
-    /*
-    Select the specific restaurant
-    */
-    public function getSpecificRestaurant($id_restaurant) {
-
-    }
-
-
-
-
 }

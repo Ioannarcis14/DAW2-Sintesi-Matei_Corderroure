@@ -150,44 +150,35 @@ class APIUserController extends ResourceController
             return $this->respond($response);
         }
 
-        $userModel = new NoAuthUser();
-
         $login = $this->request->getPost('login');
-
-        $user = $userModel->getUserByMailOrUsername($login);
-
         $password = $this->request->getPost('password');
-        if ($user) {
-            if (!password_verify($password, $user['password_hash'])) {
-                $response = [
-                    'status' => 500,
-                    "error" => true,
-                    'errors' => 'This password is incorrect'
-                ];
-                return $this->respond($response);
-            }
-        } else {
+
+        $type = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        
+        if (!$auth->attempt([$type => $login, 'password' => $password], false)) {
             $response = [
                 'status' => 500,
                 "error" => true,
-                'errors' => 'There is been an error creating the user'
+                'errors' => 'There is been an error with the login'
             ];
             return $this->respond($response);
         }
+
+        $current_user = $auth->user();
 
         helper("jwt");
         $APIGroupConfig = "default";
         $cfgAPI = new \Config\APIJwt($APIGroupConfig);
 
         $data = array(
-            "uid" => $user['id'],
-            "name" => $user['username'],
-            "email" => $user['email'],
-
+            "uid" => $current_user->id,
+            "name" => $current_user->name,
+            "email" => $current_user->email,
+            "group" => $current_user->getRoles($current_user->id)
         );
 
         $token = newTokenJWT($cfgAPI->config(), $data);
-
 
         if (!empty($token)) {
             $response = [
@@ -207,41 +198,51 @@ class APIUserController extends ResourceController
         return $this->respond($response);
     }
 
+    /** 
+     * 
+     * 
+     */
     public function logout()
     {
-        if (empty($current_user)) {
+        //Entering the call exhaust the token and doesn't renew it if u don't answer
+    }
+
+     /**
+     * Get all Users in the Database
+     * 
+     * It returns all the users that are in the database, if there aren't users found it will return an error
+     * 
+     * URL: localhost:80/api/users/getAll
+     * 
+     * * Mètode: GET
+     *
+     * @return mixed It returns the email and username of all the users
+     */
+    public function getAllUsers()
+    {
+        //
+        $UserModel = new UserModel();
+        $data = $UserModel->getAllUsers();
+
+        if (!empty($data)) {
             $response = [
                 'status' => 200,
                 "error" => false,
-                'messages' => 'The user has been logged off succesfully',
+                'messages' => 'Users data founds',
+                'data' => $data
             ];
         } else {
             $response = [
                 'status' => 404,
                 "error" => true,
-                'messages' => 'There is been an error with the log off process',
+                'messages' => 'No users found',
+                'data' => []
             ];
         }
-    }
 
-    public function isUserAuthenticated()
-    {
-
-
-
-        if (!empty($current_user)) {
-            $response = [
-                'status' => 200,
-                "error" => false,
-                'messages' => 'The user is currently logged',
-            ];
-        } else {
-            $response = [
-                'status' => 200,
-                "error" => false,
-                'messages' => 'The user is not logged',
-            ];
-        }
         return $this->respond($response);
     }
+
+    
+
 }
