@@ -13,7 +13,7 @@ class Auth extends \Myth\Auth\Config\Auth
 	 *
 	 * @var string
 	 */
-	public $defaultUserGroup;
+	public $defaultUserGroup = 'usuari';
 
 	/**
 	 * --------------------------------------------------------------------
@@ -63,6 +63,13 @@ class Auth extends \Myth\Auth\Config\Auth
 	public $validFields = [
 		'email',
 		'username',
+		'name',
+        'surname',
+		'phone',
+		'city',
+		'street',
+        'postal_code',
+		'img_profile',
 	];
 
 	/**

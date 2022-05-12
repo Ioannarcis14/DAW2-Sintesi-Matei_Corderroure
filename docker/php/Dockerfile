@@ -11,7 +11,7 @@ RUN docker-php-ext-configure intl
 RUN docker-php-ext-enable intl
 RUN apt-get upgrade -y
 RUN a2enmod rewrite
-EXPOSE 80
+EXPOSE 8080
 ADD apache.conf /etc/apache2/sites-available/000-default.conf
 ADD php.ini-development /usr/local/etc/php/php.ini-development
 ADD php.ini-production /usr/local/etc/php/php.ini-production

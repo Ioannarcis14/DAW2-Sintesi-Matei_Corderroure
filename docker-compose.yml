@@ -16,7 +16,7 @@ services:
 
     mysql:
       build:
-        context: .\docker\mysql 
+        context: ./docker/mysql 
       container_name: docker-mysql
       hostname: dockermysql
       environment:  

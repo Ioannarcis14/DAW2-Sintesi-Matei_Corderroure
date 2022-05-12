@@ -31,7 +31,8 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'HomePageController::index');
+
 
 
 //API ROUTES
@@ -40,16 +41,22 @@ $routes->get('/', 'Home::index');
 
 $routes->group("api", function ($routes) {
 
+
+    $routes->options("register", "API\APIUserController::register");
+    $routes->post("register", "API\APIUserController::register");
+
     $routes->options("login", "API\APIUserController::login");
     $routes->post("login", "API\APIUserController::login");
 
-    $routes->get("logout", "API\APIUserController::logout", ['filter' => 'jwt']);
+    $routes->get("logout", "API\APIUserController::logout");
 
-    $routes->options("validate", "API\APIUserController::login");
-    $routes->post("validate", "API\APIUserController::login");
+    $routes->options("validate", "API\APIUserController::isUserAuthenticated");
+    $routes->post("validate", "API\APIUserController::isUserAuthenticated");
 
     $routes->group("users", function ($routes) {
-        $routes->get("getAll", "API\APIAdministracioController::getAllUsers");
+        $routes->get("getAll", "API\APIAdministracioController::getAll/users");
+        $routes->post("update", "API\APIAdministracioController::");
+
     });
  
     $routes->group("allergen", function ($routes) {

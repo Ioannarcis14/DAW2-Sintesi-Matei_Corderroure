@@ -37,7 +37,7 @@ class UserModel extends Model
      *
      * @var int|null
      */
-    protected $assignGroup = "usuari";
+    protected $assignGroup;
 
     /**
      * Logs a password reset attempt for posterity sake.
@@ -126,9 +126,17 @@ class UserModel extends Model
     /**
      * It returns all the users from the database
      */
-
     public function getAllUsers() {
         return $this->findAll();
     }
+
+    /**
+     * It returns the user that has that email or username
+     */
+    public function getUserByMailOrUsername ($email) {
+        // return $this->where('email',$email)->first();
+        return $this->orWhere('email',$email)->orWhere('username',$email)->first();
+    }
+    
 
 }

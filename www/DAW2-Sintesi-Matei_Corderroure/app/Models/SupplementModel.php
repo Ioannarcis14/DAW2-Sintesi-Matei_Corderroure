@@ -14,7 +14,7 @@ class SupplementModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['name', 'description'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,4 +39,17 @@ class SupplementModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function createSupplement($nameSupplement, $descriptionSupplement) {
+
+    }
+
+    public function updateSupplement($idSupplement, $nameSupplement, $descriptionSupplement) {
+
+    }
+
+    public function deleteSupplement($idSupplement) {
+
+    }
+
 }

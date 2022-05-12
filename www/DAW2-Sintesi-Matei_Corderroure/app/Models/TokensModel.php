@@ -36,6 +36,7 @@ class TokensModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+    
     public function get($token_data)
     {
         $data = array(

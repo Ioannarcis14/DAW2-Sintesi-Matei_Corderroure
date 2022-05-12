@@ -118,7 +118,6 @@ class AuthController extends Controller
 	//--------------------------------------------------------------------
 	// Register
 	//--------------------------------------------------------------------
-
 	/**
 	 * Displays the user registration page.
 	 */

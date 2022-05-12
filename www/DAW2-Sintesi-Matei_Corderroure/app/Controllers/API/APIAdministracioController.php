@@ -3,76 +3,48 @@
 namespace App\Controllers\API;
 
 use CodeIgniter\RESTful\ResourceController;
+use App\Models\UserModel;
+use Firebase\JWT\JWT;
 
 class APIAdministracioController extends ResourceController
-{
+{    
+    protected $helpers = ['auth'];
+    
     /**
-     * Return an array of resource objects, themselves in array format
+     * Get all Users in the Database
+     * 
+     * It returns all the users that are in the database, if there aren't users found it will return an error
+     * 
+     * URL: localhost:80/api/users/getAll
+     * 
+     * * Mètode: GET
      *
-     * @return mixed
+     * @return mixed It returns the email and username of all the users
      */
-    public function index()
+    public function getAllUsers()
     {
         //
-    }
+        $UserModel = new UserModel();
+        $data = $UserModel->getAllUsers();
 
-    /**
-     * Return the properties of a resource object
-     *
-     * @return mixed
-     */
-    public function show($id = null)
-    {
-        //
-    }
+        if (!empty($data)) {
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => 'Users data founds',
+                'data' => $data
+            ];
+        } else {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'No users found',
+                'data' => []
+            ];
+        }
 
-    /**
-     * Return a new resource object, with default properties
-     *
-     * @return mixed
-     */
-    public function new()
-    {
-        //
+        return $this->respond($response);
     }
+    
 
-    /**
-     * Create a new resource object, from "posted" parameters
-     *
-     * @return mixed
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Return the editable properties of a resource object
-     *
-     * @return mixed
-     */
-    public function edit($id = null)
-    {
-        //
-    }
-
-    /**
-     * Add or update a model resource, from "posted" properties
-     *
-     * @return mixed
-     */
-    public function update($id = null)
-    {
-        //
-    }
-
-    /**
-     * Delete the designated resource object from the model
-     *
-     * @return mixed
-     */
-    public function delete($id = null)
-    {
-        //
-    }
 }

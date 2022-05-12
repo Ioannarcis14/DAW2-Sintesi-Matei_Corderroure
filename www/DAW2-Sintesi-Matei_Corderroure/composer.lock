@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "35b4d859b4fefca3e6b9a6adbc3b205d",
+    "content-hash": "ace473b2a38d085ae3520f517972abd5",
     "packages": [
         {
             "name": "codeigniter4/framework",
@@ -373,6 +373,51 @@
                 "source": "https://github.com/php-fig/log/tree/1.1.4"
             },
             "time": "2021-05-03T11:20:27+00:00"
+        },
+        {
+            "name": "siensis/kpacrud",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SIENSIS/KpaCrud.git",
+                "reference": "e7bc6291f2fb63414e3701f2259b40cbb26983b0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SIENSIS/KpaCrud/zipball/e7bc6291f2fb63414e3701f2259b40cbb26983b0",
+                "reference": "e7bc6291f2fb63414e3701f2259b40cbb26983b0",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SIENSIS\\KpaCrud\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "JmFxR",
+                    "email": "dev@siensis.com",
+                    "homepage": "http://siensis.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "KpaCrud Library permits to generate automatically CRUD pages from a DB table",
+            "keywords": [
+                "codeigniter",
+                "crud",
+                "database"
+            ],
+            "support": {
+                "issues": "https://github.com/SIENSIS/KpaCrud/issues",
+                "source": "https://github.com/SIENSIS/KpaCrud/tree/master"
+            },
+            "time": "2022-05-10T18:44:16+00:00"
         }
     ],
     "packages-dev": [
@@ -2715,7 +2760,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "siensis/kpacrud": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
