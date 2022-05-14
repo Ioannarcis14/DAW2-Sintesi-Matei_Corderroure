@@ -14,7 +14,7 @@ class CategoryModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['id', 'id_restaurant', 'id_category_parent', 'name', 'observation_msg'];
 
     // Dates
     protected $useTimestamps = false;

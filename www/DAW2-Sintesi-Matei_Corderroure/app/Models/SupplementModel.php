@@ -14,7 +14,7 @@ class SupplementModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'description'];
+    protected $allowedFields    = ['id', 'name', 'description'];
 
     // Dates
     protected $useTimestamps = false;

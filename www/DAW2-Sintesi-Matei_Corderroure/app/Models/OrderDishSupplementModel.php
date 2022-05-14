@@ -14,7 +14,7 @@ class OrderDishSupplementModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['id', 'id_order_dish', 'id_supplement'];
 
     // Dates
     protected $useTimestamps = false;

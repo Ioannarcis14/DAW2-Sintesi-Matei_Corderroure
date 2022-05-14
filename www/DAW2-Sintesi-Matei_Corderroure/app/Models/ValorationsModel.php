@@ -14,7 +14,7 @@ class ValorationsModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['id_restaurant', 'id_user', 'score', 'review'];
 
     // Dates
     protected $useTimestamps = false;

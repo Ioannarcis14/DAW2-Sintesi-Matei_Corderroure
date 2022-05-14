@@ -14,7 +14,7 @@ class OrderDishModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['id', 'id_order', 'id_dish', 'quantity', 'observation', 'startTime', 'finishedTime', 'state', 'lostTimeAction'];
 
     // Dates
     protected $useTimestamps = false;

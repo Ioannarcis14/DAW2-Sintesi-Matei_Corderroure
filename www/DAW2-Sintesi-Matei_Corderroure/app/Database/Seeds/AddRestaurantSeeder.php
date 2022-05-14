@@ -20,10 +20,9 @@ class AddRestaurantSeeder extends Seeder
             'description' => 'We can make your belly happy',
             'phone' => 123332123,
             'social_websites' => 'https://twitter.com/someones_tweet',
-            'img_gallery'  => 'public/img/my_rest.com,public/img/my_rest2.com',
+            'img_gallery'  => 'public/img/my_rest.jpg,public/img/my_rest2.jpg',
             'discharged' => 1,
         ];
-
 
         $restaurant->insert($row);
 
@@ -36,10 +35,9 @@ class AddRestaurantSeeder extends Seeder
             'description' => 'Eat Vegan food for half price',
             'phone' => 145689113,
             'social_websites' => 'https://facebook.com/testing',
-            'img_gallery'  => 'public/img/my_rest.com,public/img/my_rest2.com',
+            'img_gallery'  => 'public/img/my_rest.jpg,public/img/my_rest2.jpg',
             'discharged' => null,
         ];
-
 
         $restaurant->insert($row2);
 
@@ -52,7 +50,7 @@ class AddRestaurantSeeder extends Seeder
             'description' => 'New Indian flavours decorate our dishes',
             'phone' => 553882192,
             'social_websites' => 'https://twitter.com/spicey_ali',
-            'img_gallery'  => 'public/img/my_rest.com,public/img/my_rest2.com',
+            'img_gallery'  => 'public/img/my_rest.jpg,public/img/my_rest2.jpg',
             'discharged' => 1,
         ];
 

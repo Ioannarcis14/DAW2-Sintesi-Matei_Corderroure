@@ -14,7 +14,7 @@ class DishCategoryModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['id_category', 'id_dish'];
 
     // Dates
     protected $useTimestamps = false;

@@ -14,7 +14,7 @@ class MessagesModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['id_user', 'id_restaurant', 'theme', 'message'];
 
     // Dates
     protected $useTimestamps = false;
