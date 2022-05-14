@@ -1,0 +1,24 @@
+{
+    "name": "siensis/kpacrud",
+    "type": "library",
+    "description": "KpaCrud Library permits to generate automatically CRUD pages from a DB table",
+    "license": "MIT",
+    "authors": [{
+        "name": "JmFxR",
+        "email": "dev@siensis.com",
+        "homepage": "http://siensis.com",
+        "role": "Developer"
+    }],
+    "keywords": [
+        "codeigniter",
+        "crud",
+        "database"
+    ],
+    "autoload": {
+        "psr-4": {
+            "SIENSIS\\KpaCrud\\": "src"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
