@@ -6,8 +6,8 @@ use CodeIgniter\Model;
 
 class RestaurantModel extends Model
 {
-    protected $DBGroup          = 'restdb';
-    protected $table            = 'restaurants';
+    protected $DBGroup          = 'default';
+    protected $table            = 'restaurant';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -61,13 +61,7 @@ class RestaurantModel extends Model
         return $this->where('discharged', null)->all();
     }
 
-    /*
-    Selects the restaurants that the responsable owns
-    */
-    public function getSpecificRestaurants($id_responsable) {
-
-    }
-
+    
     /*
     Select the specific restaurant
     */
