@@ -45,6 +45,8 @@ class AddAuthPermissions extends Seeder
         $authorize->createPermission('order.add', 'Allows a user to create order');
         $authorize->createPermission('order.update', 'Allows a user to edit order');
         $authorize->createPermission('order.delete', 'Allows a user to delete order');
+        $authorize->createPermission('order.statistics', 'Allows a user to create statistics about the orders');
+
         $authorize->createPermission('order.enter', 'Allows a user to enter the orders administration');
 
         //Permissions for restaurant administration (admin needs to discharge the restauarant and then responsable can manage the restaurant administration)
@@ -83,38 +85,42 @@ class AddAuthPermissions extends Seeder
         //Permissions for see valoracions (seeing and creating messages)
         $authorize->createPermission('valoracions.manage', 'Allows a user to enter the valoracions administration');
         $authorize->createPermission('valoracions.add', 'Allows a user to create valoracions');
-        
+
+        //Permissions for groups
+        $authorize->createPermission('groups.manage', 'Allows a user to enter the groups administration');
+        $authorize->createPermission('groups.assign', 'Allows a user to assign groups to other users');
 
         # Add permissions to administradors
         $authorize->addPermissionToGroup('user.manage', 'administrador');
         $authorize->addPermissionToGroup('restaurant.discharge', 'administrador');
         $authorize->addPermissionToGroup('theme.manage', 'administrador');
+        $authorize->addPermissionToGroup('groups.manage', 'administrador');
+        $authorize->addPermissionToGroup('groups.assign', 'administrador');
 
         # Add permissions to responsables
         $authorize->addPermissionToGroup('valoracions.manage', 'responsable');
         $authorize->addPermissionToGroup('allergen.manage', 'responsable');
         $authorize->addPermissionToGroup('category.manage', 'responsable');
-        $authorize->addPermissionToGroup('restaurant.manage', 'responsable');
-        $authorize->addPermissionToGroup('restaurant.manage', 'responsable');
+        $authorize->addPermissionToGroup('dish.manage', 'responsable');
+        $authorize->addPermissionToGroup('staff.manage', 'responsable');
+        $authorize->addPermissionToGroup('groups.manage', 'administrador');
+        $authorize->addPermissionToGroup('groups.assign', 'administrador');
 
         # Add permissions to cambrer
-        $authorize->addPermissionToGroup('news.manage', 'cambrer');
-        $authorize->addPermissionToGroup('news.add', 'cambrer');
-        $authorize->addPermissionToGroup('news.update', 'cambrer');
-        $authorize->addPermissionToGroup('news.delete', 'cambrer');
+        $authorize->addPermissionToGroup('order.manage', 'cambrer');
+        $authorize->addPermissionToGroup('order.add', 'cambrer');
+        $authorize->addPermissionToGroup('order.update', 'cambrer');
+        $authorize->addPermissionToGroup('order.delete', 'cambrer');
 
         # Add permissions to cuiner
-        $authorize->addPermissionToGroup('news.manage', 'cuiner');
-        $authorize->addPermissionToGroup('news.add', 'cuiner');
-        $authorize->addPermissionToGroup('news.update', 'cuiner');
-        $authorize->addPermissionToGroup('news.delete', 'cuiner');
+        $authorize->addPermissionToGroup('order.manage', 'cuiner');
+        $authorize->addPermissionToGroup('order.add', 'cuiner');
+        $authorize->addPermissionToGroup('order.update', 'cuiner');
+        $authorize->addPermissionToGroup('order.delete', 'cuiner');
 
         # Add permissions to maitre
-        $authorize->addPermissionToGroup('news.manage', 'maitre');
-        $authorize->addPermissionToGroup('news.add', 'maitre');
-        $authorize->addPermissionToGroup('news.update', 'maitre');
-        $authorize->addPermissionToGroup('news.delete', 'maitre');
-
+        $authorize->addPermissionToGroup('order.statistics', 'maitre');
+        
         # Add generics permissions
         $authorize->addPermissionToGroup('news.enter', 'administradors');
         $authorize->addPermissionToGroup('news.enter', 'responsable');

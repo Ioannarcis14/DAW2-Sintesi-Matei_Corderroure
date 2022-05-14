@@ -15,10 +15,6 @@ class AllergenMigration extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'description'          => [
-                'type'           => 'TEXT',
-                'null'           => false,
-            ],
             'name'          => [
                 'type'           => 'CHAR',
                 'constraint'     => '255',

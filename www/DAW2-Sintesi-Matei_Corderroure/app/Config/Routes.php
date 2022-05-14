@@ -33,11 +33,9 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'HomePageController::index');
 
+//(The API routes will have JWT Filters and the web routes will have Myth/Auth Filters)
 
-
-//API ROUTES
-
-
+//API ROUTES 
 
 $routes->group("api", function ($routes) {
 
@@ -48,13 +46,13 @@ $routes->group("api", function ($routes) {
     $routes->post("login", "API\APIUserController::login");
 
     $routes->options("logout", "API\APIUserController::logout");
-    $routes->post("logout", "API\APIUserController::logout");
+    $routes->get("logout", "API\APIUserController::logout", ['filter'=>'jwt']);
 
     $routes->options("validate", "API\APIUserController::isUserAuthenticated");
-    $routes->post("validate", "API\APIUserController::isUserAuthenticated");
+    $routes->post("validate", "API\APIUserController::isUserAuthenticated", ['filter'=>'jwt']);
 
     $routes->group("users", function ($routes) {
-        $routes->get("getAll", "API\APIAdministracioController::getAll/users");
+        $routes->get("getAll", "API\APIUserController::getAllUsers/users");
         $routes->post("update", "API\APIAdministracioController::");
 
     });
@@ -81,8 +79,22 @@ $routes->group("api", function ($routes) {
 
     $routes->group("restaurant", function ($routes) {
         $routes->get("getAll", "API\APIRestaurantController::getAllRestaurants");
+        
         $routes->get("getRestaurant/(:any)", "API\APIRestaurantController::getSpecificRestaurant/$1");
 
+        $routes->get("getReviews/(:any)", "API\APIRestaurantController::getReviews/$1");
+
+        $routes->options("create","API\APIRestaurantController::create");
+        $routes->post("create","API\APIRestaurantController::create", ['filter'=>'jwt']);
+
+        $routes->options("update","API\APIRestaurantController::update/$1");
+        $routes->post("update","API\APIRestaurantController::update/$1");
+
+        $routes->options("delete","API\APIRestaurantController::delete/$1");
+        $routes->post("delete","API\APIRestaurantController::delete/$1");
+
+        $routes->options("createReviews","API\APIRestaurantController::createReviews");
+        $routes->post("createReviews","API\APIRestaurantController::createReviews");
     });
 
     $routes->group("supplement", function ($routes) {
@@ -99,7 +111,10 @@ $routes->group("api", function ($routes) {
 //ADMIN ROUTES
 
 
+$routes->group("admin", function ($routes) {
+        $routes->match(['get','post'], 'users', 'AdminCrudController::view', ['filter'=>'role:administrador']);
 
+});
 
 //RESPONSABLE ROUTES
 

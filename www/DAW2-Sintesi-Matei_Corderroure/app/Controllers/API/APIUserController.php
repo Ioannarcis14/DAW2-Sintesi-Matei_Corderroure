@@ -3,12 +3,13 @@
 namespace App\Controllers\API;
 
 use CodeIgniter\RESTful\ResourceController;
-use Firebase\JWT\JWT;
 use Myth\Auth\Models\UserModel;
 use Myth\Auth\Entities\User;
 use CodeIgniter\Files\File;
 use App\Models\UserModel as NoAuthUser;
-use Myth\Auth\Authorization\GroupModel;
+
+use \Firebase\JWT\Key;
+use \Firebase\JWT\JWT;
 
 class APIUserController extends ResourceController
 {
@@ -155,7 +156,7 @@ class APIUserController extends ResourceController
 
         $type = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-        
+
         if (!$auth->attempt([$type => $login, 'password' => $password], false)) {
             $response = [
                 'status' => 500,
@@ -207,7 +208,51 @@ class APIUserController extends ResourceController
         //Entering the call exhaust the token and doesn't renew it if u don't answer
     }
 
-     /**
+    /** 
+     * 
+     * 
+     */
+    public function isUserAuthenticated()
+    {
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+
+
+        if (!empty($token_data)) {
+            $userModel = new NoAuthUser();
+            $auth = service('authentication');
+
+            $email = $token_data->email;
+            $user = $userModel->getUserByMailOrUsername($email);
+
+            if (empty($user)) {
+                $response = [
+                    'status' => 500,
+                    "error" => true,
+                    'errors' => 'There is been an error with the login',
+                    'data' => []
+                ];
+            } else {
+                $response = [
+                    'status' => 200,
+                    "error" => false,
+                    'messages' => 'The user is authenticated',
+                    'data' => []
+                ];
+        }
+        } else {
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => 'The user is not authenticated',
+                'data' => []
+            ];
+        }
+
+        return $this->respond($response);
+    }
+
+    /**
      * Get all Users in the Database
      * 
      * It returns all the users that are in the database, if there aren't users found it will return an error
@@ -221,7 +266,7 @@ class APIUserController extends ResourceController
     public function getAllUsers()
     {
         //
-        $UserModel = new UserModel();
+        $UserModel = new NoAuthUser();
         $data = $UserModel->getAllUsers();
 
         if (!empty($data)) {
@@ -242,7 +287,4 @@ class APIUserController extends ResourceController
 
         return $this->respond($response);
     }
-
-    
-
 }

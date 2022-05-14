@@ -134,7 +134,6 @@ class UserModel extends Model
      * It returns the user that has that email or username
      */
     public function getUserByMailOrUsername ($email) {
-        // return $this->where('email',$email)->first();
         return $this->orWhere('email',$email)->orWhere('username',$email)->first();
     }
     
