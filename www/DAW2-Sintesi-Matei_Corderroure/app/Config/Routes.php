@@ -118,7 +118,10 @@ $routes->group("admin", function ($routes) {
 
 //RESPONSABLE ROUTES
 
+$routes->group("responsable", function ($routes) {
+    $routes->match(['get','post'], 'restaurants', 'ResponsableCrudController::view', ['filter'=>'role:responsable']);
 
+});
 
 
 //CAMBRER CUINER ROUTES

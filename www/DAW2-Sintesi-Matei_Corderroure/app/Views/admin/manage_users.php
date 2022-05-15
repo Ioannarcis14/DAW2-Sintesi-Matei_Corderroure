@@ -13,9 +13,6 @@
     <div class="container-lg">
         <?= $output ?>
     </div>
-    <div>
-        <a href="#">External function</a>
-    </div>
 </body>
 
 </html>

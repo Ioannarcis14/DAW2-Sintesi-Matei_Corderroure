@@ -66,23 +66,28 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v6.1.2",
+            "version": "v6.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "c297139da7c6873dbd67cbd1093f09ec0bbd0c50"
+                "reference": "d28e6df83830252650da4623c78aaaf98fb385f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/c297139da7c6873dbd67cbd1093f09ec0bbd0c50",
-                "reference": "c297139da7c6873dbd67cbd1093f09ec0bbd0c50",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/d28e6df83830252650da4623c78aaaf98fb385f3",
+                "reference": "d28e6df83830252650da4623c78aaaf98fb385f3",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1||^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.5||9.5"
+                "guzzlehttp/guzzle": "^6.5||^7.4",
+                "phpspec/prophecy-phpunit": "^1.1",
+                "phpunit/phpunit": "^7.5||^9.5",
+                "psr/cache": "^1.0||^2.0",
+                "psr/http-client": "^1.0",
+                "psr/http-factory": "^1.0"
             },
             "suggest": {
                 "paragonie/sodium_compat": "Support EdDSA (Ed25519) signatures when libsodium is not present"
@@ -117,9 +122,9 @@
             ],
             "support": {
                 "issues": "https://github.com/firebase/php-jwt/issues",
-                "source": "https://github.com/firebase/php-jwt/tree/v6.1.2"
+                "source": "https://github.com/firebase/php-jwt/tree/v6.2.0"
             },
-            "time": "2022-04-21T14:37:18+00:00"
+            "time": "2022-05-13T20:54:50+00:00"
         },
         {
             "name": "kint-php/kint",
@@ -380,12 +385,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SIENSIS/KpaCrud.git",
-                "reference": "e7bc6291f2fb63414e3701f2259b40cbb26983b0"
+                "reference": "ab982d36281c7b1f8e0235ed6d12a43a28dad15d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SIENSIS/KpaCrud/zipball/e7bc6291f2fb63414e3701f2259b40cbb26983b0",
-                "reference": "e7bc6291f2fb63414e3701f2259b40cbb26983b0",
+                "url": "https://api.github.com/repos/SIENSIS/KpaCrud/zipball/ab982d36281c7b1f8e0235ed6d12a43a28dad15d",
+                "reference": "ab982d36281c7b1f8e0235ed6d12a43a28dad15d",
                 "shasum": ""
             },
             "default-branch": true,
@@ -417,7 +422,7 @@
                 "issues": "https://github.com/SIENSIS/KpaCrud/issues",
                 "source": "https://github.com/SIENSIS/KpaCrud/tree/master"
             },
-            "time": "2022-05-10T18:44:16+00:00"
+            "time": "2022-05-13T15:55:01+00:00"
         }
     ],
     "packages-dev": [
