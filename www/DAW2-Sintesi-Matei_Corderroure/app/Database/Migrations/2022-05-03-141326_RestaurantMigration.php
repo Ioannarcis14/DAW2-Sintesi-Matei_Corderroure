@@ -102,14 +102,14 @@ class RestaurantMigration extends Migration
         ]);
         $this->forge->addForeignKey('id_restaurant', 'restaurant', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_user', 'users', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('valoration');
+        $this->forge->createTable('valorations');
 
     }
 
     public function down()
     {
         $this->forge->dropTable('restaurant');
-        $this->forge->dropTable('valoration');
+        $this->forge->dropTable('valorations');
 
     }
 }

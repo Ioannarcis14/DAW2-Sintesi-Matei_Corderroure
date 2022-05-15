@@ -14,7 +14,7 @@ class AddCategorySeeder extends Seeder
 
         $row = [
             'id_restaurant'   => 2,
-            'id_category_parent' => 0,
+            'id_category_parent' => null,
             'name' => 'Menu of the day',
             'observation_msg' => '',
         ];
@@ -41,7 +41,7 @@ class AddCategorySeeder extends Seeder
 
         $row4 = [
             'id_restaurant'   => 2,
-            'id_category_parent' => 0,
+            'id_category_parent' => null,
             'name' => 'Kids Menu ',
             'observation_msg' => 'Must have below 12 years old to order the menu',
         ];

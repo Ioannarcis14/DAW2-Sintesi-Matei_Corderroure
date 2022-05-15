@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class DishSupplementModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'dishsupplements';
+    protected $table            = 'dish_supplement';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;

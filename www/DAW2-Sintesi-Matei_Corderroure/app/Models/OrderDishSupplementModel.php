@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class OrderDishSupplementModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'orderdishsupplements';
+    protected $table            = 'order_dish_supplement';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;

@@ -13,7 +13,7 @@ class UserRestaurantSeeder extends Seeder
         $userRest = model(UserRestaurantModel::class);
 
         $row = [
-            'id_user' => 1,
+            'id_user' => 2,
             'id_restaurant' => 1,
         ];
 

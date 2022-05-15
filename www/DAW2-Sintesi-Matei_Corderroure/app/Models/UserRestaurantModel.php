@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class UserRestaurantModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'userrestaurants';
+    protected $table            = 'user_restaurant';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;

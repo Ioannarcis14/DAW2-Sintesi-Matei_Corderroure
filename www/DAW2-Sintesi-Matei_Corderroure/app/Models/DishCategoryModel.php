@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class DishCategoryModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'dishcategories';
+    protected $table            = 'dish_category';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;

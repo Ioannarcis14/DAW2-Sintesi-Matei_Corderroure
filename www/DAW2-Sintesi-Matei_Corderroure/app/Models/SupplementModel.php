@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class SupplementModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'supplements';
+    protected $table            = 'supplement';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;

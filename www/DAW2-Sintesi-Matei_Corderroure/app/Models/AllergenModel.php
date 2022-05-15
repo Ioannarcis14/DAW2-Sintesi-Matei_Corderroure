@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class AllergenModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'allergens';
+    protected $table            = 'allergen';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
