@@ -39,4 +39,9 @@ class ValorationsModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    public function getAllValorations($id_restaurant){
+        return $this->where('id_restaurant', $id_restaurant)->findAll();
+    }
 }

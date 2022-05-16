@@ -34,7 +34,7 @@ class Database extends Config
         'DSN'      => '',
         'hostname' => 'localhost',
         'username' => 'root',
-        'password' => '',
+        'password' => '1234',
         'database' => 'restdb',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',

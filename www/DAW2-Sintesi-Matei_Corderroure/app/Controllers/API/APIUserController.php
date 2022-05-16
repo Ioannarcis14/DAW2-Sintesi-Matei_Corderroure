@@ -16,6 +16,50 @@ class APIUserController extends ResourceController
 
     protected $helpers = ['auth'];
 
+    
+    /**
+     * Registers a user in the Database
+     * 
+     * It compiles the data, that the user is giving us and if the data passes through the validation, the user is created
+     * 
+     * URL: localhost:80/api/register
+     * 
+     * * Method: POST
+     * 
+     * Parameters introduced by the User (sended by JSON or a form-data):
+     * 
+     * * $username: string
+     * 
+     * This is username, that the future user will be known for
+     * * $name: string
+     * 
+     * The real name of the User
+     * * $surname: string
+     * 
+     * The real surname of the User
+     * * $password: mixed
+     * 
+     * The password that the user will have to introduce
+     * * $pass_confirm: mixed
+     * 
+     * This parameter will be used to verify that the user knows the password that he is introducing
+     * * $phone: int
+     * 
+     * A phone number, that the user will have
+     * * $city: string
+     * 
+     * The city, the user is currently located
+     * * $street: string 
+     * 
+     * The street, that the user lives
+     * * $postal_code: string
+     * 
+     * The postal code of the location
+     * * $img_profile: mixed = null
+     * 
+     * The user can give and img, that will be used as a profile picture each time he enters his profile
+     * @return mixed It returns a message indicating if the user has been registered or an error has occurred
+     */
     public function register()
     {
         $rules = [
@@ -129,8 +173,23 @@ class APIUserController extends ResourceController
     }
 
     /** 
+     * Logs in the user
      * 
+     * When the user tries to log in, the auth service will verify if that user exists in the DB, if the user exists it will return a token for future authentications if not it will return an error
      * 
+     * * URL: localhost:80/api/login
+     * 
+     * * Method: POST
+     * 
+     * Parameters introduced by the User (sended by JSON or a form-data):
+     * 
+     * $login = string
+     * 
+     * This parameter can be used to put the email or the username, so the user can put one of those parameters for loggin in
+     * $password = mixed
+     * 
+     * The password of the user
+     * @return mixed It returns a token with information about the user if everything goes right, if there is any error it will return that error
      */
     public function login()
     {
@@ -200,27 +259,35 @@ class APIUserController extends ResourceController
     }
 
     /** 
+     * Log off a user that is currently logged in
      * 
+     * It exhausts the use of the token and doesn't respond so the token cannot renew by himself
      * 
+     * URL: localhost:80/api/logout
+     * 
+     * * Method: POST
+     * 
+     * @return null It doesn't return anything, cuz it doesn't want to respond with a refresh token 
      */
     public function logout()
     {
-        //Entering the call exhaust the token and doesn't renew it if u don't answer
+
     }
 
     /** 
+     * Checks if the user is currently logged in
      * 
+     * Checks if the token is still valid and the user currently exists
      * 
+     * @return mixed It returns a refresh token if everything goes right, if there is any error in the procedure it will return that error
      */
     public function isUserAuthenticated()
     {
-
         $token_data = json_decode($this->request->header("token-data")->getValue());
 
 
         if (!empty($token_data)) {
             $userModel = new NoAuthUser();
-            $auth = service('authentication');
 
             $email = $token_data->email;
             $user = $userModel->getUserByMailOrUsername($email);
@@ -229,7 +296,7 @@ class APIUserController extends ResourceController
                 $response = [
                     'status' => 500,
                     "error" => true,
-                    'errors' => 'There is been an error with the login',
+                    'errors' => 'There is been an error with the verification process',
                     'data' => []
                 ];
             } else {

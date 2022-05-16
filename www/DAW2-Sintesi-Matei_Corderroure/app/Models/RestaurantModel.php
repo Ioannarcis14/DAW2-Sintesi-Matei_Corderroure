@@ -49,7 +49,7 @@ class RestaurantModel extends Model
      * 
      */
     public function getAllRestaurantsDischarged() {
-        return $this->whereNotIn('discharged', null)->all();
+        return $this->where('discharged !=', null)->findall();
     }
 
     /**
@@ -58,18 +58,16 @@ class RestaurantModel extends Model
      * 
      */
     public function getAllRestaurantsNotDischarged() {
-        return $this->where('discharged', null)->all();
+        return $this->where('discharged', null)->findall();
     }
 
-    
-    /*
-    Select the specific restaurant
-    */
+    /**
+     * Selects an specific restaurant
+     * 
+     * 
+     */
     public function getSpecificRestaurant($id_restaurant) {
-
+        return $this->where('id', $id_restaurant)->first();
     }
-
-
-
 
 }

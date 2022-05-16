@@ -52,11 +52,53 @@ $routes->group("api", function ($routes) {
     $routes->post("validate", "API\APIUserController::isUserAuthenticated", ['filter'=>'jwt']);
 
     $routes->group("users", function ($routes) {
-        $routes->get("getAll", "API\APIUserController::getAllUsers/users");
-        $routes->post("update", "API\APIAdministracioController::");
 
+        $routes->get("getAll", "API\APIUserController::getAllUsers");
+
+        $routes->options("create","API\APIRestaurantController::create");
+        $routes->post("create","API\APIUserController::create", ['filter'=>'jwt']);
+
+        $routes->options("update/(:any)","API\APIUserController::update/$1");
+        $routes->post("update/(:any)", "API\APIUserController::update/$1", ['filter'=>'jwt']);
+
+        $routes->options("delete/(:any)","API\APIUserController::delete/$1");
+        $routes->post("delete/(:any)","API\APIUserController::delete/$1", ['filter'=>'jwt']);
+
+        $routes->get("getAllRoles", "API\APIUserController::getAllRoles");
+
+        $routes->options("createRole","API\APIUserController::createRole");
+        $routes->post("createRole","API\APIUserController::createRole", ['filter'=>'jwt']);
+
+        $routes->options("updateRole/(:any)","API\APIUserController::updateRole/$1");
+        $routes->post("updateRole/(:any)", "API\APIUserController::updateRole/$1", ['filter'=>'jwt']);
+
+        $routes->options("deleteRole/(:any)","API\APIUserController::deleteRole/$1");
+        $routes->post("deleteRole/(:any)","API\APIUserController::deleteRole/$1", ['filter'=>'jwt']);
+
+        $routes->options("assignRole","API\APIUserController::assignRole");
+        $routes->post("assignRole","API\APIUserController::assignRole", ['filter'=>'jwt']);
     });
  
+    $routes->group("restaurant", function ($routes) {
+        $routes->get("getAll", "API\APIRestaurantController::getAllRestaurants");
+        
+        $routes->get("getRestaurant/(:any)", "API\APIRestaurantController::getSpecificRestaurant/$1");
+
+        $routes->get("getReviews/(:any)", "API\APIRestaurantController::getReviews/$1");
+
+        $routes->options("create","API\APIRestaurantController::create");
+        $routes->post("create","API\APIRestaurantController::create", ['filter'=>'jwt']);
+
+        $routes->options("update","API\APIRestaurantController::update/$1");
+        $routes->post("update","API\APIRestaurantController::update/$1");
+
+        $routes->options("delete","API\APIRestaurantController::delete/$1");
+        $routes->post("delete","API\APIRestaurantController::delete/$1");
+
+        $routes->options("createReviews","API\APIRestaurantController::createReviews");
+        $routes->post("createReviews","API\APIRestaurantController::createReviews");
+    });
+
     $routes->group("allergen", function ($routes) {
         $routes->get("getAll", "API\APIAdministracioController::getAllAllergens");
     });
@@ -77,25 +119,7 @@ $routes->group("api", function ($routes) {
         $routes->get("getAll", "API\APIAdministracioController::getAllOrders");
     });
 
-    $routes->group("restaurant", function ($routes) {
-        $routes->get("getAll", "API\APIRestaurantController::getAllRestaurants");
-        
-        $routes->get("getRestaurant/(:any)", "API\APIRestaurantController::getSpecificRestaurant/$1");
-
-        $routes->get("getReviews/(:any)", "API\APIRestaurantController::getReviews/$1");
-
-        $routes->options("create","API\APIRestaurantController::create");
-        $routes->post("create","API\APIRestaurantController::create", ['filter'=>'jwt']);
-
-        $routes->options("update","API\APIRestaurantController::update/$1");
-        $routes->post("update","API\APIRestaurantController::update/$1");
-
-        $routes->options("delete","API\APIRestaurantController::delete/$1");
-        $routes->post("delete","API\APIRestaurantController::delete/$1");
-
-        $routes->options("createReviews","API\APIRestaurantController::createReviews");
-        $routes->post("createReviews","API\APIRestaurantController::createReviews");
-    });
+    
 
     $routes->group("supplement", function ($routes) {
         $routes->get("getAll", "API\APIAdministracioController::getAllSupplements");

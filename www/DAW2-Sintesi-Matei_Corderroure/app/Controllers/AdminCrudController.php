@@ -14,6 +14,31 @@ class AdminCrudController extends BaseController
         return $postData; // if return null, edit process will be cancelled
     }
 
+    public function assignRoles(){
+        $crud = new KpaCrud('listView');
+
+    $crud->setTable('auth_groups_users');
+    $crud->setPrimaryKey('group_id');
+    $crud->setPrimaryKey('user_id');
+
+    $crud->setRelation('group_id', 'auth_groups', 'id', 'name');
+    $crud->setRelation('user_id', 'users', 'id', 'username');
+
+    $crud->setColumns(['auth_groups__name', 'users__username', 'users__email']);
+
+    $crud->setColumnsInfo([
+        'auth_groups__name' => 'Rol',
+        'users__username' => 'Usuari',
+        'users__email' => 'eMail',
+    ]);
+
+    $data['output'] = $crud->render();
+
+        return view('admin/manage_users', $data);
+
+    }
+
+
     public function view() {
 
         $crud = new KpaCrud();
@@ -34,7 +59,6 @@ class AdminCrudController extends BaseController
         $crud->addPostEditCallBack(array($this, 'hashEditPassword'));
 
         $crud->addItemFunction('assign', 'fa fa-id-badge', array($this, 'myCustomPage'), "Assign roles");
-        $crud->addItemFunction('mpost', '', array($this, 'myCustomPagePost'), "",false);
 
         $crud->setColumnsInfo([
             'id' => ['name' => 'Code'],
@@ -57,6 +81,7 @@ class AdminCrudController extends BaseController
                 'type' => KpaCrud::PASSWORD_FIELD_TYPE,
                 'name'=> 'Password',
                 'html_atts' => [
+                    "requiered",
                 ]
             ],
 
@@ -93,14 +118,14 @@ class AdminCrudController extends BaseController
         $html .= "		<div class=\"d-grid\" style=\"margin-top:20px\">";
         $html .= "			<div class=\"p-2 \">	";
         $html .= "				<label>Username</label>	";
-        $html .= "				<div class=\"form-control bg-light \">";
+        $html .= "				<div class=\"form-control bg-light \" name=\"Username\">";
         $html .= $obj['username'];
         $html .= "				</div>";
         $html .= "			</div>";
         $html .= "";
         $html .= "			<div class=\"p-2 \">	";
         $html .= "				<label>Assign groups</label>";
-        $html .= "                  <select class=\"form-select\" aria-label=\"Default select example\">";
+        $html .= "                  <select class=\"form-select\" name=\"Group\" aria-label=\"Default select example\">";
         $html .= "			            <option value=\"6\" selected>Usuari</option>";
         $html .= "                      <option value=\"5\">Maitre</option>";
         $html .= "                      <option value=\"4\">Cambrer</option>";
@@ -128,6 +153,11 @@ class AdminCrudController extends BaseController
         /*
         Do something with this->request->getPost information
         */
+        $username = $this->request->getPost('Username');
+        $Group = $this->request->getPost('Group');
+
+        dd($username);  
+
         return $html;
     }
 
