@@ -39,4 +39,9 @@ class AllergenModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getAllAllergen() {
+        return $this->findAll();
+    }
+
 }

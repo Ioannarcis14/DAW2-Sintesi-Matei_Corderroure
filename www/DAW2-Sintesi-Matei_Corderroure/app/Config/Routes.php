@@ -86,47 +86,108 @@ $routes->group("api", function ($routes) {
 
         $routes->get("getReviews/(:any)", "API\APIRestaurantController::getReviews/$1");
 
-        $routes->options("create","API\APIRestaurantController::create");
-        $routes->post("create","API\APIRestaurantController::create", ['filter'=>'jwt']);
+        $routes->options("create","API\APIRestaurantController::createRestaurant");
+        $routes->post("create","API\APIRestaurantController::createRestaurant", ['filter'=>'jwt']);
 
-        $routes->options("update","API\APIRestaurantController::update/$1");
-        $routes->post("update","API\APIRestaurantController::update/$1");
+        $routes->options("update/(:any)","API\APIRestaurantController::updateRestaurant/$1");
+        $routes->post("update/(:any)","API\APIRestaurantController::updateRestaurant/$1", ['filter'=>'jwt']);
 
-        $routes->options("delete","API\APIRestaurantController::delete/$1");
-        $routes->post("delete","API\APIRestaurantController::delete/$1");
+        $routes->options("delete/(:any)","API\APIRestaurantController::deleteRestaurant/$1");
+        $routes->post("delete/(:any)","API\APIRestaurantController::deleteRestaurant/$1", ['filter'=>'jwt']);
 
         $routes->options("createReviews","API\APIRestaurantController::createReviews");
         $routes->post("createReviews","API\APIRestaurantController::createReviews");
     });
 
     $routes->group("allergen", function ($routes) {
-        $routes->get("getAll", "API\APIAdministracioController::getAllAllergens");
+        $routes->get("getAll", "API\APIAllergenController::getAllAllergens");
     });
 
     $routes->group("category", function ($routes) {
-        $routes->get("getAll", "API\APIAdministracioController::getAllCategories");
+        $routes->get("getAll", "API\APICategoryController::getAllCategories");
+
+        $routes->options("create","API\APICategoryController::createCategory");
+        $routes->post("create","API\APICategoryController::createCategory", ['filter'=>'jwt']);
+
+        $routes->options("update/(:any)","API\APICategoryController::updateCategory/$1");
+        $routes->post("update/(:any)","API\APICategoryController::updateCategory/$1", ['filter'=>'jwt']);
+
+        $routes->options("delete/(:any)","API\APICategoryController::deleteCategory/$1");
+        $routes->post("delete/(:any)","API\APICategoryController::deleteCategory/$1", ['filter'=>'jwt']);
+
     });
 
     $routes->group("dish", function ($routes) {
-        $routes->get("getAll", "API\APIAdministracioController::getAllDishes");
+        $routes->get("getAll", "API\APIDishController::getAllDishes");
+
+        $routes->options("create","API\APIDishController::createDish");
+        $routes->post("create","API\APIDishController::createDish", ['filter'=>'jwt']);
+
+        $routes->options("update/(:any)","API\APIDishController::updateDish/$1");
+        $routes->post("update/(:any)","API\APIDishController::updateDish/$1", ['filter'=>'jwt']);
+
+        $routes->options("delete/(:any)","API\APIDishController::deleteDish/$1");
+        $routes->post("delete/(:any)","API\APIDishController::deleteDish/$1", ['filter'=>'jwt']);
+        
+        $routes->options("assignSupplement","API\APIDishController::assignSupplement");
+        $routes->post("assignSupplement","API\APIDishController::assignSupplement", ['filter'=>'jwt']);
+
+        $routes->options("assignCategory","API\APIDishController::assignCategory");
+        $routes->post("assignCategory","API\APIDishController::assignCategory", ['filter'=>'jwt']);
+
+        $routes->options("assignAllergen","API\APIDishController::assignAllergen");
+        $routes->post("assignAllergen","API\APIDishController::assignAllergen", ['filter'=>'jwt']);
+
     });
 
     $routes->group("messages", function ($routes) {
-        $routes->get("getAll", "API\APIAdministracioController::getAllMessages");
+        $routes->get("getAll", "API\APIMessagesController::getAllMessages");
+
+        $routes->options("create","API\APIMessagesController::createMessages");
+        $routes->post("create","API\APIMessagesController::createMessages", ['filter'=>'jwt']);
+
     });
 
     $routes->group("order", function ($routes) {
-        $routes->get("getAll", "API\APIAdministracioController::getAllOrders");
+        $routes->get("getAll", "API\APIOrderController::getAllOrders");
+
+        $routes->options("create","API\APIOrderController::createOrder");
+        $routes->post("create","API\APIOrderController::createOrder", ['filter'=>'jwt']);
+
+        $routes->options("update/(:any)","API\APIOrderController::updateOrder/$1");
+        $routes->post("update/(:any)","API\APIOrderController::updateOrder/$1", ['filter'=>'jwt']);
+
+        $routes->options("delete/(:any)","API\APIOrderController::deleteOrder/$1");
+        $routes->post("delete/(:any)","API\APIOrderController::deleteOrder/$1", ['filter'=>'jwt']);
+
     });
 
-    
-
     $routes->group("supplement", function ($routes) {
-        $routes->get("getAll", "API\APIAdministracioController::getAllSupplements");
+        $routes->get("getAll", "API\APISupplementController::getAllSupplements");
+
+        $routes->options("create","API\APISupplementController::createSupplement");
+        $routes->post("create","API\APISupplementController::createSupplement", ['filter'=>'jwt']);
+
+        $routes->options("update/(:any)","API\APISupplementController::updateSupplement/$1");
+        $routes->post("update/(:any)","API\APISupplementController::updateSupplement/$1", ['filter'=>'jwt']);
+
+        $routes->options("delete/(:any)","API\APISupplementController::deleteSupplement/$1");
+        $routes->post("delete/(:any)","API\APISupplementController::deleteSupplement/$1", ['filter'=>'jwt']);
+
     });
 
     $routes->group("taula", function ($routes) {
-        $routes->get("getAll", "API\APIAdministracioController::getAllTaules");
+        $routes->get("getAll", "API\APITaulaController::getAllTaules");
+
+        $routes->options("create","API\APITaulaController::createTaula");
+        $routes->post("create","API\APITaulaController::createTaula", ['filter'=>'jwt']);
+
+        $routes->options("update/(:any)","API\APITaulaController::updateTaula/$1");
+        $routes->post("update/(:any)","API\APITaulaController::updateTaula/$1", ['filter'=>'jwt']);
+
+        $routes->options("delete/(:any)","API\APITaulaController::deleteTaula/$1");
+        $routes->post("delete/(:any)","API\APITaulaController::deleteTaula/$1", ['filter'=>'jwt']);
+
     });
 
 });

@@ -82,42 +82,12 @@ class APIRestaurantController extends ResourceController
     }
 
     /**
-     * Get the valorations of an specific restaurant
-     * 
-     * 
-     * 
-     */
-    public function getReviews($id_restaurant) {
-        $ValModel = new ValorationsModel();
-
-        $valorations = $ValModel->getAllValorations($id_restaurant);
-
-        if (!empty($valorations)) {
-            $response = [
-                'status' => 200,
-                "error" => false,
-                'messages' => 'Valorations data found',
-                'data' => $valorations
-            ];
-        } else {
-            $response = [
-                'status' => 404,
-                "error" => true,
-                'messages' => 'No valorations found',
-                'data' => []
-            ];
-        }
-        return $this->respond($response);
-
-    }
-
-    /**
      * Creates a restaurant
      * 
      * 
      * 
      */
-    public function create() {
+    public function createRestaurant() {
 
         $token_data = json_decode($this->request->header("token-data")->getValue());
 
@@ -156,5 +126,61 @@ class APIRestaurantController extends ResourceController
     }
     }
 
+    /**
+     * Updates a restaurant
+     * 
+     * 
+     * 
+     */
+    public function updateRestaurant($id_restaurant)
+    {
+
+    }
+
+    /**
+     * Deletes a restaurant
+     * 
+     * 
+     * 
+     */
+    public function deleteRestaurant($id_restaurant)
+    {
+
+    }
+
+    /**
+     * Get the valorations of an specific restaurant
+     * 
+     * 
+     * 
+     */
+    public function getReviews($id_restaurant) {
+        $ValModel = new ValorationsModel();
+
+        $valorations = $ValModel->getAllValorations($id_restaurant);
+
+        if (!empty($valorations)) {
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => 'Valorations data found',
+                'data' => $valorations
+            ];
+        } else {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'No valorations found',
+                'data' => []
+            ];
+        }
+        return $this->respond($response);
+
+    }
+
+    public function createReviews()
+    {
+
+    }
 
 }
