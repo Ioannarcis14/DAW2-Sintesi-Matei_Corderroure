@@ -84,6 +84,9 @@ $routes->group("api", function ($routes) {
         
         $routes->get("getRestaurant/(:any)", "API\APIRestaurantController::getSpecificRestaurant/$1");
 
+        $routes->options("getRestaurantUsers","API\APIRestaurantController::getAllRestaurantsFromUsers");
+        $routes->post("getRestaurantUsers","API\APIRestaurantController::getAllRestaurantsFromUsers", ['filter'=>'jwt']);
+
         $routes->get("getReviews/(:any)", "API\APIRestaurantController::getReviews/$1");
 
         $routes->options("create","API\APIRestaurantController::createRestaurant");

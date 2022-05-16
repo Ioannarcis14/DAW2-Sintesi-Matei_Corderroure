@@ -80,6 +80,47 @@ class APIRestaurantController extends ResourceController
         }
         return $this->respond($response);
     }
+/**
+     * Get an specific restaurant
+     * 
+     * 
+     * 
+     */
+    public function getAllRestaurantsFromUsers() {
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+
+        if(!empty($token_data)  && $token_data->group = "responsable") {
+            
+            $RestaModel = new RestaurantModel();
+            $restaurant = $RestaModel->getAllRestaurantsFromResponsable($token_data->uid);
+            
+            if (!empty($restaurant)) {
+                $response = [
+                    'status' => 200,
+                    "error" => false,
+                    'messages' => 'Restaurant data found',
+                    'data' => $restaurant
+                ];
+            } else {
+                $response = [
+                    'status' => 404,
+                    "error" => true,
+                    'messages' => 'No restaurant found',
+                    'data' => []
+                ];
+            }
+        } else {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'This user isn\'t a responsable',
+                'data' => []
+            ];
+        }
+        return $this->respond($response);
+    }
+
 
     /**
      * Creates a restaurant
