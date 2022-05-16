@@ -34,7 +34,7 @@ class AdminCrudController extends BaseController
 
     $data['output'] = $crud->render();
 
-        return view('admin/manage_users', $data);
+        return view('admin/manage_roles', $data);
 
     }
 

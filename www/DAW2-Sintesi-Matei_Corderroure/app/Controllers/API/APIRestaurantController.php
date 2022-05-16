@@ -91,7 +91,7 @@ class APIRestaurantController extends ResourceController
 
         $token_data = json_decode($this->request->header("token-data")->getValue());
 
-        if (!empty($token_data) && $token_data->group = "responsable" ) {
+        if (!empty($token_data) && $token_data->group = "responsable") {
 
         $rules = [
             'name' => 'required',
@@ -115,6 +115,9 @@ class APIRestaurantController extends ResourceController
             ];
             return $this->respond($response);
         }
+
+
+
 
     } else {
         $response = [
