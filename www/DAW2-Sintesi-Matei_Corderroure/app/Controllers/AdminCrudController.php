@@ -31,10 +31,8 @@ class AdminCrudController extends BaseController
         $crud->setPrimaryKey('id_user');
         $crud->setPrimaryKey('id_restaurant');
 
-        $crud->setRelation('group_id', 'auth_groups', 'id', 'name');
-        $crud->setRelation('user_id', 'users', 'id', 'username');
-
-        $crud->setColumns(['auth_groups__name', 'users__username', 'users__name', 'users__email']);
+        $crud->setColumns(['id_user', 'theme', 'message']);
+        $crud->addWhere('id_restaurant='.null);
 
         $crud->setColumnsInfo([
             'auth_groups__name' => 'Group',
@@ -54,7 +52,7 @@ class AdminCrudController extends BaseController
 
         $data['output'] = $crud->render();
 
-        return view('admin/assign_roles', $data);
+        return view('admin/see_messages', $data);
     }
 
     public function assignRoles()
@@ -97,14 +95,39 @@ class AdminCrudController extends BaseController
         $crud->setTable('auth_groups');
         $crud->setPrimaryKey('id');
 
+        $crud->setColumns(['id', 'name', 'description']);
+
+        $data['output'] = $crud->render();
+
+        return view('admin/manage_roles', $data);
+    }
+
+    public function manageThemes() 
+    {
+        $crud = new KpaCrud();
+        $crud->setTable('theme');
+        $crud->setPrimaryKey('name');
+
+        $crud->setColumns(['name']);
+
+        $data['output'] = $crud->render();
+
+        return view('admin/manage_themes', $data);
     }
 
     public function dischargeRestaurant() 
     {
         $crud = new KpaCrud();
-        $crud->setTable('restaurants');
+        $crud->setTable('restaurant');
         $crud->setPrimaryKey('id');
 
+        $crud->setColumns(['id', 'name', 'city']);
+
+        $crud->addWhere('discharged='.null);
+
+        $data['output'] = $crud->render();
+
+        return view('admin/discharge_restaurants', $data);
     }
 
     public function manageUser()

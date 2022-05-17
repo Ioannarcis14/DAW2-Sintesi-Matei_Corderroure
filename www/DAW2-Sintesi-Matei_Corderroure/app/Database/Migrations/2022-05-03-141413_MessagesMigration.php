@@ -42,6 +42,7 @@ class MessagesMigration extends Migration
                 'null'           => false,
             ],
         ]);
+        $this->forge->addPrimaryKey('name', true);
         $this->forge->createTable('theme');
         
     }
