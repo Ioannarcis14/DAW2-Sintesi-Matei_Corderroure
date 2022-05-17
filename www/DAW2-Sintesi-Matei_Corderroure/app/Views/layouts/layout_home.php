@@ -3,20 +3,37 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Oh Mama, Oh Food</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <?= link_tag('css/styles.css'); ?>
+    <title>Home</title>
 
     <!-- Bootstrap core CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-    </style>
-    
 </head>
 
 <body>
 
+<?= view('App\layouts\_navbar') ?>
 
-<?= $this->renderSection('main_content') ?>
+<main role="main">
+
+    <?php
+    $imageProperties = [
+        'src'    => 'img/rest.jpg',
+        'class'  => 'full_img',
+    ]; ?>
+
+    <div class="full_img">
+        <div class="container contentTxt">
+            <h1>Request your food Online!</h1>
+            <h3 class="text-warning mb-5">Pick it up or eat it here.</h3>
+            <button class="btn btn-light rounded-0 request">Request your food</button>
+        </div>
+    </div>
 
 
 

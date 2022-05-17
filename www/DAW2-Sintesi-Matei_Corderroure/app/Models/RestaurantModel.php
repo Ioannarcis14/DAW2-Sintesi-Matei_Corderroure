@@ -73,13 +73,13 @@ class RestaurantModel extends Model
     public function getAllRestaurantsFromResponsable($id_responsable) {
         $db      = \Config\Database::connect();
 
-        $builder = $db->table('restaurant');
-        $builder->select('*');
+        //$builder = $db->table('restaurant');
+        //$builder->select('*');
         //$builder->join('user_restaurant', 'user_restaurant.id_restaurant =  restaurant.id');
         //$builder->where('user_restaurant.id_restaurant', $id_responsable);
-        $query = $builder->get();
+        //$query = $builder->get();
 
-        return $query;
+        // return $query;
     }
 
 }
