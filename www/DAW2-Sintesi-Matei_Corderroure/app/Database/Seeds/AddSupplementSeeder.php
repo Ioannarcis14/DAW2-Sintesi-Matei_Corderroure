@@ -2,7 +2,6 @@
 
 namespace App\Database\Seeds;
 
-use App\Models\OrderModel;
 use App\Models\SupplementModel;
 use CodeIgniter\Database\Seeder;
 

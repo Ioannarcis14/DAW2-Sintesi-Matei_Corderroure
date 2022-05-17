@@ -14,7 +14,19 @@ class AdminCrudController extends BaseController
         return $postData; // if return null, edit process will be cancelled
     }
 
-    public function assignRoles(){
+    public function hashEditPassword($postData)
+    {
+        if ($postData['data_password_hash'] != $postData['olddata_password_hash']) {
+            // field has a new value. You new to generate new password
+            $postData['data_password_hash'] = password_hash($postData['data_password_hash'], PASSWORD_DEFAULT);
+        } // else field not changed, you can update with the same value
+        return $postData;  // if return null, edit process will be cancelled
+    }
+
+    
+    
+    public function assignRoles()
+    {
         $crud = new KpaCrud('listView');
 
     $crud->setTable('auth_groups_users');
@@ -24,22 +36,46 @@ class AdminCrudController extends BaseController
     $crud->setRelation('group_id', 'auth_groups', 'id', 'name');
     $crud->setRelation('user_id', 'users', 'id', 'username');
 
-    $crud->setColumns(['auth_groups__name', 'users__username', 'users__email']);
+    $crud->setColumns(['auth_groups__name', 'users__username', 'users__name','users__email']);
 
     $crud->setColumnsInfo([
-        'auth_groups__name' => 'Rol',
-        'users__username' => 'Usuari',
+        'auth_groups__name' => 'Group',
+        'users__username' => 'UserName',
+        'users__name' => 'Name',
         'users__email' => 'eMail',
+    ]);
+
+    $crud->setConfig([
+        "recycled_button" => false,
+        "exportXLS" => false,
+        "print" => false,
+        "multidelete" => false,
+        "deletepermanent" => false,
+
     ]);
 
     $data['output'] = $crud->render();
 
-        return view('admin/manage_roles', $data);
+        return view('admin/assign_roles', $data);
 
     }
+    
 
 
-    public function view() {
+
+  // Create an invisible named function in KpaCrud to call after
+
+  public function myCustomPagePost($obj)
+  {
+    // $obj contains info about register if you repeat querystring received in MyCustomPage
+        $html ='<h1>Operation ok</h1>';
+    /*
+    Do something with this->request->getPost information
+    */
+    return  redirect()->to('admin/roles');
+  }
+  
+    public function manageUser() {
 
         $crud = new KpaCrud();
         $crud->setTable('users');
@@ -57,8 +93,6 @@ class AdminCrudController extends BaseController
         
         $crud->addPostAddCallBack(array($this, 'hashNewPassword'));
         $crud->addPostEditCallBack(array($this, 'hashEditPassword'));
-
-        $crud->addItemFunction('assign', 'fa fa-id-badge', array($this, 'myCustomPage'), "Assign roles");
 
         $crud->setColumnsInfo([
             'id' => ['name' => 'Code'],
@@ -84,7 +118,8 @@ class AdminCrudController extends BaseController
                     "requiered",
                 ]
             ],
-
+            
+            'Img_profile' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
             'activate_hash' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
             'reset_hash' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
             'reset_at' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
@@ -103,62 +138,5 @@ class AdminCrudController extends BaseController
         $data['output'] = $crud->render();
 
         return view('admin/manage_users', $data);
-
     }
-
-    public function myCustomPage($obj)
-    {
-        $html = "<div class=\"container-lg p-4\">";
-        $html .= "<form method='post' action='".base_url($this->request->getPath())."?". $this->request->getUri()->getQuery() ."'>";
-        $html .= csrf_field()  ."<input type='hidden' name='test' value='ToSend'>";
-        $html .= "<div class=\"bg-secondary p-2 text-white\">";
-        $html .= "	<h1>Assign Group</h1>";
-        $html .= "</div>";
-        $html .= "	<div style=\"margin-top:20px\" class=\"border bg-light\">";
-        $html .= "		<div class=\"d-grid\" style=\"margin-top:20px\">";
-        $html .= "			<div class=\"p-2 \">	";
-        $html .= "				<label>Username</label>	";
-        $html .= "				<div class=\"form-control bg-light \" name=\"Username\">";
-        $html .= $obj['username'];
-        $html .= "				</div>";
-        $html .= "			</div>";
-        $html .= "";
-        $html .= "			<div class=\"p-2 \">	";
-        $html .= "				<label>Assign groups</label>";
-        $html .= "                  <select class=\"form-select\" name=\"Group\" aria-label=\"Default select example\">";
-        $html .= "			            <option value=\"6\" selected>Usuari</option>";
-        $html .= "                      <option value=\"5\">Maitre</option>";
-        $html .= "                      <option value=\"4\">Cambrer</option>";
-        $html .= "                      <option value=\"3\">Cuiner</option>";
-        $html .= "                      <option value=\"2\">Responsable</option>";
-        $html .= "			        </select>";
-        $html .= "			    </div>";
-        $html .= "			</div>";
-        $html .= "			";
-        $html .= "		</div>";
-        $html .= "	</div>";
-        $html .= "<div class='pt-2'><input type='submit' value='Assign group'></div></form>";
-        $html .= "</div>";
-
-
-        // $html = view('view_route/view_name');
-
-        return $html;
-    }
-    
-    public function myCustomPagePost($obj)
-    {
-        // $obj contains info about register if you repeat querystring received in MyCustomPage
-        $html ='<h1>Operation ok</h1>';
-        /*
-        Do something with this->request->getPost information
-        */
-        $username = $this->request->getPost('Username');
-        $Group = $this->request->getPost('Group');
-
-        dd($username);  
-
-        return $html;
-    }
-
 }

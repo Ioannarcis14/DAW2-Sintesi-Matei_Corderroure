@@ -19,7 +19,7 @@ class MessagesMigration extends Migration
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
-                'null'           => false,
+                'null'           => true,
             ],
             'theme'          => [
                 'type'           => 'VARCHAR',

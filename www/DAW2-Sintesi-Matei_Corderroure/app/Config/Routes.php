@@ -37,7 +37,11 @@ $routes->get('/', 'HomePageController::index');
 
 //API ROUTES 
 
-$routes->group("api", function ($routes) {
+$routes->group("api", function ($routes) { 
+    
+    /////////////////////////////////////////////////////
+    ///////// ROUTES AUTHENTICATION API ROUTES //////////
+    /////////////////////////////////////////////////////
 
     $routes->options("register", "API\APIUserController::register");
     $routes->post("register", "API\APIUserController::register");
@@ -51,9 +55,14 @@ $routes->group("api", function ($routes) {
     $routes->options("validate", "API\APIUserController::isUserAuthenticated");
     $routes->post("validate", "API\APIUserController::isUserAuthenticated", ['filter'=>'jwt']);
 
-    $routes->group("users", function ($routes) {
+    //////////////////////////////////////////////////////
+    /////// ROUTES RELATED WITH USERS AND ROLES //////////
+    //////////////////////////////////////////////////////
 
-        $routes->get("getAll", "API\APIUserController::getAllUsers");
+    $routes->group("users", function ($routes) { 
+
+        $routes->options("getAll", "API\APIUserController::getAllUsers");
+        $routes->get("getAll", "API\APIUserController::getAllUsers", ['filter'=>'jwt']);
 
         $routes->options("create","API\APIRestaurantController::create");
         $routes->post("create","API\APIUserController::create", ['filter'=>'jwt']);
@@ -64,7 +73,8 @@ $routes->group("api", function ($routes) {
         $routes->options("delete/(:any)","API\APIUserController::delete/$1");
         $routes->post("delete/(:any)","API\APIUserController::delete/$1", ['filter'=>'jwt']);
 
-        $routes->get("getAllRoles", "API\APIUserController::getAllRoles");
+        $routes->options("getAllRoles", "API\APIUserController::getAllRoles");
+        $routes->get("getAllRoles", "API\APIUserController::getAllRoles", ['filter'=>'jwt']);
 
         $routes->options("createRole","API\APIUserController::createRole");
         $routes->post("createRole","API\APIUserController::createRole", ['filter'=>'jwt']);
@@ -78,8 +88,13 @@ $routes->group("api", function ($routes) {
         $routes->options("assignRole","API\APIUserController::assignRole");
         $routes->post("assignRole","API\APIUserController::assignRole", ['filter'=>'jwt']);
     });
- 
-    $routes->group("restaurant", function ($routes) {
+
+    /////////////////////////////////////////////////////
+    ////////// RESTAURANT AND REVIEWS ROUTES ////////////
+    /////////////////////////////////////////////////////
+
+    $routes->group("restaurant", function ($routes) { 
+
         $routes->get("getAll", "API\APIRestaurantController::getAllRestaurants");
         
         $routes->get("getRestaurant/(:any)", "API\APIRestaurantController::getSpecificRestaurant/$1");
@@ -102,9 +117,17 @@ $routes->group("api", function ($routes) {
         $routes->post("createReviews","API\APIRestaurantController::createReviews");
     });
 
+    ///////////////////////////////////////
+    ////////// ALLERGEN ROUTES ////////////
+    ///////////////////////////////////////
+
     $routes->group("allergen", function ($routes) {
         $routes->get("getAll", "API\APIAllergenController::getAllAllergens");
     });
+
+    ///////////////////////////////////////
+    ////////// CATEGORY ROUTES ////////////
+    ///////////////////////////////////////
 
     $routes->group("category", function ($routes) {
         $routes->get("getAll", "API\APICategoryController::getAllCategories");
@@ -120,8 +143,14 @@ $routes->group("api", function ($routes) {
 
     });
 
+    /////////////////////////////////////
+    ////////// DISHES ROUTES ////////////
+    /////////////////////////////////////
+
     $routes->group("dish", function ($routes) {
         $routes->get("getAll", "API\APIDishController::getAllDishes");
+
+        $routes->get("getAllCategory", "API\APIDishController::getAllDishesFromCategory");
 
         $routes->options("create","API\APIDishController::createDish");
         $routes->post("create","API\APIDishController::createDish", ['filter'=>'jwt']);
@@ -143,6 +172,10 @@ $routes->group("api", function ($routes) {
 
     });
 
+    ///////////////////////////////////////
+    ////////// MESSAGES ROUTES ////////////
+    ///////////////////////////////////////
+
     $routes->group("messages", function ($routes) {
         $routes->get("getAll", "API\APIMessagesController::getAllMessages");
 
@@ -150,6 +183,10 @@ $routes->group("api", function ($routes) {
         $routes->post("create","API\APIMessagesController::createMessages", ['filter'=>'jwt']);
 
     });
+
+    ////////////////////////////////////
+    ////////// ORDER ROUTES ////////////
+    ////////////////////////////////////
 
     $routes->group("order", function ($routes) {
         $routes->get("getAll", "API\APIOrderController::getAllOrders");
@@ -165,6 +202,10 @@ $routes->group("api", function ($routes) {
 
     });
 
+    ///////////////////////////////////////
+    ///////// SUPPLEMENT ROUTES ///////////
+    ///////////////////////////////////////
+
     $routes->group("supplement", function ($routes) {
         $routes->get("getAll", "API\APISupplementController::getAllSupplements");
 
@@ -178,6 +219,10 @@ $routes->group("api", function ($routes) {
         $routes->post("delete/(:any)","API\APISupplementController::deleteSupplement/$1", ['filter'=>'jwt']);
 
     });
+
+    ////////////////////////////////////
+    ////////// TABLE ROUTES ////////////
+    ////////////////////////////////////
 
     $routes->group("taula", function ($routes) {
         $routes->get("getAll", "API\APITaulaController::getAllTaules");
@@ -200,7 +245,8 @@ $routes->group("api", function ($routes) {
 
 
 $routes->group("admin", function ($routes) {
-        $routes->match(['get','post'], 'users', 'AdminCrudController::view', ['filter'=>'role:administrador']);
+        $routes->match(['get','post'], 'users', 'AdminCrudController::manageUser', ['filter'=>'role:administrador']);
+        $routes->match(['get','post'], 'roles', 'AdminCrudController::assignRoles', ['filter'=>'role:administrador']);
 
 });
 

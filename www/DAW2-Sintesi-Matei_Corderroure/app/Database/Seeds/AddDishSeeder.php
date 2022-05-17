@@ -2,7 +2,6 @@
 
 namespace App\Database\Seeds;
 
-use App\Models\AllergenModel;
 use App\Models\DishModel;
 use CodeIgniter\Database\Seeder;
 

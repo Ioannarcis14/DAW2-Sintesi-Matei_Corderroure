@@ -2,8 +2,6 @@
 
 namespace App\Database\Seeds;
 
-use App\Database\Migrations\OrderMigration;
-use App\Models\CategoryModel;
 use App\Models\OrderModel;
 use CodeIgniter\Database\Seeder;
 

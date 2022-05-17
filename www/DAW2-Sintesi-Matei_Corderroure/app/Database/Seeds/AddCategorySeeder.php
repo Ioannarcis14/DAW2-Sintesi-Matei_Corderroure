@@ -3,7 +3,6 @@
 namespace App\Database\Seeds;
 
 use App\Models\CategoryModel;
-use App\Models\RestaurantModel;
 use CodeIgniter\Database\Seeder;
 
 class AddCategorySeeder extends Seeder
