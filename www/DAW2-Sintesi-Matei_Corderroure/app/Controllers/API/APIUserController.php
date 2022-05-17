@@ -164,7 +164,7 @@ class APIUserController extends ResourceController
             $response = [
                 'status' => 200,
                 "error" => false,
-                'messages' => 'User has been saved?',
+                'messages' => 'User has been saved',
                 'data' => $user
             ];
         }
@@ -245,7 +245,7 @@ class APIUserController extends ResourceController
                 'status' => 200,
                 "error" => false,
                 'messages' => 'User logged',
-                'data' => $token
+                'token' => $token
             ];
         } else {
             $response = [

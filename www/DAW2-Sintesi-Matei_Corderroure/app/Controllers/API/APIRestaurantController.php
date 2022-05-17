@@ -80,7 +80,8 @@ class APIRestaurantController extends ResourceController
         }
         return $this->respond($response);
     }
-/**
+
+    /**
      * Get an specific restaurant
      * 
      * 
@@ -91,7 +92,6 @@ class APIRestaurantController extends ResourceController
         $token_data = json_decode($this->request->header("token-data")->getValue());
 
         if(!empty($token_data)  && $token_data->group = "responsable") {
-            
             $RestaModel = new RestaurantModel();
             $restaurant = $RestaModel->getAllRestaurantsFromResponsable($token_data->uid);
             
@@ -136,15 +136,22 @@ class APIRestaurantController extends ResourceController
 
         $rules = [
             'name' => 'required',
-            'social_websites' => 'required',
-            'surname' => 'required',
-            'phone' => 'required|min_length[9]|max_length[9]',
             'city' => 'required',
             'street' => 'required',
             'postal_code' => 'required',
+            'social_websites' => 'required',
+            'phone' => 'required|min_length[9]|max_length[9]',
         ];
 
         $restaModel = new RestaurantModel();
+
+        $name = $this->request->getPost('name');
+        $city = $this->request->getPost('city');
+        $street = $this->request->getPost('street');
+        $postal_code = $this->request->getPost('postal_code');
+        $social_websites = $this->request->getPost('social_websites');
+        $phone = $this->request->getPost('phone');
+
 
         //Validation of the general fields of the form and the profile img
         if (!$this->validate($rules)) {
@@ -156,10 +163,7 @@ class APIRestaurantController extends ResourceController
             ];
             return $this->respond($response);
         }
-
-
-
-
+        
     } else {
         $response = [
             'status' => 200,
