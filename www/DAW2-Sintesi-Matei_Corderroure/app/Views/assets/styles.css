@@ -1,0 +1,10 @@
+.brand_img {
+    width: 100px;
+}
+
+.full_img {
+    background-image: url('../img/rest.jpeg');
+    background-position: center;
+    background-size: cover;
+    min-height: 100%;
+}
