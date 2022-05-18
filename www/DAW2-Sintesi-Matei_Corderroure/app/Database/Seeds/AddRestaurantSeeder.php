@@ -19,7 +19,8 @@ class AddRestaurantSeeder extends Seeder
             'postal_code' => 36002,
             'description' => 'We can make your belly happy',
             'phone' => 123332123,
-            'social_websites' => 'https://twitter.com/someones_tweet',
+            'twitter' => 'https://twitter.com/someones_tweet',
+            'instagram' => 'https://instagram.com/someones_tweet',
             'img_gallery'  => 'img/rest.jpg,img/my_rest2.jpg',
             'discharged' => 1,
         ];
@@ -34,7 +35,7 @@ class AddRestaurantSeeder extends Seeder
             'postal_code' => 31402,
             'description' => 'Eat Vegan food for half price',
             'phone' => 145689113,
-            'social_websites' => 'https://facebook.com/testing',
+            'facebook' => 'https://facebook.com/testing',
             'img_gallery'  => 'img/rest.jpeg,img/my_rest2.jpg',
             'discharged' => null,
         ];
@@ -49,7 +50,7 @@ class AddRestaurantSeeder extends Seeder
             'postal_code' => 39221,
             'description' => 'New Indian flavours decorate our dishes',
             'phone' => 553882192,
-            'social_websites' => 'https://twitter.com/spicey_ali',
+            'twitter' => 'https://twitter.com/spicey_ali',
             'img_gallery'  => 'img/rest.jpg,img/my_rest2.jpg',
             'discharged' => 1,
         ];

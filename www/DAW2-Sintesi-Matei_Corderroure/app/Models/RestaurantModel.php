@@ -14,8 +14,8 @@ class RestaurantModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id', 'name', 'city', 'street', 'postal_code', 'description', 'phone', 'social_websites',
-        'img_gallery', 'discharged'];
+    protected $allowedFields    = ['id', 'name', 'city', 'street', 'postal_code', 'description', 'phone', 'twitter', 
+    'instagram', 'facebook','img_gallery', 'discharged'];
 
     // Dates
     protected $useTimestamps = false;

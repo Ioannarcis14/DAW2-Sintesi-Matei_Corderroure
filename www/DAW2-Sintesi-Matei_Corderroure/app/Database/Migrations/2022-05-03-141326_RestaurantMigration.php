@@ -69,6 +69,10 @@ class RestaurantMigration extends Migration
                 'constraint'     => '255',
                 'null'           => true,
             ],
+            'img_gallery'          => [
+                'type'           => 'TEXT',
+                'null'           => true,
+            ],
             'discharged'          => [
                 'type'           => 'int',
                 'constraint'     => 1,

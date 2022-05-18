@@ -139,7 +139,6 @@ class APIRestaurantController extends ResourceController
             'city' => 'required',
             'street' => 'required',
             'postal_code' => 'required',
-            'description' => '',
             'twitter' => 'valid_url_strict[https]',
             'facebook' => 'valid_url_strict[https]',
             'instagram  ' => 'valid_url_strict[https]',
@@ -155,9 +154,11 @@ class APIRestaurantController extends ResourceController
 
         $restaModel = new RestaurantModel();
 
+
         $name = $this->request->getPost('name');
         $city = $this->request->getPost('city');
         $street = $this->request->getPost('street');
+        $description = $this->request->getPost('description');
         $postal_code = $this->request->getPost('postal_code');
         $twitter = $this->request->getPost('twitter');
         $facebook = $this->request->getPost('facebook');
