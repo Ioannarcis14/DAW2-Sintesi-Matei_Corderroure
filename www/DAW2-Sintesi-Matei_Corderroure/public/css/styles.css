@@ -51,6 +51,8 @@ body, html {
 
 html.restaurant {
     background-image: url("../img/rest.jpg");
+    height: 100vh;
+    background-size: cover;
 }
 body.restaurant {
     background-color: rgba(0, 0, 0, 0);
@@ -302,5 +304,19 @@ body.restaurant {
     font-weight: bold;
     color: white;
     align-items: center;
-    background-color: limegreen;
+}
+
+.note.high {
+    background-color: #6c3;
+
+}
+
+.note.medium {
+    background-color: #fc3;
+
+}
+
+.note.low {
+    background-color: #f00;
+
 }

@@ -80,7 +80,11 @@ class RestaurantModel extends Model
 
     public function getRatedRestaurants(){
 
+<<<<<<< HEAD
         $this->select(['restaurant.id', 'restaurant.img_gallery','restaurant.name','restaurant.city','restaurant.street','restaurant.postal_code','AVG(valorations.score) as nota']);
+=======
+        $this->select(['restaurant.id', 'restaurant.name','restaurant.city','restaurant.street','restaurant.postal_code','AVG(valorations.score) as nota', 'restaurant.img_gallery']);
+>>>>>>> b4dd3c33f830d929d141dc1ccb74df2a7a150762
         $this->join('valorations', 'valorations.id_restaurant = restaurant.id');
         $this->groupBy('restaurant.id');
 
