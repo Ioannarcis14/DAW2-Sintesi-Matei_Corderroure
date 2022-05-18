@@ -3,9 +3,9 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Controllers\API\APIUserController;
+use App\Models\RestaurantModel;
 
-class HomePageController extends BaseController
+class RestaurantPage extends BaseController
 {
     public function index()
     {
@@ -17,15 +17,12 @@ class HomePageController extends BaseController
         } else {
             $data['logged'] = true;
         }
-        return view('Home', $data);
+
+        $RestaModel = new RestaurantModel();
+        $list = $RestaModel->getAllRestaurantsDischarged();
+
+        $data['list'] = $list;
+
+        return view('Restaurant', $data);
     }
-
-    public function login() {
-
-    }
-
-    public function logout() {
-        
-    }
-
 }

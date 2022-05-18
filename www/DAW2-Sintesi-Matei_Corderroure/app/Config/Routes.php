@@ -33,6 +33,9 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'HomePageController::index');
 
+$routes->get("restaurants", "RestaurantPage::index");
+$routes->options("restaurants", "RestaurantPage::index");
+
 //(The API routes will have JWT Filters and the web routes will have Myth/Auth Filters)
 
 //API ROUTES 
@@ -50,6 +53,7 @@ $routes->group("api", function ($routes) {
 
     $routes->options("validate", "API\APIUserController::isUserAuthenticated");
     $routes->post("validate", "API\APIUserController::isUserAuthenticated", ['filter'=>'jwt']);
+
 
     $routes->group("users", function ($routes) {
 
