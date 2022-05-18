@@ -17,7 +17,7 @@ class HomePageController extends BaseController
         } else {
             $data['logged'] = true;
         }
-        return view('Home', $data);
+        return view('layouts/layout_home', $data);
     }
 
     public function login() {

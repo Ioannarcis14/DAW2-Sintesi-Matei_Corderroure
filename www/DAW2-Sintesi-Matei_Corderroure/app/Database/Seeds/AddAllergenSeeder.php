@@ -3,7 +3,6 @@
 namespace App\Database\Seeds;
 
 use App\Models\AllergenModel;
-use App\Models\RestaurantModel;
 use CodeIgniter\Database\Seeder;
 
 class AddAllergenSeeder extends Seeder

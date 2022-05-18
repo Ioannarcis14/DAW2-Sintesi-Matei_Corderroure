@@ -354,4 +354,68 @@ class APIUserController extends ResourceController
 
         return $this->respond($response);
     }
+
+    /**
+     * Get all roles available
+     * 
+     */
+    public function getAllRoles()
+    {
+        $UserModel = new NoAuthUser();
+
+        $roles = $UserModel->getRoles();
+
+        if (!empty($roles)) {
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => 'Users data founds',
+                'data' => $roles
+            ];
+        } else {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'No users found',
+                'data' => []
+            ];
+        }
+
+        return $this->respond($response);
+    }
+
+    /**
+     * Create a Role
+     * 
+     */
+    public function createRole()
+    {
+
+    }
+
+    /**
+     * Updates a role
+     * 
+     */
+    public function updateRole($id_role)
+    {
+
+    }
+
+    /**
+     * Delete the role
+     * 
+     */
+    public function deleteRole($id_role)
+    {
+
+    }
+
+    /**
+     * Assigns a role to a user
+     * 
+     */
+    public function assignRole(){
+
+    }
 }

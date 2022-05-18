@@ -14,7 +14,7 @@ class AddMessageSeeder extends Seeder
 
         $row = [
             'id_user'   => 1,
-            'id_restaurant' => 2,
+            'id_restaurant' => null,
             'theme' => 'issue',
             'message' => 'I profile image is not showing correctly',
         ];

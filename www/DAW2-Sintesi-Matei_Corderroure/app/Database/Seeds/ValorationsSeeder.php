@@ -2,7 +2,6 @@
 
 namespace App\Database\Seeds;
 
-use App\Models\TableModel;
 use App\Models\ValorationsModel;
 use CodeIgniter\Database\Seeder;
 

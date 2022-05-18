@@ -2,7 +2,6 @@
 
 namespace App\Database\Seeds;
 
-use App\Models\OrderDishSupplementModel;
 use App\Models\UserRestaurantModel;
 use CodeIgniter\Database\Seeder;
 

@@ -29,7 +29,9 @@ class Install extends Seeder
         $this->call("AddOrderSeeder");
         $this->call("OrderDishSeeder");
         $this->call("OrderDishSupplementSeeder");
-        
+
+        $this->call("ThemeSeeder");
+
         $this->call("ValorationsSeeder");
     }
 }

@@ -19,7 +19,7 @@ class MessagesMigration extends Migration
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
-                'null'           => false,
+                'null'           => true,
             ],
             'theme'          => [
                 'type'           => 'VARCHAR',
@@ -42,6 +42,7 @@ class MessagesMigration extends Migration
                 'null'           => false,
             ],
         ]);
+        $this->forge->addPrimaryKey('name', true);
         $this->forge->createTable('theme');
         
     }
