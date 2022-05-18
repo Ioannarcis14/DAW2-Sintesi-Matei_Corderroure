@@ -35,7 +35,7 @@ class AddRestaurantSeeder extends Seeder
             'description' => 'Eat Vegan food for half price',
             'phone' => 145689113,
             'social_websites' => 'https://facebook.com/testing',
-            'img_gallery'  => "img/rest.jpeg,public/img/my_rest2.jpg',
+            'img_gallery'  => 'img/rest.jpeg,public/img/my_rest2.jpg',
             'discharged' => null,
         ];
 
