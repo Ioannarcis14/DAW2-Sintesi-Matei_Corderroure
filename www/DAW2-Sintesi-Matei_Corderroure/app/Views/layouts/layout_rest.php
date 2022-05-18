@@ -11,7 +11,8 @@
     <title>Restaurant</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
 </head>
 
@@ -22,7 +23,7 @@
 <main role="main">
     <div class="topContent">
         <?php
-//            foreach ($list as $elem) {
+
 //                echo $elem['id'] . "</br>";
 //                echo $elem['name'] . "</br>";
 //                echo $elem['city'] . "</br>";
@@ -33,79 +34,95 @@
 //                echo $elem['img_gallery'] . "</br>";
 //                echo $elem['discharged'] . "</br>";
 //            }
-        ?>
+        echo "<div>";
+            echo "<div class='event-schedule-area-two bg-color pad100''>";
+                echo "<div class='container''>";
+                    echo "<div class='row'>";
+                        echo "<div class='col-lg-12'>";
+                            echo "<div class='tab-content' id='myTabContent'>";
+                                echo "<div class='tab-pane fade active show' id='home' role='tabpanel'>";
+                                    echo "<div class='table-responsive'>";
+                                        echo "<table class='table'>";
+                                            echo "<thead>";
+                                                echo "<tr>";
+                                                    echo "<th scope='col'>Restaurants</th>";
+                                                    echo "<th scope='col'></th>";
+                                                    echo "<th scope='col'></th>";
+                                                    echo "<th class='text-center' scope='col'></th>";
+                                                echo "</tr>";
+                                            echo "</thead>";
+                                            echo "<tbody>";
 
-        <div>
-            <div class="event-schedule-area-two bg-color pad100">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade active show" id="home" role="tabpanel">
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col">Restaurants</th>
-                                                <th scope="col"></th>
-                                                <th scope="col"></th>
-                                                <th class="text-center" scope="col"></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr class="inner-box">
-                                                <td>
-                                                    <div class="event-img">
-                                                        <?= img('img/rest.jpg') ?>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="event-wrap">
-                                                        <h3><a href="#">We DevOur</a></h3>
-                                                        <div class="meta">
-                                                            <div class="time">
-                                                                <span>Washington DC</span>
-                                                            </div>
-                                                            <div class="organizers">
-                                                                36004
-                                                            </div>
-                                                            <div class="categories">
-                                                                <b>Alamo St.</b>
-                                                            </div>
+                                            foreach ($list as $elem) {
 
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="r-no">
-                                                        <div class="note">10</div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="primary-btn">
-                                                        <a class="btn btn-primary" href="#">Read More</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /col end-->
-                    <!-- /row end-->
-                </div>
-            </div>
-        </div>
+                                                echo "<tr class='inner-box'>";
+                                                    echo "<td>";
+                                                        echo "<div class='event-img''>";
+                                                            $img = explode(',', $elem['img_gallery']);
+                                                            echo img($img[0]);
+                                                        echo "</div>";
+                                                    echo "</td>";
+                                                    echo "<td>";
+                                                        echo "<div class='event-wrap>'";
+                                                            echo "<h3><a href='#'>".$elem['name']."</a></h3>";
+                                                            echo "<div class='meta''>";
+                                                                echo "<div class='time''>";
+                                                                    echo "<span>".$elem['city']."</span>";
+                                                                echo "</div>";
+                                                                echo "<div class='organizers'>";
+                                                                    echo $elem['postal_code'];
+                                                                echo "</div>";
+                                                                echo "<div class='categories'>";
+                                                                    echo "<b>".$elem['street']."</b>";
+                                                                echo "</div>";
+                                                            echo "</div>";
+                                                        echo "</div>";
+                                                    echo "</td>";
+                                                    echo "<td>";
+                                                        echo "<div class='r-no'>";
+                                                        if ($elem['nota'] <= 10 && $elem['nota'] >= 7) {
+                                                            echo "<div class='note high'>".intval($elem['nota'])."</div>";
+                                                        } elseif ($elem['nota'] < 7 && $elem['nota'] >= 4) {
+                                                            echo "<div class='note medium'>" . intval($elem['nota']) . "</div>";
+                                                        } elseif ($elem['nota'] < 4 && $elem['nota'] >= 0) {
+                                                            echo "<div class='note low'>" . intval($elem['nota']) . "</div>";
+                                                        }
+                                                        echo "</div>";
+                                                        echo "</td>";
+                                                    echo "<td>";
+                                                        echo "<div class='primary-btn'>";
+                                                            echo "<a class='btn btn-primary' href=restaurants/".$elem['id'].">Read More</a>";
+                                                        echo "</div>";
+                                                    echo "</td>";
+                                                echo "</tr>";
+                                                }
+                                            echo "</tbody>";
+                                        echo "</table>";
+                                    echo "</div>";
+                                echo "</div>";
+                            echo "</div>";
+                        echo "</div>";
+                    echo "</div>";
+                echo "</div>";
+
+    ?>
+
+
+    </div>
     </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 
 </body>
 </html>

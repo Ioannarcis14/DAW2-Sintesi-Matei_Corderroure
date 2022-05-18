@@ -35,7 +35,7 @@ class AddRestaurantSeeder extends Seeder
             'description' => 'Eat Vegan food for half price',
             'phone' => 145689113,
             'social_websites' => 'https://facebook.com/testing',
-            'img_gallery'  => 'public/img/my_rest.jpg,public/img/my_rest2.jpg',
+            'img_gallery'  => "img/rest.jpeg,public/img/my_rest2.jpg',
             'discharged' => null,
         ];
 
@@ -50,7 +50,7 @@ class AddRestaurantSeeder extends Seeder
             'description' => 'New Indian flavours decorate our dishes',
             'phone' => 553882192,
             'social_websites' => 'https://twitter.com/spicey_ali',
-            'img_gallery'  => 'public/img/my_rest.jpg,public/img/my_rest2.jpg',
+            'img_gallery'  => 'img/rest.jpg,img/my_rest2.jpg',
             'discharged' => 1,
         ];
 
