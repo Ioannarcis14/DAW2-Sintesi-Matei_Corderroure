@@ -20,7 +20,7 @@ class AddRestaurantSeeder extends Seeder
             'description' => 'We can make your belly happy',
             'phone' => 123332123,
             'social_websites' => 'https://twitter.com/someones_tweet',
-            'img_gallery'  => 'public/img/my_rest.jpg,public/img/my_rest2.jpg',
+            'img_gallery'  => 'img/rest.jpg,img/my_rest2.jpg',
             'discharged' => 1,
         ];
 
@@ -35,7 +35,7 @@ class AddRestaurantSeeder extends Seeder
             'description' => 'Eat Vegan food for half price',
             'phone' => 145689113,
             'social_websites' => 'https://facebook.com/testing',
-            'img_gallery'  => 'img/rest.jpeg,public/img/my_rest2.jpg',
+            'img_gallery'  => 'img/rest.jpeg,img/my_rest2.jpg',
             'discharged' => null,
         ];
 
