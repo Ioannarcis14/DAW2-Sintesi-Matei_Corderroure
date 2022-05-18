@@ -19,7 +19,7 @@ class RestaurantPage extends BaseController
         }
 
         $RestaModel = new RestaurantModel();
-        $list = $RestaModel->getAllRestaurantsDischarged();
+        $list = $RestaModel->getRatedRestaurants();
 
         $data['list'] = $list;
 

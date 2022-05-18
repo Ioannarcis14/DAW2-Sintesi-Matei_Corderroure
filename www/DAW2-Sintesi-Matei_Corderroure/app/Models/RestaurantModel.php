@@ -78,4 +78,14 @@ class RestaurantModel extends Model
         return $this->findAll();
     }
 
+    public function getRatedRestaurants(){
+
+        $this->select(['restaurant.id', 'restaurant.name','restaurant.city','restaurant.street','restaurant.postal_code','AVG(valorations.score) as nota']);
+        $this->join('valorations', 'valorations.id_restaurant = restaurant.id');
+        $this->groupBy('restaurant.id');
+
+        return $this->findAll();
+        
+    }
+
 }
