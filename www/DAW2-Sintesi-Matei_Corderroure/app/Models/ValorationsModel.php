@@ -40,7 +40,11 @@ class ValorationsModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-
+    /**
+     * Get all valorations from an especific restaurant ID
+     * 
+     * It will return the valorations that the customers put to that restaurant
+     */
     public function getAllValorations($id_restaurant){
         return $this->where('id_restaurant', $id_restaurant)->findAll();
     }

@@ -54,12 +54,20 @@ class RestaurantMigration extends Migration
                 'unsigned'       => true,
                 'null'           => false,
             ],
-            'social_websites'          => [
-                'type'           => 'TEXT',
+            'twitter'          => [
+                'type'           => 'VARCHAR',
+                'constraint'     => '255',
+                'null'           => true,
             ],
-            'img_gallery'          => [
-                'type'           => 'TEXT',
-                'null'           => false,
+            'facebook'          => [
+                'type'           => 'VARCHAR',
+                'constraint'     => '255',
+                'null'           => true,
+            ],
+            'instagram'          => [
+                'type'           => 'VARCHAR',
+                'constraint'     => '255',
+                'null'           => true,
             ],
             'discharged'          => [
                 'type'           => 'int',

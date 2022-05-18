@@ -139,8 +139,18 @@ class APIRestaurantController extends ResourceController
             'city' => 'required',
             'street' => 'required',
             'postal_code' => 'required',
-            'social_websites' => 'required',
+            'description' => '',
+            'twitter' => 'valid_url_strict[https]',
+            'facebook' => 'valid_url_strict[https]',
+            'instagram  ' => 'valid_url_strict[https]',
             'phone' => 'required|min_length[9]|max_length[9]',
+            'img_gallery' => [
+                'label' => 'Image File',
+                'rules' => 'uploaded[img_gallery]'
+                    . '|is_image[img_gallery]'
+                    . '|mime_in[img_gallery,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
+                    . '|max_dims[img_gallery,1024,768]',
+            ],
         ];
 
         $restaModel = new RestaurantModel();
@@ -149,7 +159,9 @@ class APIRestaurantController extends ResourceController
         $city = $this->request->getPost('city');
         $street = $this->request->getPost('street');
         $postal_code = $this->request->getPost('postal_code');
-        $social_websites = $this->request->getPost('social_websites');
+        $twitter = $this->request->getPost('twitter');
+        $facebook = $this->request->getPost('facebook');
+        $instagram = $this->request->getPost('instagram');
         $phone = $this->request->getPost('phone');
 
 
@@ -163,6 +175,7 @@ class APIRestaurantController extends ResourceController
             ];
             return $this->respond($response);
         }
+
         
     } else {
         $response = [
@@ -172,6 +185,7 @@ class APIRestaurantController extends ResourceController
             'data' => []
         ];
     }
+    return $this->respond($response);
     }
 
     /**
