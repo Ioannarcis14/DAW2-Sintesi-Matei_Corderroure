@@ -8,8 +8,10 @@ body, html {
 }
 
 .brand_img {
-    width: 120px;
+    height: 30px;
+    padding-left: 15px;
 }
+
 
 .brand_img.first {
     width: 50px;
@@ -35,6 +37,12 @@ body, html {
     top: 50%;
     left: 0%;
     transform: translate(0%,-50%);
+}
+
+div.contentTxt > h1{
+    border: none !important;
+    padding: 0px;
+    width: 50%;
 }
 
 .topContent {
