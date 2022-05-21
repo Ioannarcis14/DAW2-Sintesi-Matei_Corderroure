@@ -10,5 +10,10 @@ class APIAdministracioController extends ResourceController
     protected $helpers = ['auth'];
     
     
+    public function testApi() {
+
+        return view('/APITest');
+    }
+
 
 }

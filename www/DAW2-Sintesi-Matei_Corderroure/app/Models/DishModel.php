@@ -41,7 +41,13 @@ class DishModel extends Model
     protected $afterDelete    = [];
 
 
-
+    public function getAllDishesSpecific($id_restaurant) {
+        $this->select(['dish.id','dish.description','dish.name','price', 'imgs', 'short_description']);
+        $this->join('dish_category','dish_category.id_dish = dish.id');
+        $this->join('category', 'dish_category.id_category = category.id');
+        $this->where('category.id_restaurant ='. $id_restaurant);
+        return $this->findAll();
+    }
 
 
 }

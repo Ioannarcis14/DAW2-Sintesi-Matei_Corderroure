@@ -130,9 +130,9 @@ class APIRestaurantController extends ResourceController
      */
     public function createRestaurant() {
 
-        $token_data = json_decode($this->request->header("token-data")->getValue());
+        //$token_data = json_decode($this->request->header("token-data")->getValue());
 
-        if (!empty($token_data) && $token_data->group = "responsable") {
+        //if (!empty($token_data) && $token_data->group = "responsable") {
 
         $rules = [
             'name' => 'required',
@@ -141,15 +141,16 @@ class APIRestaurantController extends ResourceController
             'postal_code' => 'required',
             'twitter' => 'valid_url_strict[https]',
             'facebook' => 'valid_url_strict[https]',
-            'instagram  ' => 'valid_url_strict[https]',
+            'instagram' => 'valid_url_strict[https]',
             'phone' => 'required|min_length[9]|max_length[9]',
-            'img_gallery' => [
+           /* 'img_gallery' => [
                 'label' => 'Image File',
                 'rules' => 'uploaded[img_gallery]'
                     . '|is_image[img_gallery]'
                     . '|mime_in[img_gallery,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
                     . '|max_dims[img_gallery,1024,768]',
-            ],
+           ],
+           */
         ];
 
         $restaModel = new RestaurantModel();
@@ -164,7 +165,28 @@ class APIRestaurantController extends ResourceController
         $facebook = $this->request->getPost('facebook');
         $instagram = $this->request->getPost('instagram');
         $phone = $this->request->getPost('phone');
+        $img_gallery = $this->request->getPost('img_gallery');
+        //$img_gallery = $this->request->getFiles();
 
+        $data = [
+            'name' => $name,
+            'city' => $city,
+            'street' => $street,
+            'description' => $description,
+            'postal_code' => $postal_code,
+            'twitter' => $twitter,
+            'facebook' => $facebook,
+            'instagram' => $instagram,
+            'phone' => $phone,
+            'img_gallery' => $img_gallery,
+        ];
+
+        $response = [
+            'status' => 200,
+            "error" => false,
+            'messages' => 'The user can create a restaurant',
+            'data' => $data
+        ];
 
         //Validation of the general fields of the form and the profile img
         if (!$this->validate($rules)) {
@@ -178,7 +200,7 @@ class APIRestaurantController extends ResourceController
         }
 
         
-    } else {
+    /*} else {
         $response = [
             'status' => 200,
             "error" => false,
@@ -186,6 +208,7 @@ class APIRestaurantController extends ResourceController
             'data' => []
         ];
     }
+    */
     return $this->respond($response);
     }
 

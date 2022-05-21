@@ -46,6 +46,9 @@ $routes->group("api", function ($routes) {
     ///////// ROUTES AUTHENTICATION API ROUTES //////////
     /////////////////////////////////////////////////////
 
+    $routes->options("test","API\APIAdministracioController::testApi");
+    $routes->get("test","API\APIAdministracioController::testApi",['filter'=>'role:administrador,responsable']);
+
     $routes->options("register", "API\APIUserController::register");
     $routes->post("register", "API\APIUserController::register");
 
@@ -108,7 +111,8 @@ $routes->group("api", function ($routes) {
         $routes->get("getReviews/(:any)", "API\APIRestaurantController::getReviews/$1");
 
         $routes->options("create","API\APIRestaurantController::createRestaurant");
-        $routes->post("create","API\APIRestaurantController::createRestaurant", ['filter'=>'jwt']);
+       // $routes->post("create","API\APIRestaurantController::createRestaurant", ['filter'=>'jwt']);
+        $routes->post("create","API\APIRestaurantController::createRestaurant");
 
         $routes->options("update/(:any)","API\APIRestaurantController::updateRestaurant/$1");
         $routes->post("update/(:any)","API\APIRestaurantController::updateRestaurant/$1", ['filter'=>'jwt']);
@@ -151,7 +155,7 @@ $routes->group("api", function ($routes) {
     /////////////////////////////////////
 
     $routes->group("dish", function ($routes) {
-        $routes->get("getAll", "API\APIDishController::getAllDishes");
+        $routes->get("getAllRestaurant/(:any)", "API\APIDishController::getAllDishesFromRestaurant/$1");
 
         $routes->get("getAllCategory", "API\APIDishController::getAllDishesFromCategory");
 
