@@ -385,12 +385,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SIENSIS/KpaCrud.git",
-                "reference": "11345f26cfa0c7caa97114636bc45edee94cb15e"
+                "reference": "5c4b60c6f316c40b507bf13e7cb22c1070fc36ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SIENSIS/KpaCrud/zipball/11345f26cfa0c7caa97114636bc45edee94cb15e",
-                "reference": "11345f26cfa0c7caa97114636bc45edee94cb15e",
+                "url": "https://api.github.com/repos/SIENSIS/KpaCrud/zipball/5c4b60c6f316c40b507bf13e7cb22c1070fc36ff",
+                "reference": "5c4b60c6f316c40b507bf13e7cb22c1070fc36ff",
                 "shasum": ""
             },
             "default-branch": true,
@@ -422,7 +422,7 @@
                 "issues": "https://github.com/SIENSIS/KpaCrud/issues",
                 "source": "https://github.com/SIENSIS/KpaCrud/tree/master"
             },
-            "time": "2022-05-17T17:02:54+00:00"
+            "time": "2022-05-18T17:46:40+00:00"
         }
     ],
     "packages-dev": [
@@ -2774,5 +2774,5 @@
         "php": "^7.3 || ^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.1.0"
 }

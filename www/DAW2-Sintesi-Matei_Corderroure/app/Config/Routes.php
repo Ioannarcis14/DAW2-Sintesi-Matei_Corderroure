@@ -36,6 +36,9 @@ $routes->get('/', 'HomePageController::index');
 $routes->options('restaurants', 'RestaurantPage::index');
 $routes->get('restaurants', 'RestaurantPage::index');
 
+$routes->options('restaurants/(:any)', 'RestaurantSingularPage::index');
+$routes->get('restaurants/(:any)', 'RestaurantSingularPage::index');
+
 //(The API routes will have JWT Filters and the web routes will have Myth/Auth Filters)
 
 //API ROUTES 
