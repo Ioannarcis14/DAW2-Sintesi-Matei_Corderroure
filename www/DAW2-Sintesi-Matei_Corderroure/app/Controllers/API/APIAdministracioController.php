@@ -10,10 +10,24 @@ class APIAdministracioController extends ResourceController
     protected $helpers = ['auth'];
     
     
-    public function testApi() {
-
-        return view('/APITest');
+    public function testAuth() {
+        return view('/API/APITestAuth');
     }
 
+    public function testUser() {
+        return view('/API/APITestUser');
+    }
+
+    public function testAdmin() {
+        return view('/API/APITestAdmin');
+    }
+
+    public function testResponsable() {
+        return view('/API/APITestResponsable');
+    }
+
+    public function testStaff() {
+        return view('/API/APITestStaff');
+    }
 
 }

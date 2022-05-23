@@ -49,8 +49,20 @@ $routes->group("api", function ($routes) {
     ///////// ROUTES AUTHENTICATION API ROUTES //////////
     /////////////////////////////////////////////////////
 
-    $routes->options("test","API\APIAdministracioController::testApi");
-    $routes->get("test","API\APIAdministracioController::testApi",['filter'=>'role:administrador,responsable']);
+    $routes->options("testAuth","API\APIAdministracioController::testAuth");
+    $routes->get("testAuth","API\APIAdministracioController::testAuth");
+
+    $routes->options("testUser","API\APIAdministracioController::testUser");
+    $routes->get("testUser","API\APIAdministracioController::testUser");
+
+    $routes->options("testAdmin","API\APIAdministracioController::testAdmin");
+    $routes->get("testAdmin","API\APIAdministracioController::testAdmin");
+
+    $routes->options("testResponsable","API\APIAdministracioController::testResponsable");
+    $routes->get("testResponsable","API\APIAdministracioController::testResponsable");
+
+    $routes->options("testStaff","API\APIAdministracioController::testStaff");
+    $routes->get("testStaff","API\APIAdministracioController::testStaff");
 
     $routes->options("register", "API\APIUserController::register");
     $routes->post("register", "API\APIUserController::register");

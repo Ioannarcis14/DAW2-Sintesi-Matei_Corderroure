@@ -210,11 +210,10 @@ class APIUserController extends ResourceController
             return $this->respond($response);
         }
 
-        $login = $this->request->getPost('login');
-        $password = $this->request->getPost('password');
+        $login = $this->request->getVar('login');
+        $password = $this->request->getVar('password');
 
         $type = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
 
         if (!$auth->attempt([$type => $login, 'password' => $password], false)) {
             $response = [
@@ -251,7 +250,7 @@ class APIUserController extends ResourceController
             $response = [
                 'status' => 404,
                 "error" => true,
-                'messages' => 'There is an error with the loggin',
+                'messages' => 'There is an error with the login',
                 'data' => []
             ];
         }
