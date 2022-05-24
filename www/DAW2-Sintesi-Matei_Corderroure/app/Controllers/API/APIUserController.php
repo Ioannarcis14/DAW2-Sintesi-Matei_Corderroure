@@ -219,7 +219,7 @@ class APIUserController extends ResourceController
             $response = [
                 'status' => 500,
                 "error" => true,
-                'errors' => 'There is been an error with the login'
+                'messages' => 'The password or the user is incorrect'
             ];
             return $this->respond($response);
         }

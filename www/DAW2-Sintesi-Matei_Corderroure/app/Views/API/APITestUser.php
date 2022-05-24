@@ -17,14 +17,18 @@
 
 <!-- NAV BAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="<?= base_url('/api/testUser'); ?>">User Calls</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#">Pick Eat</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
                 <a class="nav-link" href="<?= base_url('/api/testAuth'); ?>">Auth Calls</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('/api/testUser'); ?>">User Calls<span class="sr-only">(current)</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('/api/testAdmin'); ?>">Admin Calls</a>
@@ -44,7 +48,7 @@
     <div class="container">
         <h1>API Test - User Calls</h1>
         <div class="container">
-            <h2>Login</h2></br> 
+            <h2>Login</h2>
                 <div class="form-group">
                     <label for="login">Email address</label>
                     <input type="text" class="form-control" id="login" aria-describedby="emailHelp" placeholder="Enter email or username">
@@ -54,12 +58,12 @@
                     <input type="password" class="form-control" id="password" placeholder="Enter your password">
                 </div>
                 <div id="token"></div>
-                <div id="errors"></div>
+                <div id="errors"></div> </br>
                 <button class="btn btn-primary" onclick="login()">Login</button>
             </input>
         </div>
         <div class="container">
-            <h2>Register</h2></br>
+            <h2>Register</h2>
                 <div class="form-group">
                     <label for="asdf">Email address</label>
                     <input type="text" class="form-control" id="asdf" aria-describedby="emailHelp" placeholder="Enter email or username">
@@ -68,14 +72,14 @@
                     <label for="asdfddd">Password</label>
                     <input type="password" class="form-control" id="asdfddd" placeholder="Enter your password">
                 </div>
-                <?php
-                ?>
-                <button class="btn btn-primary" onclick=hola()>Register</button>
+                <div id="token"></div>
+                <div id="errors"></div> </br>
+                <button class="btn btn-primary" onclick="register()">Register</button>
             </input>
         </div>
         <div class="container">
             <h2>Logout</h2></br>
-                <button class="btn btn-danger" onclick=hola()>Logout</button>
+                <button class="btn btn-danger" onclick="logout()">Logout</button>
             </input>
         </div>
 </body>
@@ -93,36 +97,16 @@
             }),
         });
         response.json().then((data) => {
-            if (data.status = 200) {
+            if (data.status == 200) {
                 console.log(data.token);
+                document.getElementById("errors").innerHTML = "";
                 document.getElementById("token").innerHTML = "Token: "+ data.token;
             } else {
+                console.log(data);
+                document.getElementById("token").innerHTML = "";
                 document.getElementById("errors").innerHTML = "Errors: "+ data.messages;
             }
-        });
-        
-        /*
-        idk.then((data) => {
-            console.log(data.token);
-        });
-        /*
-        var formData = new FormData();
-        
-        formData.append("login", document.getElementById('login').value);
-        formData.append("password", document.getElementById('password').value);
-        
-        var request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:80/api/login");
-        request.send(formData);
-        
-        fetch(request)
-        .then((request) => request.json())
-        .then((data) => {
-            console.log('Response from server');    
-            console.log()
-        })
-        */
-        
+        });      
     }
 
     async function register() {
