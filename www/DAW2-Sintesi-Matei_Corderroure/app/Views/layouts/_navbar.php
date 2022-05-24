@@ -23,17 +23,13 @@
                 <ul class="nav navbar-nav main-nav  clear ml-auto">
 <!--                    <li><a class="navactive color_animation" href="#top">WELCOME</a></li>-->
 <!--                    <li><a class="color_animation" href="#story">ABOUT</a></li>-->
-<!--                    <li><a class="color_animation" href="#pricing">PRICING</a></li>-->
-                    <li><a class="color_animation" href="#beer">BEER</a></li>
-                    <li><a class="color_animation" href="#bread">BREAD</a></li>
-                    <li><a class="color_animation" href="#featured">FEATURED</a></li>
-                    <li><a class="color_animation" href="#reservation">RESERVATION</a></li>
-                    <li><a class="color_animation" href="#contact">CONTACT</a></li>
+                    <li><a class="color_animation" href="/restaurants">RESTAURANTS</a></li>
+
                     <?php if ($logged == false) {
                         echo "<li><a class='color_animation' href='/login'>".lang('LOG IN'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
                     } else {
-                        echo "<li><a class='color_animation' href='/user'>".lang('PROFILE'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
-                        echo "<li><a class='color_animation href='/logout'>".lang('LOG OUT'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
+//                        echo "<li><a class='color_animation' href='/user'>".lang('PROFILE'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
+                        echo "<li><a class='color_animation' href='/logout'>".lang('LOG OUT'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
                     } ?>
                 </ul>
             </div><!-- /.navbar-collapse -->
