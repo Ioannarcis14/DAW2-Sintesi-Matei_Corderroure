@@ -121,8 +121,8 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Enter your password">
             </div>
-            <div id="token"></div>
-            <div id="errors"></div></br>
+            <div id="tokenLog"></div>
+            <div id="errorsLog"></div></br>
             <button class="btn btn-primary" onclick="login()">Login</button>
             </input>
         </div>
@@ -151,11 +151,17 @@
             }),
         });
         response.json().then((data) => {
-            if (data.status = 200) {
+            if (data.error = false) {
                 console.log(data.token);
-                document.getElementById("token").innerHTML = "Token: " + data.token;
+                console.log(data.messages);
+                console.log(data.status);
+
+                document.getElementById("tokenLog").innerHTML = "Token: " + data.token;
             } else {
-                document.getElementById("errors").innerHTML = "Errors: " + data.messages;
+                console.log(data.token);
+                console.log(data.messages);
+                console.log(data.status);
+                document.getElementById("errorsLog").innerHTML = "Errors: " + data.messages;
             }
         });
     }

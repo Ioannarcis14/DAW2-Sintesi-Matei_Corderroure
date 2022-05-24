@@ -163,6 +163,23 @@ class OrderMigration extends Migration
 
     public function down()
     {
+        if ($this->db->DBDriver != 'SQLite3') // @phpstan-ignore-line
+        {
+            $this->forge->dropForeignKey('order', 'order_id_client_foreign');
+            $this->forge->dropForeignKey('order', 'order_id_cambrer_foreign');
+            $this->forge->dropForeignKey('order', 'order_id_taula_foreign');
+            $this->forge->dropForeignKey('order', 'order_id_restaurant_foreign');
+
+            $this->forge->dropForeignKey('order_dish', 'order_dish_id_order_foreign');
+            $this->forge->dropForeignKey('order_dish', 'order_dish_id_dish_foreign');
+
+            $this->forge->dropForeignKey('order_dish_supplement','order_dish_supplement_id_order_dish_foreign');
+            $this->forge->dropForeignKey('order_dish_supplement','order_dish_supplement_id_supplement_foreign');
+
+            $this->forge->dropForeignKey('user_restaurant', 'user_restaurant_id_user_foreign');
+            $this->forge->dropForeignKey('user_restaurant', 'user_restaurant_id_restaurant_foreign');
+        }
+
         $this->forge->dropTable('order');
         $this->forge->dropTable('order_dish');
         $this->forge->dropTable('order_dish_supplement');

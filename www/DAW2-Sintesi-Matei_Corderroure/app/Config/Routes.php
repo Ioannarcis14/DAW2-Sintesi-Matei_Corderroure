@@ -267,6 +267,7 @@ $routes->group("api", function ($routes) {
 
 
 $routes->group("admin", function ($routes) {
+        $routes->match(['get','post'], 'admin/users', 'AdminCrudController::manageUser', ['filter'=>'role:administrador']);
         $routes->match(['get','post'], 'users', 'AdminCrudController::manageUser', ['filter'=>'role:administrador']);
         $routes->match(['get','post'], 'assignRoles', 'AdminCrudController::assignRoles', ['filter'=>'role:administrador']);
         $routes->match(['get','post'], 'roles', 'AdminCrudController::manageRole', ['filter'=>'role:administrador']);

@@ -70,6 +70,7 @@ class Auth extends \Myth\Auth\Config\Auth
 		'street',
         'postal_code',
 		'img_profile',
+		'active'
 	];
 
 	/**

@@ -11,6 +11,7 @@ class AdminCrudController extends BaseController
     public function hashNewPassword($postData)
     {
         $postData['data_password_hash'] = Password::hash($postData['data_password_hash']);
+        $postData['active'] = 1;
         return $postData; // if return null, edit process will be cancelled
     }
 
@@ -65,6 +66,7 @@ class AdminCrudController extends BaseController
 
         $crud->setRelation('group_id', 'auth_groups', 'id', 'name');
         $crud->setRelation('user_id', 'users', 'id', 'username');
+        $crud->addWhere('users.deleted_at='.null);
 
         $crud->setColumns(['auth_groups__name', 'users__username', 'users__name', 'users__email']);
 
@@ -81,7 +83,8 @@ class AdminCrudController extends BaseController
             "print" => false,
             "multidelete" => false,
             "deletepermanent" => false,
-
+            "add_button" => true,
+            "removable" => true
         ]);
 
         $data['output'] = $crud->render();
@@ -96,6 +99,14 @@ class AdminCrudController extends BaseController
         $crud->setPrimaryKey('id');
 
         $crud->setColumns(['id', 'name', 'description']);
+
+        $crud->setConfig([
+            "recycled_button" => false,
+            "exportXLS" => false,
+            "print" => false,
+            "multidelete" => false,
+            "deletepermanent" => false,
+        ]);
 
         $data['output'] = $crud->render();
 
@@ -141,10 +152,10 @@ class AdminCrudController extends BaseController
             "exportXLS" => false,
             "print" => false,
             "multidelete" => false,
-            "deletepermanent" => false,
 
         ]);
         $crud->setColumns(['id', 'email', 'username', 'phone']);
+        $crud->addWhere('deleted_at='.null);
 
         $crud->addPostAddCallBack(array($this, 'hashNewPassword'));
         $crud->addPostEditCallBack(array($this, 'hashEditPassword'));
@@ -174,16 +185,16 @@ class AdminCrudController extends BaseController
                 ]
             ],
 
-            'Img_profile' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-            'activate_hash' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-            'reset_hash' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-            'reset_at' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-            'reset_expires' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-            'status' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-            'status_message' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-            'active' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-            'created_at' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-            'updated_at' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
+            'img_profile' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
+                'activate_hash' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
+                'reset_hash' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
+                'reset_at' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
+                'reset_expires' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
+                'status' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
+                'status_message' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
+                'active' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
+                'created_at' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
+                'updated_at' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
             'deleted_at' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
             'force_pass_reset' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
 
