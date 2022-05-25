@@ -50,58 +50,57 @@
             <h2>Register</h2></br>
             <div class="form-group">
                 <label for="email"><?= lang('Auth.email') ?></label>
-                <input type="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" aria-describedby="emailHelp" placeholder="<?= lang('Auth.email') ?>" value="<?= old('email') ?>">
-                <small id="emailHelp" class="form-text text-muted"><?= lang('Auth.weNeverShare') ?></small>
+                <input type="email" id="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" aria-describedby="emailHelp" placeholder="<?= lang('Auth.email') ?>" value="<?= old('email') ?>">
             </div>
 
             <div class="form-group">
                 <label for="username"><?= lang('Auth.username') ?></label>
-                <input type="text" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" placeholder="<?= lang('Auth.username') ?>" value="<?= old('username') ?>">
+                <input type="text" id="username" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" placeholder="<?= lang('Auth.username') ?>" value="<?= old('username') ?>">
             </div>
 
             <div class="form-group">
                 <label for="name"><?= lang('Auth.name') ?></label>
-                <input type="text" class="form-control <?php if (session('errors.name')) : ?>is-invalid<?php endif ?>" name="name" placeholder="<?= lang('Auth.name') ?>" value="<?= old('name') ?>">
+                <input type="text" id="name" class="form-control <?php if (session('errors.name')) : ?>is-invalid<?php endif ?>" name="name" placeholder="<?= lang('Auth.name') ?>" value="<?= old('name') ?>">
             </div>
 
             <div class="form-group">
                 <label for="surname"><?= lang('Auth.surname') ?></label>
-                <input type="text" class="form-control <?php if (session('errors.surname')) : ?>is-invalid<?php endif ?>" name="surname" placeholder="<?= lang('Auth.surname') ?>" value="<?= old('surname') ?>">
+                <input type="text" id="surname" class="form-control <?php if (session('errors.surname')) : ?>is-invalid<?php endif ?>" name="surname" placeholder="<?= lang('Auth.surname') ?>" value="<?= old('surname') ?>">
             </div>
 
             <div class="form-group">
                 <label for="phone"><?= lang('Auth.phone') ?></label>
-                <input type="text" class="form-control <?php if (session('errors.phone')) : ?>is-invalid<?php endif ?>" name="phone" placeholder="<?= lang('Auth.phone') ?>" value="<?= old('phone') ?>">
+                <input type="text" id="phone" class="form-control <?php if (session('errors.phone')) : ?>is-invalid<?php endif ?>" name="phone" placeholder="<?= lang('Auth.phone') ?>" value="<?= old('phone') ?>">
             </div>
 
             <div class="form-group">
                 <label for="city"><?= lang('Auth.city') ?></label>
-                <input type="text" class="form-control <?php if (session('errors.city')) : ?>is-invalid<?php endif ?>" name="city" placeholder="<?= lang('Auth.city') ?>" value="<?= old('city') ?>">
+                <input type="text" id="city" class="form-control <?php if (session('errors.city')) : ?>is-invalid<?php endif ?>" name="city" placeholder="<?= lang('Auth.city') ?>" value="<?= old('city') ?>">
             </div>
 
             <div class="form-group">
                 <label for="street"><?= lang('Auth.street') ?></label>
-                <input type="text" class="form-control <?php if (session('errors.street')) : ?>is-invalid<?php endif ?>" name="street" placeholder="<?= lang('Auth.street') ?>" value="<?= old('street') ?>">
+                <input type="text" id="street" class="form-control <?php if (session('errors.street')) : ?>is-invalid<?php endif ?>" name="street" placeholder="<?= lang('Auth.street') ?>" value="<?= old('street') ?>">
             </div>
 
             <div class="form-group">
                 <label for="postal_code"><?= lang('Auth.postal_code') ?></label>
-                <input type="text" class="form-control <?php if (session('errors.postal_code')) : ?>is-invalid<?php endif ?>" name="postal_code" placeholder="<?= lang('Auth.postal_code') ?>" value="<?= old('postal_code') ?>">
+                <input type="text" id="postal_code" class="form-control <?php if (session('errors.postal_code')) : ?>is-invalid<?php endif ?>" name="postal_code" placeholder="<?= lang('Auth.postal_code') ?>" value="<?= old('postal_code') ?>">
             </div>
 
             <div class="form-group">
                 <label for="file"><?= lang('Auth.img') ?></label>
-                <input type="file" class="form-control <?php if (session('errors.name')) : ?>is-invalid<?php endif ?>" name="file" placeholder="<?= lang('Auth.file') ?>" value="<?= old('file') ?>">
+                <input type="file" id="file" class="form-control <?php if (session('errors.name')) : ?>is-invalid<?php endif ?>" name="file" placeholder="<?= lang('Auth.file') ?>" value="<?= old('file') ?>">
             </div>
 
             <div class="form-group">
                 <label for="password"><?= lang('Auth.password') ?></label>
-                <input type="password" name="password" class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                <input type="password" id="password" name="password" class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
             </div>
 
             <div class="form-group">
                 <label for="pass_confirm"><?= lang('Auth.repeatPassword') ?></label>
-                <input type="password" name="pass_confirm" class="form-control <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                <input type="password" id="pass_confirm" name="pass_confirm" class="form-control <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
             </div>
 
             <div id="token"></div>
@@ -115,11 +114,11 @@
             <h2>Login</h2></br>
             <div class="form-group">
                 <label for="login">Email address</label>
-                <input type="text" class="form-control" id="login" aria-describedby="emailHelp" placeholder="Enter email or username">
+                <input type="text" class="form-control" id="loginLog" aria-describedby="emailHelp" placeholder="Enter email or username">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                <input type="password" class="form-control" id="passwordLog" placeholder="Enter your password">
             </div>
             <div id="tokenLog"></div>
             <div id="errorsLog"></div></br>
@@ -134,7 +133,7 @@
             </div>
             <div id="messages"></div>
             <div id="errors"></div></br>
-            <button class="btn btn-danger" onclick=hola()>Logout</button>
+            <button class="btn btn-danger" onclick="logout()">Logout</button>
         </div>
 </body>
 <script>
@@ -146,8 +145,8 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                login: document.getElementById('login').value,
-                password: document.getElementById('password').value,
+                login: document.getElementById('loginLog').value,
+                password: document.getElementById('passwordLog').value,
             }),
         });
         response.json().then((data) => {
@@ -170,23 +169,34 @@
     }
 
     async function register() {
+        console.log(document.getElementById("file").files[0]);
+
         let response = await fetch("http://localhost:80/api/register", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+
             body: JSON.stringify({
-                login: document.getElementById('login').value,
+                email: document.getElementById('email').value,
+                username: document.getElementById('username').value,
+                name: document.getElementById('name').value,
+                surname: document.getElementById('surname').value,
+                phone: document.getElementById('phone').value,
+                city: document.getElementById('city').value,
+                street: document.getElementById('street').value,
+                postal_code: document.getElementById('postal_code').value,
+                img: document.getElementById("file").files[0],
                 password: document.getElementById('password').value,
+                pass_confirm: document.getElementById('pass_confirm').value,    
             }),
         });
         response.json().then((data) => {
-            if (data.status = 200) {
-                console.log(data.token);
-                document.getElementById("token").innerHTML = "Token: " + data.token;
+            if (data.status == 200) {
+                console.log(data);
             } else {
-                document.getElementById("errors").innerHTML = "Errors: " + data.messages;
+                console.log(data);
             }
         });
     }

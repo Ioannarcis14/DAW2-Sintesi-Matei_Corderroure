@@ -78,35 +78,51 @@ class APIUserController extends ResourceController
             'phone' => 'required|min_length[9]|max_length[9]',
             'city' => 'required',
             'street' => 'required',
+            'img' => 'required',
             'postal_code' => 'required',
         ];
 
         $users = model(UserModel::class);
 
+        $email = $this->request->getVar('email');
+        $username = $this->request->getVar('username');
+        $name = $this->request->getVar('name');
+        $surname = $this->request->getVar('surname');
+        $phone = $this->request->getVar('phone');
+        $city = $this->request->getVar('city');
+        $street = $this->request->getVar('street');
+        $postal_code = $this->request->getVar('postal_code');
+        $password = $this->request->getVar('password');
+        $file = $this->request->getVar('img');
+        
         //Validation of the general fields of the form and the profile img
         if (!$this->validate($rules)) {
             $response = [
                 'status' => 404,
                 "error" => true,
                 'messages' => 'Error with the general fields',
-                'errors' => $this->validator->getErrors()
+                'errors' => $this->validator->getErrors(),
+                'data' => $camps = [
+                    'email' => $email,
+                    'username' => $username,
+                    'name' => $name,
+                    'surname' => $surname,
+                    'phone' => $phone,
+                    'city' => $city,
+                    'street' => $street,
+                    'postal_code' => $postal_code,
+                    'password' => $password,
+                    'img_profile' => $file
+                ]
             ];
             return $this->respond($response);
         }
 
-        $email = $this->request->getPost('email');
-        $username = $this->request->getPost('username');
-        $name = $this->request->getPost('name');
-        $surname = $this->request->getPost('surname');
-        $phone = $this->request->getPost('phone');
-        $city = $this->request->getPost('city');
-        $street = $this->request->getPost('street');
-        $postal_code = $this->request->getPost('postal_code');
 
         //Validation of the password
         $rules = [
-            'password'     => 'required|strong_password',
-            'pass_confirm' => 'required|matches[password]',
+            'password'     => 'required',
+            'pass_confirm' => 'required',
         ];
 
         if (!$this->validate($rules)) {
@@ -119,9 +135,26 @@ class APIUserController extends ResourceController
             return $this->respond($response);
         }
 
-        $password = $this->request->getPost('password');
-        $file = $this->request->getFile('img_profile');
+        $response = [
+            'status' => 200,
+            "error" => false,
+            'messages' => 'Data received',
+            'errors' => $camps = [
+                'email' => $email,
+                'username' => $username,
+                'name' => $name,
+                'surname' => $surname,
+                'phone' => $phone,
+                'city' => $city,
+                'street' => $street,
+                'postal_code' => $postal_code,
+                'password' => $password,
+                'img_profile' => $file
+            ]
+        ];
+        return $this->respond($response);
 
+        /*
         if (!$file->hasMoved()) {
             $filepath = WRITEPATH . 'uploads/' . $file->store("user/img_profile/" . $username . "/");
             $Filetest = new File($filepath);
@@ -165,9 +198,10 @@ class APIUserController extends ResourceController
                 'status' => 200,
                 "error" => false,
                 'messages' => 'User has been saved',
-                'data' => $user
+                'data' => []
             ];
         }
+        */
 
         return $this->respond($response);
     }
