@@ -78,7 +78,7 @@ class APIUserController extends ResourceController
             'phone' => 'required|min_length[9]|max_length[9]',
             'city' => 'required',
             'street' => 'required',
-            'img' => 'required',
+            'img_profile' => 'required',
             'postal_code' => 'required',
         ];
 
@@ -93,8 +93,9 @@ class APIUserController extends ResourceController
         $street = $this->request->getVar('street');
         $postal_code = $this->request->getVar('postal_code');
         $password = $this->request->getVar('password');
-        $file = $this->request->getVar('img');
-        
+        $file = $this->request->getVar('img_profile');
+        $hola = $this->request->getRawInput();
+
         //Validation of the general fields of the form and the profile img
         if (!$this->validate($rules)) {
             $response = [
@@ -102,18 +103,7 @@ class APIUserController extends ResourceController
                 "error" => true,
                 'messages' => 'Error with the general fields',
                 'errors' => $this->validator->getErrors(),
-                'data' => $camps = [
-                    'email' => $email,
-                    'username' => $username,
-                    'name' => $name,
-                    'surname' => $surname,
-                    'phone' => $phone,
-                    'city' => $city,
-                    'street' => $street,
-                    'postal_code' => $postal_code,
-                    'password' => $password,
-                    'img_profile' => $file
-                ]
+                'data' => $hola
             ];
             return $this->respond($response);
         }

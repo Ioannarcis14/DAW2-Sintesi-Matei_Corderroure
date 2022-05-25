@@ -169,8 +169,40 @@
     }
 
     async function register() {
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "multipart/form-data; boundary=");
+        myHeaders.append("Accept", "*/*");
+
         console.log(document.getElementById("file").files[0]);
 
+        var file = document.getElementById("file").files[0]
+
+        var formData = new FormData();
+        formData.append('email', document.getElementById('email').value);
+        formData.append('username', document.getElementById('username').value);
+        formData.append('name', document.getElementById('name').value);
+        formData.append('surname', document.getElementById('surname').value);
+        formData.append('img_profile', file);
+        formData.append('phone', document.getElementById('phone').value);
+        formData.append('city', document.getElementById('city').value);
+        formData.append('street', document.getElementById('email').value);
+        formData.append('postal_code', document.getElementById('postal_code').value);
+        formData.append('password', document.getElementById('password').value);
+        formData.append('pass_confirm', document.getElementById('pass_confirm').value);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: 'follow'
+        };
+
+        fetch("https://localhost:80/api/register", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('errors', error));
+        /*
+        
         let response = await fetch("http://localhost:80/api/register", {
             method: 'POST',
             headers: {
@@ -199,6 +231,8 @@
                 console.log(data);
             }
         });
+        */
+
     }
 
     async function logout() {
