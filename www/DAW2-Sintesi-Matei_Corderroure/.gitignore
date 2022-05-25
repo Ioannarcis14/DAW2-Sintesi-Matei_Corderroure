@@ -48,6 +48,9 @@ Vagrantfile
 # Temporary Files
 #-------------------------
 
+.phpdoc/
+
+writable/
 
 writable/cache/*
 !writable/cache/index.html
