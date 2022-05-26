@@ -49,7 +49,7 @@ class RestaurantModel extends Model
      * 
      */
     public function getAllRestaurantsDischarged() {
-        return $this->where('discharged !=', null)->findall();
+        return $this->where('discharged !=', null)->findAll();
     }
 
     /**

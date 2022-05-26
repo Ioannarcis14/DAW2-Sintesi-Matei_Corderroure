@@ -48,6 +48,7 @@
         <h1>API Test - Auth Calls</h1>
         <div class="container">
             <h2>Register</h2></br>
+            <form id="formRegister">
             <div class="form-group">
                 <label for="email"><?= lang('Auth.email') ?></label>
                 <input type="email" id="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" aria-describedby="emailHelp" placeholder="<?= lang('Auth.email') ?>" value="<?= old('email') ?>">
@@ -105,9 +106,10 @@
 
             <div id="token"></div>
             <div id="errors"></div></br>
+            <input class="btn btn-primary" type="submit" value="Enviar">
 
-            <button class="btn btn-primary" onclick="register()">Register</button>
-            </input>
+            </form>
+         <!--<button  id="buttRegister" onclick="register()">Register</button> -->
         </div>
 
         <div class="container">
@@ -125,18 +127,67 @@
             <button class="btn btn-primary" onclick="login()">Login</button>
             </input>
         </div>
+
+        <div class="container">
+            <h2>Validate</h2></br>
+            <div class="form-group">
+                <label for="validateUserToken">ValidateUser</label>
+                <input type="text" class="form-control" id="validateUserToken" placeholder="Authentication Token">
+            </div>
+            <div id="refreshToken"></div>
+            <div id="errorsValidate"></div></br>
+            <button class="btn btn-danger" onclick="validate()">Validate</button>
+        </div>
+
         <div class="container">
             <h2>Logout</h2></br>
             <div class="form-group">
-                <label for="token">Token</label>
-                <input type="text" class="form-control" id="token" placeholder="Authentication Token">
+                <label for="userToken">Token</label>
+                <input type="text" class="form-control" id="userToken" placeholder="Authentication Token">
             </div>
-            <div id="messages"></div>
-            <div id="errors"></div></br>
+            <div id="messagesLogout"></div>
+            <div id="errorsLogout"></div></br>
             <button class="btn btn-danger" onclick="logout()">Logout</button>
         </div>
+
+
 </body>
 <script>
+
+    formRegister.onsubmit = async (e) => {
+        e.preventDefault();
+        formRegistration = new FormData(formRegister);
+        
+        /*
+        var myHeaders = new Headers();
+        myHeaders.append("Accept", "multipart/form-data");
+        myHeaders.append("Content-Type", "multipart/form-data;");
+        */
+        
+
+        var requestOptions = {
+            method: 'POST',
+            //headers: myHeaders,
+            body: formRegistration
+        };
+        //BASE URL
+        
+        fetch("<?php echo base_url(); ?>/api/register", requestOptions)
+            .then(response => response.text())
+            .then((data) => {
+                if (data.status == 200) {
+                    document.getElementById("errors").innerHTML = "";
+                    document.getElementById("token").innerHTML = "Token: " + data.token;
+                    console.log(data);
+                } else {
+                    document.getElementById("errors").innerHTML = "Errors: " + data.messages;
+                    document.getElementById("token").innerHTML = "";
+                    console.log(data);
+                }
+            });
+
+    }
+
     async function login() {
         let response = await fetch("http://localhost:80/api/login", {
             method: 'POST',
@@ -171,45 +222,19 @@
     async function register() {
 
         var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "multipart/form-data; boundary=");
-        myHeaders.append("Accept", "*/*");
+        myHeaders.append("Accept", "multipart/form-data");
+        myHeaders.append("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryIGbkEeTmcEdSH7gU");
 
-        console.log(document.getElementById("file").files[0]);
+        var file = base64Decode(document.getElementById('file').files[0]);
+        const reader = new FileReader();
 
-        var file = document.getElementById("file").files[0]
-
-        var formData = new FormData();
-        formData.append('email', document.getElementById('email').value);
-        formData.append('username', document.getElementById('username').value);
-        formData.append('name', document.getElementById('name').value);
-        formData.append('surname', document.getElementById('surname').value);
-        formData.append('img_profile', file);
-        formData.append('phone', document.getElementById('phone').value);
-        formData.append('city', document.getElementById('city').value);
-        formData.append('street', document.getElementById('email').value);
-        formData.append('postal_code', document.getElementById('postal_code').value);
-        formData.append('password', document.getElementById('password').value);
-        formData.append('pass_confirm', document.getElementById('pass_confirm').value);
-
+        console.log(file);
         var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: 'follow'
-        };
-
-        fetch("https://localhost:80/api/register", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('errors', error));
-        /*
-        
-        let response = await fetch("http://localhost:80/api/register", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-
             body: JSON.stringify({
                 email: document.getElementById('email').value,
                 username: document.getElementById('username').value,
@@ -219,25 +244,66 @@
                 city: document.getElementById('city').value,
                 street: document.getElementById('street').value,
                 postal_code: document.getElementById('postal_code').value,
-                img: document.getElementById("file").files[0],
+                img_profile: file,
                 password: document.getElementById('password').value,
-                pass_confirm: document.getElementById('pass_confirm').value,    
+                pass_confirm: document.getElementById('pass_confirm').value,
             }),
-        });
-        response.json().then((data) => {
-            if (data.status == 200) {
-                console.log(data);
-            } else {
-                console.log(data);
-            }
-        });
-        */
-
+        };
+        fetch("http://localhost:80/api/register", requestOptions)
+            .then(response => response.json())
+            .then((data) => {
+                if (data.status == 200) {
+                    document.getElementById("errors").innerHTML = "";
+                    document.getElementById("token").innerHTML = "Token: " + data.token;
+                    console.log(data);
+                } else {
+                    document.getElementById("errors").innerHTML = "Errors: " + data.messages;
+                    document.getElementById("token").innerHTML = "";
+                    console.log(data);
+                }
+            });
     }
 
     async function logout() {
-
+        var requestOptions = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + document.getElementById('userToken').value,
+            },
+        };
+        fetch("http://localhost:80/api/logout", requestOptions)
+            .then(response => response.json())
+            .then((data) => {
+                if (data.status == 200) {
+                    console.log(data);
+                } else {
+                    console.log(data);
+                }
+            });
     }
+
+    async function checkUser() {
+        var requestOptions = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + document.getElementById('validateUserToken').value,
+            },
+        };
+        fetch("http://localhost:80/api/validate", requestOptions)
+            .then(response => response.json())
+            .then((data) => {
+                if (data.status == 200) {
+                    console.log(data);
+                } else {
+                    console.log(data);
+                }
+            });
+    }
+
 </script>
 
 </html>

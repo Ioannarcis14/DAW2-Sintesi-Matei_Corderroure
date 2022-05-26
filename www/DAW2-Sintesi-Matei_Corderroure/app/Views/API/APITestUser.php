@@ -48,7 +48,7 @@
     <div class="container">
         <h1>API Test - User Calls</h1>
         <div class="container">
-            <h2>Login</h2>
+            <h2>Assign a profile picture</h2>
                 <div class="form-group">
                     <label for="login">Email address</label>
                     <input type="text" class="form-control" id="login" aria-describedby="emailHelp" placeholder="Enter email or username">
@@ -60,26 +60,6 @@
                 <div id="token"></div>
                 <div id="errors"></div> </br>
                 <button class="btn btn-primary" onclick="login()">Login</button>
-            </input>
-        </div>
-        <div class="container">
-            <h2>Register</h2>
-                <div class="form-group">
-                    <label for="asdf">Email address</label>
-                    <input type="text" class="form-control" id="asdf" aria-describedby="emailHelp" placeholder="Enter email or username">
-                </div>
-                <div class="form-group">
-                    <label for="asdfddd">Password</label>
-                    <input type="password" class="form-control" id="asdfddd" placeholder="Enter your password">
-                </div>
-                <div id="token"></div>
-                <div id="errors"></div> </br>
-                <button class="btn btn-primary" onclick="register()">Register</button>
-            </input>
-        </div>
-        <div class="container">
-            <h2>Logout</h2></br>
-                <button class="btn btn-danger" onclick="logout()">Logout</button>
             </input>
         </div>
 </body>

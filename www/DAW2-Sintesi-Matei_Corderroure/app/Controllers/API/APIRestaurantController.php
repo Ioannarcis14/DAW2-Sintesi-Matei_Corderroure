@@ -52,6 +52,31 @@ class APIRestaurantController extends ResourceController
     }
 
 
+    public function getAllRestaurantsWithReviews() {
+        
+        $RestaModel = new RestaurantModel();
+        $list = $RestaModel->getRatedRestaurants();
+
+        if (!empty($list)) {
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => 'Restaurant data found',
+                'data' => $list
+            ];
+        } else {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'No restaurants found',
+                'data' => []
+            ];
+        }
+        return $this->respond($response);
+    }
+
+
+
     /**
      * Get an specific restaurant
      * 
@@ -156,9 +181,9 @@ class APIRestaurantController extends ResourceController
         $restaModel = new RestaurantModel();
 
 
-        $name = $this->request->getPost('name');
-        $city = $this->request->getPost('city');
-        $street = $this->request->getPost('street');
+        $name = $this->request->getVar('name');
+        $city = $this->request->getVar('city');
+        $street = $this->request->getVar('street');
         $description = $this->request->getPost('description');
         $postal_code = $this->request->getPost('postal_code');
         $twitter = $this->request->getPost('twitter');

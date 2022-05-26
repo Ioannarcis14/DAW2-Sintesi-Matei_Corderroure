@@ -16,7 +16,7 @@ class APIUserController extends ResourceController
 
     protected $helpers = ['auth'];
 
-    
+
     /**
      * Registers a user in the Database
      * 
@@ -78,23 +78,11 @@ class APIUserController extends ResourceController
             'phone' => 'required|min_length[9]|max_length[9]',
             'city' => 'required',
             'street' => 'required',
-            'img_profile' => 'required',
             'postal_code' => 'required',
+            'img_profile' =>'uploaded[userfile]'
+            . '|is_image[userfile]'
         ];
 
-        $users = model(UserModel::class);
-
-        $email = $this->request->getVar('email');
-        $username = $this->request->getVar('username');
-        $name = $this->request->getVar('name');
-        $surname = $this->request->getVar('surname');
-        $phone = $this->request->getVar('phone');
-        $city = $this->request->getVar('city');
-        $street = $this->request->getVar('street');
-        $postal_code = $this->request->getVar('postal_code');
-        $password = $this->request->getVar('password');
-        $file = $this->request->getVar('img_profile');
-        $hola = $this->request->getRawInput();
 
         //Validation of the general fields of the form and the profile img
         if (!$this->validate($rules)) {
@@ -103,11 +91,45 @@ class APIUserController extends ResourceController
                 "error" => true,
                 'messages' => 'Error with the general fields',
                 'errors' => $this->validator->getErrors(),
-                'data' => $hola
             ];
             return $this->respond($response);
         }
 
+        $users = model(UserModel::class);
+
+        $email = $this->request->getPost('email');
+        $username = $this->request->getPost('username');
+        $name = $this->request->getPost('name');
+        $surname = $this->request->getPost('surname');
+        $phone = $this->request->getPost('phone');
+        $city = $this->request->getPost('city');
+        $street = $this->request->getPost('street');
+        $postal_code = $this->request->getPost('postal_code');
+        $password = $this->request->getPost('password');
+        $file = null;
+
+        if (!empty($this->request->getFile('img_profile'))) {
+            $file = $this->request->getFile('img_profile');
+            }
+
+        $response = [
+            'status' => 200,
+            "error" => false,
+            'messages' => 'Fields',
+            'data' => [
+                'email' => $email,
+                'username' => $username,
+                'name' => $name,
+                'surname' => $surname,
+                'phone' => $phone,
+                'city' => $city,
+                'street' => $street,
+                'postal_code' => $postal_code,
+                'password' => $password,
+                'img_profile' => $file
+            ],
+        ];
+        return $this->respond($response);
 
         //Validation of the password
         $rules = [
@@ -125,24 +147,6 @@ class APIUserController extends ResourceController
             return $this->respond($response);
         }
 
-        $response = [
-            'status' => 200,
-            "error" => false,
-            'messages' => 'Data received',
-            'errors' => $camps = [
-                'email' => $email,
-                'username' => $username,
-                'name' => $name,
-                'surname' => $surname,
-                'phone' => $phone,
-                'city' => $city,
-                'street' => $street,
-                'postal_code' => $postal_code,
-                'password' => $password,
-                'img_profile' => $file
-            ]
-        ];
-        return $this->respond($response);
 
         /*
         if (!$file->hasMoved()) {
@@ -152,10 +156,11 @@ class APIUserController extends ResourceController
             $response = [
                 'status' => 404,
                 "error" => true,
-                'messages' => 'File has been moved',
+                'messages' => 'There\'s been an error with the file',
             ];
             return $this->respond($response);
         }
+        */
 
         $camps = [
             'email' => $email,
@@ -167,7 +172,6 @@ class APIUserController extends ResourceController
             'street' => $street,
             'postal_code' => $postal_code,
             'password' => $password,
-            'img_profile' => $filepath
         ];
 
         $user = new User($camps);
@@ -191,8 +195,6 @@ class APIUserController extends ResourceController
                 'data' => []
             ];
         }
-        */
-
         return $this->respond($response);
     }
 
@@ -294,7 +296,6 @@ class APIUserController extends ResourceController
      */
     public function logout()
     {
-
     }
 
     /** 
@@ -329,7 +330,7 @@ class APIUserController extends ResourceController
                     'messages' => 'The user is authenticated',
                     'data' => []
                 ];
-        }
+            }
         } else {
             $response = [
                 'status' => 200,
@@ -413,7 +414,6 @@ class APIUserController extends ResourceController
      */
     public function createRole()
     {
-
     }
 
     /**
@@ -422,7 +422,6 @@ class APIUserController extends ResourceController
      */
     public function updateRole($id_role)
     {
-
     }
 
     /**
@@ -431,14 +430,13 @@ class APIUserController extends ResourceController
      */
     public function deleteRole($id_role)
     {
-
     }
 
     /**
      * Assigns a role to a user
      * 
      */
-    public function assignRole(){
-
+    public function assignRole()
+    {
     }
 }

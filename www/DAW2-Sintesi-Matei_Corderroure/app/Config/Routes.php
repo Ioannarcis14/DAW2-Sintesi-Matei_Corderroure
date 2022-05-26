@@ -116,8 +116,10 @@ $routes->group("api", function ($routes) {
 
     $routes->group("restaurant", function ($routes) { 
 
-        $routes->get("getAll", "API\APIRestaurantController::getAllRestaurants");
-        
+        $routes->get("getAll", "API\APIRestaurantController::getAllRestaurants"); 
+
+        $routes->get("getAllRestReviews", "API\APIRestaurantController::getAllRestaurantsWithReviews"); 
+
         $routes->get("getRestaurant/(:any)", "API\APIRestaurantController::getSpecificRestaurant/$1");
 
         $routes->options("getRestaurantUsers","API\APIRestaurantController::getAllRestaurantsFromUsers");
