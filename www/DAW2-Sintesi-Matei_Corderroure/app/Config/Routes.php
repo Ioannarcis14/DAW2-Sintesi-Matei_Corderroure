@@ -64,17 +64,17 @@ $routes->group("api", function ($routes) {
     $routes->options("testStaff","API\APIAdministracioController::testStaff");
     $routes->get("testStaff","API\APIAdministracioController::testStaff");
 
-    $routes->options("register", "API\APIUserController::register");
-    $routes->post("register", "API\APIUserController::register");
+    $routes->options("register", "API\APIAuthController::register");
+    $routes->post("register", "API\APIAuthController::register");
 
-    $routes->options("login", "API\APIUserController::login");
-    $routes->post("login", "API\APIUserController::login");
+    $routes->options("login", "API\APIAuthController::login");
+    $routes->post("login", "API\APIAuthController::login");
 
-    $routes->options("logout", "API\APIUserController::logout");
-    $routes->get("logout", "API\APIUserController::logout", ['filter'=>'jwt']);
+    $routes->options("logout", "API\APIAuthController::logout");
+    $routes->get("logout", "API\APIAuthController::logout", ['filter'=>'jwt']);
 
-    $routes->options("validate", "API\APIUserController::isUserAuthenticated");
-    $routes->post("validate", "API\APIUserController::isUserAuthenticated", ['filter'=>'jwt']);
+    $routes->options("validate", "API\APIAuthController::isUserAuthenticated");
+    $routes->post("validate", "API\APIAuthController::isUserAuthenticated", ['filter'=>'jwt']);
 
     //////////////////////////////////////////////////////
     /////// ROUTES RELATED WITH USERS AND ROLES //////////
