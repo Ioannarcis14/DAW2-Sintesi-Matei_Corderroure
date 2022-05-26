@@ -125,6 +125,8 @@ class UserModel extends Model
 
     /**
      * It returns all the users from the database
+     * 
+     * @return $this
      */
     public function getAllUsers() {
         return $this->findAll();
@@ -132,10 +134,20 @@ class UserModel extends Model
 
     /**
      * It returns the user that has that email or username
+     * 
+     * @return $this
      */
     public function getUserByMailOrUsername ($email) {
         return $this->orWhere('email',$email)->orWhere('username',$email)->first();
     }
     
+    /**
+     * Deletes the user
+     * 
+     * @return $this
+     */
+    public function deleteUser($id_user) {
+        return $this->orWhere('email',$email)->orWhere('username',$email)->first();
+    }
 
 }

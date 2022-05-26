@@ -82,6 +82,9 @@ $routes->group("api", function ($routes) {
 
     $routes->group("users", function ($routes) { 
 
+        $routes->options("getImageUser", "API\APIUserController::returnUserImage");
+        $routes->post("getImageUser", "API\APIUserController::returnUserImage");
+
         $routes->options("getAll", "API\APIUserController::getAllUsers");
         $routes->get("getAll", "API\APIUserController::getAllUsers", ['filter'=>'jwt']);
 

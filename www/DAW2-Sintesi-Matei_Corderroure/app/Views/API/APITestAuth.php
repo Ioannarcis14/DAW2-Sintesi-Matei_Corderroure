@@ -91,7 +91,7 @@
 
             <div class="form-group">
                 <label for="file"><?= lang('Auth.img') ?></label>
-                <input type="file" id="file" class="form-control <?php if (session('errors.name')) : ?>is-invalid<?php endif ?>" name="file" placeholder="<?= lang('Auth.file') ?>" value="<?= old('file') ?>">
+                <input type="file" id="userfile" class="form-control <?php if (session('errors.name')) : ?>is-invalid<?php endif ?>" name="userfile" placeholder="<?= lang('Auth.file') ?>" value="<?= old('file') ?>">
             </div>
 
             <div class="form-group">
@@ -158,30 +158,28 @@
         e.preventDefault();
         formRegistration = new FormData(formRegister);
         
-        /*
-        var myHeaders = new Headers();
-        myHeaders.append("Accept", "multipart/form-data");
-        myHeaders.append("Content-Type", "multipart/form-data;");
-        */
         
-
+        var myHeaders = new Headers();
+        /*
+        myHeaders.append("Accept", "multipart/form-data");
+        myHeaders.append("Content-Type", "multipart/form-data; boundary:");
+        */
         var requestOptions = {
             method: 'POST',
             //headers: myHeaders,
             body: formRegistration
-        };
-        //BASE URL
-        
+        };  
+
         fetch("<?php echo base_url(); ?>/api/register", requestOptions)
             .then(response => response.text())
             .then((data) => {
                 if (data.status == 200) {
-                    document.getElementById("errors").innerHTML = "";
-                    document.getElementById("token").innerHTML = "Token: " + data.token;
+                    //document.getElementById("errors").innerHTML = "";
+                    //document.getElementById("token").innerHTML = "Token: " + data.token;
                     console.log(data);
                 } else {
-                    document.getElementById("errors").innerHTML = "Errors: " + data.messages;
-                    document.getElementById("token").innerHTML = "";
+                    //document.getElementById("errors").innerHTML = "Errors: " + data.messages;
+                    //document.getElementById("token").innerHTML = "";
                     console.log(data);
                 }
             });
@@ -218,52 +216,7 @@
             }
         });
     }
-
-    async function register() {
-
-        var myHeaders = new Headers();
-        myHeaders.append("Accept", "multipart/form-data");
-        myHeaders.append("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundaryIGbkEeTmcEdSH7gU");
-
-        var file = base64Decode(document.getElementById('file').files[0]);
-        const reader = new FileReader();
-
-        console.log(file);
-        var requestOptions = {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: document.getElementById('email').value,
-                username: document.getElementById('username').value,
-                name: document.getElementById('name').value,
-                surname: document.getElementById('surname').value,
-                phone: document.getElementById('phone').value,
-                city: document.getElementById('city').value,
-                street: document.getElementById('street').value,
-                postal_code: document.getElementById('postal_code').value,
-                img_profile: file,
-                password: document.getElementById('password').value,
-                pass_confirm: document.getElementById('pass_confirm').value,
-            }),
-        };
-        fetch("http://localhost:80/api/register", requestOptions)
-            .then(response => response.json())
-            .then((data) => {
-                if (data.status == 200) {
-                    document.getElementById("errors").innerHTML = "";
-                    document.getElementById("token").innerHTML = "Token: " + data.token;
-                    console.log(data);
-                } else {
-                    document.getElementById("errors").innerHTML = "Errors: " + data.messages;
-                    document.getElementById("token").innerHTML = "";
-                    console.log(data);
-                }
-            });
-    }
-
+    
     async function logout() {
         var requestOptions = {
             method: 'POST',

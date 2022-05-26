@@ -55,7 +55,7 @@ class APIRestaurantController extends ResourceController
     public function getAllRestaurantsWithReviews() {
         
         $RestaModel = new RestaurantModel();
-        $list = $RestaModel->getRatedRestaurants();
+        $list = $RestaModel->getAllRatedRestaurants();
 
         if (!empty($list)) {
             $response = [

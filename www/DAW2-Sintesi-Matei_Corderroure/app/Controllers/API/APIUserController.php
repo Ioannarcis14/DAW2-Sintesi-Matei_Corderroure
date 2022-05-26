@@ -7,6 +7,7 @@ use Myth\Auth\Models\UserModel;
 use Myth\Auth\Entities\User;
 use CodeIgniter\Files\File;
 use App\Models\UserModel as NoAuthUser;
+use Myth\Auth\Config\Auth as AuthConfig;
 
 use \Firebase\JWT\Key;
 use \Firebase\JWT\JWT;
@@ -62,6 +63,8 @@ class APIUserController extends ResourceController
      */
     public function register()
     {
+        helper(['form']);
+
         $rules = [
             'username' => 'required|is_unique[users.username,id,{id}]',
             'email' => [
@@ -79,10 +82,13 @@ class APIUserController extends ResourceController
             'city' => 'required',
             'street' => 'required',
             'postal_code' => 'required',
-            'img_profile' =>'uploaded[userfile]'
-            . '|is_image[userfile]'
+            'userfile' => [
+                'label' => 'Image File',
+                'rules' => 'uploaded[userfile]'
+                    . '|is_image[userfile]'
+                    . '|mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
+            ],
         ];
-
 
         //Validation of the general fields of the form and the profile img
         if (!$this->validate($rules)) {
@@ -96,7 +102,8 @@ class APIUserController extends ResourceController
         }
 
         $users = model(UserModel::class);
-
+        
+        $active = 1;
         $email = $this->request->getPost('email');
         $username = $this->request->getPost('username');
         $name = $this->request->getPost('name');
@@ -106,30 +113,7 @@ class APIUserController extends ResourceController
         $street = $this->request->getPost('street');
         $postal_code = $this->request->getPost('postal_code');
         $password = $this->request->getPost('password');
-        $file = null;
-
-        if (!empty($this->request->getFile('img_profile'))) {
-            $file = $this->request->getFile('img_profile');
-            }
-
-        $response = [
-            'status' => 200,
-            "error" => false,
-            'messages' => 'Fields',
-            'data' => [
-                'email' => $email,
-                'username' => $username,
-                'name' => $name,
-                'surname' => $surname,
-                'phone' => $phone,
-                'city' => $city,
-                'street' => $street,
-                'postal_code' => $postal_code,
-                'password' => $password,
-                'img_profile' => $file
-            ],
-        ];
-        return $this->respond($response);
+        $file = $this->request->getFile('userfile');
 
         //Validation of the password
         $rules = [
@@ -141,16 +125,14 @@ class APIUserController extends ResourceController
             $response = [
                 'status' => 404,
                 "error" => true,
-                'messages' => 'Error with the password',
+                'messages' => 'Error with the password verification',
                 'errors' => $this->validator->getErrors()
             ];
             return $this->respond($response);
         }
 
-
-        /*
         if (!$file->hasMoved()) {
-            $filepath = WRITEPATH . 'uploads/' . $file->store("user/img_profile/" . $username . "/");
+            $filepath = WRITEPATH . 'uploads/' . $file->store("user/" . $username . "/");
             $Filetest = new File($filepath);
         } else {
             $response = [
@@ -160,13 +142,16 @@ class APIUserController extends ResourceController
             ];
             return $this->respond($response);
         }
-        */
+
+        $hello = explode($username."/",$Filetest,2);
 
         $camps = [
+            'active' => $active,
             'email' => $email,
             'username' => $username,
             'name' => $name,
             'surname' => $surname,
+            'img_profile' => $hello[1],
             'phone' => $phone,
             'city' => $city,
             'street' => $street,
@@ -175,11 +160,8 @@ class APIUserController extends ResourceController
         ];
 
         $user = new User($camps);
-
-        if (!empty($this->config->defaultUserGroup)) {
-            $users = $users->withGroup($this->config->defaultUserGroup);
-        }
-
+        $users = $users->withGroup("usuari");
+    
         if (!$users->save($user)) {
             $response = [
                 'status' => 500,
@@ -197,6 +179,85 @@ class APIUserController extends ResourceController
         }
         return $this->respond($response);
     }
+
+    public function deleteUser() {
+        helper('filesystem');
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+
+        if(!empty($token_data)  && $token_data->group = "admin") {
+            
+            $userModel = new NoAuthUser();
+            $id_user = $this->request->getPost('id_user');
+
+            $userModel->deleteUser($id_user);   
+
+            delete_files('./path/to/directory/');
+
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => 'User has been deleted',
+                'data' => []
+            ];
+            
+        } else {
+            $response = [
+                'status' => 500,
+                "error" => true,
+                'messages' => 'Error creating the user',
+                'data' => []
+            ];
+        }
+        return $this->respond($response);
+    }
+
+    /**
+     * Gets the img from the db of the user and returns it with base64 
+     */
+
+    public function returnUserImage()
+    {
+        $rules = [
+            'username' => 'required'
+        ];
+
+        //Validation of the general fields of the form and the profile img
+        if (!$this->validate($rules)) {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'Error with the general fields',
+                'errors' => $this->validator->getErrors(),
+            ];
+            return $this->respond($response);
+        }
+
+        $username = $this->request->getPost('username');
+        $userModel = new NoAuthUser();
+        $user = $userModel->getUserByMailOrUsername($username);
+
+        $file = new \CodeIgniter\Files\File(WRITEPATH . "/uploads/user/".$username.DIRECTORY_SEPARATOR.$user->img_profile);
+        $fileEncoded = base64_encode($file);
+
+       if (!$file->isFile()) {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'Profile picture not found',
+                'data' =>  []
+            ];
+        } else {
+            $response = [
+                'status' => 200,
+                'error' => false,
+                'data' => $fileEncoded
+            ];
+        } 
+        return $this->respond($response);
+    }
+
+
 
     /** 
      * Logs in the user
