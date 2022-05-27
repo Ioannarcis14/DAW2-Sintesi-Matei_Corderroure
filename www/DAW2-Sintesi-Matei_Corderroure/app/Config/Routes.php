@@ -33,12 +33,6 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'HomePageController::index');
 
-$routes->options('restaurants', 'RestaurantPage::index');
-$routes->get('restaurants', 'RestaurantPage::index');
-
-$routes->options('restaurants/(:any)', 'RestaurantSingularPage::index');
-$routes->get('restaurants/(:any)', 'RestaurantSingularPage::index');
-
 //(The API routes will have JWT Filters and the web routes will have Myth/Auth Filters)
 
 //API ROUTES 
@@ -110,11 +104,11 @@ $routes->group("api", function ($routes) {
         $routes->options("create","API\APIRestaurantController::create");
         $routes->post("create","API\APIUserController::create", ['filter'=>'jwt']);
 
-        $routes->options("update/(:any)","API\APIUserController::update/$1");
-        $routes->post("update/(:any)", "API\APIUserController::update/$1", ['filter'=>'jwt']);
+        $routes->options("update","API\APIUserController::update");
+        $routes->post("update", "API\APIUserController::update", ['filter'=>'jwt']);
 
-        $routes->options("delete/(:any)","API\APIUserController::delete/$1");
-        $routes->post("delete/(:any)","API\APIUserController::delete/$1", ['filter'=>'jwt']);
+        $routes->options("delete","API\APIUserController::delete");
+        $routes->post("delete","API\APIUserController::delete", ['filter'=>'jwt']);
 
         //ROLE ROUTES
 
@@ -326,6 +320,14 @@ $routes->group("responsable", function ($routes) {
 
 //CLIENT ROUTES
 
+$routes->options('user', 'PrivateController::view');
+$routes->get('user', 'PrivateController::view');
+
+$routes->options('restaurants', 'RestaurantPage::index');
+$routes->get('restaurants', 'RestaurantPage::index');
+
+$routes->options('restaurants/(:any)', 'RestaurantSingularPage::index');
+$routes->get('restaurants/(:any)', 'RestaurantSingularPage::index');
 
 
 /*

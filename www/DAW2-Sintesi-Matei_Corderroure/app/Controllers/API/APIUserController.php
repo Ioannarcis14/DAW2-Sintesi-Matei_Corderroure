@@ -18,8 +18,39 @@ class APIUserController extends ResourceController
   /**
    * Get all users that are the staff of that restaurant
    */
-    public function getAllStaff(){
-        
+    public function updateUser(){
+
+        //$token_data = json_decode($this->request->header("token-data")->getValue());
+
+        //if (!empty($token_data) && $token_data->group = "responsable") {
+
+        helper(['form']);
+
+        $rules = [
+            'username' => 'is_unique[users.username,id,{id}]',
+            'email' => [
+                'label'  => 'Email address',
+                'rules'  => 'valid_email|is_unique[users.email,id,{id}]',
+                'errors' => [
+                    'valid_email' => '{field} doesn\'t appear to be a valid email address',
+                    'is_unique' => 'This email address is already registered',
+                ],
+            ],
+            'phone' => 'min_length[9]|max_length[9]',
+        ];
+
+        //Validation of the general fields of the form and the profile img
+        if (!$this->validate($rules)) {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'Error with the general fields',
+                'errors' => $this->validator->getErrors(),
+            ];
+            return $this->respond($response);
+        }
+
+        $users = model(UserModel::class);
         
     }
 
