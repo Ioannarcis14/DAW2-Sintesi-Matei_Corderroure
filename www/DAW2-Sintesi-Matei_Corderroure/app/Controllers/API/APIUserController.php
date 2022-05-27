@@ -15,49 +15,11 @@ use \Firebase\JWT\JWT;
 class APIUserController extends ResourceController
 {
 
-    /**
-     * Gets the img from the db of the user and returns it with base64 
-     */
-
-    public function returnUserImage()
-    {
-        $rules = [
-            'username' => 'required'
-        ];
-
-        //Validation of the general fields of the form and the profile img
-        if (!$this->validate($rules)) {
-            $response = [
-                'status' => 404,
-                "error" => true,
-                'messages' => 'Error with the general fields',
-                'errors' => $this->validator->getErrors(),
-            ];
-            return $this->respond($response);
-        }
-
-        $username = $this->request->getPost('username');
-        $userModel = new NoAuthUser();
-        $user = $userModel->getUserByMailOrUsername($username);
-
-        $file = new \CodeIgniter\Files\File(WRITEPATH.DIRECTORY_SEPARATOR."uploads".DIRECTORY_SEPARATOR."user".DIRECTORY_SEPARATOR.$username.DIRECTORY_SEPARATOR.$user->img_profile);
-        $fileEncoded = base64_encode($file);
-
-       if (!$file->isFile()) {
-            $response = [
-                'status' => 404,
-                "error" => true,
-                'messages' => 'Profile picture not found',
-                'data' =>  []
-            ];
-        } else {
-            $response = [
-                'status' => 200,
-                'error' => false,
-                'data' => $fileEncoded
-            ];
-        } 
-        return $this->respond($response);
+  /**
+   * Get all users that are the staff of that restaurant
+   */
+    public function getAllStaff(){
+        
     }
 
     /**
@@ -156,4 +118,50 @@ class APIUserController extends ResourceController
     public function assignRole()
     {
     }
+
+    /**
+     * Gets the img from the db of the user and returns it with base64 
+     */
+
+    public function returnUserImage()
+    {
+        $rules = [
+            'username' => 'required'
+        ];
+
+        //Validation of the general fields of the form and the profile img
+        if (!$this->validate($rules)) {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'Error with the general fields',
+                'errors' => $this->validator->getErrors(),
+            ];
+            return $this->respond($response);
+        }
+
+        $username = $this->request->getPost('username');
+        $userModel = new NoAuthUser();
+        $user = $userModel->getUserByMailOrUsername($username);
+
+        $file = new \CodeIgniter\Files\File(WRITEPATH.DIRECTORY_SEPARATOR."uploads".DIRECTORY_SEPARATOR."user".DIRECTORY_SEPARATOR.$username.DIRECTORY_SEPARATOR.$user->img_profile);
+        $fileEncoded = base64_encode($file);
+
+       if (!$file->isFile()) {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'Profile picture not found',
+                'data' =>  []
+            ];
+        } else {
+            $response = [
+                'status' => 200,
+                'error' => false,
+                'data' => $fileEncoded
+            ];
+        } 
+        return $this->respond($response);
+    }
+
 }

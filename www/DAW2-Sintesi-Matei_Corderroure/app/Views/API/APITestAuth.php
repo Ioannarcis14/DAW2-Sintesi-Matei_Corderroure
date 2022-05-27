@@ -12,6 +12,10 @@
         #tokenLog {
             word-wrap: break-word;
         }
+
+        #refreshToken {
+            word-wrap: break-word;
+        }
     </style>
 </head>
 
@@ -104,8 +108,7 @@
                 <input type="password" id="pass_confirm" name="pass_confirm" class="form-control <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
             </div>
 
-            <div id="token"></div>
-            <div id="errors"></div></br>
+            <div id="message"></div></br>
             <input class="btn btn-primary" type="submit" value="Enviar">
 
             </form>
@@ -131,12 +134,12 @@
         <div class="container">
             <h2>Validate</h2></br>
             <div class="form-group">
-                <label for="validateUserToken">ValidateUser</label>
+                <label for="validateUserToken">Validate user</label>
                 <input type="text" class="form-control" id="validateUserToken" placeholder="Authentication Token">
             </div>
             <div id="refreshToken"></div>
             <div id="errorsValidate"></div></br>
-            <button class="btn btn-danger" onclick="validate()">Validate</button>
+            <button class="btn btn-primary" onclick="checkUser()">Validate</button>
         </div>
 
         <div class="container">
@@ -145,8 +148,7 @@
                 <label for="userToken">Token</label>
                 <input type="text" class="form-control" id="userToken" placeholder="Authentication Token">
             </div>
-            <div id="messagesLogout"></div>
-            <div id="errorsLogout"></div></br>
+            <div id="messagesLogout"></div></br>
             <button class="btn btn-danger" onclick="logout()">Logout</button>
         </div>
 
@@ -157,16 +159,9 @@
     formRegister.onsubmit = async (e) => {
         e.preventDefault();
         formRegistration = new FormData(formRegister);
-        
-        
-        var myHeaders = new Headers();
-        /*
-        myHeaders.append("Accept", "multipart/form-data");
-        myHeaders.append("Content-Type", "multipart/form-data; boundary:");
-        */
+            
         var requestOptions = {
             method: 'POST',
-            //headers: myHeaders,
             body: formRegistration
         };  
 
@@ -174,20 +169,20 @@
             .then(response => response.text())
             .then((data) => {
                 if (data.status == 200) {
-                    //document.getElementById("errors").innerHTML = "";
-                    //document.getElementById("token").innerHTML = "Token: " + data.token;
-                    console.log(data);
+                    document.getElementById("message").innerHTML = "";
+                    document.getElementById("message").innerHTML = "Message: " + data.messages;
                 } else {
-                    //document.getElementById("errors").innerHTML = "Errors: " + data.messages;
-                    //document.getElementById("token").innerHTML = "";
-                    console.log(data);
+                    document.getElementById("message").innerHTML = "";
+                    document.getElementById("message").innerHTML = "Error: " + data.messages;
                 }
+            }).catch(error => {
+                document.getElementById("message").innerHTML = "Error: There\'s been an error with the register process";
             });
 
     }
 
     async function login() {
-        let response = await fetch("http://localhost:80/api/login", {
+        let response = await fetch("<?php echo base_url(); ?>/api/login", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -200,41 +195,34 @@
         });
         response.json().then((data) => {
             if (data.error == false) {
-                console.log(data.token);
-                console.log(data.messages);
-                console.log(data.status);
-
                 document.getElementById("errorsLog").innerHTML = "";
                 document.getElementById("tokenLog").innerHTML = "Token: " + data.token;
             } else {
-                console.log(data.token);
-                console.log(data.messages);
-                console.log(data.status);
-
-                document.getElementById("errorsLog").innerHTML = "Errors: " + data.messages;
                 document.getElementById("tokenLog").innerHTML = "";
+                document.getElementById("errorsLog").innerHTML = "Error: " + data.messages;
             }
+        }).catch(error => {
+            document.getElementById("tokenLog").innerHTML = "";
+            document.getElementById("errorsLog").innerHTML = "Error: With the login process";
         });
     }
     
     async function logout() {
         var requestOptions = {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + document.getElementById('userToken').value,
             },
         };
-        fetch("http://localhost:80/api/logout", requestOptions)
+        fetch("<?php echo base_url(); ?>/api/logout", requestOptions)
             .then(response => response.json())
             .then((data) => {
-                if (data.status == 200) {
-                    console.log(data);
-                } else {
-                    console.log(data);
-                }
-            });
+                document.getElementById("messagesLogout").innerHTML = "User logged off";
+            }).catch(error => {
+                document.getElementById("messagesLogout").innerHTML = "User logged off";
+            })
     }
 
     async function checkUser() {
@@ -246,15 +234,22 @@
                 'Authorization': 'Bearer ' + document.getElementById('validateUserToken').value,
             },
         };
-        fetch("http://localhost:80/api/validate", requestOptions)
+        fetch("<?php echo base_url(); ?>/api/validate", requestOptions)
             .then(response => response.json())
             .then((data) => {
                 if (data.status == 200) {
-                    console.log(data);
+                    document.getElementById("errorsValidate").innerHTML = "";
+                    document.getElementById("refreshToken").innerHTML = "Token: " + data.refreshToken;
                 } else {
-                    console.log(data);
+                    document.getElementById("refreshToken").innerHTML = "";
+                    document.getElementById("errorsValidate").innerHTML = "Error: " + data.messages;
                 }
-            });
+            }).catch(
+                error => {
+                    document.getElementById("refreshToken").innerHTML = "";
+                    document.getElementById("errorsValidate").innerHTML = "Error: User not authenticated";
+                }
+            );
     }
 
 </script>

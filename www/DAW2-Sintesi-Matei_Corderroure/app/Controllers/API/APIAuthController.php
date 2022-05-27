@@ -179,39 +179,7 @@ class APIAuthController extends ResourceController
         }
         return $this->respond($response);
     }
-
-    public function deleteUser() {
-        helper('filesystem');
-
-        $token_data = json_decode($this->request->header("token-data")->getValue());
-
-        if(!empty($token_data)  && $token_data->group = "admin") {
-            
-            $userModel = new NoAuthUser();
-            $id_user = $this->request->getPost('id_user');
-
-            $userModel->deleteUser($id_user);   
-
-            delete_files('');
-
-            $response = [
-                'status' => 200,
-                "error" => false,
-                'messages' => 'User has been deleted',
-                'data' => []
-            ];
-            
-        } else {
-            $response = [
-                'status' => 500,
-                "error" => true,
-                'messages' => 'Error creating the user',
-                'data' => []
-            ];
-        }
-        return $this->respond($response);
-    }
-
+    
     /** 
      * Logs in the user
      * 
@@ -323,7 +291,6 @@ class APIAuthController extends ResourceController
     {
         $token_data = json_decode($this->request->header("token-data")->getValue());
 
-
         if (!empty($token_data)) {
             $userModel = new NoAuthUser();
 
@@ -347,8 +314,8 @@ class APIAuthController extends ResourceController
             }
         } else {
             $response = [
-                'status' => 200,
-                "error" => false,
+                'status' => 400,
+                "error" => true,
                 'messages' => 'The user is not authenticated',
                 'data' => []
             ];

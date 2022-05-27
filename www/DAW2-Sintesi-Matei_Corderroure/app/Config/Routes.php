@@ -48,7 +48,23 @@ $routes->group("api", function ($routes) {
     /////////////////////////////////////////////////////
     ///////// ROUTES AUTHENTICATION API ROUTES //////////
     /////////////////////////////////////////////////////
+    
+    $routes->options("register", "API\APIAuthController::register");
+    $routes->post("register", "API\APIAuthController::register");
 
+    $routes->options("login", "API\APIAuthController::login");
+    $routes->post("login", "API\APIAuthController::login");
+
+    $routes->options("logout", "API\APIAuthController::logout");
+    $routes->get("logout", "API\APIAuthController::logout", ['filter'=>'jwt']);
+
+    $routes->options("validate", "API\APIAuthController::isUserAuthenticated");
+    $routes->post("validate", "API\APIAuthController::isUserAuthenticated", ['filter'=>'jwt']);
+
+    //////////////////////////////////////////////
+    ///////// ROUTES TESTING API ROUTES //////////
+    //////////////////////////////////////////////
+    
     $routes->options("testAuth","API\APIAdministracioController::testAuth");
     $routes->get("testAuth","API\APIAdministracioController::testAuth");
 
@@ -64,17 +80,6 @@ $routes->group("api", function ($routes) {
     $routes->options("testStaff","API\APIAdministracioController::testStaff");
     $routes->get("testStaff","API\APIAdministracioController::testStaff");
 
-    $routes->options("register", "API\APIAuthController::register");
-    $routes->post("register", "API\APIAuthController::register");
-
-    $routes->options("login", "API\APIAuthController::login");
-    $routes->post("login", "API\APIAuthController::login");
-
-    $routes->options("logout", "API\APIAuthController::logout");
-    $routes->get("logout", "API\APIAuthController::logout", ['filter'=>'jwt']);
-
-    $routes->options("validate", "API\APIAuthController::isUserAuthenticated");
-    $routes->post("validate", "API\APIAuthController::isUserAuthenticated", ['filter'=>'jwt']);
 
     //////////////////////////////////////////////////////
     /////// ROUTES RELATED WITH USERS AND ROLES //////////
@@ -84,6 +89,9 @@ $routes->group("api", function ($routes) {
 
         $routes->options("getImageUser", "API\APIUserController::returnUserImage");
         $routes->post("getImageUser", "API\APIUserController::returnUserImage");
+
+        $routes->options("getStaff", "API\APIUserController::getAllStaff");
+        $routes->post("getStaff", "API\APIUserController::getAllStaff", ['filter'=>'jwt']);
 
         $routes->options("getAll", "API\APIUserController::getAllUsers");
         $routes->get("getAll", "API\APIUserController::getAllUsers", ['filter'=>'jwt']);
