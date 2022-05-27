@@ -87,11 +87,22 @@ $routes->group("api", function ($routes) {
 
     $routes->group("users", function ($routes) { 
 
-        $routes->options("getImageUser", "API\APIUserController::returnUserImage");
-        $routes->post("getImageUser", "API\APIUserController::returnUserImage");
+       
+        //STAFF ROUTES
 
         $routes->options("getStaff", "API\APIUserController::getAllStaff");
         $routes->post("getStaff", "API\APIUserController::getAllStaff", ['filter'=>'jwt']);
+
+        $routes->options("createStaff", "API\APIUserController::createStaff");
+        $routes->post("createStaff", "API\APIUserController::createStaff", ['filter'=>'jwt']);
+
+        $routes->options("updateStaff", "API\APIUserController::updateStaff");
+        $routes->post("updateStaff", "API\APIUserController::updateStaff", ['filter'=>'jwt']);
+
+        $routes->options("deleteStaff", "API\APIUserController::deleteStaff");
+        $routes->post("deleteStaff", "API\APIUserController::deleteStaff", ['filter'=>'jwt']);
+
+        //USER ROUTES
 
         $routes->options("getAll", "API\APIUserController::getAllUsers");
         $routes->get("getAll", "API\APIUserController::getAllUsers", ['filter'=>'jwt']);
@@ -104,6 +115,8 @@ $routes->group("api", function ($routes) {
 
         $routes->options("delete/(:any)","API\APIUserController::delete/$1");
         $routes->post("delete/(:any)","API\APIUserController::delete/$1", ['filter'=>'jwt']);
+
+        //ROLE ROUTES
 
         $routes->options("getAllRoles", "API\APIUserController::getAllRoles");
         $routes->get("getAllRoles", "API\APIUserController::getAllRoles", ['filter'=>'jwt']);
@@ -119,6 +132,9 @@ $routes->group("api", function ($routes) {
 
         $routes->options("assignRole","API\APIUserController::assignRole");
         $routes->post("assignRole","API\APIUserController::assignRole", ['filter'=>'jwt']);
+
+        $routes->options("getImageUser", "API\APIUserController::returnUserImage");
+        $routes->post("getImageUser", "API\APIUserController::returnUserImage");
     });
 
     /////////////////////////////////////////////////////
