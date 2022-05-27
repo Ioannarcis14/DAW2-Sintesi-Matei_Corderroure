@@ -49,7 +49,6 @@ class CategoryModel extends Model
 
         $this->orderBy('category.id');
 
-
         return $this->findAll();
     }
 
