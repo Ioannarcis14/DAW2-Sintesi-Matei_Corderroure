@@ -52,6 +52,10 @@ class RestaurantModel extends Model
         return $this->where('discharged !=', null)->findAll();
     }
 
+    public function getAllRestaurants() {
+        return $this->findAll();
+    }
+
     /**
      * Selects all the restaurants that are not discharged  
      * 
@@ -80,7 +84,7 @@ class RestaurantModel extends Model
 
     public function getRatedRestaurants(){
 
-        $this->select(['restaurant.id', 'restaurant.name','restaurant.city','restaurant.street','restaurant.postal_code','AVG(valorations.score) as nota', 'restaurant.img_gallery']);
+        $this->select(['restaurant.id', 'restaurant.name','restaurant.city','restaurant.street','restaurant.postal_code', 'restaurant.phone', 'AVG(valorations.score) as nota', 'restaurant.img_gallery']);
         $this->join('valorations', 'valorations.id_restaurant = restaurant.id', 'left');
         $this->groupBy('restaurant.id');
 

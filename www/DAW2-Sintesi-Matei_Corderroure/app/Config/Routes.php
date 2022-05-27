@@ -175,7 +175,7 @@ $routes->group("api", function ($routes) {
     ///////////////////////////////////////
 
     $routes->group("category", function ($routes) {
-        $routes->get("getAll", "API\APICategoryController::getAllCategories");
+        $routes->get("getAll/(:any)", "API\APICategoryController::getAllCategories/$1");
 
         $routes->options("create","API\APICategoryController::createCategory");
         $routes->post("create","API\APICategoryController::createCategory", ['filter'=>'jwt']);
