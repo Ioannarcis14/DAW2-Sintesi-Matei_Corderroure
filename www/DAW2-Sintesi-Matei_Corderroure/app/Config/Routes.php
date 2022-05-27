@@ -323,11 +323,26 @@ $routes->group("responsable", function ($routes) {
 $routes->options('user', 'PrivateController::view');
 $routes->get('user', 'PrivateController::view');
 
+
+$routes->options('user', 'PrivateController::changeData');
+$routes->get('user/changeData', 'PrivateController::changeData');
+$routes->post('user/changeData', 'PrivateController::changeData');
+
+$routes->get('user/changePass', 'PrivateController::changePass');
+$routes->post('user/changePass', 'PrivateController::changePass');
+
 $routes->options('restaurants', 'RestaurantPage::index');
 $routes->get('restaurants', 'RestaurantPage::index');
 
 $routes->options('restaurants/(:any)', 'RestaurantSingularPage::index');
 $routes->get('restaurants/(:any)', 'RestaurantSingularPage::index');
+
+//FILE EXPLORER
+
+$routes->post('fileconnector', 'FileExplorerController::connector');
+$routes->get('fileconnector', 'FileExplorerController::connector');
+$routes->get('filemanager', 'FileExplorerController::manager');
+$routes->get('/fileget/(:any)', 'FileExplorerController::getImageUser');
 
 
 /*

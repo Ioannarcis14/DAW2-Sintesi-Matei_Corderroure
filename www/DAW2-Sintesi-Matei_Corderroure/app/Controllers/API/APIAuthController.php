@@ -133,7 +133,7 @@ class APIAuthController extends ResourceController
         }
 
         if (!$file->hasMoved()) {
-            $filepath = WRITEPATH . 'uploads/' . $file->store("user/" . $username . "/");
+            $filepath = WRITEPATH . 'uploads/' . $file->store("user/img_profile/");
             $Filetest = new File($filepath);
         } else {
             $response = [
@@ -144,7 +144,7 @@ class APIAuthController extends ResourceController
             return $this->respond($response);
         }
 
-        $hello = explode($username."/",$Filetest,2);
+        $hello = explode("user/img_profile/",$Filetest,2);
 
         $camps = [
             'active' => $active,
@@ -203,7 +203,6 @@ class APIAuthController extends ResourceController
     public function login()
     {
         helper('html');
-        protected $helpers = ['auth', 'html'];
 
         $auth = service('authentication');
 
