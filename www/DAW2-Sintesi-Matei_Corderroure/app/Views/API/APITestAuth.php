@@ -112,7 +112,6 @@
             <input class="btn btn-primary" type="submit" value="Enviar">
 
             </form>
-         <!--<button  id="buttRegister" onclick="register()">Register</button> -->
         </div>
 
         <div class="container">
