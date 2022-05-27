@@ -52,6 +52,10 @@ class RestaurantModel extends Model
         return $this->where('discharged !=', null)->findAll();
     }
 
+    public function getAllRestaurants() {
+        return $this->findAll();
+    }
+
     /**
      * Selects all the restaurants that are not discharged  
      * 
