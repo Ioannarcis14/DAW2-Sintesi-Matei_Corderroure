@@ -15,7 +15,7 @@ use \Firebase\JWT\JWT;
 class APIAuthController extends ResourceController
 {
    
-    protected $helpers = ['auth'];
+    protected $helpers = ['auth', 'html'];
 
 
     /**
@@ -64,6 +64,7 @@ class APIAuthController extends ResourceController
     public function register()
     {
         helper(['form']);
+        helper('html');
 
         $rules = [
             'username' => 'required|is_unique[users.username,id,{id}]',
@@ -201,6 +202,9 @@ class APIAuthController extends ResourceController
      */
     public function login()
     {
+        helper('html');
+        protected $helpers = ['auth', 'html'];
+
         $auth = service('authentication');
 
         $rules = [
@@ -289,6 +293,8 @@ class APIAuthController extends ResourceController
      */
     public function isUserAuthenticated()
     {
+        helper('html');
+
         $token_data = json_decode($this->request->header("token-data")->getValue());
 
         if (!empty($token_data)) {

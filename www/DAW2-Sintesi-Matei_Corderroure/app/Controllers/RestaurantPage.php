@@ -18,6 +18,7 @@ class RestaurantPage extends BaseController
             $data['logged'] = true;
         }
 
+
         $RestaModel = new RestaurantModel();
         $list = $RestaModel->getRatedRestaurants();
 

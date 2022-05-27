@@ -43,9 +43,12 @@ class AuthController extends Controller
 	{
 		// No need to show a login form if the user
 		// is already logged in.
+        helper('html');
+        $auth = service('authentication');
+
 		if ($this->auth->check())
 		{
-			$redirectURL = session('redirect_url') ?? site_url('/');
+            $redirectURL = session('redirect_url') ?? site_url('/');
 			unset($_SESSION['redirect_url']);
 
 			return redirect()->to($redirectURL);
