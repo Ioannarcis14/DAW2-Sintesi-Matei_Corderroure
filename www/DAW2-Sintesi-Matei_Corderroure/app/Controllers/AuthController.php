@@ -99,6 +99,22 @@ class AuthController extends Controller
 			return redirect()->to(route_to('reset-password') .'?token='. $this->auth->user()->reset_hash)->withCookies();
 		}
 
+		$current_user = $this->auth->user();
+
+        helper("jwt");
+        $APIGroupConfig = "default";
+        $cfgAPI = new \Config\APIJwt($APIGroupConfig);
+
+        $data = array(
+            "uid" => $current_user->id,
+            "name" => $current_user->name,
+            "email" => $current_user->email,
+            "group" => $current_user->getRoles($current_user->id)
+        );
+
+        $token = newTokenJWT($cfgAPI->config(), $data);
+		$_SESSION['token'] = $token;
+		
 		$redirectURL = session('redirect_url') ?? site_url('/');
 		unset($_SESSION['redirect_url']);
 

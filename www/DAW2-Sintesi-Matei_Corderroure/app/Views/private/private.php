@@ -51,10 +51,24 @@
     ?>
     </div>
 
+    <div style="margin: 50px; background-color: white">
+    <h2>Change your password</h2>
+            <div class="form-group">
+                <label for="newPassword"><?= lang('Auth.newPassword') ?></label>
+                <input type="password" id="newPassword" name="newPassword" class="form-control <?php if (session('errors.newPassword')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.newPassword') ?>" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label for="newPasswordRepeat"><?= lang('Auth.newPasswordRepeat') ?></label>
+                <input type="password" id="newPasswordRepeat" name="newPasswordRepeat" class="form-control <?php if (session('errors.newPasswordRepeat')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.newPasswordRepeat') ?>" autocomplete="off">
+            </div>
+            <div id="errors"></div> </br>
+            <button class="btn btn-primary" onclick="changePassword()">Change</button>
+            </input>    
+    </div>
+
     <div class="functionContainers">
             <a class="btn btn-primary" href="/user/changeData">Change your data</a>
-            <a class="btn btn-primary" href="/user/changePass">Change your password</a>
-
     </div>
 
 
@@ -62,10 +76,43 @@
 
 </div>
 
+<script>
+
+    async function changePassword() {
+        var newPass = document.getElementById("newPassword").value;
+        var newPassConfirm = document.getElementById("newPasswordRepeat").value;
+        var email = <?= json_encode($user->email)?>;
+
+        let response = await fetch("<?php echo base_url(); ?>/api/users/changePass", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + <?= json_encode($_SESSION['token'])?>,
+            },
+            body: JSON.stringify({
+                newPass: newPass,
+                newPassConfirm: newPassConfirm,
+                email: email
+            }),
+        });
+        response.json().then((data) => {
+            if (data.error == false) {
+                document.getElementById("errorsLog").innerHTML = "";
+                document.getElementById("tokenLog").innerHTML = "Token: " + data.token;
+            } else {
+                document.getElementById("tokenLog").innerHTML = "";
+                document.getElementById("errorsLog").innerHTML = "Error: " + data.messages;
+            }
+        }).catch(error => {
+            document.getElementById("errors").innerHTML = "There's been an error with the process";
+        }); 
 
 
+    }
 
 
+</script>
 
 
     <!-- Bootstrap core JavaScript

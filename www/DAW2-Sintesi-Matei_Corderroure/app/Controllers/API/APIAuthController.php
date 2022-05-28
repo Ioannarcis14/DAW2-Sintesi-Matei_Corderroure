@@ -118,8 +118,8 @@ class APIAuthController extends ResourceController
 
         //Validation of the password
         $rules = [
-            'password'     => 'required',
-            'pass_confirm' => 'required',
+            'password'     => 'required|strong_password',
+            'pass_confirm' => 'required|matches[password',
         ];
 
         if (!$this->validate($rules)) {

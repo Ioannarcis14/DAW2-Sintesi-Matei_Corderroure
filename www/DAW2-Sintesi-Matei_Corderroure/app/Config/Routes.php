@@ -129,6 +129,10 @@ $routes->group("api", function ($routes) {
 
         $routes->options("getImageUser", "API\APIUserController::returnUserImage");
         $routes->post("getImageUser", "API\APIUserController::returnUserImage");
+
+        $routes->options("changePass", "API\APIUserController::changePassword");
+        $routes->post("changePass", "API\APIUserController::changePassword");
+
     });
 
     /////////////////////////////////////////////////////
@@ -324,12 +328,13 @@ $routes->options('user', 'PrivateController::view');
 $routes->get('user', 'PrivateController::view');
 
 
-$routes->options('user', 'PrivateController::changeData');
+$routes->options('user/changeData', 'PrivateController::changeData');
 $routes->get('user/changeData', 'PrivateController::changeData');
-$routes->post('user/changeData', 'PrivateController::changeData');
+$routes->post('user/changeData', 'PrivateController::changeDataPost');
 
+$routes->options('user/changePass', 'PrivateController::changePass');
 $routes->get('user/changePass', 'PrivateController::changePass');
-$routes->post('user/changePass', 'PrivateController::changePass');
+$routes->post('user/changePass', 'PrivateController::changeDataPost');
 
 $routes->options('restaurants', 'RestaurantPage::index');
 $routes->get('restaurants', 'RestaurantPage::index');

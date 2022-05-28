@@ -5,6 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 use Myth\Auth\Authorization\GroupModel;
 use Myth\Auth\Entities\User;
+use Myth\Auth\Password;
 
 class UserModel extends Model
 {
@@ -148,6 +149,15 @@ class UserModel extends Model
      */
     public function deleteUser($id_user) {
         return $this->orWhere('email',$email)->orWhere('username',$email)->first();
+    }
+
+    public function changePassword($newPassword, $id) {
+        
+        $data = [
+            'password_hash' => Password::hash($newPassword),
+        ];
+
+        $this->update($id, $data);
     }
 
 }

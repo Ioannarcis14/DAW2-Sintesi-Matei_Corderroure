@@ -15,10 +15,97 @@ use \Firebase\JWT\JWT;
 class APIUserController extends ResourceController
 {
 
-  /**
-   * Get all users that are the staff of that restaurant
-   */
-    public function updateUser(){
+
+    public function changePassword()
+    {
+        helper('form');
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+
+        $rules = [
+            'email' => [
+                'label'  => 'Email address',
+                'rules'  => 'required|valid_email|is_unique[users.email,id,{id}]',
+                'errors' => [
+                    'required' => '{field} is required',
+                    'valid_email' => '{field} doesn\'t appear to be a valid email address',
+                    'is_unique' => 'This email address is already registered',
+                ],
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = [
+                'status' => 400,
+                "error" => true,
+                'errors' => $this->validator->getErrors()
+            ];
+            return $this->respond($response);
+        }
+
+        $email = $this->request->getPost('email');
+
+
+        if (!empty($token_data) && $token_data->email == $email) {
+
+            //Validation of the password
+            $rules = [
+                'newPass'     => 'required',
+                'newPassConfirm' => 'required|matches[newPass]',
+            ];
+
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 400,
+                    "error" => true,
+                    'errors' => $this->validator->getErrors()
+                ];
+                return $this->respond($response);
+            }
+
+            $userModel = new NoAuthUser();
+            $userModel->changePassword($this->request->getPost('newPass'), $token_data->id);
+
+            $auth = service('authentication');
+	
+            $credentials = [
+                'email' => $this->request->getPost('email'),
+                'password' => $this->request->getPost('newPass')
+            ];
+            
+           if(!$auth->validate($credentials)){
+            $response = [
+                'status' => 200,
+                "error" => false,
+                "messages" => "Password changed correctly"
+            ];
+            return $this->respond($response);
+           } else {
+            $response = [
+                'status' => 200,
+                "error" => false,
+                "messages" => "Password changed correctly"
+            ];
+            return $this->respond($response);
+           }
+
+        } else {
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 401,
+                    "error" => true,
+                ];
+                return $this->respond($response);
+            }
+
+        }
+    }
+
+    /**
+     * Get all users that are the staff of that restaurant
+     */
+    public function updateUser()
+    {
 
         //$token_data = json_decode($this->request->header("token-data")->getValue());
 
@@ -51,7 +138,6 @@ class APIUserController extends ResourceController
         }
 
         $users = model(UserModel::class);
-        
     }
 
     /**
@@ -176,10 +262,10 @@ class APIUserController extends ResourceController
         $userModel = new NoAuthUser();
         $user = $userModel->getUserByMailOrUsername($username);
 
-        $file = new \CodeIgniter\Files\File(WRITEPATH.DIRECTORY_SEPARATOR."uploads".DIRECTORY_SEPARATOR."user".DIRECTORY_SEPARATOR.$username.DIRECTORY_SEPARATOR.$user->img_profile);
+        $file = new \CodeIgniter\Files\File(WRITEPATH . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . "user" . DIRECTORY_SEPARATOR . $username . DIRECTORY_SEPARATOR . $user->img_profile);
         $fileEncoded = base64_encode($file);
 
-       if (!$file->isFile()) {
+        if (!$file->isFile()) {
             $response = [
                 'status' => 404,
                 "error" => true,
@@ -192,8 +278,7 @@ class APIUserController extends ResourceController
                 'error' => false,
                 'data' => $fileEncoded
             ];
-        } 
+        }
         return $this->respond($response);
     }
-
 }

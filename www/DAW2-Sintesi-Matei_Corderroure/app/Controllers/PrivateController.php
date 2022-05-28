@@ -44,21 +44,4 @@ class PrivateController extends BaseController
     public function changeDataPost() {
 
     }
-
-    public function changePass() {
-        $auth = service('authentication');
-
-        if(!$auth->check()) {
-            return redirect()->route('login');
-        }
-
-        $currentUser = $auth->user();
-
-
-        $data['logged'] = true;
-        $data['user'] = $currentUser;
-
-        return view('/private/changePass', $data);
-
-    }
 }
