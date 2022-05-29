@@ -25,11 +25,10 @@ class APIUserController extends ResourceController
         $rules = [
             'email' => [
                 'label'  => 'Email address',
-                'rules'  => 'required|valid_email|is_unique[users.email,id,{id}]',
+                'rules'  => 'required|valid_email',
                 'errors' => [
                     'required' => '{field} is required',
                     'valid_email' => '{field} doesn\'t appear to be a valid email address',
-                    'is_unique' => 'This email address is already registered',
                 ],
             ],
         ];
@@ -38,12 +37,12 @@ class APIUserController extends ResourceController
             $response = [
                 'status' => 400,
                 "error" => true,
-                'errors' => $this->validator->getErrors()
+                'messages' => $this->validator->getErrors()
             ];
             return $this->respond($response);
         }
 
-        $email = $this->request->getPost('email');
+        $email = $this->request->getVar('email');
 
 
         if (!empty($token_data) && $token_data->email == $email) {
@@ -58,48 +57,45 @@ class APIUserController extends ResourceController
                 $response = [
                     'status' => 400,
                     "error" => true,
-                    'errors' => $this->validator->getErrors()
+                    'messages' => "Error with the password"
                 ];
                 return $this->respond($response);
             }
 
             $userModel = new NoAuthUser();
-            $userModel->changePassword($this->request->getPost('newPass'), $token_data->id);
+            $userModel->changePassword($this->request->getVar('newPass'), $token_data->uid);
 
             $auth = service('authentication');
-	
-            $credentials = [
-                'email' => $this->request->getPost('email'),
-                'password' => $this->request->getPost('newPass')
-            ];
-            
-           if(!$auth->validate($credentials)){
-            $response = [
-                'status' => 200,
-                "error" => false,
-                "messages" => "Password changed correctly"
-            ];
-            return $this->respond($response);
-           } else {
-            $response = [
-                'status' => 200,
-                "error" => false,
-                "messages" => "Password changed correctly"
-            ];
-            return $this->respond($response);
-           }
 
-        } else {
-            if (!$this->validate($rules)) {
+            $credentials = [
+                'email' => $this->request->getVar('email'),
+                'password' => $this->request->getVar('newPass')
+            ];
+
+            if (!$auth->validate($credentials)) {
                 $response = [
-                    'status' => 401,
-                    "error" => true,
+                    'status' => 200,
+                    "error" => false,
+                    "messages" => "Password changed correctly"
+                ];
+                return $this->respond($response);
+            } else {
+                $response = [
+                    'status' => 200,
+                    "error" => false,
+                    "messages" => "Password changed correctly"
                 ];
                 return $this->respond($response);
             }
-
+        } else {
+            $response = [
+                'status' => 401,
+                "error" => true,
+            ];
+            return $this->respond($response);
         }
     }
+
 
     /**
      * Get all users that are the staff of that restaurant

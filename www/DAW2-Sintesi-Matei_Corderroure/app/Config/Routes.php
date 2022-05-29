@@ -131,7 +131,7 @@ $routes->group("api", function ($routes) {
         $routes->post("getImageUser", "API\APIUserController::returnUserImage");
 
         $routes->options("changePass", "API\APIUserController::changePassword");
-        $routes->post("changePass", "API\APIUserController::changePassword");
+        $routes->post("changePass", "API\APIUserController::changePassword", ['filter'=>'jwt']);
 
     });
 
