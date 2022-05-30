@@ -113,7 +113,24 @@ class APIAuthController extends ResourceController
         $city = $this->request->getPost('city');
         $street = $this->request->getPost('street');
         $postal_code = $this->request->getPost('postal_code');
+        $password = $this->request->getPost('password');
         $file = $this->request->getFile('userfile');
+
+        //Validation of the password
+        $rules = [
+            'password'     => 'required|strong_password',
+            'pass_confirm' => 'required|matches[password',
+        ];
+
+        if (!$this->validate($rules)) {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'Error with the password verification',
+                'errors' => $this->validator->getErrors()
+            ];
+            return $this->respond($response);
+        }
 
         if (!$file->hasMoved()) {
             $filepath = WRITEPATH . 'uploads/' . $file->store("user/img_profile/");

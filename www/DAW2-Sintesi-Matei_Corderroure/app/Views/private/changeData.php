@@ -133,7 +133,7 @@
                 var requestOptions = {
                     method: 'POST',
                     body: formRegistration,
-                    Authorization: 'Bearer ' + <?= json_encode($_SESSION['token']); ?>,
+                    Authorization: 'Bearer ' + <?= json_encode($_SESSION['token']);?>,
                 };
             } else {
                 var requestOptions = {
@@ -147,14 +147,14 @@
                 .then(response => response.text())
                 .then((data) => {
                     if (data.status == 200) {
-                        document.getElementById("message").innerHTML = "";
-                        document.getElementById("message").innerHTML = "Message: " + data.messages;
+                        document.getElementById("messages").innerHTML = "";
+                        document.getElementById("messages").innerHTML = "Message: " + data.messages;
                     } else {
-                        document.getElementById("message").innerHTML = "";
-                        document.getElementById("message").innerHTML = "Error: " + data.messages;
+                        document.getElementById("messages").innerHTML = "";
+                        document.getElementById("messages").innerHTML = "Error: " + data.messages;
                     }
                 }).catch(error => {
-                    document.getElementById("message").innerHTML = "Error: There\'s been an error with the update process";
+                    document.getElementById("messages").innerHTML = "Error: There\'s been an error with the update process";
                 });
 
         }
