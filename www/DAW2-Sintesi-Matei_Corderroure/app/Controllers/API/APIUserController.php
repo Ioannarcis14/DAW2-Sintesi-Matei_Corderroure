@@ -49,7 +49,7 @@ class APIUserController extends ResourceController
 
             //Validation of the password
             $rules = [
-                'newPass'     => 'required',
+                'newPass'     => 'required|strong_password',
                 'newPassConfirm' => 'required|matches[newPass]',
             ];
 
@@ -81,9 +81,9 @@ class APIUserController extends ResourceController
                 return $this->respond($response);
             } else {
                 $response = [
-                    'status' => 200,
-                    "error" => false,
-                    "messages" => "Password changed correctly"
+                    'status' => 500,
+                    "error" => true,
+                    "messages" => "There's been an error with the password change"
                 ];
                 return $this->respond($response);
             }
