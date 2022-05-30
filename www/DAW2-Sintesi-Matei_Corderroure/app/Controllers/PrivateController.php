@@ -25,7 +25,8 @@ class PrivateController extends BaseController
         return view('/private/private', $data);
     }
 
-    public function changeData() {
+    public function changeData() 
+    {
         $auth = service('authentication');
 
         if(!$auth->check()) {
@@ -38,10 +39,6 @@ class PrivateController extends BaseController
         $data['logged'] = true;
         $data['user'] = $currentUser;
         return view('/private/changeData', $data);
-
-    }
-
-    public function changeDataPost() {
 
     }
 }

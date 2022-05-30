@@ -103,11 +103,8 @@ class APIUserController extends ResourceController
     public function updateUser()
     {
 
-        //$token_data = json_decode($this->request->header("token-data")->getValue());
-
-        //if (!empty($token_data) && $token_data->group = "responsable") {
-
         helper(['form']);
+        helper('html');
 
         $rules = [
             'username' => 'is_unique[users.username,id,{id}]',
@@ -120,6 +117,12 @@ class APIUserController extends ResourceController
                 ],
             ],
             'phone' => 'min_length[9]|max_length[9]',
+            'userfile' => [
+                'label' => 'Image File',
+                'rules' => 'uploaded[userfile]'
+                    . '|is_image[userfile]'
+                    . '|mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
+            ],
         ];
 
         //Validation of the general fields of the form and the profile img
@@ -133,7 +136,48 @@ class APIUserController extends ResourceController
             return $this->respond($response);
         }
 
-        $users = model(UserModel::class);
+        $response = [
+            'status' => 200,
+            'error' => false,
+            'messages' => $this->request->getPost()
+        ];
+
+        return $this->respond($response);
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+        $auth = service('authentication');
+        $user = $auth->user();
+
+        if (!empty($token_data) && $token_data->email == $user->email) {
+
+            helper(['form']);
+
+            $rules = [
+                'username' => 'is_unique[users.username,id,{id}]',
+                'email' => [
+                    'label'  => 'Email address',
+                    'rules'  => 'valid_email|is_unique[users.email,id,{id}]',
+                    'errors' => [
+                        'valid_email' => '{field} doesn\'t appear to be a valid email address',
+                        'is_unique' => 'This email address is already registered',
+                    ],
+                ],
+                'phone' => 'min_length[9]|max_length[9]',
+            ];
+
+            //Validation of the general fields of the form and the profile img
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 404,
+                    "error" => true,
+                    'messages' => 'Error with the general fields',
+                    'errors' => $this->validator->getErrors(),
+                ];
+                return $this->respond($response);
+            }
+
+            $users = model(UserModel::class);
+        }
     }
 
     /**

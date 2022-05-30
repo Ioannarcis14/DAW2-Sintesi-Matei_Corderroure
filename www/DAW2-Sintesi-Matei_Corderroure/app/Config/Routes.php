@@ -324,17 +324,12 @@ $routes->group("responsable", function ($routes) {
 
 //CLIENT ROUTES
 
-$routes->options('user', 'PrivateController::view');
-$routes->get('user', 'PrivateController::view');
+$routes->options('user', 'PrivateController::view', ['filter' => 'login']);
+$routes->get('user', 'PrivateController::view', ['filter' => 'login']);
 
+$routes->options('user/changeData', 'PrivateController::changeData', ['filter' => 'login']);
+$routes->get('user/changeData', 'PrivateController::changeData', ['filter' => 'login']);
 
-$routes->options('user/changeData', 'PrivateController::changeData');
-$routes->get('user/changeData', 'PrivateController::changeData');
-$routes->post('user/changeData', 'PrivateController::changeDataPost');
-
-$routes->options('user/changePass', 'PrivateController::changePass');
-$routes->get('user/changePass', 'PrivateController::changePass');
-$routes->post('user/changePass', 'PrivateController::changeDataPost');
 
 $routes->options('restaurants', 'RestaurantPage::index');
 $routes->get('restaurants', 'RestaurantPage::index');

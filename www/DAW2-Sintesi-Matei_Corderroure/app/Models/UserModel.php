@@ -151,6 +151,10 @@ class UserModel extends Model
         return $this->orWhere('email',$email)->orWhere('username',$email)->first();
     }
 
+    public function updateUser() {
+
+    }
+
     public function changePassword($newPassword, $id) {
         
         $data = [

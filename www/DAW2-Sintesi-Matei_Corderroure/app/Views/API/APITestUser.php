@@ -12,6 +12,7 @@
         #token {
             word-wrap: break-word;
         }
+
         .container {
             padding: 10px;
         }
@@ -82,53 +83,58 @@
 <body>
     <div class="container">
         <h1>API Test - User Calls</h1>
-            <div class="container">
-                <h2>Change your data</h2>
-                <form id="formUpdate">
-                    <div class="form-group">
-                        <label for="newEmail"><?= lang('Auth.newEmail') ?></label>
-                        <input type="email" id="newEmail" class="form-control <?php if (session('errors.newEmail')) : ?>is-invalid<?php endif ?>" name="newEmail" aria-describedby="emailHelp" placeholder="<?= lang('Auth.newEmail') ?>" value="<?= old('newEmail') ?>">
-                    </div>
+        <div class="container">
+            <h2>Change your data</h2>
+            <form id="formUpdate">
+                <div class="form-group">
+                    <label for="newEmail"><?= lang('Auth.newEmail') ?></label>
+                    <input type="email" id="newEmail" class="form-control <?php if (session('errors.newEmail')) : ?>is-invalid<?php endif ?>" name="newEmail" aria-describedby="emailHelp" placeholder="<?= lang('Auth.newEmail') ?>" value="<?= old('newEmail') ?>">
+                </div>
 
-                    <div class="form-group">
-                        <label for="newUsername"><?= lang('Auth.newUsername') ?></label>
-                        <input type="text" id="newUsername" class="form-control <?php if (session('errors.newUsername')) : ?>is-invalid<?php endif ?>" name="newUsername" placeholder="<?= lang('Auth.newUsername') ?>" value="<?= old('newUsername') ?>">
-                    </div>
+                <div class="form-group">
+                    <label for="newUsername"><?= lang('Auth.newUsername') ?></label>
+                    <input type="text" id="newUsername" class="form-control <?php if (session('errors.newUsername')) : ?>is-invalid<?php endif ?>" name="newUsername" placeholder="<?= lang('Auth.newUsername') ?>" value="<?= old('newUsername') ?>">
+                </div>
 
-                    <div class="form-group">
-                        <label for="newName"><?= lang('Auth.newName') ?></label>
-                        <input type="text" id="newName" class="form-control <?php if (session('errors.newName')) : ?>is-invalid<?php endif ?>" name="newName" placeholder="<?= lang('Auth.newName') ?>" value="<?= old('newName') ?>">
-                    </div>
+                <div class="form-group">
+                    <label for="newName"><?= lang('Auth.newName') ?></label>
+                    <input type="text" id="newName" class="form-control <?php if (session('errors.newName')) : ?>is-invalid<?php endif ?>" name="newName" placeholder="<?= lang('Auth.newName') ?>" value="<?= old('newName') ?>">
+                </div>
 
-                    <div class="form-group">
-                        <label for="newSurname"><?= lang('Auth.newSurname') ?></label>
-                        <input type="text" id="newSurname" class="form-control <?php if (session('errors.newSurname')) : ?>is-invalid<?php endif ?>" name="newSurname" placeholder="<?= lang('Auth.newSurname') ?>" value="<?= old('newSurname') ?>">
-                    </div>
+                <div class="form-group">
+                    <label for="newSurname"><?= lang('Auth.newSurname') ?></label>
+                    <input type="text" id="newSurname" class="form-control <?php if (session('errors.newSurname')) : ?>is-invalid<?php endif ?>" name="newSurname" placeholder="<?= lang('Auth.newSurname') ?>" value="<?= old('newSurname') ?>">
+                </div>
 
-                    <div class="form-group">
-                        <label for="newPhone"><?= lang('Auth.newPhone') ?></label>
-                        <input type="text" id="newPhone" class="form-control <?php if (session('errors.newPhone')) : ?>is-invalid<?php endif ?>" name="newPhone" placeholder="<?= lang('Auth.newPhone') ?>" value="<?= old('newPhone') ?>">
-                    </div>
+                <div class="form-group">
+                    <label for="newPhone"><?= lang('Auth.newPhone') ?></label>
+                    <input type="text" id="newPhone" class="form-control <?php if (session('errors.newPhone')) : ?>is-invalid<?php endif ?>" name="newPhone" placeholder="<?= lang('Auth.newPhone') ?>" value="<?= old('newPhone') ?>">
+                </div>
 
-                    <div class="form-group">
-                        <label for="newCity"><?= lang('Auth.newCity') ?></label>
-                        <input type="text" id="newCity" class="form-control <?php if (session('errors.newCity')) : ?>is-invalid<?php endif ?>" name="city" placeholder="<?= lang('Auth.newCity') ?>" value="<?= old('newCity') ?>">
-                    </div>
+                <div class="form-group">
+                    <label for="newCity"><?= lang('Auth.newCity') ?></label>
+                    <input type="text" id="newCity" class="form-control <?php if (session('errors.newCity')) : ?>is-invalid<?php endif ?>" name="city" placeholder="<?= lang('Auth.newCity') ?>" value="<?= old('newCity') ?>">
+                </div>
 
-                    <div class="form-group">
-                        <label for="newStreet"><?= lang('Auth.newStreet') ?></label>
-                        <input type="text" id="newStreet" class="form-control <?php if (session('errors.newStreet')) : ?>is-invalid<?php endif ?>" name="newStreet" placeholder="<?= lang('Auth.newStreet') ?>" value="<?= old('newStreet') ?>">
-                    </div>
+                <div class="form-group">
+                    <label for="file"><?= lang('Auth.img') ?></label>
+                    <input type="file" id="userfile" class="form-control <?php if (session('errors.name')) : ?>is-invalid<?php endif ?>" name="userfile" placeholder="<?= lang('Auth.file') ?>" value="<?= old('file') ?>">
+                </div>
 
-                    <div class="form-group">
-                        <label for="newPostal_code"><?= lang('Auth.newPostal_code') ?></label>
-                        <input type="text" id="newPostal_code" class="form-control <?php if (session('errors.newPostal_code')) : ?>is-invalid<?php endif ?>" name="newPostal_code" placeholder="<?= lang('Auth.newPostal_code') ?>" value="<?= old('newPostal_code') ?>">
-                    </div>
+                <div class="form-group">
+                    <label for="newStreet"><?= lang('Auth.newStreet') ?></label>
+                    <input type="text" id="newStreet" class="form-control <?php if (session('errors.newStreet')) : ?>is-invalid<?php endif ?>" name="newStreet" placeholder="<?= lang('Auth.newStreet') ?>" value="<?= old('newStreet') ?>">
+                </div>
 
-                    <div id="message"></div></br>
-                    <input class="btn btn-primary" type="submit" value="Change your data">
-                </form>
-            </div>
+                <div class="form-group">
+                    <label for="newPostal_code"><?= lang('Auth.newPostal_code') ?></label>
+                    <input type="text" id="newPostal_code" class="form-control <?php if (session('errors.newPostal_code')) : ?>is-invalid<?php endif ?>" name="newPostal_code" placeholder="<?= lang('Auth.newPostal_code') ?>" value="<?= old('newPostal_code') ?>">
+                </div>
+
+                <div id="messages"></div></br>
+                <input class="btn btn-primary" type="submit" value="Change your data">
+            </form>
+        </div>
 
         <div class="container">
             <h2>Change your profile picture</h2>
@@ -221,8 +227,6 @@
 
 </body>
 <script>
-    
-
     async function logout() {
 
     }
