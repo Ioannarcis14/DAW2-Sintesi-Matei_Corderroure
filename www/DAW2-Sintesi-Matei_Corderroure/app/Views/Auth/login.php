@@ -79,5 +79,8 @@
 <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
 <script type="text/javascript" src="js/main.js" ></script>
+<script>
+        window.sessionStorage.removeItem("tokenRefresh");
+</script>
 
 <?= $this->endSection() ?>

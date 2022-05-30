@@ -104,8 +104,8 @@ $routes->group("api", function ($routes) {
         $routes->options("create","API\APIRestaurantController::create");
         $routes->post("create","API\APIUserController::create", ['filter'=>'jwt']);
 
-        $routes->options("update","API\APIUserController::update");
-        $routes->post("update", "API\APIUserController::update", ['filter'=>'jwt']);
+        $routes->options("update","API\APIUserController::updateUser");
+        $routes->post("update", "API\APIUserController::updateUser", ['filter'=>'jwt']);
 
         $routes->options("delete","API\APIUserController::delete");
         $routes->post("delete","API\APIUserController::delete", ['filter'=>'jwt']);

@@ -66,6 +66,11 @@ class AuthController extends Controller
 	 */
 	public function attemptLogin()
 	{
+
+		if(isset($_SESSION['token'])) {
+			unset($_SESSION['token']);
+		}
+
 		$rules = [
 			'login'	=> 'required',
 			'password' => 'required',

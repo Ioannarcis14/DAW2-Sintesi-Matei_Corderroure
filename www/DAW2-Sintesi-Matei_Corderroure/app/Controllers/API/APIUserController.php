@@ -49,7 +49,7 @@ class APIUserController extends ResourceController
 
             //Validation of the password
             $rules = [
-                'newPass'     => 'required|strong_password',
+                'newPass'     => 'required',
                 'newPassConfirm' => 'required|matches[newPass]',
             ];
 
@@ -72,7 +72,7 @@ class APIUserController extends ResourceController
                 'password' => $this->request->getVar('newPass')
             ];
 
-            if (!$auth->validate($credentials)) {
+            if ($auth->validate($credentials)) {
                 $response = [
                     'status' => 200,
                     "error" => false,
@@ -83,7 +83,8 @@ class APIUserController extends ResourceController
                 $response = [
                     'status' => 500,
                     "error" => true,
-                    "messages" => "There's been an error with the password change"
+                    "messages" => "There's been an error with the password change",
+                    "data" => []
                 ];
                 return $this->respond($response);
             }
@@ -91,6 +92,7 @@ class APIUserController extends ResourceController
             $response = [
                 'status' => 401,
                 "error" => true,
+                "messages" => "There's been an error with the password change",
             ];
             return $this->respond($response);
         }
@@ -103,67 +105,50 @@ class APIUserController extends ResourceController
     public function updateUser()
     {
 
-        helper(['form']);
+        helper('form');
         helper('html');
 
-        $rules = [
-            'username' => 'is_unique[users.username,id,{id}]',
-            'email' => [
-                'label'  => 'Email address',
-                'rules'  => 'valid_email|is_unique[users.email,id,{id}]',
-                'errors' => [
-                    'valid_email' => '{field} doesn\'t appear to be a valid email address',
-                    'is_unique' => 'This email address is already registered',
-                ],
-            ],
-            'phone' => 'min_length[9]|max_length[9]',
-            'userfile' => [
-                'label' => 'Image File',
-                'rules' => 'uploaded[userfile]'
-                    . '|is_image[userfile]'
-                    . '|mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
-            ],
-        ];
-
-        //Validation of the general fields of the form and the profile img
-        if (!$this->validate($rules)) {
-            $response = [
-                'status' => 404,
-                "error" => true,
-                'messages' => 'Error with the general fields',
-                'errors' => $this->validator->getErrors(),
-            ];
-            return $this->respond($response);
-        }
-
-        $response = [
-            'status' => 200,
-            'error' => false,
-            'messages' => $this->request->getPost()
-        ];
-
-        return $this->respond($response);
-        
         $token_data = json_decode($this->request->header("token-data")->getValue());
         $auth = service('authentication');
         $user = $auth->user();
+        
 
         if (!empty($token_data) && $token_data->email == $user->email) {
 
-            helper(['form']);
-
-            $rules = [
-                'username' => 'is_unique[users.username,id,{id}]',
-                'email' => [
-                    'label'  => 'Email address',
-                    'rules'  => 'valid_email|is_unique[users.email,id,{id}]',
-                    'errors' => [
-                        'valid_email' => '{field} doesn\'t appear to be a valid email address',
-                        'is_unique' => 'This email address is already registered',
+            $file = $this->request->getFile('userfile');
+            if (file_exists($file)) {
+                $rules = [
+                    'username' => 'is_unique[users.username,id,{id}]',
+                    'email' => [
+                        'label'  => 'Email address',
+                        'rules'  => 'valid_email|is_unique[users.email,id,{id}]',
+                        'errors' => [
+                            'valid_email' => '{field} doesn\'t appear to be a valid email address',
+                            'is_unique' => 'This email address is already registered',
+                        ],
                     ],
-                ],
-                'phone' => 'min_length[9]|max_length[9]',
-            ];
+                    'phone' => 'min_length[9]|max_length[9]',
+                    'userfile' => [
+                        'label' => 'Image File',
+                        'rules' => 'uploaded[userfile]'
+                            . '|is_image[userfile]'
+                            . '|mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
+                    ],
+                ];
+            } else {
+                $rules = [
+                    'username' => 'is_unique[users.username,id,{id}]',
+                    'email' => [
+                        'label'  => 'Email address',
+                        'rules'  => 'valid_email|is_unique[users.email,id,{id}]',
+                        'errors' => [
+                            'valid_email' => '{field} doesn\'t appear to be a valid email address',
+                            'is_unique' => 'This email address is already registered',
+                        ],
+                    ],
+                    'phone' => 'min_length[9]|max_length[9]',
+                ];
+            }
 
             //Validation of the general fields of the form and the profile img
             if (!$this->validate($rules)) {
@@ -176,7 +161,30 @@ class APIUserController extends ResourceController
                 return $this->respond($response);
             }
 
-            $users = model(UserModel::class);
+            $users = new NoAuthUser();
+
+            if (!$users->updateUser($user->uid, $this->request->getPost())) {
+                $response = [
+                    'status' => 500,
+                    "error" => true,
+                    'messages' => 'Error updating the user',
+                    'data' => []
+                ];
+            } else {
+                $response = [
+                    'status' => 200,
+                    "error" => false,
+                    'messages' => 'The user has been updated',
+                    'data' => []
+                ];
+            }
+            return $this->respond($response);
+        } else {
+            $response = [
+                'status' => 401,
+                "error" => true,
+            ];
+            return $this->respond($response);
         }
     }
 

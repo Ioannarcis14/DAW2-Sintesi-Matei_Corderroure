@@ -14,7 +14,7 @@ use \Firebase\JWT\JWT;
 
 class APIAuthController extends ResourceController
 {
-   
+
     protected $helpers = ['auth', 'html'];
 
 
@@ -66,30 +66,53 @@ class APIAuthController extends ResourceController
         helper(['form']);
         helper('html');
 
-        $rules = [
-            'username' => 'required|is_unique[users.username,id,{id}]',
-            'email' => [
-                'label'  => 'Email address',
-                'rules'  => 'required|valid_email|is_unique[users.email,id,{id}]',
-                'errors' => [
-                    'required' => '{field} is required',
-                    'valid_email' => '{field} doesn\'t appear to be a valid email address',
-                    'is_unique' => 'This email address is already registered',
+        $file = $this->request->getFile('userfile');
+
+        if (file_exists($file)) {
+            $rules = [
+                'username' => 'required|is_unique[users.username,id,{id}]',
+                'email' => [
+                    'label'  => 'Email address',
+                    'rules'  => 'required|valid_email|is_unique[users.email,id,{id}]',
+                    'errors' => [
+                        'required' => '{field} is required',
+                        'valid_email' => '{field} doesn\'t appear to be a valid email address',
+                        'is_unique' => 'This email address is already registered',
+                    ],
                 ],
-            ],
-            'name' => 'required',
-            'surname' => 'required',
-            'phone' => 'required|min_length[9]|max_length[9]',
-            'city' => 'required',
-            'street' => 'required',
-            'postal_code' => 'required',
-            'userfile' => [
-                'label' => 'Image File',
-                'rules' => 'uploaded[userfile]'
-                    . '|is_image[userfile]'
-                    . '|mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
-            ],
-        ];
+                'name' => 'required',
+                'surname' => 'required',
+                'phone' => 'required|min_length[9]|max_length[9]',
+                'city' => 'required',
+                'street' => 'required',
+                'postal_code' => 'required',
+                'userfile' => [
+                    'label' => 'Image File',
+                    'rules' => 'uploaded[userfile]'
+                        . '|is_image[userfile]'
+                        . '|mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
+                ],
+            ];
+        } else {
+            $rules = [
+                'username' => 'required|is_unique[users.username,id,{id}]',
+                'email' => [
+                    'label'  => 'Email address',
+                    'rules'  => 'required|valid_email|is_unique[users.email,id,{id}]',
+                    'errors' => [
+                        'required' => '{field} is required',
+                        'valid_email' => '{field} doesn\'t appear to be a valid email address',
+                        'is_unique' => 'This email address is already registered',
+                    ],
+                ],
+                'name' => 'required',
+                'surname' => 'required',
+                'phone' => 'required|min_length[9]|max_length[9]',
+                'city' => 'required',
+                'street' => 'required',
+                'postal_code' => 'required',
+            ];
+        }
 
         //Validation of the general fields of the form and the profile img
         if (!$this->validate($rules)) {
@@ -103,7 +126,7 @@ class APIAuthController extends ResourceController
         }
 
         $users = model(UserModel::class);
-        
+
         $active = 1;
         $email = $this->request->getPost('email');
         $username = $this->request->getPost('username');
@@ -114,12 +137,11 @@ class APIAuthController extends ResourceController
         $street = $this->request->getPost('street');
         $postal_code = $this->request->getPost('postal_code');
         $password = $this->request->getPost('password');
-        $file = $this->request->getFile('userfile');
 
         //Validation of the password
         $rules = [
             'password'     => 'required|strong_password',
-            'pass_confirm' => 'required|matches[password',
+            'pass_confirm' => 'required|matches[password]',
         ];
 
         if (!$this->validate($rules)) {
@@ -132,19 +154,36 @@ class APIAuthController extends ResourceController
             return $this->respond($response);
         }
 
-        if (!$file->hasMoved()) {
-            $filepath = WRITEPATH . 'uploads/' . $file->store("user/img_profile/");
-            $Filetest = new File($filepath);
-        } else {
-            $response = [
-                'status' => 404,
-                "error" => true,
-                'messages' => 'There\'s been an error with the file',
-            ];
-            return $this->respond($response);
-        }
 
-        $hello = explode("user/img_profile/",$Filetest,2);
+        if (file_exists($file)) {
+            if (!$file->hasMoved()) {
+                $filepath = WRITEPATH . 'uploads/' . $file->store("user/img_profile/");
+                $Filetest = new File($filepath);
+            } else {
+                $response = [
+                    'status' => 404,
+                    "error" => true,
+                    'messages' => 'There\'s been an error with the file',
+                ];
+                return $this->respond($response);
+            }
+
+            $hello = explode("user/img_profile/", $Filetest, 2);
+
+            $camps = [
+                'active' => $active,
+                'email' => $email,
+                'username' => $username,
+                'name' => $name,
+                'surname' => $surname,
+                'img_profile' => $hello[1],
+                'phone' => $phone,
+                'city' => $city,
+                'street' => $street,
+                'postal_code' => $postal_code,
+                'password' => $password,
+            ];
+        }
 
         $camps = [
             'active' => $active,
@@ -152,7 +191,7 @@ class APIAuthController extends ResourceController
             'username' => $username,
             'name' => $name,
             'surname' => $surname,
-            'img_profile' => $hello[1],
+            'img_profile' => null,
             'phone' => $phone,
             'city' => $city,
             'street' => $street,
@@ -160,9 +199,11 @@ class APIAuthController extends ResourceController
             'password' => $password,
         ];
 
+
+
         $user = new User($camps);
         $users = $users->withGroup("usuari");
-    
+
         if (!$users->save($user)) {
             $response = [
                 'status' => 500,
@@ -180,7 +221,7 @@ class APIAuthController extends ResourceController
         }
         return $this->respond($response);
     }
-    
+
     /** 
      * Logs in the user
      * 
@@ -328,6 +369,4 @@ class APIAuthController extends ResourceController
 
         return $this->respond($response);
     }
-
-
 }
