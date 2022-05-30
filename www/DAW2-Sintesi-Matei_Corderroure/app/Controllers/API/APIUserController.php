@@ -143,7 +143,7 @@ class APIUserController extends ResourceController
         ];
 
         return $this->respond($response);
-
+        
         $token_data = json_decode($this->request->header("token-data")->getValue());
         $auth = service('authentication');
         $user = $auth->user();
