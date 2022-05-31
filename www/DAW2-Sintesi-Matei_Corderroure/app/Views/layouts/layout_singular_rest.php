@@ -160,6 +160,27 @@
     </div>
 </section>
 
+<!-- ============ Make a Valoration  ============= -->
+
+<?php 
+if($logged = true) {
+    echo '<section id ="beer" class="description_content">
+            <div  class="beer">
+            <h1>Make a valoration</h1>
+                    <div class="form-group">
+                        <label for="username">'.lang('Auth.valoration').'</label>
+                        <input type="range" min="0" max="10" id="username" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">'.lang('Auth.comentary').'</label>
+                        <input type="email" id="email" class="form-control">
+                    </div>
+    </div>
+</section>';
+}
+
+?>
+
 
 <!-- ============ Our Bread  ============= -->
 

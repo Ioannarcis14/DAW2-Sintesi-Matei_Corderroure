@@ -102,7 +102,6 @@
             var response;
 
             if (token == "" || token == "undefined" || token == null) {
-                console.log(token);
                 response = await fetch("<?php echo base_url(); ?>/api/users/changePass", {
                 method: 'POST',
                 headers: {
@@ -134,16 +133,13 @@
 
             response.json().then((data) => {
                 if (data.error == false) {
-                    console.log(data);
                     document.getElementById("messages").innerHTML = data.messages;
                     window.sessionStorage.setItem("tokenRefresh",data.refreshToken);
                 } else {
                     if(data.status != 401) {
-                        console.log(data);
                         document.getElementById("messages").innerHTML = data.messages;
                         window.sessionStorage.setItem("tokenRefresh",data.refreshToken);
                     } else {
-                        console.log(data);
                         var token = window.sessionStorage.removeItem("tokenRefresh");
                         window.location = "<?php echo base_url(); ?>/logout";
                     }

@@ -147,12 +147,17 @@ class UserModel extends Model
      * 
      * @return $this
      */
-    public function deleteUser($id_user) {
-        return $this->orWhere('email',$email)->orWhere('username',$email)->first();
+    public function deleteUser($login) {
+        return $this->orWhere('email',$login)->orWhere('username',$login)->first();
     }
 
-    public function updateUser($id, $data) {
-        dd($id, $data);
+    public function updateUser($id, $data, $file) {
+        
+        if($file != null) {
+            $data['userfile'] = $file;
+        }
+
+        $this->update($id, $data);
     }
 
     public function changePassword($newPassword, $id) {

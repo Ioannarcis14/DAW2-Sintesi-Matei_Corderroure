@@ -133,6 +133,8 @@ $routes->group("api", function ($routes) {
         $routes->options("changePass", "API\APIUserController::changePassword");
         $routes->post("changePass", "API\APIUserController::changePassword", ['filter'=>'jwt']);
 
+        $routes->options("createValorations", "API\APIUserController::createValorations");
+        $routes->post("createValorations", "API\APIUserController::createValorations", ['filter'=>'jwt']);
     });
 
     /////////////////////////////////////////////////////
@@ -334,8 +336,8 @@ $routes->get('user/changeData', 'PrivateController::changeData', ['filter' => 'l
 $routes->options('restaurants', 'RestaurantPage::index');
 $routes->get('restaurants', 'RestaurantPage::index');
 
-$routes->options('restaurants/(:any)', 'RestaurantSingularPage::index');
-$routes->get('restaurants/(:any)', 'RestaurantSingularPage::index');
+$routes->options('restaurants/(:any)', 'RestaurantSingularPage::index/$1');
+$routes->get('restaurants/(:any)', 'RestaurantSingularPage::index/$1');
 
 //FILE EXPLORER
 

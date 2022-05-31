@@ -15,7 +15,9 @@ use \Firebase\JWT\JWT;
 class APIUserController extends ResourceController
 {
 
-
+    /**
+     * Changes the password of the user
+     */
     public function changePassword()
     {
         helper('form');
@@ -100,24 +102,21 @@ class APIUserController extends ResourceController
 
 
     /**
-     * Get all users that are the staff of that restaurant
+     * Updates the users data 
      */
     public function updateUser()
     {
-
         helper('form');
         helper('html');
 
         $token_data = json_decode($this->request->header("token-data")->getValue());
         $auth = service('authentication');
-        $user = $auth->user();
-        
+        $auth->check();
+        $currentUser = $auth->user();
 
-        if (!empty($token_data) && $token_data->email == $user->email) {
-
-            $file = $this->request->getFile('userfile');
-            if (file_exists($file)) {
-                $rules = [
+        if (!empty($token_data) && $token_data->email == $currentUser->email) {
+            if (file_exists($this->request->getFile('userfile'))) {
+                $rules = [  
                     'username' => 'is_unique[users.username,id,{id}]',
                     'email' => [
                         'label'  => 'Email address',
@@ -161,9 +160,30 @@ class APIUserController extends ResourceController
                 return $this->respond($response);
             }
 
-            $users = new NoAuthUser();
 
-            if (!$users->updateUser($user->uid, $this->request->getPost())) {
+            $file = $this->request->getFile('userfile');
+
+            if(file_exists($file)) {
+                if (!$file->hasMoved()) {
+                    $filepath = WRITEPATH . 'uploads/' . $file->store("user/img_profile/");
+                    $Filetest = new File($filepath);
+                } else {
+                    $response = [
+                        'status' => 404,
+                        "error" => true,
+                        'messages' => 'There\'s been an error with the file',
+                    ];
+                    return $this->respond($response);
+                }
+                
+                $file = explode("user/img_profile/", $Filetest, 2);
+                $file = $file[1];
+            }
+
+            $users = new NoAuthUser();
+            $data = $users->updateUser($currentUser->id, $this->request->getPost(), $file);
+
+            if (!$data) {
                 $response = [
                     'status' => 500,
                     "error" => true,
@@ -329,4 +349,13 @@ class APIUserController extends ResourceController
         }
         return $this->respond($response);
     }
+
+    /**
+     * Create a valoration
+     */
+    public function createValorations()
+    {
+
+    }
+
 }

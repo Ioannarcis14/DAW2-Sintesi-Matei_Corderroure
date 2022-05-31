@@ -8,7 +8,7 @@ use App\Models\RestaurantModel;
 
 class RestaurantSingularPage extends BaseController
 {
-    public function index()
+    public function index($id)
     {
         helper('html');
         helper('url');
@@ -21,7 +21,7 @@ class RestaurantSingularPage extends BaseController
         }
 
         $Category = new CategoryModel();
-        $list = $Category->getCategory();
+        $list = $Category->getCategory($id);
 
         $data['list'] = $list;
 
