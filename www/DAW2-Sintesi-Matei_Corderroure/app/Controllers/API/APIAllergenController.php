@@ -18,10 +18,10 @@ class APIAllergenController extends ResourceController
      *
      * @return mixed It returns the name of the allergens that are found
      */
-    public function getAllAllergens() {
+    public function getAllAllergens($id_dish) {
         
         $allergenModel = new AllergenModel();
-        $list = $allergenModel->getAllAllergen();
+        $list = $allergenModel->getDishAllergen($id_dish);
 
         if (!empty($list)) {
             $response = [

@@ -49,5 +49,11 @@ class DishModel extends Model
         return $this->findAll();
     }
 
+    public function getDish($id_dish) {
+        $this->select(['dish.id as dish_id','dish.description as dish_desc','dish.name as dish_name','price', 'imgs', 'short_description']);
+        $this->where('dish.id ='. $id_dish);
+        return $this->findAll();
+    }
+
 
 }

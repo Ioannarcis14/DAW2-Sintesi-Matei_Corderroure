@@ -14,7 +14,7 @@ class SupplementModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id', 'name', 'description'];
+    protected $allowedFields    = ['id', 'name', 'description', 'price'];
 
     // Dates
     protected $useTimestamps = false;
@@ -50,6 +50,14 @@ class SupplementModel extends Model
 
     public function deleteSupplement($idSupplement) {
 
+    }
+
+    public function getAllSupplements($id_dish) {
+        $this->select(['supplement.id as id','supplement.name as name','supplement.description as desc','supplement.price as price']);
+        $this->join('dish_supplement','dish_supplement.id_supplement = supplement.id');
+        $this->join('dish', 'dish_supplement.id_dish = dish.id');
+        $this->where('dish.id ='. $id_dish);
+        return $this->findAll();
     }
 
 }

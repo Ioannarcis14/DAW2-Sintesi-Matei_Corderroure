@@ -19,10 +19,10 @@ class APIDishController extends ResourceController
      * @param int $id_restaurant The id of the restaurant that u want the dishes of.
      * @return mixed It returns the data of the dishes that are found.
      */
-    public function getAllDishesFromARestaurant($id_restaurant)
+    public function getAllDishesFromRestaurant($id_restaurant)
     {
         $dishModel = new DishModel();
-        $dishes = $dishModel->getAllDishesSpecific($id_restaurant);
+        $dishes = $dishModel->getDish($id_restaurant);
 
         if (!empty($dishes)) {
             $response = [

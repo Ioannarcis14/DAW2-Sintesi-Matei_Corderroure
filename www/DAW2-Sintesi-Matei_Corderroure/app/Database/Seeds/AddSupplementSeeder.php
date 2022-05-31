@@ -14,6 +14,7 @@ class AddSupplementSeeder extends Seeder
         $row = [
             'description' => 'Envelope of ketchup',
             'name' => 'Ketchup',
+            'price' => 0.50,
         ];
 
         $supplement->insert($row);
@@ -21,6 +22,7 @@ class AddSupplementSeeder extends Seeder
         $row2 = [
             'description' => 'In a cubic packaging',
             'name' => 'BBQ Sauce',
+            'price' => 0.60,
         ];
 
         $supplement->insert($row2);

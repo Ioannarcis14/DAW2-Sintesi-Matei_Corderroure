@@ -24,6 +24,12 @@ class SupplementMigration extends Migration
                 'constraint'     => '255',
                 'null'           => false,
             ],
+            'price'          => [
+                'type'           => 'FLOAT',
+                'constraint'     => '10',
+                'unsigned'       => true,
+                'null'           => false,
+            ],
         ]);
         $this->forge->addPrimaryKey('id', true);
         $this->forge->createTable('supplement');

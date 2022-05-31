@@ -18,7 +18,7 @@ services:
       build:
         context: ./docker/mysql 
       container_name: docker-mysql1
-      hostname: dockermysql
+      hostname: dockermysql1
       environment:
         MYSQL_DATABASE: restdb
         MYSQL_ROOT_PASSWORD: 1234
