@@ -171,7 +171,7 @@ $routes->group("api", function ($routes) {
     ///////////////////////////////////////
 
     $routes->group("allergen", function ($routes) {
-        $routes->get("getAll", "API\APIAllergenController::getAllAllergens");
+        $routes->get("getAll/(:any)", "API\APIAllergenController::getAllAllergens/$1");
     });
 
     ///////////////////////////////////////
@@ -256,7 +256,7 @@ $routes->group("api", function ($routes) {
     ///////////////////////////////////////
 
     $routes->group("supplement", function ($routes) {
-        $routes->get("getAll", "API\APISupplementController::getAllSupplements");
+        $routes->get("getAll/(:any)", "API\APISupplementController::getAllSupplements/$1");
 
         $routes->options("create","API\APISupplementController::createSupplement");
         $routes->post("create","API\APISupplementController::createSupplement", ['filter'=>'jwt']);

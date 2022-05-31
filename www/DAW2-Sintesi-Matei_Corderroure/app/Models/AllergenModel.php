@@ -44,4 +44,12 @@ class AllergenModel extends Model
         return $this->findAll();
     }
 
+    public function getDishAllergen($id_dish) {
+        $this->select(['allergen.id as id','allergen.name as name']);
+        $this->join('dish_allergen','dish_allergen.id_allergen = allergen.id');
+        $this->join('dish', 'dish_allergen.id_dish = dish.id');
+        $this->where('dish.id ='. $id_dish);
+        return $this->findAll();
+    }
+
 }
