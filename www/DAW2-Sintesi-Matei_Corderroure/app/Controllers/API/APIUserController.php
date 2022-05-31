@@ -244,6 +244,31 @@ class APIUserController extends ResourceController
         return $this->respond($response);
     }
 
+    public function getUser($user)
+    {
+        //
+        $UserModel = new NoAuthUser();
+        $data = $UserModel->getUserByMailOrUsername($user);
+
+        if (!empty($data)) {
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => 'Users data founds',
+                'data' => $data
+            ];
+        } else {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'No users found',
+                'data' => []
+            ];
+        }
+
+        return $this->respond($response);
+    }
+
     /**
      * Get all roles available
      * 

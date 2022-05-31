@@ -101,6 +101,9 @@ $routes->group("api", function ($routes) {
         $routes->options("getAll", "API\APIUserController::getAllUsers");
         $routes->get("getAll", "API\APIUserController::getAllUsers", ['filter'=>'jwt']);
 
+        $routes->options("getUser/(:any)", "API\APIUserController::getUser/$1");
+        $routes->get("getUser/(:any)", "API\APIUserController::getUser/$1", ['filter'=>'jwt']);
+
         $routes->options("create","API\APIRestaurantController::create");
         $routes->post("create","API\APIUserController::create", ['filter'=>'jwt']);
 
