@@ -289,9 +289,4 @@ class APIRestaurantController extends ResourceController
 
     }
 
-    public function createReviews()
-    {
-
-    }
-
 }

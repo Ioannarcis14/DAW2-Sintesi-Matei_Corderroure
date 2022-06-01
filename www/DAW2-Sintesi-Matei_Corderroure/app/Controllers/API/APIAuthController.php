@@ -355,7 +355,7 @@ class APIAuthController extends ResourceController
                     'status' => 200,
                     "error" => false,
                     'messages' => 'The user is authenticated',
-                    'data' => []
+                    'data' => [$user]
                 ];
             }
         } else {

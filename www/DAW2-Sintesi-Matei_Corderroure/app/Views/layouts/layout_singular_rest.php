@@ -45,6 +45,11 @@
                     <li><a class="navactive color_animation" href="#top">WELCOME</a></li>
                     <li><a class="color_animation" href="#story">ABOUT</a></li>
                     <li><a class="color_animation" href="#pricing">MENU</a></li>
+                    <?php 
+                    if($logged == true) {
+                    echo '<li><a    class="color_animation" href="#valorations">VALORATIONS</a></li>';
+                    } 
+                    ?>
 <!--                    <li><a class="color_animation" href="restaurants">RESTAURANTS</a></li>-->
 <!---->
 <!--                    --><?php //if ($logged == false) {
@@ -160,21 +165,26 @@
     </div>
 </section>
 
+<!-- ============ Display Valorations  ============= -->
+
+
+
 <!-- ============ Make a Valoration  ============= -->
 
 <?php 
-if($logged = true) {
-    echo '<section id ="beer" class="description_content">
-            <div  class="beer">
+if($logged == true) {
+    echo '<section id ="createValorations " class="description_content">
+            <div  class="createValorations">
             <h1>Make a valoration</h1>
                     <div class="form-group">
-                        <label for="username">'.lang('Auth.valoration').'</label>
-                        <input type="range" min="0" max="10" id="username" class="form-control">
+                        <label for="rating">'.lang('Auth.rating').'</label>
+                        <input type="range" min="0" max="10" id="rating" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="email">'.lang('Auth.comentary').'</label>
-                        <input type="email" id="email" class="form-control">
+                        <label for="observation">'.lang('Auth.observation').'</label>
+                        <input type="text" id="observation" class="form-control">
                     </div>
+                    <button class="btn btn-primary" onclick="makeValorations()" value="Valorate">
     </div>
 </section>';
 }
@@ -194,6 +204,65 @@ if($logged = true) {
     </div>
 </footer>
 
+<script>
+    async function makeValorations(){
+        var rating = document.getElementById("rating");
+        var observation = document.getElementById("observation");
+        var token = window.sessionStorage.getItem("tokenRefresh");
+
+        var response;
+
+        if (token == "" || token == "undefined" || token == null) {
+                response = await fetch("<?php echo base_url(); ?>/api/users/createValorations", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + <?php echo '"'.$_SESSION['token'].'"'?>,
+                },
+                body: JSON.stringify({
+                    id_restaurant: <?php echo $id ?>,
+                    rating: rating,
+                    observation: observation,
+                }),
+            });
+            } else {
+                response = await fetch("<?php echo base_url(); ?>/api/users/createValorations", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token,
+                },
+                body: JSON.stringify({
+                    id_restaurant: <?php echo $id ?>,
+                    rating: rating,
+                    observation: observation,
+                }),
+            });
+            }
+            
+            response.json().then((data) => {
+                if (data.error == false) {
+                    document.getElementById("messages").innerHTML = data.messages;
+                    window.sessionStorage.setItem("tokenRefresh",data.refreshToken);
+                } else {
+                    if(data.status != 401) {
+                        document.getElementById("messages").innerHTML = data.messages;
+                        window.sessionStorage.setItem("tokenRefresh",data.refreshToken);
+                    } else {
+                        var token = window.sessionStorage.removeItem("tokenRefresh");
+                        window.location = "<?php echo base_url(); ?>/logout";
+                    }
+
+                }
+            }).catch(error => {
+                var token = window.sessionStorage.removeItem("tokenRefresh");
+                window.location = "<?php echo base_url(); ?>/logout";
+            });
+    }
+
+</script>
 
 <script type="text/javascript" src="<?= base_url('/js/jquery-1.10.2.min.js')?>"> </script>
 <script type="text/javascript" src="<?= base_url('/js/bootstrap.min.js')?>" ></script>

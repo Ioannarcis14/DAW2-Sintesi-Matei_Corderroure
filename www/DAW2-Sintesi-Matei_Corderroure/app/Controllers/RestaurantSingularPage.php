@@ -13,17 +13,22 @@ class RestaurantSingularPage extends BaseController
         helper('html');
         helper('url');
         $auth = service('authentication');
-        if (! $auth->check() )
-        {
+        if (!$auth->check()) {
+            $_SESSION['token'] = "";
             $data['logged'] = false;
         } else {
             $data['logged'] = true;
+            $data['user'] = $auth->user();
+            $data['groups'] = $auth->user()->getRoles();
         }
+
 
         $Category = new CategoryModel();
         $list = $Category->getCategory($id);
 
         $data['list'] = $list;
+
+        $data['id'] = $id;
 
         return view('layouts/layout_singular_rest', $data);
     }
