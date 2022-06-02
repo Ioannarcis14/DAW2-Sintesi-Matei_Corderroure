@@ -48,4 +48,28 @@ class ValorationsModel extends Model
     public function getAllValorations($id_restaurant){
         return $this->where('id_restaurant', $id_restaurant)->findAll();
     }
+
+    public function createValoration($id_restaurant, $id_user, $rating, $observation) {
+        
+        $data = [
+            'id_restaurant' => $id_restaurant,
+            'id_user' => $id_user,
+            'score' => $rating,
+            'review' => $observation,
+        ];
+
+        $this->insert($data);
+    }
+
+    public function checkValoration($id_restaurant, $id_user) {
+
+        $valoration = $this->where('id_restaurant',$id_restaurant)->where('id_user', $id_user)->first();
+
+        if(!empty($valoration)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }

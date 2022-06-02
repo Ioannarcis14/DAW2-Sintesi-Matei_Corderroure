@@ -10,7 +10,7 @@
     <?= view('App\layouts\header') ?>
 
     <?= link_tag('css/styles.css'); ?>
-    <title>Restaurant</title>
+    <title>Restaurants</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"

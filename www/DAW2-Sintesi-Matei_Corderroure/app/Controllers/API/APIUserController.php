@@ -2,11 +2,13 @@
 
 namespace App\Controllers\API;
 
+use App\Models\RestaurantModel;
 use CodeIgniter\RESTful\ResourceController;
 use Myth\Auth\Models\UserModel;
 use Myth\Auth\Entities\User;
 use CodeIgniter\Files\File;
 use App\Models\UserModel as NoAuthUser;
+use App\Models\ValorationsModel;
 use Myth\Auth\Config\Auth as AuthConfig;
 
 use \Firebase\JWT\Key;
@@ -116,7 +118,7 @@ class APIUserController extends ResourceController
 
         if (!empty($token_data) && $token_data->email == $currentUser->email) {
             if (file_exists($this->request->getFile('userfile'))) {
-                $rules = [  
+                $rules = [
                     'username' => 'is_unique[users.username,id,{id}]',
                     'email' => [
                         'label'  => 'Email address',
@@ -152,7 +154,7 @@ class APIUserController extends ResourceController
             //Validation of the general fields of the form and the profile img
             if (!$this->validate($rules)) {
                 $response = [
-                    'status' => 404,
+                    'status' => 400,
                     "error" => true,
                     'messages' => 'Error with the general fields',
                     'errors' => $this->validator->getErrors(),
@@ -163,19 +165,19 @@ class APIUserController extends ResourceController
 
             $file = $this->request->getFile('userfile');
 
-            if(file_exists($file)) {
+            if (file_exists($file)) {
                 if (!$file->hasMoved()) {
                     $filepath = WRITEPATH . 'uploads/' . $file->store("user/img_profile/");
                     $Filetest = new File($filepath);
                 } else {
                     $response = [
-                        'status' => 404,
+                        'status' => 400,
                         "error" => true,
                         'messages' => 'There\'s been an error with the file',
                     ];
                     return $this->respond($response);
                 }
-                
+
                 $file = explode("user/img_profile/", $Filetest, 2);
                 $file = $file[1];
             }
@@ -198,14 +200,13 @@ class APIUserController extends ResourceController
                     'data' => []
                 ];
             }
-            return $this->respond($response);
         } else {
             $response = [
                 'status' => 401,
-                "error" => true,
+                "error" => true
             ];
-            return $this->respond($response);
         }
+        return $this->respond($response);
     }
 
     /**
@@ -343,7 +344,7 @@ class APIUserController extends ResourceController
         //Validation of the general fields of the form and the profile img
         if (!$this->validate($rules)) {
             $response = [
-                'status' => 404,
+                'status' => 400,
                 "error" => true,
                 'messages' => 'Error with the general fields',
                 'errors' => $this->validator->getErrors(),
@@ -380,7 +381,122 @@ class APIUserController extends ResourceController
      */
     public function createValorations()
     {
+        helper('form');
+        helper('html');
 
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+        $auth = service('authentication');
+        $auth->check();
+        $currentUser = $auth->user();
+        $restaurantCheck = new RestaurantModel();
+        $valModel = new ValorationsModel();
+
+        if (!empty($token_data) && $token_data->email == $currentUser->email) {
+
+            $id_restaurant = $this->request->getVar('id_restaurant');
+
+            //Check restaurant
+            if (!empty($restaurantCheck->checkRestaurant($id_restaurant))) {
+
+                //Validate the rating 
+                $rules = [
+                    'rating' => 'required'
+                ];
+
+                if (!$this->validate($rules)) {
+                    $response = [
+                        'status' => 400,
+                        "error" => true,
+                        'messages' => 'Error with the general fields',
+                        'errors' => $this->validator->getErrors(),
+                    ];
+                    return $this->respond($response);
+                }
+
+                //Make the valoration
+
+                if (!$valModel->createValoration($id_restaurant, $token_data->uid, $this->request->getVar('rating'), $this->request->getVar('observation'))) {
+                    $response = [
+                        'status' => 200,
+                        "error" => false,
+                        'messages' => 'Review succesfully created',
+                    ];
+                } else {
+                    $response = [
+                        'status' => 500,
+                        "error" => true,
+                        'messages' => 'An error while creating the review has occurred',
+                    ];
+                }
+            } else {
+                $response = [
+                    'status' => 404,
+                    "error" => true,
+                    'messages' => 'This restaurant doesn\'t exist',
+                ];
+            }
+        } else {
+            $response = [
+                'status' => 401,
+                "error" => true
+            ];
+        }
+        return $this->respond($response);
     }
 
+    /**
+     * Creates a contact message that can be seen by the admins
+     */
+    public function contactAdmin()
+    {
+        helper('form');
+        helper('html');
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+        $auth = service('authentication');
+        $auth->check();
+        $currentUser = $auth->user();
+
+        if (!empty($token_data) && $token_data->email == $currentUser->email) {
+
+            //Check restaurant
+
+            //
+
+        } else {
+            $response = [
+                'status' => 401,
+                "error" => true
+            ];
+        }
+        return $this->respond($response);
+    }
+
+    /**
+     * Creates a contact message that can be seen by the admins
+     */
+    public function dischargeRestaurant()
+    {
+        helper('form');
+        helper('html');
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+        $auth = service('authentication');
+        $auth->check();
+        $currentUser = $auth->user();
+
+        if (!empty($token_data) && $token_data->email == $currentUser->email) {
+
+            //Check restaurant
+
+            //
+
+        } else {
+            $response = [
+                'status' => 401,
+                "error" => true
+            ];
+        }
+        return $this->respond($response);
+    }
 }

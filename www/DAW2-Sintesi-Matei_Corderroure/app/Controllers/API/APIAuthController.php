@@ -183,23 +183,21 @@ class APIAuthController extends ResourceController
                 'postal_code' => $postal_code,
                 'password' => $password,
             ];
+        } else {
+            $camps = [
+                'active' => $active,
+                'email' => $email,
+                'username' => $username,
+                'name' => $name,
+                'surname' => $surname,
+                'img_profile' => null,
+                'phone' => $phone,
+                'city' => $city,
+                'street' => $street,
+                'postal_code' => $postal_code,
+                'password' => $password,
+            ];
         }
-
-        $camps = [
-            'active' => $active,
-            'email' => $email,
-            'username' => $username,
-            'name' => $name,
-            'surname' => $surname,
-            'img_profile' => null,
-            'phone' => $phone,
-            'city' => $city,
-            'street' => $street,
-            'postal_code' => $postal_code,
-            'password' => $password,
-        ];
-
-
 
         $user = new User($camps);
         $users = $users->withGroup("usuari");
@@ -209,14 +207,14 @@ class APIAuthController extends ResourceController
                 'status' => 500,
                 "error" => true,
                 'messages' => 'Error creating the user',
-                'data' => []
+                'data' => [$user]
             ];
         } else {
             $response = [
                 'status' => 200,
                 "error" => false,
                 'messages' => 'User has been saved',
-                'data' => []
+                'data' => [$user]
             ];
         }
         return $this->respond($response);

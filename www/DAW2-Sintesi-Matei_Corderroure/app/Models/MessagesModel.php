@@ -39,4 +39,9 @@ class MessagesModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    public function create($id_user, $theme, $message) {
+
+    }
 }
