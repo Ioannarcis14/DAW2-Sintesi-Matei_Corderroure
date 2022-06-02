@@ -40,7 +40,6 @@ class MessagesModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-<<<<<<< HEAD
     public function getMessagesFromUser($email) {
         $this->select(['id_user', 'id_restaurant', 'theme', 'message']);
         $this->join('users','users.id = id_user');
@@ -56,12 +55,10 @@ class MessagesModel extends Model
     }
 
 
-=======
 
     public function create($id_user, $theme, $message) {
 
     }
->>>>>>> 658f9b042c6d1de6115dfa198c7c033023bc9401
 }
 
 
