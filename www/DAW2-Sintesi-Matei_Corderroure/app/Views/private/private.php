@@ -77,22 +77,6 @@
     </div>
 
     <script>
-
-        function getCookie(cname) {
-            let name = cname + "=";
-            let ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
         async function changePassword() {
 
             var newPass = document.getElementById("newPassword").value;
@@ -149,9 +133,6 @@
                 var token = window.sessionStorage.removeItem("tokenRefresh");
                 window.location = "<?php echo base_url(); ?>/logout";
             });
-
-            console.log(response);
-
         }
     </script>
 

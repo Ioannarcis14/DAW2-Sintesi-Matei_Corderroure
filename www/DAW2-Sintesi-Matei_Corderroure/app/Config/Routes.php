@@ -166,9 +166,7 @@ $routes->group("api", function ($routes) {
 
         $routes->options("delete/(:any)","API\APIRestaurantController::deleteRestaurant/$1");
         $routes->post("delete/(:any)","API\APIRestaurantController::deleteRestaurant/$1", ['filter'=>'jwt']);
-
-        $routes->options("createReviews","API\APIRestaurantController::createReviews");
-        $routes->post("createReviews","API\APIRestaurantController::createReviews");
+        
     });
 
     ///////////////////////////////////////
@@ -335,12 +333,18 @@ $routes->group("responsable", function ($routes) {
 
 //CLIENT ROUTES
 
-$routes->options('user', 'PrivateController::view', ['filter' => 'login']);
+$routes->options('user', 'PrivateController::view');
 $routes->get('user', 'PrivateController::view', ['filter' => 'login']);
 
-$routes->options('user/changeData', 'PrivateController::changeData', ['filter' => 'login']);
+$routes->options('user/changeData', 'PrivateController::changeData');
 $routes->get('user/changeData', 'PrivateController::changeData', ['filter' => 'login']);
 
+
+$routes->options('discharge', 'PrivateController::dischargeRestaurant');
+$routes->get('discharge', 'PrivateController::dischargeRestaurant', ['filter' => 'login']);
+
+$routes->options('contact', 'PrivateController::contactAdmin');
+$routes->get('contact', 'PrivateController::contactAdmin', ['filter' => 'login']);
 
 $routes->options('restaurants', 'RestaurantPage::index');
 $routes->get('restaurants', 'RestaurantPage::index');
@@ -370,17 +374,6 @@ $routes->get('logout', 'AuthController::logout');
 // Registration
 $routes->get('register', 'AuthController::register', ['as' => 'register']);
 $routes->post('register', 'AuthController::attemptRegister');
-
-// Activation
-$routes->get('activate-account', 'AuthController::activateAccount', ['as' => 'activate-account']);
-$routes->get('resend-activate-account', 'AuthController::resendActivateAccount', ['as' => 'resend-activate-account']);
-
-// Forgot/Resets
-$routes->get('forgot', 'AuthController::forgotPassword', ['as' => 'forgot']);
-$routes->post('forgot', 'AuthController::attemptForgot');
-$routes->get('reset-password', 'AuthController::resetPassword', ['as' => 'reset-password']);
-$routes->post('reset-password', 'AuthController::attemptReset');
-
 
 
 

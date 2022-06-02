@@ -92,4 +92,12 @@ class RestaurantModel extends Model
         
     }
 
+    public function existsRestaurant($id_restaurant) {
+
+        $check = $this->where('id', $id_restaurant)->first();
+
+        return $check;
+        
+    }
+
 }

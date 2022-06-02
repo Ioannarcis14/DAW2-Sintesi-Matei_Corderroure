@@ -216,7 +216,7 @@ class APIRestaurantController extends ResourceController
         //Validation of the general fields of the form and the profile img
         if (!$this->validate($rules)) {
             $response = [
-                'status' => 404,
+                'status' => 400,
                 "error" => true,
                 'messages' => 'Error with the general fields',
                 'errors' => $this->validator->getErrors()
@@ -286,11 +286,6 @@ class APIRestaurantController extends ResourceController
             ];
         }
         return $this->respond($response);
-
-    }
-
-    public function createReviews()
-    {
 
     }
 

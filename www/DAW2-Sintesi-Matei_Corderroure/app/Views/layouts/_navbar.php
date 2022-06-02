@@ -28,7 +28,15 @@
                     <?php if ($logged == false) {
                         echo "<li><a class='color_animation' href='/login'>".lang('LOG IN'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
                     } else {
+                        if (in_array("administrador",  $groups)) {
+                            echo "<li><a class='color_animation' href='/admin/admin/users'>".lang('ADMIN CRUD'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
+                        }
+                        if (in_array("responsable",  $groups)) {
+                            echo "<li><a class='color_animation' href='/admin/admin/users'>".lang('RESPONSABLE CRUD'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
+                        }
                         echo "<li><a class='color_animation' href='/user'>".lang('PROFILE'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
+                        echo "<li><a class='color_animation' href='/discharge'>".lang('DISCHARGE'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
+                        echo "<li><a class='color_animation' href='/contact'>".lang('CONTACT'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
                         echo "<li><a class='color_animation' href='/logout'>".lang('LOG OUT'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
                     } ?>
                 </ul>

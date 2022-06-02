@@ -13,19 +13,18 @@ class HomePageController extends BaseController
         $auth = service('authentication');
         if (! $auth->check() )
         {
+            $_SESSION['token'] = "";
             $data['logged'] = false;
         } else {
             $data['logged'] = true;
+            $data['user'] = $auth->user();
+            $data['groups'] = $auth->user()->getRoles();
         }
+
+
+        
+
+        
         return view('layouts/layout_home', $data);
     }
-
-    public function login() {
-
-    }
-
-    public function logout() {
-        
-    }
-
 }

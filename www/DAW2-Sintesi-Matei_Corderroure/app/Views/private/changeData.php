@@ -54,7 +54,7 @@
         <div class="functionContainers">
             <div class="container" style="background-color: white">
                 <h2>Change your data</h2>
-                <form id="formUpdate">
+                <form id="formUpdate" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="email"><?= lang('Auth.newEmail') ?></label>
                         <input type="email" id="email" class="form-control <?php if (session('errors.newEmail')) : ?>is-invalid<?php endif ?>" name="email" aria-describedby="emailHelp" placeholder="<?= lang('Auth.newEmail') ?>" value="<?= $user->email ?>">
@@ -146,29 +146,29 @@
                     }
                 };
             }
-
             fetch("<?php echo base_url(); ?>/api/users/update", requestOptions)
                 .then(response => response.json())
                 .then((data) => {
                     if (data.status == false) {
                         alert(data.messages);
-                        document.getElementById("messages").innerHTML = data.messages;
                         window.sessionStorage.removeItem("tokenRefresh", data.refreshToken);
+                        window.location = "<?php echo base_url(); ?>/logout";
                     } else {
-                        // if (data.status == 500) {
+                         if (data.status == 404) {
                             alert(data.messages);
                             document.getElementById("messages").innerHTML = data.messages;
                             window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-                        /*} else {
-                            console.log(data);
+                        } else {
+                            alert(data.messages);
                             var token = window.sessionStorage.removeItem("tokenRefresh");
-                            //window.location = "<?php echo base_url(); ?>/logout";
+                            window.location = "<?php echo base_url(); ?>/logout";
                         }
-                        */
+                        
                     }
                 }).catch(error => {
+                    alert("There's been an error with the update");
                     var token = window.sessionStorage.removeItem("tokenRefresh");
-                    //window.location = "<?php echo base_url(); ?>/logout";
+                    window.location = "<?php echo base_url(); ?>/logout";
                 });
         }
     </script>

@@ -154,10 +154,18 @@ class UserModel extends Model
     public function updateUser($id, $data, $file) {
         
         if($file != null) {
-            $data['userfile'] = $file;
+            $oldfile = $this->select(['img_profile'])->where('id',$id)->first();
+            if(empty($oldfile->img_profile)) {
+                $data['img_profile'] = $file;
+            } else {
+                unlink(WRITEPATH.DIRECTORY_SEPARATOR."uploads".DIRECTORY_SEPARATOR."user".DIRECTORY_SEPARATOR."img_profile".DIRECTORY_SEPARATOR.$oldfile->img_profile);
+                $data['img_profile'] = $file;
+            }
         }
-
+        
         $this->update($id, $data);
+        
+        return $data;
     }
 
     public function changePassword($newPassword, $id) {
