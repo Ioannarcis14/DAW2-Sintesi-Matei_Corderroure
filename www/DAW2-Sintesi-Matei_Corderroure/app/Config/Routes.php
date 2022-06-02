@@ -233,6 +233,12 @@ $routes->group("api", function ($routes) {
     $routes->group("messages", function ($routes) {
         $routes->get("getAll", "API\APIMessagesController::getAllMessages");
 
+        $routes->options("getMessage/(:any)", "API\APIMessagesController::getMessagesFromUser/$1");
+        $routes->get("getMessage/(:any)", "API\APIMessagesController::getMessagesFromUser/$1");
+
+        $routes->options("getMessageNumber/(:any)", "API\APIMessagesController::getMessageNumber/$1");
+        $routes->get("getMessageNumber/(:any)", "API\APIMessagesController::getMessageNumber/$1");
+
         $routes->options("create","API\APIMessagesController::createMessages");
         $routes->post("create","API\APIMessagesController::createMessages", ['filter'=>'jwt']);
 
