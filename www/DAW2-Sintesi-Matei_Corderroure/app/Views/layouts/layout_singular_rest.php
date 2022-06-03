@@ -209,8 +209,8 @@
 
     <script>
         async function makeValorations() {
-            var rating = document.getElementById("rating");
-            var observation = document.getElementById("observation");
+            var rating = document.getElementById("rating").value;
+            var observation = document.getElementById("observation").value;
             var token = window.sessionStorage.getItem("tokenRefresh");
 
             var response;
@@ -248,18 +248,16 @@
             response.json().then((data) => {
                     if (data.status == false) {
                         alert(data.messages);
-                        window.sessionStorage.removeItem("tokenRefresh", data.refreshToken);
-                        window.location = "<?php echo base_url(); ?>/logout";
+                        window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
                     } else {
-                         if (data.status == 404) {
+                         if (data.status == 400) {
                             alert(data.messages);
                             window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
                         } else {
                             alert(data.messages);
                             var token = window.sessionStorage.removeItem("tokenRefresh");
                             window.location = "<?php echo base_url(); ?>/logout";
-                        }
-                        
+                        }           
                     }
                 }).catch(error => {
                     alert("There\'s been an error with the valorations");

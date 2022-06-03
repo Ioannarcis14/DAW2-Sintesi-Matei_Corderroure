@@ -32,7 +32,7 @@
             if ($user->img_profile == null) {
                 echo img(base_url('/img/dish.jpg'));
             } else {
-                echo '<img src="/fileget/' . $user->img_profile . '" alt="image">';
+                echo '<img src="'.base_url("/fileget").'/'. $user->img_profile . '" alt="image">';
             }
             ?>
 
@@ -61,8 +61,7 @@
             <div class="form-group">
                 <label for="newPasswordRepeat"><?= lang('Auth.newPasswordRepeat') ?></label>
                 <input type="password" id="newPasswordRepeat" name="newPasswordRepeat" class="form-control <?php if (session('errors.newPasswordRepeat')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.newPasswordRepeat') ?>" autocomplete="off">
-            </div>
-            <div id="messages"></div> </br>
+            </div></br>
             <button class="btn btn-primary" onclick="changePassword()">Change</button>
             </input>
         </div>
@@ -117,19 +116,21 @@
 
             response.json().then((data) => {
                 if (data.error == false) {
-                    document.getElementById("messages").innerHTML = data.messages;
+                    alert(data.messages);
                     window.sessionStorage.setItem("tokenRefresh",data.refreshToken);
                 } else {
-                    if(data.status != 401) {
-                        document.getElementById("messages").innerHTML = data.messages;
+                    if(data.status == 400) {
+                        alert(data.messages);
                         window.sessionStorage.setItem("tokenRefresh",data.refreshToken);
                     } else {
+                        alert(data.messages);
                         var token = window.sessionStorage.removeItem("tokenRefresh");
                         window.location = "<?php echo base_url(); ?>/logout";
                     }
 
                 }
             }).catch(error => {
+                alert(error.messages);
                 var token = window.sessionStorage.removeItem("tokenRefresh");
                 window.location = "<?php echo base_url(); ?>/logout";
             });

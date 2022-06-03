@@ -15,7 +15,7 @@ class MessagesMigration extends Migration
                 'unsigned'       => true,
                 'null'           => false,
             ],
-            'id_restaurant'          => [
+            'receiver'          => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
@@ -32,7 +32,6 @@ class MessagesMigration extends Migration
             ],
         ]);
         $this->forge->addForeignKey('id_user', 'users', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('id_restaurant', 'restaurant', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('messages');
         
         $this->forge->addField([

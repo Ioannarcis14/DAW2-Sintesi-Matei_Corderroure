@@ -14,7 +14,7 @@ class MessagesModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_user', 'id_restaurant', 'theme', 'message'];
+    protected $allowedFields    = ['id_user', 'receiver', 'theme', 'message'];
 
     // Dates
     protected $useTimestamps = false;
@@ -41,7 +41,25 @@ class MessagesModel extends Model
     protected $afterDelete    = [];
 
 
-    public function create($id_user, $theme, $message) {
+    public function createMessage($id_user, $theme, $message) {
 
+        $data = [
+            'id_user' => $id_user,
+            'receiver' => 0,
+            'theme' => $theme,
+            'message' => $message,
+        ];
+        $this->insert($data);
+    }
+
+    public function checkMessage($id_user, $id_receiver, $theme) {
+
+        $message = $this->where('id_user',$id_user)->where('receiver', $id_receiver)->where('theme', $theme)->first();
+
+        if(!empty($message)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -21,10 +21,10 @@ class FileExplorerController extends BaseController
     {
         $varName=current_url(true)->setSegment(1,'')->getPath();
 
-        $file = new \CodeIgniter\Files\File(WRITEPATH.DIRECTORY_SEPARATOR."uploads".DIRECTORY_SEPARATOR."user".DIRECTORY_SEPARATOR."img_profile".DIRECTORY_SEPARATOR.$varName);
+        $file = new \CodeIgniter\Files\File(WRITEPATH.DIRECTORY_SEPARATOR."uploads".DIRECTORY_SEPARATOR."user".DIRECTORY_SEPARATOR."img_profile".DIRECTORY_SEPARATOR. $varName);
 
         if (!$file->isFile()){     // if (!is_file(WRITEPATH . "/uploads/" . $varName)){
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Profile picture no found');
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Profile picture no found'. $varName);
         }
 
         // $filedata = readfile(WRITEPATH . "/uploads/" . $varName);

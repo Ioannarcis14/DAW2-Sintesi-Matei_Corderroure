@@ -2,6 +2,7 @@
 
 namespace App\Controllers\API;
 
+use App\Models\MessagesModel;
 use App\Models\RestaurantModel;
 use CodeIgniter\RESTful\ResourceController;
 use Myth\Auth\Models\UserModel;
@@ -96,7 +97,7 @@ class APIUserController extends ResourceController
             $response = [
                 'status' => 401,
                 "error" => true,
-                "messages" => "There's been an error with the password change",
+                "messages" => "You don't have the permission to do this action",
             ];
             return $this->respond($response);
         }
@@ -396,7 +397,7 @@ class APIUserController extends ResourceController
             $id_restaurant = $this->request->getVar('id_restaurant');
 
             //Check restaurant
-            if (!empty($restaurantCheck->checkRestaurant($id_restaurant))) {
+            if (!empty($restaurantCheck->existsRestaurant($id_restaurant))) {
 
                 //Validate the rating 
                 $rules = [
@@ -414,8 +415,9 @@ class APIUserController extends ResourceController
                 }
 
                 //Make the valoration
+                $valModel->createValoration($id_restaurant, $token_data->uid, $this->request->getVar('rating'),$this->request->getVar('observation'));
 
-                if (!$valModel->createValoration($id_restaurant, $token_data->uid, $this->request->getVar('rating'), $this->request->getVar('observation'))) {
+                if (!empty($valModel->checkValoration($id_restaurant, $token_data->uid))) {
                     $response = [
                         'status' => 200,
                         "error" => false,
@@ -453,15 +455,45 @@ class APIUserController extends ResourceController
         helper('html');
 
         $token_data = json_decode($this->request->header("token-data")->getValue());
+        $msgModel = new MessagesModel();
         $auth = service('authentication');
         $auth->check();
         $currentUser = $auth->user();
 
+
         if (!empty($token_data) && $token_data->email == $currentUser->email) {
 
-            //Check restaurant
+            //Check the content
+            $rules = [
+                'theme' => 'required',
+                'commentary' => 'required'
+            ];
 
-            //
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 400,
+                    "error" => true,
+                    'messages' => 'Error with the general fields',
+                    'errors' => $this->validator->getErrors(),
+                ];
+                return $this->respond($response);
+            }
+
+            $msgModel->createMessage($token_data->uid, $this->request->getVar('theme'),$this->request->getVar('commentary'));
+            
+            if (!empty($msgModel->checkMessage($token_data->uid, 0, $this->request->getVar('theme')))) {
+                $response = [
+                    'status' => 200,
+                    "error" => false,
+                    'messages' => 'Contact message created',
+                ];
+            } else {
+                $response = [
+                    'status' => 500,
+                    "error" => true,
+                    'messages' => 'An error while sending the messsage',
+                ];
+            }
 
         } else {
             $response = [

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\ThemeModel;
 use App\Models\UserModel as NoAuthUser;
 
 class PrivateController extends BaseController
@@ -56,7 +57,11 @@ class PrivateController extends BaseController
 
         $currentUser = $auth->user();
 
+        $themeModel = new ThemeModel();
 
+        $list = $themeModel->getAllThemes();
+
+        $data['themes'] = $list;
         $data['logged'] = true;
         $data['user'] = $currentUser;
         $data['groups'] = $currentUser->getRoles();
