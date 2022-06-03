@@ -40,6 +40,21 @@ class MessagesModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function getMessagesFromUser($email) {
+        $this->select(['id_user', 'id_restaurant', 'theme', 'message']);
+        $this->join('users','users.id = id_user');
+        $this->orWhere('email',$email)->orWhere('username',$email);
+        return $this->findAll();
+    }
+
+    public function getMessages($email) {
+        $this->select(['count(message) as total']);
+        $this->join('users','users.id = id_user');
+        $this->orWhere('users.email',$email)->orWhere('users.username',$email);
+        return $this->findAll();
+    }
+
+
 
     public function createMessage($id_user, $theme, $message) {
 
@@ -63,3 +78,5 @@ class MessagesModel extends Model
         }
     }
 }
+
+
