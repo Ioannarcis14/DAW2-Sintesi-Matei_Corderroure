@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="restaurant">
+<html lang="en" class="profile">
 
 <head>
     <meta charset="utf-8">
@@ -20,14 +20,14 @@
 
 </head>
 
-<body class="restaurant">
+<body class="profile">
 
     <?= view('App\layouts\_navbar') ?>
 
-    <div role="main">
+    <div role="main" class="p_main">
 
         <div class="imgContainer" style="margin: 50px; background-color: white">
-
+            <b>Profile Picture:</b>
             <?php
             if ($user->img_profile == null) {
                 echo img(base_url('/img/dish.jpg'));
@@ -40,20 +40,22 @@
 
         <div class="dataContainer" style="margin: 50px; background-color: white">
             <?php
-            echo '<div>Username: ' . $user->username . '</div>';
-            echo '<div>Email: ' . $user->email . '</div>';
-            echo '<div>Name: ' . $user->name . '</div>';
-            echo '<div>Surname: ' . $user->surname . '</div>';
-            echo '<div>Phone: ' . $user->phone . '</div>';
-            echo '<div>City: ' . $user->city . '</div>';
-            echo '<div>Street: ' . $user->street . '</div>';
-            echo '<div>Postal Code: ' . $user->postal_code . '</div>';
+            echo "<ul class='list-group infoList'>";
+            echo "<li class=list-group-item> <b>Username: </b>" . $user->username . "</li>";
+            echo "<li class=list-group-item> <b>Email: </b>" . $user->email . "</li>";
+            echo "<li class=list-group-item> <b>Name: </b>" . $user->name . "</li>";
+            echo "<li class=list-group-item> <b>Surname: </b>" . $user->surname . "</li>";
+            echo "<li class=list-group-item> <b>Phone: </b>" . $user->phone . "</li>";
+            echo "<li class=list-group-item> <b>City: </b>" . $user->city . "</li>";
+            echo "<li class=list-group-item> <b>Street: </b>" . $user->street . "</li>";
+            echo "<li class=list-group-item> <b>Postal Code: </b>" . $user->postal_code . "</li>";
+            echo "</ul>";
             ?>
         </div>
 
         <div class="functionContainers">
             <div class="container" style="background-color: white">
-                <h2>Change your data</h2>
+                <h2 style="padding-bottom: 50px">Change your data</h2>
                 <form id="formUpdate" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="email"><?= lang('Auth.newEmail') ?></label>
@@ -97,7 +99,7 @@
 
                     <div class="form-group">
                         <label for="userfile" class="form-label"> <?= lang('Auth.newImg') ?></label>
-                        <input type="file" id="userfile" class="form-control <?php if (session('errors.newImg')) : ?>is-invalid<?php endif ?>" name="userfile" placeholder="<?= lang('Auth.newImg') ?>" value="<?= old('file') ?>">
+                        <input type="file" id="userfile" class="" <?php if (session('errors.newImg')) : ?>is-invalid<?php endif ?>" name="userfile" placeholder="<?= lang('Auth.newImg') ?>" value="<?= old('file') ?>">
                     </div>
 
                     <div id="messages"></div></br>
