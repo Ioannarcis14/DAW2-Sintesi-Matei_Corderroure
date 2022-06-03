@@ -36,8 +36,12 @@ class PrivateController extends BaseController
             return redirect()->route('login');
         }
 
+
         $currentUser = $auth->user();
 
+        if(in_array("responsable", $currentUser->getRoles())) {
+            return redirect()->route('home');
+        }
 
         $data['logged'] = true;
         $data['user'] = $currentUser;

@@ -517,12 +517,81 @@ class APIUserController extends ResourceController
         $auth->check();
         $currentUser = $auth->user();
 
-        if (!empty($token_data) && $token_data->email == $currentUser->email) {
+        if (!empty($token_data) && $token_data->email == $currentUser->email && !in_array("responsable", $currentUser->getRoles())) {
 
-            //Check restaurant
+            //Check data
+                $rules = [
+                    'nameRestaurant' => 'required',
+                    'cityRestaurant' => 'required',
+                    'streetRestaurant' => 'required',
+                    'phoneRestaurant' => 'required|min_length[9]|max_length[9]',
+                    'postal_codeRestaurant' => 'required',
+                    'twitterRestaurant' => 'valid_url_strict[https]',
+                    'facebookRestaurant' => 'valid_url_strict[https]',
+                    'instagramRestaurant' => 'valid_url_strict[https]',
+                ];
+            
+            //Validation of the general fields of the form and the profile img
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 400,
+                    "error" => true,
+                    'messages' => 'Error with the general fields',
+                    'errors' => $this->validator->getErrors(),
+                ];
+                return $this->respond($response);
+            }
 
-            //
+            $restModel = new RestaurantModel();
 
+            $restModel->createRestaurant($this->request->getPost('nameRestaurant'), $this->request->getPost('cityRestaurant'), 
+            $this->request->getPost('streetRestaurant'), $this->request->getPost('postal_codeRestaurant'), $this->request->getPost('phoneRestaurant'), 
+            $this->request->getPost('twitterRestaurant'), $this->request->getPost('instagramRestaurant'), $this->request->getPost('facebookRestaurant'));
+
+
+            $check = $restModel->checkRestaurant($this->request->getPost('nameRestaurant'), $this->request->getPost('cityRestaurant'), 
+            $this->request->getPost('streetRestaurant'), $this->request->getPost('postal_codeRestaurant'), $this->request->getPost('phoneRestaurant'));
+
+            if(!empty($check)) {
+                $files = $this->request->getFiles();
+                $fileNames = "";
+                if(!empty(!$files)) {
+                    foreach($files['userfile'] as $img) {
+                        if($img->isValid() && !$img->hasMoved()) {
+                            $filepath = WRITEPATH . 'uploads/' . $img->store("restaurant/".$check['id']."/");
+                            $Filetest = new File($filepath);
+    
+                        } else {
+                            $response = [
+                                'status' => 400,
+                                "error" => true,
+                                'messages' => 'Error with the files',
+                            ];
+                            return $this->respond($response);
+                        }
+                        $file = explode("restaurant/".$check['id']."/", $Filetest, 2);
+                        $fileNames .= ",".$file[1];
+                    }
+        
+                    $restModel->insertGallery($this->request->getPost('nameRestaurant'), $this->request->getPost('cityRestaurant'), 
+                    $this->request->getPost('streetRestaurant'), $this->request->getPost('postal_codeRestaurant'), $this->request->getPost('phoneRestaurant'), $fileNames);
+                }
+
+                $response = [
+                    'status' => 200,
+                    "error" => false,
+                    'messages' => "Succesfully discharged",
+                    'data' => []
+                ];
+
+            } else {
+                $response = [
+                    'status' => 500,
+                    "error" => false,
+                    'messages' => "There\'s been an error with the discharged process",
+                    'data' => []
+                ];
+            }
         } else {
             $response = [
                 'status' => 401,

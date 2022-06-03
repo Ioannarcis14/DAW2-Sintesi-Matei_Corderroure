@@ -133,6 +133,8 @@ $routes->group("api", function ($routes) {
         $routes->options("getImageUser", "API\APIUserController::returnUserImage");
         $routes->post("getImageUser", "API\APIUserController::returnUserImage");
 
+        //USER FUNCTIONS
+
         $routes->options("changePass", "API\APIUserController::changePassword");
         $routes->post("changePass", "API\APIUserController::changePassword", ['filter'=>'jwt']);
 
@@ -142,6 +144,8 @@ $routes->group("api", function ($routes) {
         $routes->options("contact", "API\APIUserController::contactAdmin");
         $routes->post("contact", "API\APIUserController::contactAdmin", ['filter'=>'jwt']);
 
+        $routes->options("discharge", "API\APIUserController::dischargeRestaurant");
+        $routes->post("discharge", "API\APIUserController::dischargeRestaurant", ['filter'=>'jwt']);
     });
 
     /////////////////////////////////////////////////////

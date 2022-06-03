@@ -100,8 +100,15 @@ class RestaurantModel extends Model
         
     }
 
-    public function createRestaurant() {
+    public function createRestaurant($name, $city, $street, $postal_code, $phone, $twitter, $instagram, $facebook) {
         
     }
 
+    public function insertGallery($name, $city, $street, $postal_code, $phone, $img_gallery) {
+        
+    }
+
+    public function checkRestaurant($name, $city, $street, $postal_code, $phone) {
+
+    }
 }

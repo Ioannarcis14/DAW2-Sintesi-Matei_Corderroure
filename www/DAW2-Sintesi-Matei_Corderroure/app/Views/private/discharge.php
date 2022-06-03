@@ -27,7 +27,7 @@
     <div role="main">
         <div class="container" style="margin: 200px; background-color: white">
             <h2>Dicharge your own restaurant</h2>
-            <form id="formUpdate">
+            <form id="discharge">
                 <div class="form-group">
                     <label for="nameRestaurant"><?= lang('Auth.nameRestaurant') ?></label>
                     <input type="text" id="nameRestaurant" class="form-control <?php if (session('errors.nameRestaurant')) : ?>is-invalid<?php endif ?>" name="nameRestaurant" aria-describedby="emailHelp" placeholder="<?= lang('Auth.nameRestaurant') ?>" value="">
@@ -48,6 +48,10 @@
                     <input type="text" id="phoneRestaurant" class="form-control <?php if (session('errors.phoneRestaurant')) : ?>is-invalid<?php endif ?>" name="phoneRestaurant" placeholder="<?= lang('Auth.phoneRestaurant') ?>" value="">
                 </div>
 
+                <div class="form-group">
+                    <label for="postal_codeRestaurant"><?= lang('Auth.postal_codeRestaurant') ?></label>
+                    <input type="text" id="postal_codeRestaurant" class="form-control <?php if (session('errors.postal_codeRestaurant')) : ?>is-invalid<?php endif ?>" name="postal_codeRestaurant" placeholder="<?= lang('Auth.postal_codeRestaurant') ?>" value="">
+                </div>
 
                 <div class="form-group">
                     <label for="twitterRestaurant"><?= lang('Auth.twitterRestaurant') ?></label>
@@ -59,15 +63,14 @@
                     <input type="text" id="facebookRestaurant" class="form-control <?php if (session('errors.facebookRestaurant')) : ?>is-invalid<?php endif ?>" name="facebookRestaurant" placeholder="<?= lang('Auth.facebookRestaurant') ?>" value="">
                 </div>
 
-            
                 <div class="form-group">
-                    <label for="postal_codeRestaurant"><?= lang('Auth.postal_codeRestaurant') ?></label>
-                    <input type="text" id="postal_codeRestaurant" class="form-control <?php if (session('errors.postal_codeRestaurant')) : ?>is-invalid<?php endif ?>" name="postal_codeRestaurant" placeholder="<?= lang('Auth.postal_codeRestaurant') ?>" value="">
+                    <label for="instagramRestaurant"><?= lang('Auth.facebookRestaurant') ?></label>
+                    <input type="text" id="instagramRestaurant" class="form-control <?php if (session('errors.instagramRestaurant')) : ?>is-invalid<?php endif ?>" name="instagramRestaurant" placeholder="<?= lang('Auth.instagramRestaurant') ?>" value="">
                 </div>
 
                 <div class="form-group">
-                    <label for="userfile" class="form-label"> <?= lang('Auth.newImg') ?></label>
-                    <input type="file" id="userfile" class="form-control <?php if (session('errors.newImg')) : ?>is-invalid<?php endif ?>" name="userfile" placeholder="<?= lang('Auth.newImg') ?>" value="<?= old('file') ?>">
+                    <label for="userfile[]" class="form-label"> <?= lang('Auth.newImgRestaurant') ?></label>
+                    <input type="file" id="userfile[]" class="form-control <?php if (session('errors.newImgRestaurant')) : ?>is-invalid<?php endif ?>" name="userfile[]" multiple placeholder="<?= lang('Auth.newImgRestaurant') ?>" value="">
                 </div>
 
                 <div id="messages"></div></br>
@@ -80,9 +83,9 @@
 
 </html>
 <script>
-    formUpdate.onsubmit = async (e) => {
+    discharge.onsubmit = async (e) => {
         e.preventDefault();
-        formRegistration = new FormData(formUpdate);
+        formRegistration = new FormData(discharge);
         var token = window.sessionStorage.getItem("tokenRefresh");
 
         if (token == "" || token == "undefined" || token == null) {
@@ -103,29 +106,34 @@
             };
         }
 
-        fetch("<?php echo base_url(); ?>/api/users/update", requestOptions)
-            .then(response => response.json())
-            .then((data) => {
-                if (data.status == false) {
-                    alert(data.messages);
-                    document.getElementById("messages").innerHTML = data.messages;
-                    window.sessionStorage.removeItem("tokenRefresh", data.refreshToken);
-                } else {
-                    // if (data.status == 500) {
-                    alert(data.messages);
-                    document.getElementById("messages").innerHTML = data.messages;
-                    window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-                    /*} else {
-                        console.log(data);
-                        var token = window.sessionStorage.removeItem("tokenRefresh");
-                        //window.location = "<?php echo base_url(); ?>/logout";
+        fetch("<?php echo base_url(); ?>/api/users/discharge", requestOptions)
+                .then(response => response.json())
+                .then((data) => {
+                    if (data.status == false) {
+                        alert(data);
+                        console.log(data)
+                        window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
+                        window.location = "<?php echo base_url(); ?>/logout";
+                    } else {
+                         if (data.status == 400) {
+                            alert(data);
+                            console.log(data)
+                            window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
+                        } else {
+                            alert(data);
+                            console.log(data);
+                            window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
+
+                           //  var token = window.sessionStorage.removeItem("tokenRefresh");
+                            // window.location = "<?php echo base_url(); ?>/logout";
+                        }
+                        
                     }
-                    */
-                }
-            }).catch(error => {
-                var token = window.sessionStorage.removeItem("tokenRefresh");
-                //window.location = "<?php echo base_url(); ?>/logout";
-            });
+                }).catch(error => {
+                    alert("There's been an error with the update");
+                 //   var token = window.sessionStorage.removeItem("tokenRefresh");
+                   //  window.location = "<?php echo base_url(); ?>/logout";
+                });
     }
 </script>
 
