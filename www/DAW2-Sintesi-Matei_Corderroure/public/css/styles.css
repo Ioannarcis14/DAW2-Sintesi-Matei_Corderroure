@@ -49,6 +49,55 @@ div.contentTxt > h1{
     margin-top: 100px;
 }
 
+.profile {
+    height: unset;
+}
+
+body.profile .functionContainers {
+    display: flex;
+    justify-content: end;
+    margin: 50px;
+}
+
+body.profile {
+    background-color: #b7b7b7;
+}
+
+body.profile div.p_main {
+    width: 1050px;
+    margin: auto;
+    background-color: white;
+    margin-top: 100px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.profile .imgContainer img {
+    width: 250px;
+    border-radius: 5px;
+}
+
+.profile .imgContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile .flexProfile {
+    display: flex;
+    padding-top: 50px;
+    flex-direction: column-reverse;
+    gap: 50px
+}
+
+.profile .dataContainer .infoList > li{
+    color: #000 !important;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile .dataContainer .infoList > li > b {
+    margin-right: 100px;
+}
 
 
 
