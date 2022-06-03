@@ -43,6 +43,6 @@ class ThemeModel extends Model
 
 
     public function getAllThemes() {
-
+        return $this->findAll();
     }
 }

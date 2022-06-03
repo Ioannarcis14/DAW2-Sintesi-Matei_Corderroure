@@ -100,4 +100,8 @@ class RestaurantModel extends Model
         
     }
 
+    public function createRestaurant() {
+        
+    }
+
 }

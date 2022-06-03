@@ -138,6 +138,10 @@ $routes->group("api", function ($routes) {
 
         $routes->options("createValorations", "API\APIUserController::createValorations");
         $routes->post("createValorations", "API\APIUserController::createValorations", ['filter'=>'jwt']);
+
+        $routes->options("contact", "API\APIUserController::contactAdmin");
+        $routes->post("contact", "API\APIUserController::contactAdmin", ['filter'=>'jwt']);
+
     });
 
     /////////////////////////////////////////////////////

@@ -65,10 +65,11 @@ body.profile {
 
 body.profile div.p_main {
     width: 1050px;
-    margin: auto;
+    margin: 100px auto;
     background-color: white;
     margin-top: 100px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 50px 0px;
 }
 
 .profile .imgContainer img {

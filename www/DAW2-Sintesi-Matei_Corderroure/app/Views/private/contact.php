@@ -27,55 +27,23 @@
     <div role="main">
         <div class="container" style="margin: 200px; background-color: white">
             <h2>Contact us</h2>
-            <form id="formUpdate">
                 <div class="form-group">
-                    <label for="email"><?= lang('Auth.newEmail') ?></label>
-                    <input type="email" id="email" class="form-control <?php if (session('errors.newEmail')) : ?>is-invalid<?php endif ?>" name="email" aria-describedby="emailHelp" placeholder="<?= lang('Auth.newEmail') ?>" value="<?= $user->email ?>">
+                    <label for="theme"><?= lang('Auth.theme') ?></label>
+                    <select id="theme" class="form-control <?php if (session('errors.theme')) : ?>is-invalid<?php endif ?>" name="theme" aria-describedby="emailHelp" placeholder="<?= lang('Auth.theme') ?>">
+                        <?php
+                        foreach ($themes as $theme) {
+                            echo '<option value="' . $theme['name'] . '">' . $theme['name'] . '</option>';
+                        }
+                        ?>
+                    </select>
                 </div>
-
                 <div class="form-group">
-                    <label for="username"><?= lang('Auth.newUsername') ?></label>
-                    <input type="text" id="username" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" placeholder="<?= lang('Auth.newUsername') ?>" value="<?= $user->username ?>">
+                    <label for="commentary"><?= lang('Auth.commentary') ?></label>
+                    <textarea type="text" id="commentary" class="form-control <?php if (session('errors.textarea')) : ?>is-invalid<?php endif ?>" name="textarea" placeholder="<?= lang('Auth.textarea') ?>" value="">
+                    </textarea>
                 </div>
-
-                <div class="form-group">
-                    <label for="name"><?= lang('Auth.newName') ?></label>
-                    <input type="text" id="name" class="form-control <?php if (session('errors.newName')) : ?>is-invalid<?php endif ?>" name="name" placeholder="<?= lang('Auth.newName') ?>" value="<?= $user->name ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="surname"><?= lang('Auth.newSurname') ?></label>
-                    <input type="text" id="surname" class="form-control <?php if (session('errors.newSurname')) : ?>is-invalid<?php endif ?>" name="surname" placeholder="<?= lang('Auth.newSurname') ?>" value="<?= $user->surname ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone"><?= lang('Auth.newPhone') ?></label>
-                    <input type="text" id="phone" class="form-control <?php if (session('errors.newPhone')) : ?>is-invalid<?php endif ?>" name="phone" placeholder="<?= lang('Auth.newPhone') ?>" value="<?= $user->phone ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="city"><?= lang('Auth.newCity') ?></label>
-                    <input type="text" id="city" class="form-control <?php if (session('errors.newCity')) : ?>is-invalid<?php endif ?>" name="city" placeholder="<?= lang('Auth.newCity') ?>" value="<?= $user->city ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="street"><?= lang('Auth.newStreet') ?></label>
-                    <input type="text" id="street" class="form-control <?php if (session('errors.newStreet')) : ?>is-invalid<?php endif ?>" name="street" placeholder="<?= lang('Auth.newStreet') ?>" value="<?= $user->street ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="postal_code"><?= lang('Auth.newPostal_code') ?></label>
-                    <input type="text" id="postal_code" class="form-control <?php if (session('errors.newPostal_code')) : ?>is-invalid<?php endif ?>" name="postal_code" placeholder="<?= lang('Auth.newPostal_code') ?>" value="<?= $user->postal_code ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="userfile" class="form-label"> <?= lang('Auth.newImg') ?></label>
-                    <input type="file" id="userfile" class="form-control <?php if (session('errors.newImg')) : ?>is-invalid<?php endif ?>" name="userfile" placeholder="<?= lang('Auth.newImg') ?>" value="<?= old('file') ?>">
-                </div>
-
-                <div id="messages"></div></br>
-                <input class="btn btn-primary" type="submit" value="Update">
-            </form>
+                </br>
+                <button class="btn btn-primary" onclick="contact()">Send</button>
         </div>
     </div>
 
@@ -83,52 +51,67 @@
 
 </html>
 <script>
-    formUpdate.onsubmit = async (e) => {
-        e.preventDefault();
-        formRegistration = new FormData(formUpdate);
+    async function contact() {
+
+        var commentary = document.getElementById("commentary").value;
+        var theme = document.getElementById("theme").value;
+        var response;
         var token = window.sessionStorage.getItem("tokenRefresh");
 
         if (token == "" || token == "undefined" || token == null) {
-            var requestOptions = {
+            response = await fetch("<?php echo base_url(); ?>/api/users/contact", {
                 method: 'POST',
-                body: formRegistration,
                 headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + <?php echo '"' . $_SESSION['token'] . '"' ?>,
-                }
-            };
+                },
+                body: JSON.stringify({
+                    commentary: commentary,
+                    theme: theme,
+                }),
+            });
         } else {
-            var requestOptions = {
+            response = await fetch("<?php echo base_url(); ?>/api/users/contact", {
                 method: 'POST',
-                body: formRegistration,
                 headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token,
-                }
-            };
+                },
+                body: JSON.stringify({
+                    commentary: commentary,
+                    theme: theme,
+                }),
+            });
         }
 
-        fetch("<?php echo base_url(); ?>/api/users/update", requestOptions)
-            .then(response => response.json())
-            .then((data) => {
-                if (data.status == false) {
+        response.json().then((data) => {
+            if (data.error == false) {
+                alert(data.messages);
+                window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
+              //  window.location = "<?php echo base_url(); ?>/home";
+            } else {
+                if (data.status == 400) {
                     alert(data.messages);
-                    document.getElementById("messages").innerHTML = data.messages;
-                    window.sessionStorage.removeItem("tokenRefresh", data.refreshToken);
-                } else {
-                    // if (data.status == 500) {
-                    alert(data.messages);
-                    document.getElementById("messages").innerHTML = data.messages;
                     window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-                    /*} else {
-                        console.log(data);
-                        var token = window.sessionStorage.removeItem("tokenRefresh");
-                        //window.location = "<?php echo base_url(); ?>/logout";
-                    }
-                    */
+                   // window.location = "<?php echo base_url(); ?>/home";
+                } else {
+                    alert(data.messages);
+                    window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
+
+                  //  var token = window.sessionStorage.removeItem("tokenRefresh");
+                  // window.location = "<?php echo base_url(); ?>/logout";
                 }
-            }).catch(error => {
-                var token = window.sessionStorage.removeItem("tokenRefresh");
-                //window.location = "<?php echo base_url(); ?>/logout";
-            });
+            }
+        }).catch(error => {
+            alert(error.messages);
+          //   var token = window.sessionStorage.removeItem("tokenRefresh");
+            // window.location = "<?php echo base_url(); ?>/logout";
+        });
+
+
+
     }
 </script>
 

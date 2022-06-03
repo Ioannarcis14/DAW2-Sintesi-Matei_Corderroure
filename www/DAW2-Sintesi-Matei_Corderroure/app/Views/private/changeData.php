@@ -32,7 +32,7 @@
             if ($user->img_profile == null) {
                 echo img(base_url('/img/dish.jpg'));
             } else {
-                echo '<img src="/fileget/' . $user->img_profile . '" alt="image">';
+                echo '<img src="'.base_url("/fileget").'/'. $user->img_profile . '" alt="image">';
             }
             ?>
 
@@ -154,9 +154,8 @@
                         window.sessionStorage.removeItem("tokenRefresh", data.refreshToken);
                         window.location = "<?php echo base_url(); ?>/logout";
                     } else {
-                         if (data.status == 404) {
+                         if (data.status == 400) {
                             alert(data.messages);
-                            document.getElementById("messages").innerHTML = data.messages;
                             window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
                         } else {
                             alert(data.messages);

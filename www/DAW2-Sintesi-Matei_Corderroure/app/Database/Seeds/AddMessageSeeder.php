@@ -14,7 +14,7 @@ class AddMessageSeeder extends Seeder
 
         $row = [
             'id_user'   => 1,
-            'id_restaurant' => null,
+            'receiver' => null,
             'theme' => 'issue',
             'message' => 'I profile image is not showing correctly',
         ];
@@ -23,7 +23,7 @@ class AddMessageSeeder extends Seeder
 
         $row2 = [
             'id_user'   => 2,
-            'id_restaurant' => 1,
+            'receiver' => 1,
             'theme' => 'improvement',
             'message' => 'May you guys add your own promo payment card?',
         ];

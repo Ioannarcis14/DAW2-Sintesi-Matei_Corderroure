@@ -26,43 +26,39 @@
 
     <div role="main" class="p_main">
 
+        <div class="imgContainer" style="margin: 50px; background-color: white">
+            <b>Profile Picture:</b>
+            <?php
+            if ($user->img_profile == null) {
+                echo img(base_url('/img/dish.jpg'));
+            } else {
+                echo '<img src="'.base_url("/fileget").'/'. $user->img_profile . '" alt="image">';
+            }
+            ?>
 
-        <div class="flexProfile" style="margin: 50px; background-color: white">
-            <div class="dataContainer" >
+        </div>
 
-                <?php
-                echo "<ul class='list-group infoList''>";
-                echo "<li class='list-group-item'><b>Username: </b>". $user->username . "</li>";
-                echo "<li class='list-group-item'><b>Email: </b>". $user->email . "</li>";
-                echo "<li class='list-group-item'><b>Name: </b>". $user->name . "</li>";
-                echo "<li class='list-group-item'><b>Surname: </b>". $user->surname . "</li>";
-                echo "<li class='list-group-item'><b>Phone: </b>". $user->phone . "</li>";
-                echo "<li class='list-group-item'><b>City: </b>". $user->city . "</li>";
-                echo "<li class='list-group-item'><b>Street: </b>". $user->street . "</li>";
-                echo "<li class='list-group-item'><b>Postal Code: </b>". $user->postal_code . "</li>";
-                echo "</ul>";
-                ?>
-
-            </div>
-            <div class="imgContainer">
-                <b>Profile Picture: </b>
-                <?php
-                if ($user->img_profile == null) {
-                    echo img(base_url('/img/dish.jpg'));
-                } else {
-                    echo '<img src="/fileget/' . $user->img_profile . '" alt="image">';
-                }
-                ?>
-            </div>
-
+        <div class="dataContainer" style="margin: 50px; background-color: white">
+            <?php
+            echo "<ul class='list-group infoList'>";
+            echo "<li class=list-group-item> <b>Username: </b>" . $user->username . "</li>";
+            echo "<li class=list-group-item> <b>Email: </b>" . $user->email . "</li>";
+            echo "<li class=list-group-item> <b>Name: </b>" . $user->name . "</li>";
+            echo "<li class=list-group-item> <b>Surname: </b>" . $user->surname . "</li>";
+            echo "<li class=list-group-item> <b>Phone: </b>" . $user->phone . "</li>";
+            echo "<li class=list-group-item> <b>City: </b>" . $user->city . "</li>";
+            echo "<li class=list-group-item> <b>Street: </b>" . $user->street . "</li>";
+            echo "<li class=list-group-item> <b>Postal Code: </b>" . $user->postal_code . "</li>";
+            echo "</ul>";
+            ?>
         </div>
 
         <div class="functionContainers">
             <a class="btn btn-primary" href="/user/changeData">Change your data</a>
         </div>
 
-        <div style="margin: 50px; background-color: white; padding-bottom: 50px;">
-            <h2 style="padding-bottom: 50px;">Change your password</h2>
+        <div style="margin: 50px; background-color: white">
+            <h2 style="padding-bottom: 50px">Change your password</h2>
             <div class="form-group">
                 <label for="newPassword"><?= lang('Auth.newPassword') ?></label>
                 <input type="password" id="newPassword" name="newPassword" class="form-control <?php if (session('errors.newPassword')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.newPassword') ?>" autocomplete="off">
@@ -71,11 +67,12 @@
             <div class="form-group">
                 <label for="newPasswordRepeat"><?= lang('Auth.newPasswordRepeat') ?></label>
                 <input type="password" id="newPasswordRepeat" name="newPasswordRepeat" class="form-control <?php if (session('errors.newPasswordRepeat')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.newPasswordRepeat') ?>" autocomplete="off">
-            </div>
-            <div id="messages"></div> </br>
+            </div></br>
             <button class="btn btn-primary" onclick="changePassword()">Change</button>
             </input>
         </div>
+
+
 
 
 
@@ -122,19 +119,21 @@
 
             response.json().then((data) => {
                 if (data.error == false) {
-                    document.getElementById("messages").innerHTML = data.messages;
+                    alert(data.messages);
                     window.sessionStorage.setItem("tokenRefresh",data.refreshToken);
                 } else {
-                    if(data.status != 401) {
-                        document.getElementById("messages").innerHTML = data.messages;
+                    if(data.status == 400) {
+                        alert(data.messages);
                         window.sessionStorage.setItem("tokenRefresh",data.refreshToken);
                     } else {
+                        alert(data.messages);
                         var token = window.sessionStorage.removeItem("tokenRefresh");
                         window.location = "<?php echo base_url(); ?>/logout";
                     }
 
                 }
             }).catch(error => {
+                alert(error.messages);
                 var token = window.sessionStorage.removeItem("tokenRefresh");
                 window.location = "<?php echo base_url(); ?>/logout";
             });
