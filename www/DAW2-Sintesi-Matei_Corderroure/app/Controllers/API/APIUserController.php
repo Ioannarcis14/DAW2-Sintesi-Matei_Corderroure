@@ -555,7 +555,7 @@ class APIUserController extends ResourceController
             if(!empty($check)) {
                 $files = $this->request->getFiles();
                 $fileNames = "";
-                if(!empty(!$files)) {
+                if(!empty($files)) {
                     foreach($files['userfile'] as $img) {
                         if($img->isValid() && !$img->hasMoved()) {
                             $filepath = WRITEPATH . 'uploads/' . $img->store("restaurant/".$check['id']."/");
@@ -577,11 +577,16 @@ class APIUserController extends ResourceController
                     $this->request->getPost('streetRestaurant'), $this->request->getPost('postal_codeRestaurant'), $this->request->getPost('phoneRestaurant'), $fileNames);
                 }
 
+                $authorize = $auth = service('authorization');
+
+                $authorize->addUserToGroup($token_data->uid, "responsable");
+                $restModel->addUserRestaurant($token_data->uid, $check['id']);
+
                 $response = [
                     'status' => 200,
                     "error" => false,
                     'messages' => "Succesfully discharged",
-                    'data' => []
+                    'data' => [$fileNames]
                 ];
 
             } else {

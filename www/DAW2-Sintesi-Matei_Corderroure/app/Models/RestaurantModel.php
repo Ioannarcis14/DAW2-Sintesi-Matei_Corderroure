@@ -56,13 +56,21 @@ class RestaurantModel extends Model
         return $this->findAll();
     }
 
+    public function dischargeRestaurant($id_restaurant) {
+        $data = [
+            'discharged' => 1
+        ];
+
+        $this->update($id_restaurant,$data);
+    }
+
     /**
      * Selects all the restaurants that are not discharged  
      * 
      * 
      */
     public function getAllRestaurantsNotDischarged() {
-        return $this->where('discharged', null)->findall();
+        return $this->where('discharged', null)->findAll();
     }
 
     /**
@@ -101,14 +109,55 @@ class RestaurantModel extends Model
     }
 
     public function createRestaurant($name, $city, $street, $postal_code, $phone, $twitter, $instagram, $facebook) {
+
+        $data = [
+            'name' => $name, 
+            'city' => $city, 
+            'street' => $street, 
+            'postal_code' => $postal_code, 
+            'phone' => $phone, 
+            'twitter' => $twitter, 
+            'instagram' => $instagram, 
+            'facebook' => $facebook
+        ];
+
+        $this->insert($data);
         
     }
 
     public function insertGallery($name, $city, $street, $postal_code, $phone, $img_gallery) {
-        
+
+       $restaurant =  $this->where('name', $name)->where('city', $city)
+                           ->where('street', $street)
+                           ->where('postal_code', $postal_code)
+                           ->where('phone', $phone)
+                           ->first();
+
+       $data = [
+           'img_gallery' =>  $img_gallery
+       ];
+
+       $this->update($restaurant['id'], $data);
     }
 
     public function checkRestaurant($name, $city, $street, $postal_code, $phone) {
+
+        return $this->where('name', $name)
+        ->where('city', $city)
+        ->where('street', $street)
+        ->where('postal_code', $postal_code)
+        ->where('phone', $phone)->first();
+
+    }
+
+    public function addUserRestaurant($id_usuari ,$id_restaurant) {
+
+        $data = [
+            'id_user' => $id_usuari,
+            'id_restaurant' => $id_restaurant
+        ];
+
+        $this->table('user_restaurant')->insert($data);
 
     }
 }

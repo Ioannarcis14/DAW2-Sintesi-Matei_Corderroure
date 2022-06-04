@@ -107,33 +107,32 @@
         }
 
         fetch("<?php echo base_url(); ?>/api/users/discharge", requestOptions)
-                .then(response => response.json())
-                .then((data) => {
-                    if (data.status == false) {
+            .then(response => response.json())
+            .then((data) => {
+                if (data.status == false) {
+                    alert(data);
+                    console.log(data)
+                    window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
+                    window.location = "<?php echo base_url(); ?>/home";
+                } else {
+                    if (data.status == 400) {
                         alert(data);
                         console.log(data)
                         window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-                        window.location = "<?php echo base_url(); ?>/logout";
                     } else {
-                         if (data.status == 400) {
-                            alert(data);
-                            console.log(data)
-                            window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-                        } else {
-                            alert(data);
-                            console.log(data);
-                            window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-
-                           //  var token = window.sessionStorage.removeItem("tokenRefresh");
-                            // window.location = "<?php echo base_url(); ?>/logout";
-                        }
-                        
+                        alert(data);
+                        console.log(data);
+                        window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
+                        window.sessionStorage.removeItem("tokenRefresh");
+                        window.location = "<?php echo base_url(); ?>/logout";
                     }
-                }).catch(error => {
-                    alert("There's been an error with the update");
-                 //   var token = window.sessionStorage.removeItem("tokenRefresh");
-                   //  window.location = "<?php echo base_url(); ?>/logout";
-                });
+
+                }
+            }).catch(error => {
+                alert("There's been an error with the update");
+                window.sessionStorage.removeItem("tokenRefresh");
+                window.location = "<?php echo base_url(); ?>/logout";
+            });
     }
 </script>
 
