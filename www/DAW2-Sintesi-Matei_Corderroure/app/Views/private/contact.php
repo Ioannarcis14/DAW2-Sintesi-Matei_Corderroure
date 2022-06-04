@@ -26,7 +26,7 @@
 
     <div role="main" class="p_main">
         <div class="container" style="padding: 50px; background-color: white">
-            <h2>Contact us</h2>
+            <h2 style="padding-bottom: 50px">Contact us</h2>
                 <div class="form-group">
                     <label for="theme"><?= lang('Auth.theme') ?></label>
                     <select id="theme" class="form-control <?php if (session('errors.theme')) : ?>is-invalid<?php endif ?>" name="theme" aria-describedby="emailHelp" placeholder="<?= lang('Auth.theme') ?>">
@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <label for="commentary"><?= lang('Auth.commentary') ?></label>
-                    <textarea type="text" id="commentary" class="form-control <?php if (session('errors.textarea')) : ?>is-invalid<?php endif ?>" name="textarea" placeholder="<?= lang('Auth.textarea') ?>" value="">
+                    <textarea type="text" id="commentary" class="form-control <?php if (session('errors.textarea')) : ?>is-invalid<?php endif ?>" name="textarea" placeholder="<?= lang('Auth.textarea') ?>">
                     </textarea>
                 </div>
                 </br>

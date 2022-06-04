@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="restaurant">
+<html lang="en" class="discharge">
 
 <head>
     <meta charset="utf-8">
@@ -20,57 +20,62 @@
 
 </head>
 
-<body class="restaurant">
+<body class="discharge">
 
     <?= view('App\layouts\_navbar') ?>
 
-    <div role="main">
-        <div class="container" style="margin: 200px; background-color: white">
-            <h2>Dicharge your own restaurant</h2>
+    <div role="main" class="p_main">
+        <div class="container" style="padding: 50px; background-color: white">
+            <h2 style="padding-bottom: 50px">Dicharge your own restaurant</h2>
             <form id="discharge">
-                <div class="form-group">
-                    <label for="nameRestaurant"><?= lang('Auth.nameRestaurant') ?></label>
-                    <input type="text" id="nameRestaurant" class="form-control <?php if (session('errors.nameRestaurant')) : ?>is-invalid<?php endif ?>" name="nameRestaurant" aria-describedby="emailHelp" placeholder="<?= lang('Auth.nameRestaurant') ?>" value="">
+                    <div class="form-group">
+                        <label for="nameRestaurant"><?= lang('Auth.nameRestaurant') ?></label>
+                        <input type="text" id="nameRestaurant" class="form-control <?php if (session('errors.nameRestaurant')) : ?>is-invalid<?php endif ?>" name="nameRestaurant" aria-describedby="emailHelp" placeholder="<?= lang('Auth.nameRestaurant') ?>" value="">
+                    </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="cityRestaurant"><?= lang('Auth.cityRestaurant') ?></label>
+                        <input type="text" id="cityRestaurant" class="form-control <?php if (session('errors.cityRestaurant')) : ?>is-invalid<?php endif ?>" name="cityRestaurant" placeholder="<?= lang('Auth.cityRestaurant') ?>" value="">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="streetRestaurant"><?= lang('Auth.streetRestaurant') ?></label>
+                        <input type="text" id="name" class="form-control <?php if (session('errors.streetRestaurant')) : ?>is-invalid<?php endif ?>" name="streetRestaurant" placeholder="<?= lang('Auth.streetRestaurant') ?>" value="">
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="cityRestaurant"><?= lang('Auth.cityRestaurant') ?></label>
-                    <input type="text" id="cityRestaurant" class="form-control <?php if (session('errors.cityRestaurant')) : ?>is-invalid<?php endif ?>" name="cityRestaurant" placeholder="<?= lang('Auth.cityRestaurant') ?>" value="">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="postal_codeRestaurant"><?= lang('Auth.postal_codeRestaurant') ?></label>
+                        <input type="text" id="postal_codeRestaurant" class="form-control <?php if (session('errors.postal_codeRestaurant')) : ?>is-invalid<?php endif ?>" name="postal_codeRestaurant" placeholder="<?= lang('Auth.postal_codeRestaurant') ?>" value="">
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="streetRestaurant"><?= lang('Auth.streetRestaurant') ?></label>
-                    <input type="text" id="name" class="form-control <?php if (session('errors.streetRestaurant')) : ?>is-invalid<?php endif ?>" name="streetRestaurant" placeholder="<?= lang('Auth.streetRestaurant') ?>" value="">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="phoneRestaurant"><?= lang('Auth.phoneRestaurant') ?></label>
+                        <input type="text" id="phoneRestaurant" class="form-control <?php if (session('errors.phoneRestaurant')) : ?>is-invalid<?php endif ?>" name="phoneRestaurant" placeholder="<?= lang('Auth.phoneRestaurant') ?>" value="">
+                    </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="twitterRestaurant"><?= lang('Auth.twitterRestaurant') ?></label>
+                        <input type="text" id="twitterRestaurant" class="form-control <?php if (session('errors.twitterRestaurant')) : ?>is-invalid<?php endif ?>" name="twitterRestaurant" placeholder="<?= lang('Auth.twitterRestaurant') ?>" value="">
+                    </div>
 
-                <div class="form-group">
-                    <label for="phoneRestaurant"><?= lang('Auth.phoneRestaurant') ?></label>
-                    <input type="text" id="phoneRestaurant" class="form-control <?php if (session('errors.phoneRestaurant')) : ?>is-invalid<?php endif ?>" name="phoneRestaurant" placeholder="<?= lang('Auth.phoneRestaurant') ?>" value="">
+                    <div class="form-group col-md-4">
+                        <label for="facebookRestaurant"><?= lang('Auth.facebookRestaurant') ?></label>
+                        <input type="text" id="facebookRestaurant" class="form-control <?php if (session('errors.facebookRestaurant')) : ?>is-invalid<?php endif ?>" name="facebookRestaurant" placeholder="<?= lang('Auth.facebookRestaurant') ?>" value="">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="instagramRestaurant"><?= lang('Auth.instagramRestaurant') ?></label>
+                        <input type="text" id="instagramRestaurant" class="form-control <?php if (session('errors.instagramRestaurant')) : ?>is-invalid<?php endif ?>" name="instagramRestaurant" placeholder="<?= lang('Auth.instagramRestaurant') ?>" value="">
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="postal_codeRestaurant"><?= lang('Auth.postal_codeRestaurant') ?></label>
-                    <input type="text" id="postal_codeRestaurant" class="form-control <?php if (session('errors.postal_codeRestaurant')) : ?>is-invalid<?php endif ?>" name="postal_codeRestaurant" placeholder="<?= lang('Auth.postal_codeRestaurant') ?>" value="">
-                </div>
-
-                <div class="form-group">
-                    <label for="twitterRestaurant"><?= lang('Auth.twitterRestaurant') ?></label>
-                    <input type="text" id="twitterRestaurant" class="form-control <?php if (session('errors.twitterRestaurant')) : ?>is-invalid<?php endif ?>" name="twitterRestaurant" placeholder="<?= lang('Auth.twitterRestaurant') ?>" value="">
-                </div>
-
-                <div class="form-group">
-                    <label for="facebookRestaurant"><?= lang('Auth.facebookRestaurant') ?></label>
-                    <input type="text" id="facebookRestaurant" class="form-control <?php if (session('errors.facebookRestaurant')) : ?>is-invalid<?php endif ?>" name="facebookRestaurant" placeholder="<?= lang('Auth.facebookRestaurant') ?>" value="">
-                </div>
-
-                <div class="form-group">
-                    <label for="instagramRestaurant"><?= lang('Auth.facebookRestaurant') ?></label>
-                    <input type="text" id="instagramRestaurant" class="form-control <?php if (session('errors.instagramRestaurant')) : ?>is-invalid<?php endif ?>" name="instagramRestaurant" placeholder="<?= lang('Auth.instagramRestaurant') ?>" value="">
-                </div>
-
                 <div class="form-group">
                     <label for="userfile[]" class="form-label"> <?= lang('Auth.newImgRestaurant') ?></label>
-                    <input type="file" id="userfile[]" class="form-control <?php if (session('errors.newImgRestaurant')) : ?>is-invalid<?php endif ?>" name="userfile[]" multiple placeholder="<?= lang('Auth.newImgRestaurant') ?>" value="">
+                    <input type="file" id="userfile[]" class=" <?php if (session('errors.newImgRestaurant')) : ?>is-invalid<?php endif ?>" name="userfile[]" multiple placeholder="<?= lang('Auth.newImgRestaurant') ?>" value="">
                 </div>
 
                 <div id="messages"></div></br>
