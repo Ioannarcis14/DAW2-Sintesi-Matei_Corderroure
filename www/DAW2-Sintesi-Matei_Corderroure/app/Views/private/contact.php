@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="restaurant">
+<html lang="en" class="contact">
 
 <head>
     <meta charset="utf-8">
@@ -20,12 +20,12 @@
 
 </head>
 
-<body class="restaurant">
+<body class="contact">
 
     <?= view('App\layouts\_navbar') ?>
 
-    <div role="main">
-        <div class="container" style="margin: 200px; background-color: white">
+    <div role="main" class="p_main">
+        <div class="container" style="padding: 50px; background-color: white">
             <h2>Contact us</h2>
                 <div class="form-group">
                     <label for="theme"><?= lang('Auth.theme') ?></label>

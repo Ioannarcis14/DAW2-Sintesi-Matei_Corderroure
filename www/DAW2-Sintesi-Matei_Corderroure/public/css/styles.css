@@ -59,11 +59,11 @@ body.profile .functionContainers {
     margin: 50px;
 }
 
-body.profile {
+body.profile, body.contact {
     background-color: #b7b7b7;
 }
 
-body.profile div.p_main {
+body.profile div.p_main, body.contact div.p_main{
     width: 1050px;
     margin: 100px auto;
     background-color: white;
