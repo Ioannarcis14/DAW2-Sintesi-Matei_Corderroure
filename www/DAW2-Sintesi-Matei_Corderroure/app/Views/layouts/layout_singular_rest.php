@@ -156,16 +156,12 @@
     <!-- ============ Our Beer  ============= -->
 
 
-    <section id="beer" class="description_content">
-        <div class="beer background_content">
-            <h1>Great <span>Place</span> to enjoy</h1>
-        </div>
-    </section>
 
     <!-- ============ Display Valorations  ============= -->
 
     <section id="valorations" class="description_content">
         <div class="beer background_content">
+            <h1><span>Ratings</span></h1>
         </div>
     </section>
 
@@ -174,17 +170,17 @@
     <?php
     if ($logged == true) {
         echo '<section id ="createVal " class="description_content">
-            <div  class="createVal">
-            <h1>Make a review</h1>
-                    <div class="form-group">
+            <div  class="createVal" style="width: 50%; margin: auto">
+            <h1 style="margin-bottom: 50px">Make a review</h1>
+                    <div class="form-group" style="padding-bottom: 50px">
                         <label for="rating">' . lang('Auth.rating') . '</label>
-                        <input type="range" min="0" max="10" id="rating" class="form-control">
+                        <input type="range" min="0" max="10" step="1" id="rating" class="form-control " style="color: #ffc107">
                     </div>
                     <div class="form-group">
                         <label for="observation">' . lang('Auth.observation') . '</label>
                         <input type="text" id="observation" class="form-control">
                     </div>
-                    <button class="btn btn-primary" onclick="makeValorations()" value="Review">
+                    <button class="btn btn-primary" onclick="makeValorations()" style="margin-top: 20px" >Review</button>
     </div>
 </section>';
     }
