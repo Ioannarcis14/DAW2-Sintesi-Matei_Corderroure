@@ -3,11 +3,157 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\ThemeModel;
+use App\Models\UserModel;
 use Myth\Auth\Password;
 use SIENSIS\KpaCrud\Libraries\KpaCrud;
 
 class AdminCrudController extends BaseController
 {
+
+
+    public function listUsers() {
+        
+        $searchData = $this->request->getGet();
+
+        if (isset($searchData) && isset($searchData['q'])) {
+            $search = $searchData["q"];
+        } else
+            $search = "";
+
+        $userModel = new UserModel();
+
+        $order = $searchData['order'] ?? '';
+        $activePage = $searchData['page'] ?? 1;
+        $act = $searchData['active'] ?? '';
+
+        if ($search == '') {
+            $paginateData = $userModel->userListPager(5,$order,($act = $act != "a" ? "a" : ""));
+        } else {
+            $paginateData = $userModel->userSearch($search,$order,($act = $act != "a" ? "a" : ""))->paginate(5);
+        }
+
+        $data = [
+            'page_title' => 'CI4 Pager & search filter',
+            'title' => 'Manage users',
+            'users' => $paginateData,
+            'pager' => $userModel->pager,
+            'search' => $search,
+            'table' => $userModel,
+            'activepage' => $activePage,
+            'act' => $act,
+        ];
+
+        echo view('admin/manage_users',$data);
+    }
+
+    public function listRoles() {
+        $searchData = $this->request->getGet();
+
+        if (isset($searchData) && isset($searchData['q'])) {
+            $search = $searchData["q"];
+        } else
+            $search = "";
+
+        $userModel = new UserModel();
+
+        $order = $searchData['order'] ?? '';
+        $activePage = $searchData['page'] ?? 1;
+        $act = $searchData['active'] ?? '';
+
+        if ($search == '') {
+            $paginateData = $userModel->roleListPager(5,$order,($act = $act != "a" ? "a" : ""));
+        } else {
+            $paginateData = $userModel->roleSearch($search,$order,($act = $act != "a" ? "a" : ""))->paginate(6);
+        }
+
+        $data = [
+            'page_title' => 'CI4 Pager & search filter',
+            'title' => 'Manage roles',
+            'roles' => $paginateData,
+            'pager' => $userModel->pager,
+            'search' => $search,
+            'table' => $userModel,
+            'activepage' => $activePage,
+            'act' => $act,
+        ];
+
+        echo view('admin/manage_roles',$data);
+    }
+
+    public function listMessages() {
+       
+    }
+
+    public function listThemes() {
+        $searchData = $this->request->getGet();
+
+        if (isset($searchData) && isset($searchData['q'])) {
+            $search = $searchData["q"];
+        } else
+            $search = "";
+
+        $themeModel = new ThemeModel();
+
+        $order = $searchData['order'] ?? '';
+        $activePage = $searchData['page'] ?? 1;
+        $act = $searchData['active'] ?? '';
+
+        if ($search == '') {
+            $paginateData = $themeModel->themeListPager(5,$order,($act = $act != "a" ? "a" : ""));
+        } else {
+            $paginateData = $themeModel->themeSearch($search,$order,($act = $act != "a" ? "a" : ""))->paginate(6);
+        }
+
+        $data = [
+            'page_title' => 'CI4 Pager & search filter',
+            'title' => 'Manage themes',
+            'theme' => $paginateData,
+            'pager' => $themeModel->pager,
+            'search' => $search,
+            'table' => $themeModel,
+            'activepage' => $activePage,
+            'act' => $act,
+        ];
+
+        echo view('admin/manage_themes',$data);
+    }
+
+    public function listRestaurants() {
+        
+    }
+
+
+    public function createUser() {
+
+    }
+
+    public function updateUser() {
+        
+    }
+
+    public function assignRole() {
+
+    }
+
+    
+
+    public function createRole() {
+
+    }
+
+    public function updateRole() {
+        
+    }
+
+   
+
+    public function sendMessage() {
+
+    }
+
+
+
     public function hashNewPassword($postData)
     {
         $postData['data_password_hash'] = Password::hash($postData['data_password_hash']);
@@ -30,10 +176,10 @@ class AdminCrudController extends BaseController
 
         $crud->setTable('messages');
         $crud->setPrimaryKey('id_user');
-        $crud->setPrimaryKey('id_restaurant');
+        $crud->setPrimaryKey('receiver');
 
         $crud->setColumns(['id_user', 'theme', 'message']);
-        $crud->addWhere('id_restaurant='.null);
+        $crud->addWhere('receiver='.null);
 
         $crud->setColumnsInfo([
             'auth_groups__name' => 'Group',

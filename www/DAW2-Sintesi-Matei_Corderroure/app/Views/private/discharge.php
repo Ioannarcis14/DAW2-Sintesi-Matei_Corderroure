@@ -117,12 +117,9 @@
                 } else {
                     if (data.status == 400) {
                         alert(data);
-                        console.log(data)
                         window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
                     } else {
                         alert(data);
-                        console.log(data);
-                        window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
                         window.sessionStorage.removeItem("tokenRefresh");
                         window.location = "<?php echo base_url(); ?>/logout";
                     }

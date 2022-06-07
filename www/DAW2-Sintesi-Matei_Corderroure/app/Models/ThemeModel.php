@@ -42,7 +42,37 @@ class ThemeModel extends Model
 
 
 
-    public function getAllThemes() {
-        return $this->findAll();
+     /**
+     * getByTitleOrText
+     * $search
+     */
+    public function themeSearch($search, $order, $act)
+    {
+        if ($order == "")
+            return $this->select('*')->orLike('name', $search, 'both', true);
+        else if ($act == "") {
+            return $this->select(['*'])->
+                orLike('name', $search, 'both', true)
+                ->orderBy($order, "DESC");
+        } else if ($act == "a") {
+            return $this->select(['*'])->
+            orLike('name', $search, 'both', true)
+                ->orLike('auth_groups.description', $search, 'both', true)->orderBy($order, "ASC");
+        }
+    }
+
+    /**
+     * getAllPaged
+     * $nElements
+     */
+    public function themeListPager($nElements, $order, $act)
+    {
+        if ($order == "")
+            return $this->select(['*'])->paginate($nElements);
+        else if ($act == "") {
+            return $this->select(['*'])->orderBy($order, "DESC")->paginate($nElements);
+        } else if ($act == "a") {
+            return $this->select(['*'])->orderBy($order, "ASC")->paginate($nElements);
+        }
     }
 }

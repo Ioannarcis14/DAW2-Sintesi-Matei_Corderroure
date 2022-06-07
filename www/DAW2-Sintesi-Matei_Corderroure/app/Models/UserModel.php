@@ -115,8 +115,7 @@ class UserModel extends Model
      */
     protected function addToGroup($data)
     {
-        if (is_numeric($this->assignGroup)) 
-        {
+        if (is_numeric($this->assignGroup)) {
             $groupModel = model(GroupModel::class);
             $groupModel->addUserToGroup($data['id'], $this->assignGroup);
         }
@@ -129,7 +128,8 @@ class UserModel extends Model
      * 
      * @return $this
      */
-    public function getAllUsers() {
+    public function getAllUsers()
+    {
         return $this->findAll();
     }
 
@@ -138,43 +138,120 @@ class UserModel extends Model
      * 
      * @return $this
      */
-    public function getUserByMailOrUsername ($email) {
-        return $this->orWhere('email',$email)->orWhere('username',$email)->first();
+    public function getUserByMailOrUsername($email)
+    {
+        return $this->orWhere('email', $email)->orWhere('username', $email)->first();
     }
-    
+
     /**
      * Deletes the user
      * 
      * @return $this
      */
-    public function deleteUser($login) {
-        return $this->orWhere('email',$login)->orWhere('username',$login)->first();
+    public function deleteUser($login)
+    {
+        return $this->orWhere('email', $login)->orWhere('username', $login)->first();
     }
 
-    public function updateUser($id, $data, $file) {
-        
-        if($file != null) {
-            $oldfile = $this->select(['img_profile'])->where('id',$id)->first();
-            if(empty($oldfile->img_profile)) {
+    public function updateUser($id, $data, $file)
+    {
+
+        if ($file != null) {
+            $oldfile = $this->select(['img_profile'])->where('id', $id)->first();
+            if (empty($oldfile->img_profile)) {
                 $data['img_profile'] = $file;
             } else {
-                unlink(WRITEPATH.DIRECTORY_SEPARATOR."uploads".DIRECTORY_SEPARATOR."user".DIRECTORY_SEPARATOR."img_profile".DIRECTORY_SEPARATOR.$oldfile->img_profile);
+                unlink(WRITEPATH . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . "user" . DIRECTORY_SEPARATOR . "img_profile" . DIRECTORY_SEPARATOR . $oldfile->img_profile);
                 $data['img_profile'] = $file;
             }
         }
-        
+
         $this->update($id, $data);
-        
+
         return $data;
     }
 
-    public function changePassword($newPassword, $id) {
-        
+    public function changePassword($newPassword, $id)
+    {
+
         $data = [
             'password_hash' => Password::hash($newPassword),
         ];
 
         $this->update($id, $data);
     }
+
+    /**
+     * getByTitleOrText
+     * $search
+     */
+    public function userSearch($search, $order, $act)
+    {
+        if ($order == "")
+            return $this->select(['id', 'username', 'name', 'surname'])->orLike('username', $search, 'both', true)->orLike('name', $search, 'both', true)->orLike('surname', $search, 'both', true);
+        else if ($act == "") {
+            return $this->select(['id', 'username', 'name', 'surname'])
+                ->orLike('username', $search, 'both', true)
+                ->orLike('name', $search, 'both', true)
+                ->orLike('surname', $search, 'both', true)
+                ->orderBy($order, "DESC");
+        } else if ($act == "a") {
+            return $this->select(['id', 'username', 'name', 'surname'])
+            ->orLike('username', $search, 'both', true)
+            ->orLike('name', $search, 'both', true)
+            ->orLike('surname', $search, 'both', true)->orderBy($order, "ASC");
+        }
+    }
+
+    /**
+     * getAllPaged
+     * $nElements
+     */
+    public function userListPager($nElements, $order, $act)
+    {
+        if ($order == "")
+            return $this->select(['id', 'username', 'name', 'surname'])->paginate($nElements);
+        else if ($act == "") {
+            return $this->select(['id', 'username', 'name', 'surname'])->orderBy($order, "DESC")->paginate($nElements);
+        } else if ($act == "a") {
+            return $this->select(['id', 'username', 'name', 'surname']  )->orderBy($order, "ASC")->paginate($nElements);
+        }
+    }
+
+    /**
+     * getByTitleOrText
+     * $search
+     */
+    public function roleSearch($search, $order, $act)
+    {
+        if ($order == "")
+            return $this->select(['auth_groups.id', 'auth_groups.name', 'auth_groups.description'])->from('auth_groups')->orLike('name', $search, 'both', true)->orLike('description', $search, 'both', true);
+        else if ($act == "") {
+            return $this->select(['auth_groups.id', 'auth_groups.name', 'auth_groups.description'])->from('auth_groups')
+                ->orLike('auth_groups.name', $search, 'both', true)
+                ->orLike('auth_groups.description', $search, 'both', true)->orderBy($order, "DESC");
+        } else if ($act == "a") {
+            return $this->select(['auth_groups.id', 'auth_groups.name', 'auth_groups.description'])->from('auth_groups')
+                ->orLike('auth_groups.name', $search, 'both', true)
+                ->orLike('auth_groups.description', $search, 'both', true)->orderBy($order, "ASC");
+        }
+    }
+
+    /**
+     * getAllPaged
+     * $nElements
+     */
+    public function roleListPager($nElements, $order, $act)
+    {
+        if ($order == "")
+            return $this->select('auth_groups.*')->join('auth_groups','users.id = auth_groups.id', 'right')->paginate($nElements);
+        else if ($act == "") {
+            return $this->select('*')->from('auth_groups')->orderBy($order, "DESC")->paginate($nElements);
+        } else if ($act == "a") {
+            return $this->select('*')->from('auth_groups')->orderBy($order, "ASC")->paginate($nElements);
+        }
+    }
+
+
 
 }

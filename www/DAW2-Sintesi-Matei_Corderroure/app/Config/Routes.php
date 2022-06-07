@@ -311,13 +311,18 @@ $routes->group("api", function ($routes) {
 
 
 $routes->group("admin", function ($routes) {
-        $routes->match(['get','post'], 'admin/users', 'AdminCrudController::manageUser', ['filter'=>'role:administrador']);
-        $routes->match(['get','post'], 'users', 'AdminCrudController::manageUser', ['filter'=>'role:administrador']);
-        $routes->match(['get','post'], 'assignRoles', 'AdminCrudController::assignRoles', ['filter'=>'role:administrador']);
-        $routes->match(['get','post'], 'roles', 'AdminCrudController::manageRole', ['filter'=>'role:administrador']);
-        $routes->match(['get','post'], 'messages', 'AdminCrudController::seeMessages', ['filter'=>'role:administrador']);
-        $routes->match(['get','post'], 'discharge', 'AdminCrudController::dischargeRestaurant', ['filter'=>'role:administrador']);
-        $routes->match(['get','post'], 'themes', 'AdminCrudController::manageThemes', ['filter'=>'role:administrador']);
+        // $routes->match(['get','post'], 'admin/users', 'AdminCrudController::manageUser', ['filter'=>'role:administrador']);
+        // $routes->match(['get','post'], 'users', 'AdminCrudController::manageUser', ['filter'=>'role:administrador']);
+        // $routes->match(['get','post'], 'assignRoles', 'AdminCrudController::assignRoles', ['filter'=>'role:administrador']);
+        // $routes->match(['get','post'], 'roles', 'AdminCrudController::manageRole', ['filter'=>'role:administrador']);
+        // $routes->match(['get','post'], 'themes', 'AdminCrudController::manageThemes', ['filter'=>'role:administrador']);
+        // $routes->match(['get','post'], 'messages', 'AdminCrudController::seeMessages', ['filter'=>'role:administrador']);
+        // $routes->match(['get','post'], 'discharge', 'AdminCrudController::dischargeRestaurant', ['filter'=>'role:administrador']);
+        $routes->get("users", 'AdminCrudController::listUsers', ['filter'=>'role:administrador']);
+        $routes->get("roles", 'AdminCrudController::listRoles', ['filter'=>'role:administrador']);
+        $routes->get('themes', 'AdminCrudController::listThemes', ['filter'=>'role:administrador']);
+        $routes->get('messages', 'AdminCrudController::listMessages', ['filter'=>'role:administrador']);
+        $routes->get('discharge', 'AdminCrudController::listRestaurants', ['filter'=>'role:administrador']);
 
 });
 
