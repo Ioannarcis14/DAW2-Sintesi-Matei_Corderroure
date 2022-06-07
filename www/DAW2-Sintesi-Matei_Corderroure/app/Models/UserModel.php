@@ -144,13 +144,23 @@ class UserModel extends Model
     }
 
     /**
+     * It returns the user that has that id
+     * 
+     * @return $this
+     */
+    public function getUserByID($id)
+    {
+        return $this->where('id', $id)->first();
+    }
+
+    /**
      * Deletes the user
      * 
      * @return $this
      */
-    public function deleteUser($login)
+    public function deleteUser($id)
     {
-        return $this->orWhere('email', $login)->orWhere('username', $login)->first();
+        return $this->delete($id);
     }
 
     public function updateUser($id, $data, $file)

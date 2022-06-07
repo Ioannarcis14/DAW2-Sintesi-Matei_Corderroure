@@ -103,6 +103,112 @@ class APIUserController extends ResourceController
         }
     }
 
+    /**
+     * Updates the information of an specific user
+     */
+    public function updateUserSpecific($id)
+    {
+        helper('form');
+        helper('html');
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+        $auth = service('authentication');
+        $auth->check();
+        $currentUser = $auth->user();
+
+        if (!empty($token_data) && $token_data->email == $currentUser->email && in_array("administrador", $currentUser->getRoles())) {
+            if (file_exists($this->request->getFile('userfile'))) {
+                $rules = [
+                    'username' => 'is_unique[users.username,id,{id}]',
+                    'email' => [
+                        'label'  => 'Email address',
+                        'rules'  => 'valid_email|is_unique[users.email,id,{id}]',
+                        'errors' => [
+                            'valid_email' => '{field} doesn\'t appear to be a valid email address',
+                            'is_unique' => 'This email address is already registered',
+                        ],
+                    ],
+                    'phone' => 'min_length[9]|max_length[9]',
+                    'userfile' => [
+                        'label' => 'Image File',
+                        'rules' => 'uploaded[userfile]'
+                            . '|is_image[userfile]'
+                            . '|mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
+                    ],
+                ];
+            } else {
+                $rules = [
+                    'username' => 'is_unique[users.username,id,{id}]',
+                    'email' => [
+                        'label'  => 'Email address',
+                        'rules'  => 'valid_email|is_unique[users.email,id,{id}]',
+                        'errors' => [
+                            'valid_email' => '{field} doesn\'t appear to be a valid email address',
+                            'is_unique' => 'This email address is already registered',
+                        ],
+                    ],
+                    'phone' => 'min_length[9]|max_length[9]',
+                ];
+            }
+
+            //Validation of the general fields of the form and the profile img
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 400,
+                    "error" => true,
+                    'messages' => 'Error with the general fields',
+                    'errors' => $this->validator->getErrors(),
+                ];
+                return $this->respond($response);
+            }
+
+
+            $file = $this->request->getFile('userfile');
+
+            if (file_exists($file)) {
+                if (!$file->hasMoved()) {
+                    $filepath = WRITEPATH . 'uploads/' . $file->store("user/img_profile/");
+                    $Filetest = new File($filepath);
+                } else {
+                    $response = [
+                        'status' => 400,
+                        "error" => true,
+                        'messages' => 'There\'s been an error with the file',
+                    ];
+                    return $this->respond($response);
+                }
+
+                $file = explode("user/img_profile/", $Filetest, 2);
+                $file = $file[1];
+            }
+
+            $users = new NoAuthUser();
+            $data = $users->updateUser($id, $this->request->getPost(), $file);
+
+            if (!$data) {
+                $response = [
+                    'status' => 500,
+                    "error" => true,
+                    'messages' => 'Error updating the user',
+                    'data' => []
+                ];
+            } else {
+                $response = [
+                    'status' => 200,
+                    "error" => false,
+                    'messages' => 'The user has been updated',
+                    'data' => []
+                ];
+            }
+        } else {
+            $response = [
+                'status' => 401,
+                "error" => true
+            ];
+        }
+        return $this->respond($response);
+    }
+
 
     /**
      * Updates the users data 

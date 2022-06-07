@@ -110,6 +110,9 @@ $routes->group("api", function ($routes) {
         $routes->options("update","API\APIUserController::updateUser");
         $routes->post("update", "API\APIUserController::updateUser", ['filter'=>'jwt']);
 
+        $routes->options("update/(:any)","API\APIUserController::updateUserSpecific/$1");
+        $routes->post("update/(:any)", "API\APIUserController::updateUserSpecific/$1", ['filter'=>'jwt']);
+
         $routes->options("delete","API\APIUserController::delete");
         $routes->post("delete","API\APIUserController::delete", ['filter'=>'jwt']);
 
@@ -315,17 +318,18 @@ $routes->group("admin", function ($routes) {
 
         $routes->group("users", function ($routes) {
             $routes->get("create", 'AdminCrudController::createUser', ['filter'=>'role:administrador']);
-            $routes->get('update', 'AdminCrudController::updateUser', ['filter'=>'role:administrador']);
-            $routes->get('delete', 'AdminCrudController::deleteUser', ['filter'=>'role:administrador']);
+            $routes->get('update/(:any)', 'AdminCrudController::updateUser/$1', ['filter'=>'role:administrador']);
+            $routes->get('delete/(:any)', 'AdminCrudController::deleteUser/$1', ['filter'=>'role:administrador']);
         });
 
         $routes->get("roles", 'AdminCrudController::listRoles', ['filter'=>'role:administrador']);
-        $routes->get("assignRole", 'AdminCrudController::assignRole', ['filter'=>'role:administrador']);
+        $routes->get("assign/(:any)", 'AdminCrudController::assignRole/$1', ['filter'=>'role:administrador']);
+        $routes->get("deassign/(:any)", 'AdminCrudController::deassignRole/$1', ['filter'=>'role:administrador']);
 
         $routes->group("roles", function ($routes) {
             $routes->get("create", 'AdminCrudController::createRole', ['filter'=>'role:administrador']);
-            $routes->get('update', 'AdminCrudController::updateRole', ['filter'=>'role:administrador']);
-            $routes->get('delete', 'AdminCrudController::deleteRole', ['filter'=>'role:administrador']);
+            $routes->get('update/(:any)', 'AdminCrudController::updateRole/$1', ['filter'=>'role:administrador']);
+            $routes->get('delete/(:any)', 'AdminCrudController::deleteRole/$1', ['filter'=>'role:administrador']);
         });
 
         $routes->get('themes', 'AdminCrudController::listThemes', ['filter'=>'role:administrador']);

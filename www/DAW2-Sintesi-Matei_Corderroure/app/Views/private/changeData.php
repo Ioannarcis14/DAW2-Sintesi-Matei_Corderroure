@@ -111,21 +111,6 @@
 
 
     <script>
-        function getCookie(cname) {
-            let name = cname + "=";
-            let ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
         formUpdate.onsubmit = async (e) => {
             e.preventDefault();
             formRegistration = new FormData(formUpdate);
@@ -151,7 +136,7 @@
             fetch("<?php echo base_url(); ?>/api/users/update", requestOptions)
                 .then(response => response.json())
                 .then((data) => {
-                    if (data.status == false) {
+                    if (data.status == 200) {
                         alert(data.messages);
                         window.sessionStorage.removeItem("tokenRefresh", data.refreshToken);
                         window.location = "<?php echo base_url(); ?>/logout";

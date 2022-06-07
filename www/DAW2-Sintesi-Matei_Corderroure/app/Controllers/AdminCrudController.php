@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Entities\User;
 use App\Models\MessagesModel;
 use App\Models\RestaurantModel;
 use App\Models\ThemeModel;
@@ -22,26 +23,27 @@ class AdminCrudController extends BaseController
      * URL: localhost:80/admin/users
      * 
      * * Mètode: GET
-    */
-    public function listUsers() {
+     */
+    public function listUsers()
+    {
 
         //Check the identity of the user
 
         helper('html');
         $auth = service('authentication');
 
-        if(!$auth->check()) {
+        if (!$auth->check()) {
             return redirect()->route('login');
         }
 
         $currentUser = $auth->user();
 
-        if(in_array("administrador", $currentUser->getRoles())) {
+        if (!in_array("administrador", $currentUser->getRoles())) {
             return redirect()->route('logout');
         }
 
         //Gets the data and paginates it
-        
+
         $searchData = $this->request->getGet();
 
         if (isset($searchData) && isset($searchData['q'])) {
@@ -56,9 +58,9 @@ class AdminCrudController extends BaseController
         $act = $searchData['active'] ?? '';
 
         if ($search == '') {
-            $paginateData = $userModel->userListPager(5,$order,($act = $act != "a" ? "a" : ""));
+            $paginateData = $userModel->userListPager(5, $order, ($act = $act != "a" ? "a" : ""));
         } else {
-            $paginateData = $userModel->userSearch($search,$order,($act = $act != "a" ? "a" : ""))->paginate(5);
+            $paginateData = $userModel->userSearch($search, $order, ($act = $act != "a" ? "a" : ""))->paginate(5);
         }
 
         $data = [
@@ -72,7 +74,7 @@ class AdminCrudController extends BaseController
             'act' => $act,
         ];
 
-        echo view('admin/manage_users',$data);
+        echo view('admin/manage_users', $data);
     }
 
     /**
@@ -83,21 +85,22 @@ class AdminCrudController extends BaseController
      * URL: localhost:80/admin/roles
      * 
      * * Mètode: GET
-    */
-    public function listRoles() {
+     */
+    public function listRoles()
+    {
 
         //Check the identity of the user
 
         helper('html');
         $auth = service('authentication');
 
-        if(!$auth->check()) {
+        if (!$auth->check()) {
             return redirect()->route('login');
         }
 
         $currentUser = $auth->user();
 
-        if(in_array("administrador", $currentUser->getRoles())) {
+        if (!in_array("administrador", $currentUser->getRoles())) {
             return redirect()->route('logout');
         }
 
@@ -117,9 +120,9 @@ class AdminCrudController extends BaseController
         $act = $searchData['active'] ?? '';
 
         if ($search == '') {
-            $paginateData = $userModel->roleListPager(5,$order,($act = $act != "a" ? "a" : ""));
+            $paginateData = $userModel->roleListPager(5, $order, ($act = $act != "a" ? "a" : ""));
         } else {
-            $paginateData = $userModel->roleSearch($search,$order,($act = $act != "a" ? "a" : ""))->paginate(6);
+            $paginateData = $userModel->roleSearch($search, $order, ($act = $act != "a" ? "a" : ""))->paginate(6);
         }
 
         $data = [
@@ -133,7 +136,7 @@ class AdminCrudController extends BaseController
             'act' => $act,
         ];
 
-        echo view('admin/manage_roles',$data);
+        echo view('admin/manage_roles', $data);
     }
 
 
@@ -145,21 +148,22 @@ class AdminCrudController extends BaseController
      * URL: localhost:80/admin/messages
      * 
      * * Mètode: GET
-    */
-    public function listMessages() {
+     */
+    public function listMessages()
+    {
 
         //Check the identity of the user
 
         helper('html');
         $auth = service('authentication');
 
-        if(!$auth->check()) {
+        if (!$auth->check()) {
             return redirect()->route('login');
         }
 
         $currentUser = $auth->user();
 
-        if(in_array("administrador", $currentUser->getRoles())) {
+        if (!in_array("administrador", $currentUser->getRoles())) {
             return redirect()->route('logout');
         }
 
@@ -179,9 +183,9 @@ class AdminCrudController extends BaseController
         $act = $searchData['active'] ?? '';
 
         if ($search == '') {
-            $paginateData = $messageModel->messageListPager(5,$order,($act = $act != "a" ? "a" : ""));
+            $paginateData = $messageModel->messageListPager(5, $order, ($act = $act != "a" ? "a" : ""));
         } else {
-            $paginateData = $messageModel->messageSearch($search,$order,($act = $act != "a" ? "a" : ""))->paginate(6);
+            $paginateData = $messageModel->messageSearch($search, $order, ($act = $act != "a" ? "a" : ""))->paginate(6);
         }
 
         $data = [
@@ -195,7 +199,7 @@ class AdminCrudController extends BaseController
             'act' => $act,
         ];
 
-        echo view('admin/see_messages',$data);
+        echo view('admin/see_messages', $data);
     }
 
     /**
@@ -206,21 +210,22 @@ class AdminCrudController extends BaseController
      * URL: localhost:80/admin/themes
      * 
      * * Mètode: GET
-    */
-    public function listThemes() {
+     */
+    public function listThemes()
+    {
 
         //Check the identity of the user
 
         helper('html');
         $auth = service('authentication');
 
-        if(!$auth->check()) {
+        if (!$auth->check()) {
             return redirect()->route('login');
         }
 
         $currentUser = $auth->user();
 
-        if(in_array("administrador", $currentUser->getRoles())) {
+        if (!in_array("administrador", $currentUser->getRoles())) {
             return redirect()->route('logout');
         }
 
@@ -240,9 +245,9 @@ class AdminCrudController extends BaseController
         $act = $searchData['active'] ?? '';
 
         if ($search == '') {
-            $paginateData = $themeModel->themeListPager(5,$order,($act = $act != "a" ? "a" : ""));
+            $paginateData = $themeModel->themeListPager(5, $order, ($act = $act != "a" ? "a" : ""));
         } else {
-            $paginateData = $themeModel->themeSearch($search,$order,($act = $act != "a" ? "a" : ""))->paginate(6);
+            $paginateData = $themeModel->themeSearch($search, $order, ($act = $act != "a" ? "a" : ""))->paginate(6);
         }
 
         $data = [
@@ -256,7 +261,7 @@ class AdminCrudController extends BaseController
             'act' => $act,
         ];
 
-        echo view('admin/manage_themes',$data);
+        echo view('admin/manage_themes', $data);
     }
 
 
@@ -268,21 +273,22 @@ class AdminCrudController extends BaseController
      * URL: localhost:80/admin/discharge
      * 
      * * Mètode: GET
-    */
-    public function listRestaurants() {
+     */
+    public function listRestaurants()
+    {
 
         //Check the identity of the user
 
         helper('html');
         $auth = service('authentication');
 
-        if(!$auth->check()) {
+        if (!$auth->check()) {
             return redirect()->route('login');
         }
 
         $currentUser = $auth->user();
 
-        if(in_array("administrador", $currentUser->getRoles())) {
+        if (!in_array("administrador", $currentUser->getRoles())) {
             return redirect()->route('logout');
         }
 
@@ -302,9 +308,9 @@ class AdminCrudController extends BaseController
         $act = $searchData['active'] ?? '';
 
         if ($search == '') {
-            $paginateData = $restaurantModel->restaurantListPager(5,$order,($act = $act != "a" ? "a" : ""));
+            $paginateData = $restaurantModel->restaurantListPager(5, $order, ($act = $act != "a" ? "a" : ""));
         } else {
-            $paginateData = $restaurantModel->restaurantSearch($search,$order,($act = $act != "a" ? "a" : ""))->paginate(5);
+            $paginateData = $restaurantModel->restaurantSearch($search, $order, ($act = $act != "a" ? "a" : ""))->paginate(5);
         }
 
         $data = [
@@ -318,235 +324,137 @@ class AdminCrudController extends BaseController
             'act' => $act,
         ];
 
-        echo view('admin/discharge_restaurants',$data);
+        echo view('admin/discharge_restaurants', $data);
     }
 
 
-    public function createUser() {
+    public function createUser()
+    {
+        //Check the identity of the user
 
+        helper('html');
+        $auth = service('authentication');
+
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
+
+        $currentUser = $auth->user();
+
+        if (!in_array("administrador", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
+        //Returns the view
+
+        return view('/admin/users/create_user');
     }
 
-    public function updateUser() {
+    public function updateUser($id)
+    {
+        //Check the identity of the user
+
+        helper('html');
+        $auth = service('authentication');
+
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
+
+        $currentUser = $auth->user();
+
+        if (!in_array("administrador", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
+        //Returns the view with the data of the user 
+        $userModel = new UserModel();
+
+        $user = $userModel->getUserByID($id);
+        $data['user'] = $user;
+
+        return view('/admin/users/update_user', $data);
+    }
+
+    public function deleteUser($id)
+    {
+        //Check the identity of the user
+
+        helper('html');
+        $auth = service('authentication');
+
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
+
+        $currentUser = $auth->user();
+
+        if (!in_array("administrador", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
+        //Returns the view with the data of the user 
+
+        $userModel = new UserModel();
+
+        $userModel->deleteUser($id);
+
+        return redirect()->route('admin/users');
+    }
+
+    public function assignRole($id)
+    {
+        //Check the identity of the user
+        helper('html');
+        $auth = service('authentication');
+
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
+
+        $currentUser = $auth->user();
+
+        if (!in_array("administrador", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
         
-    }
-
-    public function assignRole() {
 
     }
 
-    
+    public function deassignRole($id)
+    {        
+        //Check the identity of the user
+        helper('html');
+        $auth = service('authentication');
 
-    public function createRole() {
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
+
+        $currentUser = $auth->user();
+
+        if (!in_array("administrador", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
+        $userModel = new UserModel();
+
+
 
     }
 
-    public function updateRole() {
-        
-    }
-
-   
-
-    public function sendMessage() {
-
-    }
-
-
-
-    public function hashNewPassword($postData)
+    public function createRole()
     {
-        $postData['data_password_hash'] = Password::hash($postData['data_password_hash']);
-        $postData['active'] = 1;
-        return $postData; // if return null, edit process will be cancelled
     }
 
-    public function hashEditPassword($postData)
+    public function updateRole()
     {
-        if ($postData['data_password_hash'] != $postData['olddata_password_hash']) {
-            // field has a new value. You new to generate new password
-            $postData['data_password_hash'] = password_hash($postData['data_password_hash'], PASSWORD_DEFAULT);
-        } // else field not changed, you can update with the same value
-        return $postData;  // if return null, edit process will be cancelled
     }
 
-    public function seeMessages()
+
+
+    public function sendMessage()
     {
-        $crud = new KpaCrud('listView');
-
-        $crud->setTable('messages');
-        $crud->setPrimaryKey('id_user');
-        $crud->setPrimaryKey('receiver');
-
-        $crud->setColumns(['id_user', 'theme', 'message']);
-        $crud->addWhere('receiver='.null);
-
-        $crud->setColumnsInfo([
-            'auth_groups__name' => 'Group',
-            'users__username' => 'UserName',
-            'users__name' => 'Name',
-            'users__email' => 'eMail',
-        ]);
-
-        $crud->setConfig([
-            "recycled_button" => false,
-            "exportXLS" => false,
-            "print" => false,
-            "multidelete" => false,
-            "deletepermanent" => false,
-
-        ]);
-
-        $data['output'] = $crud->render();
-
-        return view('admin/see_messages', $data);
-    }
-
-    public function assignRoles()
-    {
-        $crud = new KpaCrud('listView');
-
-        $crud->setTable('auth_groups_users');
-        $crud->setPrimaryKey('group_id');
-        $crud->setPrimaryKey('user_id');
-
-        $crud->setRelation('group_id', 'auth_groups', 'id', 'name');
-        $crud->setRelation('user_id', 'users', 'id', 'username');
-        $crud->addWhere('users.deleted_at='.null);
-
-        $crud->setColumns(['auth_groups__name', 'users__username', 'users__name', 'users__email']);
-
-        $crud->setColumnsInfo([
-            'auth_groups__name' => 'Group',
-            'users__username' => 'UserName',
-            'users__name' => 'Name',
-            'users__email' => 'eMail',
-        ]);
-
-        $crud->setConfig([
-            "recycled_button" => false,
-            "exportXLS" => false,
-            "print" => false,
-            "multidelete" => false,
-            "deletepermanent" => false,
-            "add_button" => true,
-            "removable" => true
-        ]);
-
-        $data['output'] = $crud->render();
-
-        return view('admin/assign_roles', $data);
-    }
-
-    public function manageRole() 
-    {
-        $crud = new KpaCrud();
-        $crud->setTable('auth_groups');
-        $crud->setPrimaryKey('id');
-
-        $crud->setColumns(['id', 'name', 'description']);
-
-        $crud->setConfig([
-            "recycled_button" => false,
-            "exportXLS" => false,
-            "print" => false,
-            "multidelete" => false,
-            "deletepermanent" => false,
-        ]);
-
-        $data['output'] = $crud->render();
-
-        return view('admin/manage_roles', $data);
-    }
-
-    public function manageThemes() 
-    {
-        $crud = new KpaCrud();
-        $crud->setTable('theme');
-        $crud->setPrimaryKey('name');
-
-        $crud->setColumns(['name']);
-
-        $data['output'] = $crud->render();
-
-        return view('admin/manage_themes', $data);
-    }
-
-    public function dischargeRestaurant() 
-    {
-        $crud = new KpaCrud();
-        $crud->setTable('restaurant');
-        $crud->setPrimaryKey('id');
-
-        $crud->setColumns(['id', 'name', 'city']);
-
-        $crud->addWhere('discharged='.null);
-
-        $data['output'] = $crud->render();
-
-        return view('admin/discharge_restaurants', $data);
-    }
-
-    public function manageUser()
-    {
-        $crud = new KpaCrud();
-        $crud->setTable('users');
-        $crud->setPrimaryKey('id');
-
-        $crud->setConfig([
-            "recycled_button" => false,
-            "exportXLS" => false,
-            "print" => false,
-            "multidelete" => false,
-
-        ]);
-        $crud->setColumns(['id', 'email', 'username', 'phone']);
-        $crud->addWhere('deleted_at='.null);
-
-        $crud->addPostAddCallBack(array($this, 'hashNewPassword'));
-        $crud->addPostEditCallBack(array($this, 'hashEditPassword'));
-
-        $crud->setColumnsInfo([
-            'id' => ['name' => 'Code'],
-            'email' => [
-                'name' => 'Email',
-                'html_atts' => [
-                    'required',
-                    'placeholder="Introduce the email of the user"'
-                ],
-                'type' => KpaCrud::EMAIL_FIELD_TYPE
-            ],
-            'username' => [
-                'name' => 'Username',
-                'html_atts' => [
-                    "required",
-                    "placeholder=\"Introduce the username\""
-                ],
-            ],
-            'password_hash' => [
-                'type' => KpaCrud::PASSWORD_FIELD_TYPE,
-                'name' => 'Password',
-                'html_atts' => [
-                    "requiered",
-                ]
-            ],
-
-            'img_profile' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-                'activate_hash' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-                'reset_hash' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-                'reset_at' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-                'reset_expires' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-                'status' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-                'status_message' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-                'active' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-                'created_at' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-                'updated_at' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-            'deleted_at' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-            'force_pass_reset' => ['type' => KpaCrud::INVISIBLE_FIELD_TYPE],
-
-        ]);
-
-
-        $data['output'] = $crud->render();
-
-        return view('admin/manage_users', $data);
     }
 }

@@ -114,7 +114,7 @@
         fetch("<?php echo base_url(); ?>/api/users/discharge", requestOptions)
             .then(response => response.json())
             .then((data) => {
-                if (data.status == false) {
+                if (data.status == 200) {
                     alert(data);
                     console.log(data)
                     window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
