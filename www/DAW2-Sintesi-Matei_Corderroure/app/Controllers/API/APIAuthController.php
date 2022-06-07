@@ -207,14 +207,14 @@ class APIAuthController extends ResourceController
                 'status' => 500,
                 "error" => true,
                 'messages' => 'Error creating the user',
-                'data' => [$user]
+                'data' => []
             ];
         } else {
             $response = [
                 'status' => 200,
                 "error" => false,
                 'messages' => 'User has been saved',
-                'data' => [$user]
+                'data' => []
             ];
         }
         return $this->respond($response);
@@ -353,12 +353,12 @@ class APIAuthController extends ResourceController
                     'status' => 200,
                     "error" => false,
                     'messages' => 'The user is authenticated',
-                    'data' => [$user]
+                    'data' => []
                 ];
             }
         } else {
             $response = [
-                'status' => 400,
+                'status' => 401,
                 "error" => true,
                 'messages' => 'The user is not authenticated',
                 'data' => []

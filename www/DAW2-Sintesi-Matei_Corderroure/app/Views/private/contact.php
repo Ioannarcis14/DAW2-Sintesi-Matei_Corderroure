@@ -90,24 +90,23 @@
             if (data.error == false) {
                 alert(data.messages);
                 window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-              //  window.location = "<?php echo base_url(); ?>/home";
+                window.location = "<?php echo base_url(); ?>/home";
             } else {
                 if (data.status == 400) {
                     alert(data.messages);
                     window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-                   // window.location = "<?php echo base_url(); ?>/home";
+                    window.location = "<?php echo base_url(); ?>/home";
                 } else {
                     alert(data.messages);
                     window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-
-                  //  var token = window.sessionStorage.removeItem("tokenRefresh");
-                  // window.location = "<?php echo base_url(); ?>/logout";
+                    var token = window.sessionStorage.removeItem("tokenRefresh");
+                    window.location = "<?php echo base_url(); ?>/logout";
                 }
             }
         }).catch(error => {
             alert(error.messages);
-          //   var token = window.sessionStorage.removeItem("tokenRefresh");
-            // window.location = "<?php echo base_url(); ?>/logout";
+            var token = window.sessionStorage.removeItem("tokenRefresh");
+            window.location = "<?php echo base_url(); ?>/logout";
         });
 
 

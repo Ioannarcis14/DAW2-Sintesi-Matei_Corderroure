@@ -78,6 +78,46 @@ class MessagesModel extends Model
             return false;
         }
     }
+
+    /**
+     * getByTitleOrText
+     * $search
+     */
+    public function messageSearch($search, $order, $act)
+    {
+        if ($order == "")
+            return $this->select('*')->where('receiver', null)->orLike('id_user', $search, 'both', true)
+            ->orLike('theme', $search, 'both', true)
+            ->orLike('message', $search, 'both', true);
+        else if ($act == "") {
+            return $this->select('*')->where('receiver', null)->orLike('id_user', $search, 'both', true)
+            ->orLike('theme', $search, 'both', true)
+            ->orLike('message', $search, 'both', true)
+            ->orderBy($order, "DESC");
+        } else if ($act == "a") {
+            return $this->select('*')->where('receiver', null)->orLike('id_user', $search, 'both', true)
+            ->orLike('theme', $search, 'both', true)
+            ->orLike('message', $search, 'both', true)->orderBy($order, "ASC");
+        }
+    }
+
+    /**
+     * getAllPaged
+     * $nElements
+     */
+    public function messageListPager($nElements, $order, $act)
+    {
+        if ($order == "")
+            return $this->select('*')->where('receiver', null)->paginate($nElements);
+        else if ($act == "") {
+            return $this->select('*')->where('receiver', null)->orderBy($order, "DESC")->paginate($nElements);
+        } else if ($act == "a") {
+            return $this->select('*')->where('receiver', null)->orderBy($order, "ASC")->paginate($nElements);
+        }
+    }
+
+
+
 }
 
 

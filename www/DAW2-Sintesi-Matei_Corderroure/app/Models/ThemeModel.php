@@ -41,6 +41,9 @@ class ThemeModel extends Model
     protected $afterDelete    = [];
 
 
+    public function getAllThemes() {
+        return $this->findAll();
+    }
 
      /**
      * getByTitleOrText
@@ -51,13 +54,9 @@ class ThemeModel extends Model
         if ($order == "")
             return $this->select('*')->orLike('name', $search, 'both', true);
         else if ($act == "") {
-            return $this->select(['*'])->
-                orLike('name', $search, 'both', true)
-                ->orderBy($order, "DESC");
+            return $this->select('*')->orLike('name', $search, 'both', true)->orderBy($order, "DESC");
         } else if ($act == "a") {
-            return $this->select(['*'])->
-            orLike('name', $search, 'both', true)
-                ->orLike('auth_groups.description', $search, 'both', true)->orderBy($order, "ASC");
+            return $this->select('*')->orLike('name', $search, 'both', true)->orderBy($order, "ASC");
         }
     }
 
@@ -68,11 +67,11 @@ class ThemeModel extends Model
     public function themeListPager($nElements, $order, $act)
     {
         if ($order == "")
-            return $this->select(['*'])->paginate($nElements);
+            return $this->select('*')->paginate($nElements);
         else if ($act == "") {
-            return $this->select(['*'])->orderBy($order, "DESC")->paginate($nElements);
+            return $this->select('*')->orderBy($order, "DESC")->paginate($nElements);
         } else if ($act == "a") {
-            return $this->select(['*'])->orderBy($order, "ASC")->paginate($nElements);
+            return $this->select('*')->orderBy($order, "ASC")->paginate($nElements);
         }
     }
 }

@@ -160,4 +160,39 @@ class RestaurantModel extends Model
         $this->table('user_restaurant')->insert($data);
 
     }
+
+     /**
+     * getByTitleOrText
+     * $search
+     */
+    public function restaurantSearch($search, $order, $act)
+    {
+        if ($order == "")
+            return $this->select('*')->where('discharged', null)->orLike('id', $search, 'both', true)
+            ->orLike('name', $search, 'both', true)
+            ->orLike('city', $search, 'both', true)
+            ->orLike('street', $search, 'both', true)
+            ->orLike('postal_code', $search, 'both', true)
+            ;
+        else if ($act == "") {
+            return $this->select('*')->where('discharged', null)->orLike('name', $search, 'both', true)->orderBy($order, "DESC");
+        } else if ($act == "a") {
+            return $this->select('*')->where('discharged', null)->orLike('name', $search, 'both', true)->orderBy($order, "ASC");
+        }
+    }
+
+    /**
+     * getAllPaged
+     * $nElements
+     */
+    public function restaurantListPager($nElements, $order, $act)
+    {
+        if ($order == "")
+            return $this->select('*')->where('discharged', null)->paginate($nElements);
+        else if ($act == "") {
+            return $this->select('*')->where('discharged', null)->orderBy($order, "DESC")->paginate($nElements);
+        } else if ($act == "a") {
+            return $this->select('*')->where('discharged', null)->orderBy($order, "ASC")->paginate($nElements);
+        }
+    }
 }

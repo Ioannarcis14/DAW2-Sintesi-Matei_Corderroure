@@ -147,6 +147,8 @@ class AuthController extends Controller
 	 */
 	public function register()
 	{
+		helper('html');
+
         // check if already logged in.
 		if ($this->auth->check())
 		{
