@@ -110,7 +110,7 @@
                     document.getElementById("message").innerHTML = "Error: " + data.messages;
                 }
             }).catch(error => {
-                document.getElementById("message").innerHTML = "Error: There\'s been an error with the register process";
+                alert("Unexpected error");
             });
     }
 </script>

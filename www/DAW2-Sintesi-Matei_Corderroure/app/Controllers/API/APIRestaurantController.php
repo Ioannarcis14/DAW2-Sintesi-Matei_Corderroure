@@ -137,7 +137,7 @@ class APIRestaurantController extends ResourceController
             }
         } else {
             $response = [
-                'status' => 404,
+                'status' => 401,
                 "error" => true,
                 'messages' => 'This user isn\'t a responsable',
                 'data' => []

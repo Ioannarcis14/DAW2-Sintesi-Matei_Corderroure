@@ -63,7 +63,7 @@ class APIAuthController extends ResourceController
      */
     public function register()
     {
-        helper(['form']);
+        helper('form');
         helper('html');
 
         $file = $this->request->getFile('userfile');
@@ -219,168 +219,6 @@ class APIAuthController extends ResourceController
         }
         return $this->respond($response);
     }
-
-
-
-    public function registerPhone()
-    {
-        helper(['form']);
-        helper('html');
-
-        $file = $this->request->getFile('userfile');
-
-        if (file_exists($file)) {
-            $rules = [
-                'username' => 'required|is_unique[users.username,id,{id}]',
-                'email' => [
-                    'label'  => 'Email address',
-                    'rules'  => 'required|valid_email|is_unique[users.email,id,{id}]',
-                    'errors' => [
-                        'required' => '{field} is required',
-                        'valid_email' => '{field} doesn\'t appear to be a valid email address',
-                        'is_unique' => 'This email address is already registered',
-                    ],
-                ],
-                'name' => 'required',
-                'surname' => 'required',
-                'phone' => 'required|min_length[9]|max_length[9]',
-                'city' => 'required',
-                'street' => 'required',
-                'postal_code' => 'required',
-                'userfile' => [
-                    'label' => 'Image File',
-                    'rules' => 'uploaded[userfile]'
-                        . '|is_image[userfile]'
-                        . '|mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]'
-                ],
-            ];
-        } else {
-            $rules = [
-                'username' => 'required|is_unique[users.username,id,{id}]',
-                'email' => [
-                    'label'  => 'Email address',
-                    'rules'  => 'required|valid_email|is_unique[users.email,id,{id}]',
-                    'errors' => [
-                        'required' => '{field} is required',
-                        'valid_email' => '{field} doesn\'t appear to be a valid email address',
-                        'is_unique' => 'This email address is already registered',
-                    ],
-                ],
-                'name' => 'required',
-                'surname' => 'required',
-                'phone' => 'required|min_length[9]|max_length[9]',
-                'city' => 'required',
-                'street' => 'required',
-                'postal_code' => 'required',
-            ];
-        }
-
-        //Validation of the general fields of the form and the profile img
-        if (!$this->validate($rules)) {
-            $response = [
-                'status' => 404,
-                "error" => true,
-                'messages' => 'Error with the general fields',
-                'errors' => $this->validator->getErrors(),
-            ];
-            return $this->respond($response);
-        }
-
-        $users = model(UserModel::class);
-
-        $active = 1;
-        $email = $this->request->getPost('email');
-        $username = $this->request->getPost('username');
-        $name = $this->request->getPost('name');
-        $surname = $this->request->getPost('surname');
-        $phone = $this->request->getPost('phone');
-        $city = $this->request->getPost('city');
-        $street = $this->request->getPost('street');
-        $postal_code = $this->request->getPost('postal_code');
-        $password = $this->request->getPost('password');
-
-        //Validation of the password
-        $rules = [
-            'password'     => 'required|strong_password',
-            'pass_confirm' => 'required|matches[password]',
-        ];
-
-        if (!$this->validate($rules)) {
-            $response = [
-                'status' => 404,
-                "error" => true,
-                'messages' => 'Error with the password verification',
-                'errors' => $this->validator->getErrors()
-            ];
-            return $this->respond($response);
-        }
-
-
-        if (file_exists($file)) {
-            if (!$file->hasMoved()) {
-                $filepath = WRITEPATH . 'uploads/' . $file->store("user/img_profile/");
-                $Filetest = new File($filepath);
-            } else {
-                $response = [
-                    'status' => 404,
-                    "error" => true,
-                    'messages' => 'There\'s been an error with the file',
-                ];
-                return $this->respond($response);
-            }
-
-            $hello = explode("user/img_profile/", $Filetest, 2);
-
-            $camps = [
-                'active' => $active,
-                'email' => $email,
-                'username' => $username,
-                'name' => $name,
-                'surname' => $surname,
-                'img_profile' => $hello[1],
-                'phone' => $phone,
-                'city' => $city,
-                'street' => $street,
-                'postal_code' => $postal_code,
-                'password' => $password,
-            ];
-        } else {
-            $camps = [
-                'active' => $active,
-                'email' => $email,
-                'username' => $username,
-                'name' => $name,
-                'surname' => $surname,
-                'img_profile' => null,
-                'phone' => $phone,
-                'city' => $city,
-                'street' => $street,
-                'postal_code' => $postal_code,
-                'password' => $password,
-            ];
-        }
-
-        $user = new User($camps);
-        $users = $users->withGroup("usuari");
-
-        if (!$users->save($user)) {
-            $response = [
-                'status' => 500,
-                "error" => true,
-                'messages' => 'Error creating the user',
-                'data' => []
-            ];
-        } else {
-            $response = [
-                'status' => 200,
-                "error" => false,
-                'messages' => 'User has been saved',
-                'data' => []
-            ];
-        }
-        return $this->respond($response);
-    }
-
 
     /** 
      * Logs in the user
@@ -487,8 +325,20 @@ class APIAuthController extends ResourceController
     /** 
      * Checks if the user is currently logged in
      * 
-     * Checks if the token is still valid and the user currently exists
+     * Checks if the token is still valid and the user currently exists, then sends a refresh token
      * 
+     * URL: localhost:80/api/validate
+     * 
+     * * Method: POST
+     * 
+     * Parameters introduced by the User (sended by JSON or a form-data):
+     * 
+     * * $email: string
+     * 
+     * This is email of the user
+     * * $token_data: mixed
+     * 
+     * This is the JWT_Token that contains the information encrypted of the user and allows him to use functions of the API if this one has the permissions to do so
      * @return mixed It returns a refresh token if everything goes right, if there is any error in the procedure it will return that error
      */
     public function isUserAuthenticated()

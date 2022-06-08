@@ -39,4 +39,19 @@ class UserRestaurantModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    public function addUserRestaurant($id_user ,$id_restaurant) {
+        $data = [
+            'id_user' => $id_user,
+            'id_restaurant' => $id_restaurant
+        ];
+
+        $this->insert($data);
+    }
+
+     public function checkRestaurant($id_user, $id_restaurant) {
+         return $this->select('*')->orWhere('id_user', $id_user)->orWhere('id_restaurant', $id_restaurant);
+     }
+
 }

@@ -28,12 +28,6 @@ class OrderMigration extends Migration
                 'unsigned'       => true,
                 'null'           => false,
             ],
-            'id_cambrer'          => [
-                'type'           => 'INT',
-                'constraint'     => 11,
-                'unsigned'       => true,
-                'null'           => false,
-            ],
             'id_taula'          => [
                 'type'           => 'INT',
                 'constraint'     => 11,
@@ -55,7 +49,6 @@ class OrderMigration extends Migration
         $this->forge->addPrimaryKey('id', true);
         $this->forge->addForeignKey('id_restaurant', 'restaurant', 'id');
         $this->forge->addForeignKey('id_client', 'users', 'id');
-        $this->forge->addForeignKey('id_cambrer', 'users', 'id');
         $this->forge->addForeignKey('id_taula', 'table', 'id');
         $this->forge->createTable('order');
 
@@ -88,7 +81,7 @@ class OrderMigration extends Migration
             ],
             'observation'          => [
                 'type'           => 'TEXT',
-                'null'           => false,
+                'null'           => true,
             ],
             'startTime'          => [
                 'type'           => 'TIMESTAMP',

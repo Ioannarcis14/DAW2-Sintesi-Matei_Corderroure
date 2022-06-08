@@ -150,16 +150,6 @@ class RestaurantModel extends Model
 
     }
 
-    public function addUserRestaurant($id_usuari ,$id_restaurant) {
-
-        $data = [
-            'id_user' => $id_usuari,
-            'id_restaurant' => $id_restaurant
-        ];
-
-        $this->table('user_restaurant')->insert($data);
-
-    }
 
      /**
      * getByTitleOrText

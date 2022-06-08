@@ -131,7 +131,7 @@
 
                 }
             }).catch(error => {
-                alert("There's been an error with the update");
+                alert("Unexpected error");
                 window.sessionStorage.removeItem("tokenRefresh");
                 window.location = "<?php echo base_url(); ?>/logout";
             });

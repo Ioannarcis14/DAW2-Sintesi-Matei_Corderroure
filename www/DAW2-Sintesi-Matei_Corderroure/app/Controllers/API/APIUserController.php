@@ -4,11 +4,13 @@ namespace App\Controllers\API;
 
 use App\Models\MessagesModel;
 use App\Models\RestaurantModel;
+use App\Models\RoleModel;
 use CodeIgniter\RESTful\ResourceController;
 use Myth\Auth\Models\UserModel;
 use Myth\Auth\Entities\User;
 use CodeIgniter\Files\File;
 use App\Models\UserModel as NoAuthUser;
+use App\Models\UserRestaurantModel;
 use App\Models\ValorationsModel;
 use Myth\Auth\Config\Auth as AuthConfig;
 
@@ -20,6 +22,26 @@ class APIUserController extends ResourceController
 
     /**
      * Changes the password of the user
+     * 
+     * When the user changes the password using the function at the profile page, it will retrieve the token and the password and confirmation password
+     * 
+     * URL: localhost:80/api/users/changePass
+     * 
+     * * Mètode: POST
+     * 
+     * Parameters introduced by the User (sended by JSON or a form-data):
+     * 
+     * * $email
+     * 
+     * The email of the user introducing the new password
+     * * $newPass
+     * 
+     * The new password that the user wants to use
+     * 
+     * * $newPassConfirm
+     * 
+     * The repetition of the new password to ensure that the user remembers the password
+     * @return mixed It returns a message indicating if the password has been changed or an error has occurred
      */
     public function changePassword()
     {
@@ -378,64 +400,326 @@ class APIUserController extends ResourceController
     }
 
     /**
-     * Get all roles available
-     * 
-     */
-    public function getAllRoles()
-    {
-        $UserModel = new NoAuthUser();
-
-        $roles = $UserModel->getRoles();
-
-        if (!empty($roles)) {
-            $response = [
-                'status' => 200,
-                "error" => false,
-                'messages' => 'Users data founds',
-                'data' => $roles
-            ];
-        } else {
-            $response = [
-                'status' => 404,
-                "error" => true,
-                'messages' => 'No users found',
-                'data' => []
-            ];
-        }
-
-        return $this->respond($response);
-    }
-
-    /**
      * Create a Role
      * 
      */
     public function createRole()
     {
+        helper('form');
+        helper('html');
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+        $auth = service('authentication');
+        $auth->check();
+        $currentUser = $auth->user();
+
+        if (!empty($token_data) && $token_data->email == $currentUser->email && in_array("administrador", $currentUser->getRoles())) {
+
+            //Validation of the password
+            $rules = [
+                'roleName'     => 'required',
+                'roleDescription' => 'required',
+            ];
+
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 404,
+                    "error" => true,
+                    'messages' => "Error with the fields"
+                ];
+                return $this->respond($response);
+            }
+
+            $roleName = $this->request->getVar('roleName');
+            $roleDescription = $this->request->getVar('roleDescription');
+
+            $authorize = $auth = service('authorization');
+            $id = $authorize->createGroup($roleName, $roleDescription);
+            $group = $authorize->group($id);
+
+            if (empty($group)) {
+                $response = [
+                    'status' => 500,
+                    "error" => true,
+                    'messages' => "Failed to create the group"
+                ];
+            } else {
+                $response = [
+                    'status' => 200,
+                    "error" => false,
+                    'messages' => "Group created succefully"
+                ];
+            }
+        } else {
+            $response = [
+                'status' => 401,
+                "error" => true,
+                "messages" => "You don't have the permission to do this action",
+            ];
+        }
+        return $this->respond($response);
     }
 
     /**
      * Updates a role
      * 
      */
-    public function updateRole($id_role)
+    public function updateRole()
     {
+        helper('form');
+        helper('html');
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+        $auth = service('authentication');
+        $auth->check();
+        $currentUser = $auth->user();
+
+        if (!empty($token_data) && $token_data->email == $currentUser->email && in_array("administrador", $currentUser->getRoles())) {
+
+            $rules = [
+                'id_role'     => 'required',
+            ];
+
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 500,
+                    "error" => true,
+                    'messages' => "ID role not found"
+                ];
+                return $this->respond($response);
+            }
+
+            $id_role = $this->request->getVar('id_role');
+            $roleName = $this->request->getVar('roleName');
+            $roleDescription = $this->request->getVar('roleDescription');
+
+            $authorize = $auth = service('authorization');
+            $id = $authorize->updateGroup($id_role, $roleName, $roleDescription);
+            $group = $authorize->group($id);
+
+            if ($group->name != $roleName || $group->description != $roleDescription) {
+                $response = [
+                    'status' => 500,
+                    "error" => true,
+                    'messages' => "Failed to update the group"
+                ];
+            } else {
+                $response = [
+                    'status' => 200,
+                    "error" => false,
+                    'messages' => "Group updated succefully"
+                ];
+            }
+        } else {
+            $response = [
+                'status' => 401,
+                "error" => true,
+                "messages" => "You don't have the permission to do this action",
+            ];
+        }
+        return $this->respond($response);
     }
 
     /**
      * Delete the role
      * 
      */
-    public function deleteRole($id_role)
+    public function deleteRole()
     {
+        helper('form');
+        helper('html');
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+        $auth = service('authentication');
+        $auth->check();
+        $currentUser = $auth->user();
+
+        if (!empty($token_data) && $token_data->email == $currentUser->email && in_array("administrador", $currentUser->getRoles())) {
+
+            $rules = [
+                'id_role'     => 'required',
+            ];
+
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 500,
+                    "error" => true,
+                    'messages' => "ID role not found"
+                ];
+                return $this->respond($response);
+            }
+
+            $id_role = $this->request->getVar('id_role');
+
+            $authorize = $auth = service('authorization');
+            $id = $authorize->deleteGroup($id_role);
+            $group = $authorize->group($id);
+
+            if (!empty($group)) {
+                $response = [
+                    'status' => 500,
+                    "error" => true,
+                    'messages' => "Failed to delete the group"
+                ];
+            } else {
+                $response = [
+                    'status' => 200,
+                    "error" => false,
+                    'messages' => "Group deleted succefully"
+                ];
+            }
+        } else {
+            $response = [
+                'status' => 401,
+                "error" => true,
+                "messages" => "You don't have the permission to do this action",
+            ];
+        }
+        return $this->respond($response);
     }
 
     /**
      * Assigns a role to a user
      * 
      */
-    public function assignRole()
+    public function assignRoleUser()
     {
+        helper('form');
+        helper('html');
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+        $auth = service('authentication');
+        $auth->check();
+        $currentUser = $auth->user();
+
+        if (!empty($token_data) && $token_data->email == $currentUser->email && in_array("administrador", $currentUser->getRoles())) {
+
+            //Validation of the password
+            $rules = [
+                'id_role'     => 'required',
+                'id_user' => 'required',
+            ];
+
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 404,
+                    "error" => true,
+                    'messages' => "Error with the fields"
+                ];
+                return $this->respond($response);
+            }
+
+            $id_Role = $this->request->getVar('id_role');
+            $id_User = $this->request->getVar('id_user');
+
+            $roleModel = new RoleModel();
+
+            $check = $roleModel->checkRole($id_Role);
+
+            if (empty($check)) {
+                $response = [
+                    'status' => 404,
+                    "error" => true,
+                    'messages' => "This role doesn't exist"
+                ];
+            } else {
+                $authorize = $auth = service('authorization');
+                $authorize->addUserToGroup($id_User, $id_Role);
+
+                if (!$authorize->inGroup($id_Role, $id_User)) {
+                    $response = [
+                        'status' => 500,
+                        "error" => true,
+                        'messages' => "Failed to assign the group"
+                    ];
+                } else {
+                    $response = [
+                        'status' => 200,
+                        "error" => false,
+                        'messages' => "Succesfully assign to the group"
+                    ];
+                }
+            }
+        } else {
+            $response = [
+                'status' => 401,
+                "error" => true,
+                "messages" => "You don't have the permission to do this action",
+            ];
+        }
+        return $this->respond($response);
+    }
+
+    /**
+     * Deassigns a role that a user has
+     * 
+     */
+    public function removeRoleUser()
+    {
+        helper('form');
+        helper('html');
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+        $auth = service('authentication');
+        $auth->check();
+        $currentUser = $auth->user();
+
+        if (!empty($token_data) && $token_data->email == $currentUser->email && in_array("administrador", $currentUser->getRoles())) {
+
+            //Validation of the password
+            $rules = [
+                'id_role'     => 'required',
+                'id_user' => 'required',
+            ];
+
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 404,
+                    "error" => true,
+                    'messages' => "Error with the fields"
+                ];
+                return $this->respond($response);
+            }
+
+            $id_Role = $this->request->getVar('id_role');
+            $id_User = $this->request->getVar('id_user');
+
+            $roleModel = new RoleModel();
+
+            $check = $roleModel->checkRole($id_Role);
+
+            if (empty($check)) {
+                $response = [
+                    'status' => 404,
+                    "error" => true,
+                    'messages' => "This role doesn't exist"
+                ];
+            } else {
+                $authorize = $auth = service('authorization');
+                $authorize->removeUserFromGroup($id_User, $id_Role);
+
+                if ($authorize->inGroup($id_Role, $id_User)) {
+                    $response = [
+                        'status' => 500,
+                        "error" => true,
+                        'messages' => "Failed to remove from the group"
+                    ];
+                } else {
+                    $response = [
+                        'status' => 200,
+                        "error" => false,
+                        'messages' => "Succesfully removed from the group"
+                    ];
+                }
+            }
+        } else {
+            $response = [
+                'status' => 401,
+                "error" => true,
+                "messages" => "You don't have the permission to do this action",
+            ];
+        }
+        return $this->respond($response);
     }
 
     /**
@@ -521,7 +805,7 @@ class APIUserController extends ResourceController
                 }
 
                 //Make the valoration
-                $valModel->createValoration($id_restaurant, $token_data->uid, $this->request->getVar('rating'),$this->request->getVar('observation'));
+                $valModel->createValoration($id_restaurant, $token_data->uid, $this->request->getVar('rating'), $this->request->getVar('observation'));
 
                 if (!empty($valModel->checkValoration($id_restaurant, $token_data->uid))) {
                     $response = [
@@ -585,8 +869,8 @@ class APIUserController extends ResourceController
                 return $this->respond($response);
             }
 
-            $msgModel->createMessage($token_data->uid, $this->request->getVar('theme'),$this->request->getVar('commentary'));
-            
+            $msgModel->createMessage($token_data->uid, $this->request->getVar('theme'), $this->request->getVar('commentary'));
+
             if (!empty($msgModel->checkMessage($token_data->uid, 0, $this->request->getVar('theme')))) {
                 $response = [
                     'status' => 200,
@@ -600,7 +884,6 @@ class APIUserController extends ResourceController
                     'messages' => 'An error while sending the messsage',
                 ];
             }
-
         } else {
             $response = [
                 'status' => 401,
@@ -626,17 +909,17 @@ class APIUserController extends ResourceController
         if (!empty($token_data) && $token_data->email == $currentUser->email && !in_array("responsable", $currentUser->getRoles())) {
 
             //Check data
-                $rules = [
-                    'nameRestaurant' => 'required',
-                    'cityRestaurant' => 'required',
-                    'streetRestaurant' => 'required',
-                    'phoneRestaurant' => 'required|min_length[9]|max_length[9]',
-                    'postal_codeRestaurant' => 'required',
-                    'twitterRestaurant' => 'valid_url_strict[https]',
-                    'facebookRestaurant' => 'valid_url_strict[https]',
-                    'instagramRestaurant' => 'valid_url_strict[https]',
-                ];
-            
+            $rules = [
+                'nameRestaurant' => 'required',
+                'cityRestaurant' => 'required',
+                'streetRestaurant' => 'required',
+                'phoneRestaurant' => 'required|min_length[9]|max_length[9]',
+                'postal_codeRestaurant' => 'required',
+                'twitterRestaurant' => 'valid_url_strict[https]',
+                'facebookRestaurant' => 'valid_url_strict[https]',
+                'instagramRestaurant' => 'valid_url_strict[https]',
+            ];
+
             //Validation of the general fields of the form and the profile img
             if (!$this->validate($rules)) {
                 $response = [
@@ -649,24 +932,36 @@ class APIUserController extends ResourceController
             }
 
             $restModel = new RestaurantModel();
+            $restUserModel = new UserRestaurantModel();
 
-            $restModel->createRestaurant($this->request->getPost('nameRestaurant'), $this->request->getPost('cityRestaurant'), 
-            $this->request->getPost('streetRestaurant'), $this->request->getPost('postal_codeRestaurant'), $this->request->getPost('phoneRestaurant'), 
-            $this->request->getPost('twitterRestaurant'), $this->request->getPost('instagramRestaurant'), $this->request->getPost('facebookRestaurant'));
+            $restModel->createRestaurant(
+                $this->request->getPost('nameRestaurant'),
+                $this->request->getPost('cityRestaurant'),
+                $this->request->getPost('streetRestaurant'),
+                $this->request->getPost('postal_codeRestaurant'),
+                $this->request->getPost('phoneRestaurant'),
+                $this->request->getPost('twitterRestaurant'),
+                $this->request->getPost('instagramRestaurant'),
+                $this->request->getPost('facebookRestaurant')
+            );
 
 
-            $check = $restModel->checkRestaurant($this->request->getPost('nameRestaurant'), $this->request->getPost('cityRestaurant'), 
-            $this->request->getPost('streetRestaurant'), $this->request->getPost('postal_codeRestaurant'), $this->request->getPost('phoneRestaurant'));
+            $check = $restModel->checkRestaurant(
+                $this->request->getPost('nameRestaurant'),
+                $this->request->getPost('cityRestaurant'),
+                $this->request->getPost('streetRestaurant'),
+                $this->request->getPost('postal_codeRestaurant'),
+                $this->request->getPost('phoneRestaurant')
+            );
 
-            if(!empty($check)) {
+            if (!empty($check)) {
                 $files = $this->request->getFiles();
                 $fileNames = "";
-                if(!empty($files)) {
-                    foreach($files['userfile'] as $img) {
-                        if($img->isValid() && !$img->hasMoved()) {
-                            $filepath = WRITEPATH . 'uploads/' . $img->store("restaurant/".$check['id']."/");
+                if (!empty($files)) {
+                    foreach ($files['userfile'] as $img) {
+                        if ($img->isValid() && !$img->hasMoved()) {
+                            $filepath = WRITEPATH . 'uploads/' . $img->store("restaurant/" . $check['id'] . "/");
                             $Filetest = new File($filepath);
-    
                         } else {
                             $response = [
                                 'status' => 400,
@@ -675,26 +970,42 @@ class APIUserController extends ResourceController
                             ];
                             return $this->respond($response);
                         }
-                        $file = explode("restaurant/".$check['id']."/", $Filetest, 2);
-                        $fileNames .= ",".$file[1];
+                        $file = explode("restaurant/" . $check['id'] . "/", $Filetest, 2);
+                        $fileNames .= "," . $file[1];
                     }
-        
-                    $restModel->insertGallery($this->request->getPost('nameRestaurant'), $this->request->getPost('cityRestaurant'), 
-                    $this->request->getPost('streetRestaurant'), $this->request->getPost('postal_codeRestaurant'), $this->request->getPost('phoneRestaurant'), $fileNames);
+
+                    $restModel->insertGallery(
+                        $this->request->getPost('nameRestaurant'),
+                        $this->request->getPost('cityRestaurant'),
+                        $this->request->getPost('streetRestaurant'),
+                        $this->request->getPost('postal_codeRestaurant'),
+                        $this->request->getPost('phoneRestaurant'),
+                        $fileNames
+                    );
                 }
 
                 $authorize = $auth = service('authorization');
 
                 $authorize->addUserToGroup($token_data->uid, "responsable");
-                $restModel->addUserRestaurant($token_data->uid, $check['id']);
+                $restUserModel->addUserRestaurant($token_data->uid, $check['id']);
+                
+                $check = $restUserModel->checkUserRestaurant($token_data->uid, $check['id']);
 
-                $response = [
-                    'status' => 200,
-                    "error" => false,
-                    'messages' => "Succesfully discharged",
-                    'data' => [$fileNames]
-                ];
-
+                if(!empty($check)) {
+                    $response = [
+                        'status' => 200,
+                        "error" => false,
+                        'messages' => "Succesfully discharged",
+                        'data' => []
+                    ];
+                } else {
+                    $response = [
+                        'status' => 500,
+                        "error" => true,
+                        'messages' => "There\'s been an error adding the restaurant",
+                        'data' => []
+                    ];
+                }
             } else {
                 $response = [
                     'status' => 500,

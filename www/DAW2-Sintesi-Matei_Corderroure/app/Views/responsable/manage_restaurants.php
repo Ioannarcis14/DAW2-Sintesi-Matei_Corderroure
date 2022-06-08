@@ -11,7 +11,7 @@
 <body>
     <h1>Restaurants Administration</h1>
     <div class="container-lg">
-        <?= $output ?>
+        Hola resonsable
     </div>
 </body>
 

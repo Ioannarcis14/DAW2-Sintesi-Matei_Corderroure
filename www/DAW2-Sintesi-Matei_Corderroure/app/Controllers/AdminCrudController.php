@@ -6,14 +6,13 @@ use App\Controllers\BaseController;
 use App\Entities\User;
 use App\Models\MessagesModel;
 use App\Models\RestaurantModel;
+use App\Models\RoleModel;
 use App\Models\ThemeModel;
 use App\Models\UserModel;
 use Myth\Auth\Password;
-use SIENSIS\KpaCrud\Libraries\KpaCrud;
 
 class AdminCrudController extends BaseController
 {
-
 
     /**
      * Gets and display the users
@@ -139,7 +138,6 @@ class AdminCrudController extends BaseController
         echo view('admin/manage_roles', $data);
     }
 
-
     /**
      * Gets and display the messages
      * 
@@ -264,7 +262,6 @@ class AdminCrudController extends BaseController
         echo view('admin/manage_themes', $data);
     }
 
-
     /**
      * Gets and display the restaurants
      * 
@@ -315,7 +312,7 @@ class AdminCrudController extends BaseController
 
         $data = [
             'page_title' => 'CI4 Pager & search filter',
-            'title' => 'Manage users',
+            'title' => 'Manage restaurants',
             'restaurants' => $paginateData,
             'pager' => $restaurantModel->pager,
             'search' => $search,
@@ -327,7 +324,9 @@ class AdminCrudController extends BaseController
         echo view('admin/discharge_restaurants', $data);
     }
 
-
+    /**
+     * 
+     */
     public function createUser()
     {
         //Check the identity of the user
@@ -350,6 +349,10 @@ class AdminCrudController extends BaseController
         return view('/admin/users/create_user');
     }
 
+
+    /**
+     * 
+     */
     public function updateUser($id)
     {
         //Check the identity of the user
@@ -376,6 +379,9 @@ class AdminCrudController extends BaseController
         return view('/admin/users/update_user', $data);
     }
 
+    /**
+     * 
+     */
     public function deleteUser($id)
     {
         //Check the identity of the user
@@ -402,6 +408,9 @@ class AdminCrudController extends BaseController
         return redirect()->route('admin/users');
     }
 
+    /**
+     * Assigns a role to the user
+     */
     public function assignRole($id)
     {
         //Check the identity of the user
@@ -418,11 +427,19 @@ class AdminCrudController extends BaseController
             return redirect()->route('logout');
         }
 
-        
+        $userModel = new UserModel();
+        $user = $userModel->getUserByID($id);
 
+        $data['roles'] = $userModel->getMissingRoles($id);
+        $data['user'] = $user;
+
+        return view('/admin/users/assign_roles', $data);
     }
 
-    public function deassignRole($id)
+    /**
+     * 
+     */
+    public function removeRole($id)
     {        
         //Check the identity of the user
         helper('html');
@@ -439,22 +456,182 @@ class AdminCrudController extends BaseController
         }
 
         $userModel = new UserModel();
+        $user = $userModel->getUserByID($id);
 
+        $data['roles'] = $userModel->getRoles($id);
+        $data['user'] = $user;
 
+        return view('/admin/users/remove_roles', $data);
 
     }
 
+    /**
+     * 
+     */
     public function createRole()
     {
+        //Check the identity of the user
+
+        helper('html');
+        $auth = service('authentication');
+
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
+
+        $currentUser = $auth->user();
+
+        if (!in_array("administrador", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
+        return view('/admin/roles/create_role');
     }
 
-    public function updateRole()
+    /**
+     * 
+     */
+    public function updateRole($id)
     {
+        //Check the identity of the user
+
+        helper('html');
+        $auth = service('authentication');
+
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
+
+        $currentUser = $auth->user();
+
+        if (!in_array("administrador", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
+        $roleModel = new roleModel();
+
+        $role = $roleModel->getRoleByID($id);
+        $data['role'] = $role;
+
+        return view('/admin/roles/update_role', $data);
     }
 
+    /**
+     * 
+     */
+    public function deleteRole($id)
+    {
+        //Check the identity of the user
+        helper('html');
+        $auth = service('authentication');
 
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
 
+        $currentUser = $auth->user();
+
+        if (!in_array("administrador", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
+        $roleModel = new RoleModel();
+        $roleModel->deleteRole($id);
+
+        return redirect()->route('admin/roles');
+
+    }
+
+    /**
+     * 
+     */
+    public function createTheme()
+    {
+        //Check the identity of the user
+
+        helper('html');
+        $auth = service('authentication');
+
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
+
+        $currentUser = $auth->user();
+
+        if (!in_array("administrador", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
+        return view('/admin/roles/create_role');
+    }
+
+    /**
+     * 
+     */
+    public function updateTheme($name)
+    {
+        //Check the identity of the user
+
+        helper('html');
+        $auth = service('authentication');
+
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
+
+        $currentUser = $auth->user();
+
+        if (!in_array("administrador", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
+        $roleModel = new roleModel();
+
+        $role = $roleModel->getRoleByID($name);
+        $data['role'] = $role;
+
+        return view('/admin/roles/update_role', $data);
+    }
+
+    /**
+     * 
+     */
+    public function deleteTheme($name)
+    {
+        //Check the identity of the user
+        helper('html');
+        $auth = service('authentication');
+
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
+
+        $currentUser = $auth->user();
+
+        if (!in_array("administrador", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
+        $roleModel = new RoleModel();
+        $roleModel->deleteRole($name);
+
+        return redirect()->route('admin/roles');
+
+    }
+    
+
+    /**
+     * 
+     */
     public function sendMessage()
     {
     }
+
+    /**
+     * 
+     */
+    public function dischargeRestaurants($id) {
+
+    }
+
 }

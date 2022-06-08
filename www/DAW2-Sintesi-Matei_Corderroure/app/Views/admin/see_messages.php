@@ -35,8 +35,8 @@
                 <th><a href="<?=base_url('admin/messages')?>?order=id_user&q=<?=$search?>&page=<?=$activepage?>&active=<?=$act?>">Sender</a></th>
                 <th><a href="<?=base_url('admin/messages')?>?order=theme&q=<?=$search?>&page=<?=$activepage?>&active=<?=$act?>">Theme</a></th>
                 <th><a href="<?=base_url('admin/messages')?>?order=message&q=<?=$search?>&page=<?=$activepage?>&active=<?=$act?>">Message</a></th>
-
                 <th>Functions</th>
+                <th><a class='btn btn-primary' role='button' href="<?php echo base_url("admin/messages/send")?>">Send a messages</a></th>
             </tr>
         </thead>
         <tbody>

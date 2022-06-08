@@ -104,7 +104,7 @@
                 }
             }
         }).catch(error => {
-            alert(error.messages);
+            alert("Unexpected error");
             var token = window.sessionStorage.removeItem("tokenRefresh");
             window.location = "<?php echo base_url(); ?>/logout";
         });

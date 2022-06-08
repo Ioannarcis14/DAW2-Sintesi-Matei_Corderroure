@@ -16,9 +16,6 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('/admin/roles'); ?>">Assign Roles</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('/admin/users'); ?>">Manage Users</a>
             </li>
             <li class="nav-item">

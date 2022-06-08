@@ -55,26 +55,6 @@ $routes->group("api", function ($routes) {
     $routes->options("validate", "API\APIAuthController::isUserAuthenticated");
     $routes->post("validate", "API\APIAuthController::isUserAuthenticated", ['filter'=>'jwt']);
 
-    //////////////////////////////////////////////
-    ///////// ROUTES TESTING API ROUTES //////////
-    //////////////////////////////////////////////
-    
-    $routes->options("testAuth","API\APIAdministracioController::testAuth");
-    $routes->get("testAuth","API\APIAdministracioController::testAuth");
-
-    $routes->options("testUser","API\APIAdministracioController::testUser");
-    $routes->get("testUser","API\APIAdministracioController::testUser");
-
-    $routes->options("testAdmin","API\APIAdministracioController::testAdmin");
-    $routes->get("testAdmin","API\APIAdministracioController::testAdmin");
-
-    $routes->options("testResponsable","API\APIAdministracioController::testResponsable");
-    $routes->get("testResponsable","API\APIAdministracioController::testResponsable");
-
-    $routes->options("testStaff","API\APIAdministracioController::testStaff");
-    $routes->get("testStaff","API\APIAdministracioController::testStaff");
-
-
     //////////////////////////////////////////////////////
     /////// ROUTES RELATED WITH USERS AND ROLES //////////
     //////////////////////////////////////////////////////
@@ -112,10 +92,10 @@ $routes->group("api", function ($routes) {
 
         $routes->options("update/(:any)","API\APIUserController::updateUserSpecific/$1");
         $routes->post("update/(:any)", "API\APIUserController::updateUserSpecific/$1", ['filter'=>'jwt']);
-
+/* 
         $routes->options("delete","API\APIUserController::delete");
         $routes->post("delete","API\APIUserController::delete", ['filter'=>'jwt']);
-
+  */
         //ROLE ROUTES
 
         $routes->options("getAllRoles", "API\APIUserController::getAllRoles");
@@ -130,8 +110,11 @@ $routes->group("api", function ($routes) {
         $routes->options("deleteRole/(:any)","API\APIUserController::deleteRole/$1");
         $routes->post("deleteRole/(:any)","API\APIUserController::deleteRole/$1", ['filter'=>'jwt']);
 
-        $routes->options("assignRole","API\APIUserController::assignRole");
-        $routes->post("assignRole","API\APIUserController::assignRole", ['filter'=>'jwt']);
+        $routes->options("assignRole","API\APIUserController::assignRoleUser");
+        $routes->post("assignRole","API\APIUserController::assignRoleUser", ['filter'=>'jwt']);
+
+        $routes->options("removeRole","API\APIUserController::removeRoleUser");
+        $routes->post("removeRole","API\APIUserController::removeRoleUser", ['filter'=>'jwt']);
 
         $routes->options("getImageUser", "API\APIUserController::returnUserImage");
         $routes->post("getImageUser", "API\APIUserController::returnUserImage");
@@ -296,8 +279,8 @@ $routes->group("api", function ($routes) {
     $routes->group("taula", function ($routes) {
         $routes->get("getAll", "API\APITaulaController::getAllTaules");
 
-        $routes->options("create","API\APITaulaController::createTaula");
-        $routes->post("create","API\APITaulaController::createTaula", ['filter'=>'jwt']);
+        $routes->options("create","API\APITaulaController::createTable");
+        $routes->post("create","API\APITaulaController::createTable", ['filter'=>'jwt']);
 
         $routes->options("update/(:any)","API\APITaulaController::updateTaula/$1");
         $routes->post("update/(:any)","API\APITaulaController::updateTaula/$1", ['filter'=>'jwt']);
@@ -320,11 +303,11 @@ $routes->group("admin", function ($routes) {
             $routes->get("create", 'AdminCrudController::createUser', ['filter'=>'role:administrador']);
             $routes->get('update/(:any)', 'AdminCrudController::updateUser/$1', ['filter'=>'role:administrador']);
             $routes->get('delete/(:any)', 'AdminCrudController::deleteUser/$1', ['filter'=>'role:administrador']);
+            $routes->get("assign/(:any)", 'AdminCrudController::assignRole/$1', ['filter'=>'role:administrador']);
+            $routes->get("remove/(:any)", 'AdminCrudController::removeRole/$1', ['filter'=>'role:administrador']);
         });
 
         $routes->get("roles", 'AdminCrudController::listRoles', ['filter'=>'role:administrador']);
-        $routes->get("assign/(:any)", 'AdminCrudController::assignRole/$1', ['filter'=>'role:administrador']);
-        $routes->get("deassign/(:any)", 'AdminCrudController::deassignRole/$1', ['filter'=>'role:administrador']);
 
         $routes->group("roles", function ($routes) {
             $routes->get("create", 'AdminCrudController::createRole', ['filter'=>'role:administrador']);
@@ -344,12 +327,14 @@ $routes->group("admin", function ($routes) {
         $routes->get('messages/send', 'AdminCrudController::sendMessage', ['filter'=>'role:administrador']);
 
         $routes->get('discharge', 'AdminCrudController::listRestaurants', ['filter'=>'role:administrador']);
+        $routes->get('discharge/(:any)', 'AdminCrudController::dischargeRestaurants/$1', ['filter'=>'role:administrador']);
+
 });
 
 //RESPONSABLE ROUTES
 
 $routes->group("responsable", function ($routes) {
-    $routes->match(['get','post'], 'restaurants', 'ResponsableCrudController::view', ['filter'=>'role:responsable']);
+    $routes->get('restaurants', 'ResponsableCrudController::view', ['filter'=>'role:responsable']);
 
 });
 

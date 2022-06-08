@@ -11,6 +11,7 @@ class TaulaMigration extends Migration
             $this->forge->addField([
                     'id'          => [
                             'type'           => 'INT',
+                            'auto_increment' => true,
                             'constraint'     => 11,
                             'unsigned'       => true,
                             'null'           => false,

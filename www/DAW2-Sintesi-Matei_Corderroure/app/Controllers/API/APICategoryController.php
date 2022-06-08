@@ -7,10 +7,13 @@ use CodeIgniter\RESTful\ResourceController;
 
 class APICategoryController extends ResourceController
 {
-    public function index()
-    {
-       //
-    }
+    
+    /**
+     * Get the categories of an specific dish 
+     * 
+     * 
+     * getAll/(:any)
+     */
 
     public function getAllCategories($slug) {
         $catModel = new CategoryModel();

@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class TableModel extends Model
+class RoleModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'table';
+    protected $table            = 'auth_groups';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id', 'id_restaurant', 'toTakeAway'];
+    protected $allowedFields    = ['id', 'name'. 'description'];
 
     // Dates
     protected $useTimestamps = false;
@@ -40,15 +40,15 @@ class TableModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function deleteRole($id) {
+        $this->delete($id);
+    }
 
-    public function createTable($id_restaurant, $toTakeAway) {
-        $data = [
-            'id_restaurant' => $id_restaurant,
-            'toTakeAway' => $toTakeAway,
-        ];
+    public function getRoleByID($id) {
+        return $this->select('*')->where('id', $id)->first();
+    }
 
-        $this->insert($data);
-
-        return $this->has_Error();
+    public function checkRole($id) {
+        return $this->select('*')->where('id', $id)->first();
     }
 }

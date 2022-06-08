@@ -32,7 +32,7 @@
                             echo "<li><a class='color_animation' href='/admin/users'>".lang('ADMIN CRUD'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
                         }
                         if (in_array("responsable",  $groups)) {
-                            echo "<li><a class='color_animation' href='/admin/users'>".lang('RESPONSABLE CRUD'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
+                            echo "<li><a class='color_animation' href='/responsable/restaurants'>".lang('RESPONSABLE CRUD'). "<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
                         }
                         if (!in_array("responsable",  $groups) && !in_array("administrador",  $groups)) {
                             echo "<li><a class='color_animation' href='/discharge'>".lang('DISCHARGE')."<span class='sr-only'>". (lang('Auth.current')) ."</span></a></li>";
