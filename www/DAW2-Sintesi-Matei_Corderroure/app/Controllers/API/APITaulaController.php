@@ -65,13 +65,13 @@ class APITaulaController extends ResourceController
                         'status' => 200,
                         "error" => false,
                         'messages' => 'Table created successfully saved',
-                        'data' => []
+                        'data' => [$check]
                     ];
                 } else {
                     $response = [
-                        'status' => 500,
-                        "error" => true,
-                        'messages' => 'Error creating the table',
+                        'status' => 200,
+                        "error" => false,
+                        'messages' => 'No tables available',
                         'data' => []
                     ];
                 }

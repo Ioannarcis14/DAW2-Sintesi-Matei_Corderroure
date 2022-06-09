@@ -54,6 +54,7 @@ class JWTFilter implements FilterInterface
         if (is_null($token) || empty($token)) {
             $response = service('response');
             $response->setBody('Access denied. Token required');
+            log_message("error",'Access denied. Token required');
             $response->setStatusCode(401);
             return $response;
         } {
@@ -69,6 +70,7 @@ class JWTFilter implements FilterInterface
             ) {
                 $response = service('response');
                 $response->setBody('Access denied. Wrong token params');
+                log_message("error",'Access denied. Wrong token params');
                 $response->setStatusCode(401);
                 return $response;
             }
@@ -77,6 +79,7 @@ class JWTFilter implements FilterInterface
             if ($model->revoked($token_data)) {
                 $response = service('response');
                 $response->setBody('Access denied. Token revoked');
+                log_message("error",'Access denied. Token revoked');
                 $response->setStatusCode(401);
                 return $response;
             }
@@ -92,6 +95,7 @@ class JWTFilter implements FilterInterface
         } catch (\Exception $ex) {
             $response = service('response');
             $response->setBody('Access denied. ' . $ex->getMessage());
+            log_message("error",'Access denied. ' . $ex->getMessage());
             $response->setStatusCode(401);
             return $response;
         } finally {

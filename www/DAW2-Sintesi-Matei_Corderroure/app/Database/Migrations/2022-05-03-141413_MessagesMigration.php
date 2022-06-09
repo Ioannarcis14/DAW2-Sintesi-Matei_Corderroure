@@ -30,11 +30,6 @@ class MessagesMigration extends Migration
                 'type'           => 'TEXT',
                 'null'           => false,
             ],
-            'state'          => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '255',
-                'null'           => false,
-            ],
         ]);
         $this->forge->addForeignKey('id_user', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('messages');

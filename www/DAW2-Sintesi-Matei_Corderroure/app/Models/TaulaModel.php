@@ -53,10 +53,7 @@ class TaulaModel extends Model
     }
 
     public function getAvailableTables($id_restaurant) {
-       return $this->select('*')->
-        orWhere('taula.id_restaurant', $id_restaurant)
-        ->orWhere('taula.toTakeAway !=', null)
-        ->orWhere('order.state', "finished")->findAll();
+       return $this->select('*')->where('id_restaurant', $id_restaurant)->where('state', null)->findAll();
         
     }
 }

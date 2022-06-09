@@ -776,13 +776,11 @@ class APIUserController extends ResourceController
         helper('html');
 
         $token_data = json_decode($this->request->header("token-data")->getValue());
-        $auth = service('authentication');
-        $auth->check();
-        $currentUser = $auth->user();
         $restaurantCheck = new RestaurantModel();
         $valModel = new ValorationsModel();
+        $userModel = new NoAuthUser();
 
-        if (!empty($token_data) && $token_data->email == $currentUser->email) {
+        if (!empty($token_data) && !empty($userModel->getUserByMailOrUsername($token_data->email)) && !in_array("responsable", json_decode(json_encode($token_data->group), true))) {
 
             $id_restaurant = $this->request->getVar('id_restaurant');
 
