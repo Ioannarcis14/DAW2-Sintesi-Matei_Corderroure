@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class TableModel extends Model
+class TaulaModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'table';
+    protected $table            = 'taula';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id', 'id_restaurant', 'toTakeAway'];
+    protected $allowedFields    = ['id', 'id_restaurant', 'toTakeAway', 'state'];
 
     // Dates
     protected $useTimestamps = false;
@@ -53,8 +53,10 @@ class TableModel extends Model
     }
 
     public function getAvailableTables($id_restaurant) {
-       return $this->select('table.*')->join('order', 'order.id_taula = table.id', 'inner')
-        ->orWhere('table.id_restaurant', $id_restaurant)
-        ->orWhere('table.toTakeAway !=', null)->findAll();
+       return $this->select('*')->
+        orWhere('taula.id_restaurant', $id_restaurant)
+        ->orWhere('taula.toTakeAway !=', null)
+        ->orWhere('order.state', "finished")->findAll();
+        
     }
 }

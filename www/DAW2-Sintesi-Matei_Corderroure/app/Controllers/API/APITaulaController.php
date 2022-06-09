@@ -4,6 +4,7 @@ namespace App\Controllers\API;
 
 use App\Models\RestaurantModel;
 use App\Models\TableModel;
+use App\Models\TaulaModel;
 use App\Models\UserModel;
 use App\Models\UserRestaurantModel;
 use CodeIgniter\RESTful\ResourceController;
@@ -56,7 +57,7 @@ class APITaulaController extends ResourceController
                     'data' => []
                 ];
             } else {
-                $tabModel = new TableModel();
+                $tabModel = new TaulaModel();
                 $check = $tabModel->createTable($id_restaurant, $toTakeAway);
 
                 if (!empty($check)) {
@@ -115,7 +116,7 @@ class APITaulaController extends ResourceController
         if (!empty($token_data) && $token_data->email = $currentUser->email) {
 
             $id_restaurant = $this->request->getVar('id_restaurant');
-            $taulaModel = new TableModel();
+            $taulaModel = new TaulaModel();
             $taules = $taulaModel->getAvailableTables($id_restaurant);
 
             if(!empty($taules)) {

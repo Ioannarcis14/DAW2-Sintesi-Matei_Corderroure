@@ -49,7 +49,7 @@ class OrderMigration extends Migration
         $this->forge->addPrimaryKey('id', true);
         $this->forge->addForeignKey('id_restaurant', 'restaurant', 'id');
         $this->forge->addForeignKey('id_client', 'users', 'id');
-        $this->forge->addForeignKey('id_taula', 'table', 'id');
+        $this->forge->addForeignKey('id_taula', 'taula', 'id');
         $this->forge->createTable('order');
 
 

@@ -14,7 +14,7 @@ class AddOrderSeeder extends Seeder
         $row = [
             'id_restaurant' => 2,
             'id_client' => 1,
-            'id_taula' => 1,
+            'id_taula' => 2,
             'diners' => 3,
             'state' => 'preparing',
         ];

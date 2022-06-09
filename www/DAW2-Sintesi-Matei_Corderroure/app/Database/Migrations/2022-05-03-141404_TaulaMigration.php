@@ -28,15 +28,20 @@ class TaulaMigration extends Migration
                             'unsigned'       => true,
                             'null'           => true,
                     ],
+                    'state'          => [
+                        'type'           => 'VARCHAR',
+                        'constraint'     => '255',
+                        'null'           => true,
+                    ],
             ]);
             $this->forge->addPrimaryKey('id', true);
             $this->forge->addForeignKey('id_restaurant', 'restaurant', 'id', 'CASCADE', 'CASCADE');
-            $this->forge->createTable('table');
+            $this->forge->createTable('taula');
 
     }
     
     public function down()
     {
-            $this->forge->dropTable('table');
+            $this->forge->dropTable('taula');
     }
 }
