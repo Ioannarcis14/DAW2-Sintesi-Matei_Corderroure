@@ -43,7 +43,7 @@ class MessagesModel extends Model
     
 
     public function getMessagesFromUser($email) {
-        $this->select(['id_user', 'id_restaurant', 'theme', 'message']);
+        $this->select(['id_user', 'receiver', 'theme', 'message']);
         $this->join('users','users.id = id_user');
         $this->orWhere('email',$email)->orWhere('username',$email);
         return $this->findAll();

@@ -288,6 +288,9 @@ $routes->group("api", function ($routes) {
         $routes->options("delete/(:any)","API\APITaulaController::deleteTaula/$1");
         $routes->post("delete/(:any)","API\APITaulaController::deleteTaula/$1", ['filter'=>'jwt']);
 
+        $routes->options("getOnline", "API\APITaulaController::getOnlineTables");
+        $routes->post("getOnline", "API\APITaulaController::getOnlineTables", ['filter'=>'jwt']);
+
     });
 
 });

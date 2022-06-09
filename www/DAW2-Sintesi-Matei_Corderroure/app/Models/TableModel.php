@@ -49,6 +49,12 @@ class TableModel extends Model
 
         $this->insert($data);
 
-        return $this->has_Error();
+        return $this->db->affectedRows();
+    }
+
+    public function getAvailableTables($id_restaurant) {
+       return $this->select('table.*')->join('order', 'order.id_taula = table.id', 'inner')
+        ->orWhere('table.id_restaurant', $id_restaurant)
+        ->orWhere('table.toTakeAway !=', null)->findAll();
     }
 }
