@@ -22,21 +22,14 @@
 <body>
     <div class='container' style='margin-top: 20px;'>
 
-        <h2>Create role</h2></br>
-        <div id="createRole">
+        <h2>Update theme</h2></br>
+        <div id="updateTheme">
             <div class="form-group">
-                <label for="roleName"><?= lang('Auth.roleName') ?></label>
-                <input type="text" id="roleName" class="form-control <?php if (session('errors.roleName')) : ?>is-invalid<?php endif ?>" name="roleName" aria-describedby="emailHelp" placeholder="<?= lang('Auth.roleName') ?>" value="<?= old('roleName') ?>">
+                <label for="newThemeName"><?= lang('Auth.newThemeName') ?></label>
+                <input type="text" id="newThemeName" class="form-control <?php if (session('errors.newThemeName')) : ?>is-invalid<?php endif ?>" name="newThemeName" placeholder="<?= $theme['name'] ?>" value="<?= $theme['name'] ?>">
             </div>
-
-            <div class="form-group">
-                <label for="roleDescription"><?= lang('Auth.roleDescription') ?></label>
-                <input type="text" id="roleDescription" class="form-control <?php if (session('errors.roleDescription')) : ?>is-invalid<?php endif ?>" name="roleDescription" placeholder="<?= lang('Auth.roleDescription') ?>" value="<?= old('roleDescription') ?>">
-            </div>
-
-            <div id="message"></div></br>
-            <button class="btn btn-primary" onclick="createRole()">Create</button>
-
+            <div id="messages"></div></br>
+            <button class="btn btn-primary" onclick="updateTheme()">Update</button>
         </div>
     </div>
 
@@ -45,15 +38,16 @@
 </html>
 
 <script>
+
  
-async function createRole() { 
-        var roleName = document.getElementById("roleName").value;
-        var roleDescription = document.getElementById("roleDescription").value;
+async function updateTheme() { 
+        var themeName = document.getElementById("newThemeName").value;
+        var oldThemeName = "<?php echo $theme['name']?>";
         var token = window.sessionStorage.getItem("tokenRefresh");
         var response;
 
         if (token == "" || token == "undefined" || token == null) {
-            response = await fetch("<?php echo base_url(); ?>/api/users/createRole", {
+            response = await fetch("<?php echo base_url(); ?>/api/theme/update", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -61,12 +55,12 @@ async function createRole() {
                     'Authorization': 'Bearer ' + <?php echo '"' . $_SESSION['token'] . '"' ?>,
                 },
                 body: JSON.stringify({
-                    roleName: roleName,
-                    roleDescription: roleDescription,
+                    oldThemeName: oldThemeName,
+                    themeName: themeName,
                 }),
             });
         } else {
-            response = await fetch("<?php echo base_url(); ?>/api/users/createRole", {
+            response = await fetch("<?php echo base_url(); ?>/api/theme/update", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -74,8 +68,8 @@ async function createRole() {
                     'Authorization': 'Bearer ' + token,
                 },
                 body: JSON.stringify({
-                    roleName: roleName,
-                    roleDescription: roleDescription,
+                    oldThemeName: oldThemeName,
+                    themeName: themeName,
                 }),
             });
         }

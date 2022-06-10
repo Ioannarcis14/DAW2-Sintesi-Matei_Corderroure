@@ -56,7 +56,15 @@ class MessagesModel extends Model
         return $this->findAll();
     }
 
-
+    public function createMessageAdmin($id_user, $receiver, $theme, $message) {
+        $data = [
+            'id_user' => $id_user,
+            'receiver' => $receiver,
+            'theme' => $theme,
+            'message' => $message,
+        ];
+        $this->insert($data);
+    }
 
     public function createMessage($id_user, $theme, $message) {
 

@@ -445,7 +445,7 @@ class APIUserController extends ResourceController
                 $response = [
                     'status' => 200,
                     "error" => false,
-                    'messages' => "Group created succefully"
+                    'messages' => "Group created successfully"
                 ];
             }
         } else {
@@ -492,78 +492,21 @@ class APIUserController extends ResourceController
             $roleDescription = $this->request->getVar('roleDescription');
 
             $authorize = $auth = service('authorization');
-            $id = $authorize->updateGroup($id_role, $roleName, $roleDescription);
-            $group = $authorize->group($id);
+            $authorize->updateGroup($id_role, $roleName, $roleDescription);
+            $group = $authorize->group($id_role);
 
-            if ($group->name != $roleName || $group->description != $roleDescription) {
+            if ($group->name != $roleName && $group->description != $roleDescription) {
                 $response = [
                     'status' => 500,
                     "error" => true,
-                    'messages' => "Failed to update the group"
+                    'messages' => "Failed to update the group",
+                    'data' => []
                 ];
             } else {
                 $response = [
                     'status' => 200,
                     "error" => false,
                     'messages' => "Group updated succefully"
-                ];
-            }
-        } else {
-            $response = [
-                'status' => 401,
-                "error" => true,
-                "messages" => "You don't have the permission to do this action",
-            ];
-        }
-        return $this->respond($response);
-    }
-
-    /**
-     * Delete the role
-     * 
-     */
-    public function deleteRole()
-    {
-        helper('form');
-        helper('html');
-
-        $token_data = json_decode($this->request->header("token-data")->getValue());
-        $auth = service('authentication');
-        $auth->check();
-        $currentUser = $auth->user();
-
-        if (!empty($token_data) && $token_data->email == $currentUser->email && in_array("administrador", $currentUser->getRoles())) {
-
-            $rules = [
-                'id_role'     => 'required',
-            ];
-
-            if (!$this->validate($rules)) {
-                $response = [
-                    'status' => 500,
-                    "error" => true,
-                    'messages' => "ID role not found"
-                ];
-                return $this->respond($response);
-            }
-
-            $id_role = $this->request->getVar('id_role');
-
-            $authorize = $auth = service('authorization');
-            $id = $authorize->deleteGroup($id_role);
-            $group = $authorize->group($id);
-
-            if (!empty($group)) {
-                $response = [
-                    'status' => 500,
-                    "error" => true,
-                    'messages' => "Failed to delete the group"
-                ];
-            } else {
-                $response = [
-                    'status' => 200,
-                    "error" => false,
-                    'messages' => "Group deleted succefully"
                 ];
             }
         } else {
@@ -842,12 +785,9 @@ class APIUserController extends ResourceController
 
         $token_data = json_decode($this->request->header("token-data")->getValue());
         $msgModel = new MessagesModel();
-        $auth = service('authentication');
-        $auth->check();
-        $currentUser = $auth->user();
+        $userModel = new NoAuthUser();
 
-
-        if (!empty($token_data) && $token_data->email == $currentUser->email) {
+        if (!empty($token_data) && !empty($userModel->getUserByMailOrUsername($token_data->email))) {
 
             //Check the content
             $rules = [
@@ -867,7 +807,7 @@ class APIUserController extends ResourceController
 
             $msgModel->createMessage($token_data->uid, $this->request->getVar('theme'), $this->request->getVar('commentary'));
 
-            if (!empty($msgModel->checkMessage($token_data->uid, 0, $this->request->getVar('theme')))) {
+            if (!empty($msgModel->checkMessage($token_data->uid, null, $this->request->getVar('theme')))) {
                 $response = [
                     'status' => 200,
                     "error" => false,
@@ -1018,4 +958,63 @@ class APIUserController extends ResourceController
         }
         return $this->respond($response);
     }
+
+    public function sendMessage() {
+        helper('form');
+        helper('html');
+
+        $token_data = json_decode($this->request->header("token-data")->getValue());
+        $auth = service('authentication');
+        $auth->check();
+        $currentUser = $auth->user();
+
+        if (!empty($token_data) && $token_data->email == $currentUser->email && in_array("administrador", $currentUser->getRoles())) {
+
+            $rules = [
+                'receiver'     => 'required',
+                'theme'     => 'required',
+                'message'     => 'required',
+            ];
+
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 400,
+                    "error" => true,
+                    'messages' => "Error with the general fields"
+                ];
+                return $this->respond($response);
+            }
+
+            $receiver = $this->request->getVar('receiver');
+            $theme = $this->request->getVar('theme');
+            $message = $this->request->getVar('message');
+
+            $messageModel = new MessagesModel();
+            $messageModel->createMessageAdmin($token_data->uid, $receiver, $theme, $message);
+            $check = $messageModel->checkMessage($token_data->uid, $receiver, $theme);
+
+            if (empty($check)) {
+                $response = [
+                    'status' => 500,
+                    "error" => true,
+                    'messages' => "Failed to send the message",
+                    'data' => []
+                ];
+            } else {
+                $response = [
+                    'status' => 200,
+                    "error" => false,
+                    'messages' => "Message sended successfully"
+                ];
+            }
+        } else {
+            $response = [
+                'status' => 401,
+                "error" => true,
+                "messages" => "You don't have the permission to do this action",
+            ];
+        }
+        return $this->respond($response);
+    }
+    
 }

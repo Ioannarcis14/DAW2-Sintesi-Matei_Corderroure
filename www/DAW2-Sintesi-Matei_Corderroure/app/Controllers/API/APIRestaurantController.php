@@ -288,5 +288,4 @@ class APIRestaurantController extends ResourceController
         return $this->respond($response);
 
     }
-
 }

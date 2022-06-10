@@ -25,13 +25,13 @@
         <h2>Update role</h2></br>
         <div id="updateRole">
             <div class="form-group">
-                <label for="email"><?= lang('Auth.newEmail') ?></label>
-                <input type="email" id="email" class="form-control <?php if (session('errors.newEmail')) : ?>is-invalid<?php endif ?>" name="email" aria-describedby="emailHelp" placeholder="<?= lang('Auth.newEmail') ?>" value="<?= $user->email ?>">
+                <label for="newRoleName"><?= lang('Auth.newRoleName') ?></label>
+                <input type="text" id="newRoleName" class="form-control <?php if (session('errors.newRoleName')) : ?>is-invalid<?php endif ?>" name="newRoleName" placeholder="<?= $role['name'] ?>" value="<?= $role['name'] ?>">
             </div>
 
             <div class="form-group">
-                <label for="username"><?= lang('Auth.newUsername') ?></label>
-                <input type="text" id="username" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" placeholder="<?= lang('Auth.newUsername') ?>" value="<?= $user->username ?>">
+                <label for="newRoleDescription"><?= lang('Auth.newRoleDescription') ?></label>
+                <input type="text" id="newRoleDescription" class="form-control <?php if (session('errors.newRoleDescription')) : ?>is-invalid<?php endif ?>" name="newRoleDescription" placeholder="<?= $role['description'] ?>" value="<?= $role['description'] ?>">
             </div>
             <div id="messages"></div></br>
             <button class="btn btn-primary" onclick="updateRole()">Update</button>
@@ -44,7 +44,65 @@
 
 <script>
 
+ 
+async function updateRole() { 
+        var roleName = document.getElementById("newRoleName").value;
+        var roleDescription = document.getElementById("newRoleDescription").value;
+        var token = window.sessionStorage.getItem("tokenRefresh");
+        var response;
 
+        if (token == "" || token == "undefined" || token == null) {
+            response = await fetch("<?php echo base_url(); ?>/api/users/updateRole", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + <?php echo '"' . $_SESSION['token'] . '"' ?>,
+                },
+                body: JSON.stringify({
+                    id_role: <?php echo $role['id'] ?>,
+                    roleName: roleName,
+                    roleDescription: roleDescription,
+                }),
+            });
+        } else {
+            response = await fetch("<?php echo base_url(); ?>/api/users/updateRole", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token,
+                },
+                body: JSON.stringify({
+                    id_role: <?php echo $role['id'] ?>,
+                    roleName: roleName,
+                    roleDescription: roleDescription,
+                }),
+            });
+        }
+
+        response.json().then((data) => {
+            if (data.error == false) {
+                alert(data.messages);
+                window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
+            } else {
+                if (data.status == 400) {
+                    alert(data.messages);
+                    window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
+                } else {
+                    alert(data.messages);
+                    var token = window.sessionStorage.removeItem("tokenRefresh");
+                    window.location = "<?php echo base_url(); ?>/logout";
+                }
+
+            }
+        }).catch(error => {
+            alert("Unexpected error");
+            var token = window.sessionStorage.removeItem("tokenRefresh");
+           // window.location = "<?php echo base_url(); ?>/logout";
+        });
+
+}
 
 </script>
 

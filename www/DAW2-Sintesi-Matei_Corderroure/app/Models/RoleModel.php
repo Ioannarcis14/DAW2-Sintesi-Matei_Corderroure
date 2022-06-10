@@ -51,4 +51,9 @@ class RoleModel extends Model
     public function checkRole($id) {
         return $this->select('*')->where('id', $id)->first();
     }
+
+    public function getAllRoles() {
+        $role = "administrador";
+        return $this->select('*')->notLike('name', $role)->findAll();
+    }
 }

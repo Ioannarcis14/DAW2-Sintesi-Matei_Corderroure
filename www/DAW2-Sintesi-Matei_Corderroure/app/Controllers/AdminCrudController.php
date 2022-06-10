@@ -562,7 +562,7 @@ class AdminCrudController extends BaseController
             return redirect()->route('logout');
         }
 
-        return view('/admin/roles/create_role');
+        return view('/admin/themes/create_theme');
     }
 
     /**
@@ -585,12 +585,12 @@ class AdminCrudController extends BaseController
             return redirect()->route('logout');
         }
 
-        $roleModel = new roleModel();
+        $themeModel = new ThemeModel();
 
-        $role = $roleModel->getRoleByID($name);
-        $data['role'] = $role;
+        $theme = $themeModel->checkTheme($name);
+        $data['theme'] = $theme;
 
-        return view('/admin/roles/update_role', $data);
+        return view('/admin/themes/update_theme', $data);
     }
 
     /**
@@ -612,10 +612,10 @@ class AdminCrudController extends BaseController
             return redirect()->route('logout');
         }
 
-        $roleModel = new RoleModel();
-        $roleModel->deleteRole($name);
+        $themeModel = new ThemeModel();
+        $themeModel->themeDelete($name);
 
-        return redirect()->route('admin/roles');
+        return redirect()->route('admin/themes');
 
     }
     
@@ -625,12 +625,50 @@ class AdminCrudController extends BaseController
      */
     public function sendMessage()
     {
+        //Check the identity of the user
+
+        helper('html');
+        $auth = service('authentication');
+
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
+
+        $currentUser = $auth->user();
+
+        if (!in_array("administrador", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
+        $roleModel = new RoleModel();
+        $data['roles'] = $roleModel->getAllRoles();
+
+        return view('/admin/send_messages', $data);  
     }
 
     /**
      * 
      */
     public function dischargeRestaurants($id) {
+        //Check the identity of the user
+
+        helper('html');
+        $auth = service('authentication');
+
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
+
+        $currentUser = $auth->user();
+
+        if (!in_array("administrador", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
+        $restaurantModel = new RestaurantModel();
+        $restaurantModel->dischargeRestaurant($id);
+
+        return redirect()->route('admin/discharge');
 
     }
 
