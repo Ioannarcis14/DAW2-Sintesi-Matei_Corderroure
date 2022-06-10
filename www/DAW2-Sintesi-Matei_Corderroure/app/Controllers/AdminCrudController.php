@@ -437,7 +437,7 @@ class AdminCrudController extends BaseController
     }
 
     /**
-     * 
+     * Removes the role of the user
      */
     public function removeRole($id)
     {        

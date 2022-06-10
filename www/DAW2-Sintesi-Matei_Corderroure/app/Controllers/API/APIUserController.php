@@ -241,11 +241,9 @@ class APIUserController extends ResourceController
         helper('html');
 
         $token_data = json_decode($this->request->header("token-data")->getValue());
-        $auth = service('authentication');
-        $auth->check();
-        $currentUser = $auth->user();
+        $userModel = new NoAuthUser();
 
-        if (!empty($token_data) && $token_data->email == $currentUser->email) {
+        if (!empty($token_data) && !empty($userModel->getUserByMailOrUsername($token_data->email))) {
             if (file_exists($this->request->getFile('userfile'))) {
                 $rules = [
                     'username' => 'is_unique[users.username,id,{id}]',
@@ -312,7 +310,7 @@ class APIUserController extends ResourceController
             }
 
             $users = new NoAuthUser();
-            $data = $users->updateUser($currentUser->id, $this->request->getPost(), $file);
+            $data = $users->updateUser($token_data->uid, $this->request->getPost(), $file);
 
             if (!$data) {
                 $response = [
@@ -828,7 +826,7 @@ class APIUserController extends ResourceController
         } else {
             $response = [
                 'status' => 401,
-                "error" => true
+                "error" => true,
             ];
         }
         return $this->respond($response);
