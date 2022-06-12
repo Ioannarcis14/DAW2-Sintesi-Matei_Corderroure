@@ -26,7 +26,7 @@
 
 
             <div class="form-group" id="descriptionRestaurant">
-                <label for="descriptionRestaurant"><?= lang('Auth.descriptionRestaurant') ?></label>
+                <?= lang('Auth.descriptionRestaurant') ?>
                 <textarea name="descriptionRestaurant" class="form-control" id="descriptionRestaurant" cols="45" rows="4"></textarea></br>
             </div>
 
@@ -67,12 +67,12 @@
                 <input type="text" id="instagramRestaurant" class="form-control <?php if (session('errors.instagramRestaurant')) : ?>is-invalid<?php endif ?>" name="instagramRestaurant" placeholder="<?= lang('Auth.instagramRestaurant') ?>" value="">
             </div>
             <div class="form-group">
-                <label for="userfile[]" class="form-label"> <?= lang('Auth.newImgRestaurant') ?></label>
-                <input type="file" id="userfile[]" class=" <?php if (session('errors.newImgRestaurant')) : ?>is-invalid<?php endif ?>" name="userfile[]" multiple placeholder="<?= lang('Auth.newImgRestaurant') ?>" value="">
+                <label for="userfile[]" class="form-label"> <?= lang('Auth.ImgRestaurant') ?></label>
+                <input type="file" id="userfile[]" class=" <?php if (session('errors.ImgRestaurant')) : ?>is-invalid<?php endif ?>" name="userfile[]" multiple placeholder="<?= lang('Auth.ImgRestaurant') ?>" value="">
             </div>
 
             <div id="messages"></div></br>
-            <input class="btn btn-primary" type="submit" value="Update">
+            <input class="btn btn-primary" type="submit" value="Add">
         </form>
     </div>
 
@@ -85,7 +85,7 @@
         formRegistration = new FormData(discharge);
         formRegistration.append('descriptionRestaurant', document.getElementById("descriptionRestaurant").value)
         var token = window.sessionStorage.getItem("tokenRefresh");
-        console.log(formRegistration);
+        console.log(document.getElementById("descriptionRestaurant").nodeValue);
 
         if (token == "" || token == "undefined" || token == null) {
             var requestOptions = {
@@ -110,25 +110,22 @@
             .then(response => response.json())
             .then((data) => {
                 if (data.status == 200) {
-                    alert(data);
-                    console.log(data)
+                    alert(data.messages);
                     window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-                  //   window.location = "<?php echo base_url(); ?>/home";
                 } else {
                     if (data.status == 400) {
-                        alert(data);
+                        alert(data.messages);
                         window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
                     } else {
-                        alert(data);
+                        alert(data.messages);
                         window.sessionStorage.removeItem("tokenRefresh");
-                       // window.location = "<?php echo base_url(); ?>/logout";
+                        // window.location = "<?php echo base_url(); ?>/logout";
                     }
-
                 }
             }).catch(error => {
                 alert("Unexpected error");
                 window.sessionStorage.removeItem("tokenRefresh");
-              //   window.location = "<?php echo base_url(); ?>/logout";
+             //   window.location = "<?php echo base_url(); ?>/logout";
             });
         
     }

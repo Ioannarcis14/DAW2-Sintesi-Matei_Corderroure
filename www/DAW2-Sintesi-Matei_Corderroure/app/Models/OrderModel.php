@@ -14,7 +14,7 @@ class OrderModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id', 'id_restaurant','id_client','id_cambrer', 'id_taula', 'diners', 'state'];
+    protected $allowedFields    = ['id', 'id_restaurant','id_client','id_taula', 'diners', 'state'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,4 +39,23 @@ class OrderModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+
+    public function createOrder($id_restaurant, $id_client, $id_taula, $diners) {
+
+        $data = [
+            "id_restaurant" => $id_restaurant,
+            "id_client" => $id_client,
+            "id_taula" => $id_taula,
+            "diners" => $diners,
+            "state" => "preparing"
+        ];
+
+       return $this->insert($data, true);
+    }
+
+    public function checkOrder($id) {
+        return $this->where('id', $id)->first();
+    }
 }

@@ -14,7 +14,7 @@ class OrderDishModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id', 'id_order', 'id_dish', 'quantity', 'observation', 'startTime', 'finishedTime', 'state', 'lostTimeAction'];
+    protected $allowedFields    = ['id', 'id_order', 'id_dish', 'quantity', 'observation', 'startTime', 'finishedTime', 'state', 'lastTimeAction'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,4 +39,28 @@ class OrderDishModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    public function createOrderDish($id_order, $id_dish, $quantity, $observation) {
+        
+        $date = getdate(date("U"));
+        $time = $date['year']. "-" . $date['mon'] . "-" . $date['mday'] . " " . $date['hours'] . ":" . $date['minutes'] . ":" . $date['seconds'];
+        
+        $data = [
+            'id_order' => $id_order, 
+            'id_dish' => $id_dish, 
+            'quantity' => $quantity, 
+            'observation' => $observation, 
+            'startTime' => $time, 
+            'id_order' => $id_order, 
+            'lastTimeAction' => $time
+        ];
+        return $this->insert($data, true);
+    }
+
+    public function checkOrderDish($id) {
+        return $this->where('id', $id)->first();
+
+    }
+
 }

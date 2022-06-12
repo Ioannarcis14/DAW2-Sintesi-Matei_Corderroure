@@ -60,4 +60,8 @@ class SupplementModel extends Model
         return $this->findAll();
     }
 
+
+    public function checkSupplement($id) {
+        $this->where('id', $id)->first();
+    }
 }

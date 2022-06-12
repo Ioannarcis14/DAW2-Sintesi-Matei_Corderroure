@@ -176,6 +176,15 @@ class ResponsableCrudController extends BaseController
 
     }
 
+        /**
+     * Returns a form to update the restaurant
+     * 
+     * It returns the form to update the restaurant
+     * 
+     * URL: localhost:80/responsable/create
+     * 
+     * * Mètode: GET
+     */
     public function updateRestaurant($id_restaurant)
     {
         //Check the identity of the user

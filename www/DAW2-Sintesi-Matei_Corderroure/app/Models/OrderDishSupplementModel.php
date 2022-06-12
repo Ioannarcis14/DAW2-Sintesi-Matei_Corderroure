@@ -39,4 +39,22 @@ class OrderDishSupplementModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+
+
+    public function createOrderDishSupplement($id_order_dish, $id_supplement) {
+        $data = [
+            'id_order_dish' => $id_order_dish,
+            'id_supplement' => $id_supplement
+        ];
+        
+        return $this->insert($data, true);
+
+    }
+
+    public function checkOrderDishSupplement($id) {
+        return $this->where('id', $id)->first();
+    }
+
 }

@@ -50,8 +50,8 @@ class UserRestaurantModel extends Model
         $this->insert($data);
     }
 
-     public function checkRestaurant($id_user, $id_restaurant) {
-         return $this->select('*')->orWhere('id_user', $id_user)->orWhere('id_restaurant', $id_restaurant);
+     public function checkUserRestaurant($id_user, $id_restaurant) {
+        return $this->select('*')->orWhere('id_user', $id_user)->orWhere('id_restaurant', $id_restaurant);
      }
 
 }

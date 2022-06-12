@@ -45,6 +45,10 @@ class OrderMigration extends Migration
                 'constraint'     => '255',
                 'null'           => false,
             ],
+            'timestamp'          => [
+                'type'           => 'TIMESTAMP',
+                'null'           => true,
+            ],
         ]);
         $this->forge->addPrimaryKey('id', true);
         $this->forge->addForeignKey('id_restaurant', 'restaurant', 'id');

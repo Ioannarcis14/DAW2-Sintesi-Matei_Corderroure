@@ -173,7 +173,10 @@ class RestaurantModel extends Model
 
     }
 
+    public function checkRestaurantByID($id) {
+        return $this->where('id', $id)->first();
 
+    }
      /**
      * getByTitleOrText
      * $search

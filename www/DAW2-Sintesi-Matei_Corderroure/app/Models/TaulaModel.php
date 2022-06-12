@@ -47,13 +47,23 @@ class TaulaModel extends Model
             'toTakeAway' => $toTakeAway,
         ];
 
-        $this->insert($data);
-
-        return $this->db->affectedRows();
+        return $this->insert($data, true);
     }
 
     public function getAvailableTables($id_restaurant) {
-       return $this->select('*')->where('id_restaurant', $id_restaurant)->where('toTakeAway!=',null) ->where('state', null)->findAll();
+       return $this->select('*')->where('id_restaurant', $id_restaurant)->where('toTakeAway!=',null)->where('state', null)->findAll();
         
+    }
+
+    public function checkTaula($id_restaurant, $idTaula) {
+        return $this->where('id', $idTaula)->where('id_restaurant', $id_restaurant)->first();
+
+    }
+
+    public function occupyTable($id_taula) {
+        $data = [
+            "state" => 1
+        ];
+        $this->update($id_taula,$data);
     }
 }
