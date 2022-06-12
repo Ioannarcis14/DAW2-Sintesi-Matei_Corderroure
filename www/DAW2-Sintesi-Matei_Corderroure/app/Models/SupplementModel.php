@@ -62,6 +62,6 @@ class SupplementModel extends Model
 
 
     public function checkSupplement($id) {
-        $this->where('id', $id)->first();
+       return $this->where('id', $id)->first();
     }
 }

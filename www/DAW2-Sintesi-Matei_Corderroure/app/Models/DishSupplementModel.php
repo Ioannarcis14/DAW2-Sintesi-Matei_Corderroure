@@ -39,4 +39,9 @@ class DishSupplementModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function check($id_dish, $id_supplement) {
+        return $this->where('id_dish', $id_dish)->where('id_supplement', $id_supplement)->first();
+    }
+
 }

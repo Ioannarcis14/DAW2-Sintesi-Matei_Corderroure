@@ -3,6 +3,7 @@
 namespace App\Controllers\API;
 
 use App\Models\DishModel;
+use App\Models\DishSupplementModel;
 use App\Models\OrderDishModel;
 use App\Models\OrderDishSupplementModel;
 use App\Models\OrderModel;
@@ -73,29 +74,42 @@ class APIOrderController extends ResourceController
                             //The dish exists in the database
 
                             $dishOrderModel = new OrderDishModel();
+                            $dishSuplementModel = new DishSupplementModel();
+
                             $idDishOrder = $dishOrderModel->createOrderDish($id, $dish['id_dish'], $dish['quantity'], $dish['observation']);
 
                             if (!empty($dishOrderModel->checkOrderDish($idDishOrder))) {
                                 if (!empty($supplementModel->checkSupplement($dish['id_supplement']))) {
-                                    $dishOrderSupplementModel = new OrderDishSupplementModel();
+                                    if(!empty($dishSuplementModel->check($dish['id_dish'],$dish['id_supplement']))) {
 
-                                    $idDishOrderSupplement = $dishOrderSupplementModel->createOrderDishSupplement($idDishOrder, $dish['id_supplement']);
-
-                                    if (empty($dishOrderSupplementModel->checkOrderDishSupplement($idDishOrderSupplement))) {
+                                        $dishOrderSupplementModel = new OrderDishSupplementModel();
+                                        
+                                        $idDishOrderSupplement = $dishOrderSupplementModel->createOrderDishSupplement($idDishOrder, $dish['id_supplement']);
+                                        
+                                        if (empty($dishOrderSupplementModel->checkOrderDishSupplement($idDishOrderSupplement))) {
+                                            $response = [
+                                                'status' => 500,
+                                                "error" => true,
+                                                'messages' => "There's been an error with the supplements",
+                                                'data' => []
+                                            ];
+                                            return $this->respond($response);
+                                        } else {
+                                            $response = [
+                                                'status' => 200,
+                                                "error" => false,
+                                                'messages' => "Order saved succesfully",
+                                                'data' => []
+                                            ];
+                                        }
+                                    } else {
                                         $response = [
                                             'status' => 500,
                                             "error" => true,
-                                            'messages' => "There's been an error with the supplements",
+                                            'messages' => "This supplement doesn't correspond with the dish",
                                             'data' => []
                                         ];
                                         return $this->respond($response);
-                                    } else {
-                                        $response = [
-                                            'status' => 200,
-                                            "error" => false,
-                                            'messages' => "Order saved succesfully",
-                                            'data' => []
-                                        ];
                                     }
                                 } else {
                                     $response = [
