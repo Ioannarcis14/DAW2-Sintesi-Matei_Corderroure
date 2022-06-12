@@ -26,6 +26,11 @@ class RestaurantSingularPage extends BaseController
         $Category = new CategoryModel();
         $list = $Category->getCategory($id);
 
+        $restaurantModel = new RestaurantModel();
+        $restaurant = $restaurantModel->getSpecificRestaurantDischarged($id);
+
+        $data['restaurant'] = $restaurant;
+
         $data['list'] = $list;
 
         $data['id'] = $id;

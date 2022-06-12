@@ -87,7 +87,7 @@
         formRegistration = new FormData(update);
         var token = window.sessionStorage.getItem("tokenRefresh");
         console.log(document.getElementById("descriptionRestaurant").value);
-        update.append("description", document.getElementById("descriptionRestaurant").value);
+        formRegistration.append("description", document.getElementById("descriptionRestaurant").value);
         
         if (token == "" || token == "undefined" || token == null) {
             var requestOptions = {
@@ -120,14 +120,14 @@
                     } else {
                         alert(data.messages);
                         var token = window.sessionStorage.removeItem("tokenRefresh");
-                      //  window.location = "<?php echo base_url(); ?>/logout";
+                        window.location = "<?php echo base_url(); ?>/logout";
                     }
 
                 }
             }).catch(error => {
                 alert("Unexpected error");
                 var token = window.sessionStorage.removeItem("tokenRefresh");
-           //     window.location = "<?php echo base_url(); ?>/logout";
+                window.location = "<?php echo base_url(); ?>/logout";
             });
     }
 </script>

@@ -245,13 +245,16 @@ class RestaurantModel extends Model
 
     public function updateGallery($id_restaurant, $img_gallery) {
         
+        $description = "";
+
         if($img_gallery != null) {
             $oldFiles = $this->select(['img_gallery'])->where('id', $id_restaurant)->first();
-            if(!empty($oldfiles['img_gallery'])) {
+            if(!empty($oldFiles['img_gallery'])) {
                 $files = explode(",", $oldFiles['img_gallery']);
                 for ($i = 1; count($files) > $i; $i++) {
                     unlink(WRITEPATH . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . "restaurant" . DIRECTORY_SEPARATOR . $id_restaurant . DIRECTORY_SEPARATOR . $files[$i]);
                 }
+
             }
         }
         $data = [
@@ -260,6 +263,7 @@ class RestaurantModel extends Model
  
         $this->update($id_restaurant, $data);
         
+        return $data;
     }
 
 }

@@ -65,8 +65,7 @@
     <div id="top" class="starter_container bg">
         <div class="follow_container">
             <div class="col-md-6 col-md-offset-3">
-                <h2 class="top-title"> Restaurant</h2>
-                <h2 class="white second-title">" Best in the city "</h2>
+                <h2 class="top-title"><?php echo $restaurant['name'] ?></h2>
                 <hr>
             </div>
         </div>
@@ -79,22 +78,33 @@
             <div class="col-md-6">
                 <h1>About us</h1>
                 <div class="fa fa-cutlery fa-2x"></div>
-                <p class="desc-text">Restaurant is a place for simplicity. Good food, good beer, and good service. Simple is the name of the game, and we’re good at finding it in all the right places, even in your dining experience. We’re a small group from Denver, Colorado who make simple food possible. Come join us and see what simplicity tastes like.</p>
-            </div>
+                <p class="desc-text"><?php echo $restaurant['description'] ?></div>
             <div class="col-md-6">
                 <div class="img-section">
                     <?php
+
+                if(empty($restaurant['img_gallery'])){
+
                     $imageProperties2 = [
                         'src'    => 'img/demo_rest.jpg',
                         'width'  => '250px',
                         'height' => '220px'
-                    ]; ?>
+                    ]; 
+                    echo img($imageProperties2); 
+                    echo img($imageProperties2);
+                    echo '<div class="img-section-space"></div>';
+                    echo img($imageProperties2);
+                    echo img($imageProperties2);                               
+                
+                } else {
 
-                    <?= img($imageProperties2); ?>
-                    <?= img($imageProperties2); ?>
-                    <div class="img-section-space"></div>
-                    <?= img($imageProperties2); ?>
-                    <?= img($imageProperties2); ?>
+                 $imgs = explode(",",$restaurant['img_gallery']);
+                    for ($i = 1; count($imgs) > $i; $i++) {
+                        echo '<img src="'.base_url("/filegetRestaurant").'/'. $restaurant['id']. '/'. $imgs[$i] . '" width="250px" height="220px" alt="Image of the restaurant">';
+                    }
+                }
+                  
+                   ?>
                 </div>
             </div>
         </div>

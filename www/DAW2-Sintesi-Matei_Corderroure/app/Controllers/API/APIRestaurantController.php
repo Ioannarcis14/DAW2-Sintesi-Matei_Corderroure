@@ -304,20 +304,13 @@ class APIRestaurantController extends ResourceController
                 return $this->respond($response);
             }
 
-            $response = [
-                'status' => 200,
-                "error" => false,
-                'messages' => 'LEts go',
-                'data' => [$this->request->getPost()],
-            ];
-            return $this->respond($response);
-
             $restModel = new RestaurantModel();
 
             $restModel->updateRestaurant($id_restaurant, $this->request->getPost());
 
             $files = $this->request->getFiles();
             $fileNames = "";
+            
 
             if (!empty($files)) {
                 foreach ($files['userfile'] as $img) {
@@ -336,7 +329,7 @@ class APIRestaurantController extends ResourceController
                     $fileNames .= "," . $file[1];
                 }
 
-                $restModel->updateGallery(
+                $data = $restModel->updateGallery(
                     $id_restaurant,
                     $fileNames
                 );
@@ -346,7 +339,7 @@ class APIRestaurantController extends ResourceController
                 'status' => 200,
                 "error" => false,
                 'messages' => "Succesfully updated",
-                'data' => []
+                'data' => [$data]
             ];
         } else {
             $response = [
