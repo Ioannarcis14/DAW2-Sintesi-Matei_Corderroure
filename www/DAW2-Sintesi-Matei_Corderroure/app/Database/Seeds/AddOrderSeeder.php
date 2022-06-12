@@ -17,7 +17,6 @@ class AddOrderSeeder extends Seeder
             'id_taula' => 2,
             'diners' => 3,
             'state' => 'preparing',
-            'timestamp' => '2000-12-1 12:12:12',
         ];
 
         $order->insert($row);
@@ -29,7 +28,6 @@ class AddOrderSeeder extends Seeder
             'id_taula' => 1,
             'diners' => 2,
             'state' => 'preparing',
-            'timestamp' => '2000-12-1 12:12:12',
         ];
 
         $order->insert($row2);
