@@ -311,6 +311,8 @@ $routes->group("api", function ($routes) {
 
         $routes->options("getOnline", "API\APITaulaController::getOnlineTables");
         $routes->post("getOnline", "API\APITaulaController::getOnlineTables", ['filter'=>'jwt']);
+        $routes->get("getOnline", "API\APITaulaController::getOnlineTables", ['filter'=>'jwt']);
+
 
     });
 
