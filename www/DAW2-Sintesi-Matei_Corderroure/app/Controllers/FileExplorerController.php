@@ -35,6 +35,27 @@ class FileExplorerController extends BaseController
         return $this->response->setContentType($file->getMimeType())->setBody($data1);
     }
 
+    public function getRestaurantImg() {
+        $id=current_url(true)->setSegment(1,'')->getPath();
+
+        $uriSegments = explode("/", $id);
+
+        $img=current_url(true)->setSegment(2,'')->getPath();
+
+        $file = new \CodeIgniter\Files\File(WRITEPATH.DIRECTORY_SEPARATOR."uploads".DIRECTORY_SEPARATOR."restaurant".DIRECTORY_SEPARATOR.$uriSegments[1].DIRECTORY_SEPARATOR.  $uriSegments[2]);
+
+        if (!$file->isFile()){     // if (!is_file(WRITEPATH . "/uploads/" . $varName)){
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Profile picture no found'. $uriSegments[2]);
+        }
+
+        // $filedata = readfile(WRITEPATH . "/uploads/" . $varName);
+        $filedata = new \SplFileObject($file->getPathname(), "r");
+
+        $data1 = $filedata->fread($filedata->getSize());
+
+        return $this->response->setContentType($file->getMimeType())->setBody($data1);
+    }
+
     public function manager()
     {
         $data['page_title'] = 'File explorer. elFinder';

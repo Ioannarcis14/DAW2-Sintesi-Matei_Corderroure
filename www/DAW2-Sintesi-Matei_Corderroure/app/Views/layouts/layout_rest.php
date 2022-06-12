@@ -60,8 +60,13 @@
                                                 echo "<tr class='inner-box'>";
                                                     echo "<td>";
                                                         echo "<div class='event-img''>";
-                                                            $img = explode(',', $elem['img_gallery']);
-                                                            echo img($img[0]);
+                                                            if(empty($elem['img_gallery'])){
+                                                                echo img("img/rest.jpg");
+                                                            } else {
+                                                              $img = explode(",", $elem['img_gallery']);
+                                                              echo '<img src="'.base_url("/filegetRestaurant").'/'. $elem['id']. '/'. $img[1] . '" alt="Image of the restaurant">';
+                                                            }
+
                                                         echo "</div>";
                                                     echo "</td>";
                                                     echo "<td>";

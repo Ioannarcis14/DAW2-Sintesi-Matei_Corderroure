@@ -207,7 +207,7 @@ class APIRestaurantController extends ResourceController
             );
 
 
-            $check = $restModel->checkRestaurant($id);
+            $check = $restModel->checkRestaurantByID($id);
 
             if (!empty($check)) {
                 $files = $this->request->getFiles();

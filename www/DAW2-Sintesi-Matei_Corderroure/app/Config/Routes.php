@@ -418,6 +418,7 @@ $routes->post('fileconnector', 'FileExplorerController::connector');
 $routes->get('fileconnector', 'FileExplorerController::connector');
 $routes->get('filemanager', 'FileExplorerController::manager');
 $routes->get('/fileget/(:any)', 'FileExplorerController::getImageUser');
+$routes->get('/filegetRestaurant/(:any)', 'FileExplorerController::getRestaurantImg');
 
 
 /*
