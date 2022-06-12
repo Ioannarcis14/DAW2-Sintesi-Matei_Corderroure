@@ -157,9 +157,8 @@ $routes->group("api", function ($routes) {
 
         $routes->get("getReviews/(:any)", "API\APIRestaurantController::getReviews/$1");
 
-        $routes->options("create","API\APIRestaurantController::createRestaurant");
-       // $routes->post("create","API\APIRestaurantController::createRestaurant", ['filter'=>'jwt']);
-        $routes->post("create","API\APIRestaurantController::createRestaurant");
+        $routes->options("add","API\APIRestaurantController::addRestaurant");
+        $routes->post("add","API\APIRestaurantController::addRestaurant", ['filter'=>'jwt']);
 
         $routes->options("update/(:any)","API\APIRestaurantController::updateRestaurant/$1");
         $routes->post("update/(:any)","API\APIRestaurantController::updateRestaurant/$1", ['filter'=>'jwt']);
@@ -359,7 +358,14 @@ $routes->group("admin", function ($routes) {
 //RESPONSABLE ROUTES
 
 $routes->group("responsable", function ($routes) {
-    $routes->get('restaurants', 'ResponsableCrudController::view', ['filter'=>'role:responsable']);
+    $routes->get('restaurants', 'ResponsableCrudController::list_restaurants', ['filter'=>'role:responsable']);
+
+    $routes->group("restaurants", function ($routes) {
+        $routes->get("create", 'ResponsableCrudController::addRestaurant', ['filter'=>'role:responsable']);
+        $routes->get('update/(:any)', 'ResponsableCrudController::updateRestaurant/$1', ['filter'=>'role:responsable']);
+        $routes->get('delete/(:any)', 'ResponsableCrudController::deleteRestaurant/$1', ['filter'=>'role:responsable']);
+        $routes->get("manage/(:any)", 'ResponsableCrudController::manageRestaurant/$1', ['filter'=>'role:responsable']);
+    });
 
 });
 
