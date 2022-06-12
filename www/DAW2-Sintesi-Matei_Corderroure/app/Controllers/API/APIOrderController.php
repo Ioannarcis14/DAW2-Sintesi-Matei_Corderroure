@@ -19,10 +19,48 @@ class APIOrderController extends ResourceController
     {
         //
     }
+    /** 
+     * Checks if the user is currently logged in
+     * 
+     * Checks if the token is still valid and the user currently exists, then sends a refresh token
+     * 
+     * URL: localhost:80/api/validate
+     * 
+     * * Method: POST
+     * 
+     * Parameters introduced by the User (sended by JSON or a form-data):
+     * 
+     * * $email: string
+     * 
+     * This is email of the user
+     * * $token_data: mixed
+     * 
+     * This is the JWT_Token that contains the information encrypted of the user and allows him to use functions of the API if this one has the permissions to do so
+     * @return mixed It returns a refresh token if everything goes right, if there is any error in the procedure it will return that error
+     */
+
+    /**
+     * Creates an order
+     * 
+     * Creates the order that the user did and stores the data in the database
+     * 
+     * URL: localhost:80/api/order/create 
+     * 
+     * * Method: POST
+     * 
+     * Parameters introduced by the User (sended by JSON or a form-data):
+     * 
+     * 
+     * * $token_data: mixed
+     * This is the JWT_Token that contains the information encrypted of the user and allows him to use functions of the API if this one has the permissions to do so
+     * 
+     * 
+     * * $order: string
+     * This is the order that the web/phone application sends when the user finishes the order it contains: the id of the restaurant, the id of the user doing the order, the id of the table (offline/online) that they are occupying, number of people (diners) and the dishes that contain: the id of the dish, quantity, observation of the user, id of the supplement
+     */
 
     public function createOrder()
     {
-
         $token_data = json_decode($this->request->header("token-data")->getValue());
         $userModel = new UserModel();
 
