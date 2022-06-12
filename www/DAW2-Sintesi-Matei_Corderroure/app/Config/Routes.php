@@ -369,6 +369,15 @@ $routes->group("responsable", function ($routes) {
         $routes->get("manage/(:any)", 'ResponsableCrudController::manageRestaurant/$1', ['filter'=>'role:responsable']);
     });
 
+    $routes->group("restaurant", function ($routes) {
+        $routes->get("(:any)/staff/manage", 'ResponsableCrudController::manageStaff/$1', ['filter'=>'role:responsable']);
+        $routes->get('(:any)/categories/manage', 'ResponsableCrudController::manageCategories/$1', ['filter'=>'role:responsable']);
+        $routes->get('(:any)/dishes/manage', 'ResponsableCrudController::manageDishes/$1', ['filter'=>'role:responsable']);
+        $routes->get("(:any)/supplements/manage", 'ResponsableCrudController::manageSupplements/$1', ['filter'=>'role:responsable']);
+        $routes->get("(:any)/valorations/see", 'ResponsableCrudController::manageValorations/$1', ['filter'=>'role:responsable']);
+
+    });
+
 });
 
 

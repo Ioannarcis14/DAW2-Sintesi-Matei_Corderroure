@@ -194,7 +194,7 @@ class APIRestaurantController extends ResourceController
             $restModel = new RestaurantModel();
             $restUserModel = new UserRestaurantModel();
 
-            $restModel->addRestaurant(
+            $id = $restModel->addRestaurant(
                 $this->request->getPost('nameRestaurant'),
                 $this->request->getPost('cityRestaurant'),
                 $this->request->getPost('streetRestaurant'),
@@ -207,13 +207,7 @@ class APIRestaurantController extends ResourceController
             );
 
 
-            $check = $restModel->checkRestaurant(
-                $this->request->getPost('nameRestaurant'),
-                $this->request->getPost('cityRestaurant'),
-                $this->request->getPost('streetRestaurant'),
-                $this->request->getPost('postal_codeRestaurant'),
-                $this->request->getPost('phoneRestaurant')
-            );
+            $check = $restModel->checkRestaurant($id);
 
             if (!empty($check)) {
                 $files = $this->request->getFiles();
@@ -236,20 +230,16 @@ class APIRestaurantController extends ResourceController
                     }
 
                     $restModel->insertGallery(
-                        $this->request->getPost('nameRestaurant'),
-                        $this->request->getPost('cityRestaurant'),
-                        $this->request->getPost('streetRestaurant'),
-                        $this->request->getPost('postal_codeRestaurant'),
-                        $this->request->getPost('phoneRestaurant'),
+                        $id,
                         $fileNames
                     );
                 }
 
                 $restUserModel->addUserRestaurant($token_data->uid, $check['id']);
-                
+
                 $check = $restUserModel->checkUserRestaurant($token_data->uid, $check['id']);
 
-                if(!empty($check)) {
+                if (!empty($check)) {
                     $response = [
                         'status' => 200,
                         "error" => false,
@@ -264,7 +254,6 @@ class APIRestaurantController extends ResourceController
                         'data' => []
                     ];
                 }
-
             } else {
                 $response = [
                     'status' => 500,
@@ -295,8 +284,70 @@ class APIRestaurantController extends ResourceController
         $userModel = new UserModel();
 
         if (!empty($token_data) && !empty($userModel->getUserByMailOrUsername($token_data->email)) && in_array("responsable", json_decode(json_encode($token_data->group), true))) {
+            //Check data
+            $rules = [
+                'phone' => 'min_length[9]|max_length[9]',
+                'postal_code' => 'required',
+                'twitter' => 'valid_url_strict[https]',
+                'facebook' => 'valid_url_strict[https]',
+                'instagram' => 'valid_url_strict[https]',
+            ];
 
+            //Validation of the general fields of the form
+            if (!$this->validate($rules)) {
+                $response = [
+                    'status' => 400,
+                    "error" => true,
+                    'messages' => 'Error with the general fields',
+                    'errors' => $this->validator->getErrors(),
+                ];
+                return $this->respond($response);
+            }
 
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => 'LEts go',
+                'data' => [$this->request->getPost()],
+            ];
+            return $this->respond($response);
+
+            $restModel = new RestaurantModel();
+
+            $restModel->updateRestaurant($id_restaurant, $this->request->getPost());
+
+            $files = $this->request->getFiles();
+            $fileNames = "";
+
+            if (!empty($files)) {
+                foreach ($files['userfile'] as $img) {
+                    if ($img->isValid() && !$img->hasMoved()) {
+                        $filepath = WRITEPATH . 'uploads/' . $img->store("restaurant/" . $id_restaurant . "/");
+                        $Filetest = new File($filepath);
+                    } else {
+                        $response = [
+                            'status' => 400,
+                            "error" => true,
+                            'messages' => 'Error with the files',
+                        ];
+                        return $this->respond($response);
+                    }
+                    $file = explode("restaurant/" . $id_restaurant . "/", $Filetest, 2);
+                    $fileNames .= "," . $file[1];
+                }
+
+                $restModel->updateGallery(
+                    $id_restaurant,
+                    $fileNames
+                );
+            }
+
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => "Succesfully updated",
+                'data' => []
+            ];
         } else {
             $response = [
                 'status' => 401,
@@ -306,16 +357,7 @@ class APIRestaurantController extends ResourceController
 
         return $this->respond($response);
     }
-    /**
-     * Deletes a restaurant
-     * 
-     * 
-     * 
-     */
-    public function deleteRestaurant($id_restaurant)
-    {
-    }
-
+    
     /**
      * Get the valorations of an specific restaurant
      * 

@@ -143,34 +143,18 @@ class RestaurantModel extends Model
             'facebook' => $facebook
         ];
 
-        $this->insert($data);
+        return $this->insert($data, true);
         
     }
 
 
-    public function insertGallery($name, $city, $street, $postal_code, $phone, $img_gallery) {
-
-       $restaurant =  $this->where('name', $name)->where('city', $city)
-                           ->where('street', $street)
-                           ->where('postal_code', $postal_code)
-                           ->where('phone', $phone)
-                           ->first();
+    public function insertGallery($id, $img_gallery) {
 
        $data = [
            'img_gallery' =>  $img_gallery
        ];
 
-       $this->update($restaurant['id'], $data);
-    }
-
-    public function checkRestaurant($name, $city, $street, $postal_code, $phone) {
-
-        return $this->where('name', $name)
-        ->where('city', $city)
-        ->where('street', $street)
-        ->where('postal_code', $postal_code)
-        ->where('phone', $phone)->first();
-
+       $this->update($id, $data);
     }
 
     public function checkRestaurantByID($id) {
@@ -254,8 +238,28 @@ class RestaurantModel extends Model
         $this->delete($id_restaurant);
     }
 
-    public function updateRestaurant($id_restaurant, $data, $files) {
+    public function updateRestaurant($id_restaurant, $data) {
 
+        $this->update($id_restaurant,$data);
+    }
+
+    public function updateGallery($id_restaurant, $img_gallery) {
+        
+        if($img_gallery != null) {
+            $oldFiles = $this->select(['img_gallery'])->where('id', $id_restaurant)->first();
+            if(!empty($oldfiles['img_gallery'])) {
+                $files = explode(",", $oldFiles['img_gallery']);
+                for ($i = 1; count($files) > $i; $i++) {
+                    unlink(WRITEPATH . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . "restaurant" . DIRECTORY_SEPARATOR . $id_restaurant . DIRECTORY_SEPARATOR . $files[$i]);
+                }
+            }
+        }
+        $data = [
+            'img_gallery' =>  $img_gallery
+        ];
+ 
+        $this->update($id_restaurant, $data);
+        
     }
 
 }

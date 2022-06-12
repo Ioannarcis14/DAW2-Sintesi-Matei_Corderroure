@@ -24,55 +24,55 @@
         <h2 style="padding-bottom: 50px">Update this restaurant</h2>
         <form id="update">
 
-
-            <div class="form-group" id="descriptionRestaurant">
+            <div class="form-group">
                 <label for="descriptionRestaurant"><?= lang('Auth.newDescriptionRestaurant') ?></label>
                 <textarea name="descriptionRestaurant" class="form-control" id="descriptionRestaurant" cols="45" rows="4"><?php echo $restaurant['description'] ?></textarea></br>
             </div>
 
             <div class="form-group">
-                <label for="nameRestaurant"><?= lang('Auth.newNameRestaurant') ?></label>
-                <input type="text" id="nameRestaurant" class="form-control <?php if (session('errors.nameRestaurant')) : ?>is-invalid<?php endif ?>" name="nameRestaurant" aria-describedby="emailHelp" placeholder="<?= lang('Auth.nameRestaurant') ?>" value="">
+                <label for="name"><?= lang('Auth.newNameRestaurant') ?></label>
+                <input type="text" id="name" class="form-control <?php if (session('errors.nameRestaurant')) : ?>is-invalid<?php endif ?>" name="name" placeholder="<?= lang('Auth.nameRestaurant') ?>" value="<?php echo $restaurant['name'] ?>">
             </div>
 
             <div class="form-group">
-                <label for="cityRestaurant"><?= lang('Auth.newCityRestaurant') ?></label>
-                <input type="text" id="cityRestaurant" class="form-control <?php if (session('errors.cityRestaurant')) : ?>is-invalid<?php endif ?>" name="cityRestaurant" placeholder="<?= lang('Auth.cityRestaurant') ?>" value="">
+                <label for="city"><?= lang('Auth.newCityRestaurant') ?></label>
+                <input type="text" id="city" class="form-control <?php if (session('errors.cityRestaurant')) : ?>is-invalid<?php endif ?>" name="city" placeholder="<?= lang('Auth.cityRestaurant') ?>" value="<?php echo $restaurant['city'] ?>">
             </div>
 
             <div class="form-group">
-                <label for="streetRestaurant"><?= lang('Auth.newStreetRestaurant') ?></label>
-                <input type="text" id="name" class="form-control <?php if (session('errors.streetRestaurant')) : ?>is-invalid<?php endif ?>" name="streetRestaurant" placeholder="<?= lang('Auth.streetRestaurant') ?>" value="">
+                <label for="street"><?= lang('Auth.newStreetRestaurant') ?></label>
+                <input type="text" id="street" class="form-control <?php if (session('errors.streetRestaurant')) : ?>is-invalid<?php endif ?>" name="street" placeholder="<?= lang('Auth.streetRestaurant') ?>" value="<?php echo $restaurant['street'] ?>">
             </div>
 
             <div class="form-group">
-                <label for="postal_codeRestaurant"><?= lang('Auth.newPostal_codeRestaurant') ?></label>
-                <input type="text" id="postal_codeRestaurant" class="form-control <?php if (session('errors.postal_codeRestaurant')) : ?>is-invalid<?php endif ?>" name="postal_codeRestaurant" placeholder="<?= lang('Auth.postal_codeRestaurant') ?>" value="">
-            </div>
-            <div class="form-group">
-                <label for="phoneRestaurant"><?= lang('Auth.newPhoneRestaurant') ?></label>
-                <input type="text" id="phoneRestaurant" class="form-control <?php if (session('errors.phoneRestaurant')) : ?>is-invalid<?php endif ?>" name="phoneRestaurant" placeholder="<?= lang('Auth.phoneRestaurant') ?>" value="">
-            </div>
-            <div class="form-group">
-                <label for="twitterRestaurant"><?= lang('Auth.newTwitterRestaurant') ?></label>
-                <input type="text" id="twitterRestaurant" class="form-control <?php if (session('errors.twitterRestaurant')) : ?>is-invalid<?php endif ?>" name="twitterRestaurant" placeholder="<?= lang('Auth.twitterRestaurant') ?>" value="">
+                <label for="postal_code"><?= lang('Auth.newPostal_codeRestaurant') ?></label>
+                <input type="text" id="postal_code" class="form-control <?php if (session('errors.postal_codeRestaurant')) : ?>is-invalid<?php endif ?>" name="postal_code" placeholder="<?= lang('Auth.postal_codeRestaurant') ?>" value="<?php echo $restaurant['postal_code'] ?>">
             </div>
 
             <div class="form-group">
-                <label for="facebookRestaurant"><?= lang('Auth.newFacebookRestaurant') ?></label>
-                <input type="text" id="facebookRestaurant" class="form-control <?php if (session('errors.facebookRestaurant')) : ?>is-invalid<?php endif ?>" name="facebookRestaurant" placeholder="<?= lang('Auth.facebookRestaurant') ?>" value="">
+                <label for="phone"><?= lang('Auth.newPhoneRestaurant') ?></label>
+                <input type="text" id="phone" class="form-control <?php if (session('errors.phoneRestaurant')) : ?>is-invalid<?php endif ?>" name="phone" placeholder="<?= lang('Auth.phoneRestaurant') ?>" value="<?php echo $restaurant['phone'] ?>">
             </div>
+
             <div class="form-group">
-                <label for="instagramRestaurant"><?= lang('Auth.newInstagramRestaurant') ?></label>
-                <input type="text" id="instagramRestaurant" class="form-control <?php if (session('errors.instagramRestaurant')) : ?>is-invalid<?php endif ?>" name="instagramRestaurant" placeholder="<?= lang('Auth.instagramRestaurant') ?>" value="">
+                <label for="twitter"><?= lang('Auth.newTwitterRestaurant') ?></label>
+                <input type="text" id="twitter" class="form-control <?php if (session('errors.twitterRestaurant')) : ?>is-invalid<?php endif ?>" name="twitter" placeholder="<?= lang('Auth.twitterRestaurant') ?>" value="<?php echo $restaurant['twitter'] ?>">
             </div>
+
+            <div class="form-group">
+                <label for="facebook"><?= lang('Auth.newFacebookRestaurant') ?></label>
+                <input type="text" id="facebook" class="form-control <?php if (session('errors.facebookRestaurant')) : ?>is-invalid<?php endif ?>" name="facebook" placeholder="<?= lang('Auth.facebookRestaurant') ?>" value="<?php echo $restaurant['facebook'] ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="instagram"><?= lang('Auth.newInstagramRestaurant') ?></label>
+                <input type="text" id="instagram" class="form-control <?php if (session('errors.instagramRestaurant')) : ?>is-invalid<?php endif ?>" name="instagram" placeholder="<?= lang('Auth.instagramRestaurant') ?>" value="<?php echo $restaurant['instagram'] ?>">
+            </div>
+
             <div class="form-group">
                 <label for="userfile[]" class="form-label"> <?= lang('Auth.newImgRestaurant') ?></label>
                 <input type="file" id="userfile[]" class=" <?php if (session('errors.newImgRestaurant')) : ?>is-invalid<?php endif ?>" name="userfile[]" multiple placeholder="<?= lang('Auth.newImgRestaurant') ?>" value="">
             </div>
-
-
-            <div id="messages"></div></br>
             <input class="btn btn-primary" type="submit" value="Update">
         </form>
     </div>
@@ -86,7 +86,9 @@
         e.preventDefault();
         formRegistration = new FormData(update);
         var token = window.sessionStorage.getItem("tokenRefresh");
-
+        console.log(document.getElementById("descriptionRestaurant").value);
+        update.append("description", document.getElementById("descriptionRestaurant").value);
+        
         if (token == "" || token == "undefined" || token == null) {
             var requestOptions = {
                 method: 'POST',
@@ -104,6 +106,7 @@
                 }
             };
         }
+
         fetch("<?php echo base_url(); ?>/api/restaurant/update/" + <?php echo $restaurant['id'] ?>, requestOptions)
             .then(response => response.json())
             .then((data) => {

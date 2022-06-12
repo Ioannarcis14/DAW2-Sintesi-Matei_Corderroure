@@ -174,12 +174,10 @@ class UserModel extends Model
 
         if ($file != null) {
             $oldfile = $this->select(['img_profile'])->where('id', $id)->first();
-            if (empty($oldfile->img_profile)) {
-                $data['img_profile'] = $file;
-            } else {
+            if (!empty($oldfile->img_profile)) {
                 unlink(WRITEPATH . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . "user" . DIRECTORY_SEPARATOR . "img_profile" . DIRECTORY_SEPARATOR . $oldfile->img_profile);
-                $data['img_profile'] = $file;
             }
+            $data['img_profile'] = $file;
         }
 
         $this->update($id, $data);

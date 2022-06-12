@@ -235,4 +235,31 @@ class ResponsableCrudController extends BaseController
         return redirect()->route('responsable/restaurants');
 
     }
+
+    public function manageRestaurant($id_restaurant) {
+        //Check the identity of the user
+
+        helper('html');
+        $auth = service('authentication');
+
+        if (!$auth->check()) {
+            return redirect()->route('login');
+        }
+
+        $currentUser = $auth->user();
+
+        if (!in_array("responsable", $currentUser->getRoles())) {
+            return redirect()->route('logout');
+        }
+
+        $restModel = new RestaurantModel();
+        $restaurant = $restModel->getSpecificRestaurantDischarged($id_restaurant);
+        $data['title'] = $restaurant['name'];
+
+        $data['r'] = $id_restaurant;
+
+        return view('/responsable/restaurant/manage_restaurant', $data);
+
+    }
+
 }
