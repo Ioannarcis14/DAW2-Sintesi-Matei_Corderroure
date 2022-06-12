@@ -46,5 +46,23 @@ class AddTaulaSeeder extends Seeder
         ];
 
         $table->insert($row4);
+
+        $row5 = [
+            'id' => 5,
+            'id_restaurant' => 2,
+            'toTakeAway' => 1,
+            'state' => null,
+        ];
+
+        $table->insert($row5);
+
+        $row6 = [
+            'id' => 6,
+            'id_restaurant' => 2,
+            'toTakeAway' => 1,
+            'state' => null,
+        ];
+
+        $table->insert($row6);
     }
 }

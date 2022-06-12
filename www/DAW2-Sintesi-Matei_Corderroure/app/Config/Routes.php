@@ -262,7 +262,7 @@ $routes->group("api", function ($routes) {
     ////////////////////////////////////
 
     $routes->group("order", function ($routes) {
-        $routes->get("getAll", "API\APIOrderController::getAllOrders");
+        $routes->get("getAll/(:any)", "API\APIOrderController::getAllOrders/$1");
 
         $routes->options("create","API\APIOrderController::createOrder");
         $routes->post("create","API\APIOrderController::createOrder", ['filter'=>'jwt']);

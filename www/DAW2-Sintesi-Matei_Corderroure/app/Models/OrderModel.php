@@ -55,6 +55,13 @@ class OrderModel extends Model
        return $this->insert($data, true);
     }
 
+    public function selectOrders($id_responsable) {
+        $this->select('*');
+        $this->join('user_restaurant', 'user_restaurant.id_restaurant =  order.id_restaurant');
+        $this->where('user_restaurant.id_user', $id_responsable);
+        return $this->findAll();
+    }
+
     public function checkOrder($id) {
         return $this->where('id', $id)->first();
     }
