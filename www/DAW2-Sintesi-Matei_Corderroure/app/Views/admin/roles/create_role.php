@@ -30,8 +30,8 @@
             </div>
 
             <div class="form-group">
-                <label for="description"><?= lang('Auth.roleDescription') ?></label>
-                <input type="text" id="description" class="form-control <?php if (session('errors.roleDescription')) : ?>is-invalid<?php endif ?>" name="roleDescription" placeholder="<?= lang('Auth.roleDescription') ?>" value="<?= old('roleDescription') ?>">
+                <label for="roleDescription"><?= lang('Auth.roleDescription') ?></label>
+                <input type="text" id="roleDescription" class="form-control <?php if (session('errors.roleDescription')) : ?>is-invalid<?php endif ?>" name="roleDescription" placeholder="<?= lang('Auth.roleDescription') ?>" value="<?= old('roleDescription') ?>">
             </div>
 
             <div id="message"></div></br>

@@ -109,11 +109,9 @@ class APITaulaController extends ResourceController
     public function getOnlineTables()
     {
         $token_data = json_decode($this->request->header("token-data")->getValue());
-        $auth = service('authentication');
-        $auth->check();
-        $currentUser = $auth->user();
+        $userModel = new UserModel();
 
-        if (!empty($token_data) && $token_data->email = $currentUser->email) {
+        if (!empty($token_data) && !empty($userModel->getUserByMailOrUsername($token_data->email))) {
 
             $id_restaurant = $this->request->getVar('id_restaurant');
             $taulaModel = new TaulaModel();
@@ -124,13 +122,15 @@ class APITaulaController extends ResourceController
                     'status' => 200,
                     "error" => false,
                     'messages' => 'Obtained table for restaurant',
-                    'data' => [$taules]
+                    'data' => $data = [
+                        "id" => $taules[rand(0,count($taules)-1)]['id'],
+                    ]
                 ];
             } else {
                 $response = [
-                    'status' => 500,
+                    'status' => 404,
                     "error" => true,
-                    'messages' => 'Error creating the table',
+                    'messages' => 'No tables available',
                     'data' => []
                 ];
             }

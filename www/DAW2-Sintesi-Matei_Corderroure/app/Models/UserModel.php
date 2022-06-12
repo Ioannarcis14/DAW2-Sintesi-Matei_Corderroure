@@ -160,6 +160,12 @@ class UserModel extends Model
      */
     public function deleteUser($id)
     {
+        $file = $this->select(['img_profile'])->where('id', $id)->first();
+
+        if (!empty($file->img_profile)) {
+            unlink(WRITEPATH . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . "user" . DIRECTORY_SEPARATOR . "img_profile" . DIRECTORY_SEPARATOR . $file->img_profile);
+        }
+
         return $this->delete($id);
     }
 
@@ -199,7 +205,7 @@ class UserModel extends Model
     {
         if ($order == "")
             return $this->select(['id', 'username', 'name', 'surname'])
-            ->orLike('username', $search, 'both', true)->orLike('name', $search, 'both', true)->orLike('surname', $search, 'both', true);
+                ->orLike('username', $search, 'both', true)->orLike('name', $search, 'both', true)->orLike('surname', $search, 'both', true);
         else if ($act == "") {
             return $this->select(['id', 'username', 'name', 'surname'])
                 ->orLike('username', $search, 'both', true)
@@ -208,9 +214,9 @@ class UserModel extends Model
                 ->orderBy($order, "DESC");
         } else if ($act == "a") {
             return $this->select(['id', 'username', 'name', 'surname'])
-            ->orLike('username', $search, 'both', true)
-            ->orLike('name', $search, 'both', true)
-            ->orLike('surname', $search, 'both', true)->orderBy($order, "ASC");
+                ->orLike('username', $search, 'both', true)
+                ->orLike('name', $search, 'both', true)
+                ->orLike('surname', $search, 'both', true)->orderBy($order, "ASC");
         }
     }
 
@@ -225,7 +231,7 @@ class UserModel extends Model
         else if ($act == "") {
             return $this->select(['id', 'username', 'name', 'surname'])->orderBy($order, "DESC")->paginate($nElements);
         } else if ($act == "a") {
-            return $this->select(['id', 'username', 'name', 'surname']  )->orderBy($order, "ASC")->paginate($nElements);
+            return $this->select(['id', 'username', 'name', 'surname'])->orderBy($order, "ASC")->paginate($nElements);
         }
     }
 
@@ -236,19 +242,18 @@ class UserModel extends Model
     public function roleSearch($search, $order, $act)
     {
         if ($order == "")
-            return $this->select('*')->join('auth_groups_users','users.id = auth_groups_users.user_id', 'right')
-            ->join('auth_groups','auth_groups_users.group_id = auth_groups.id', 'right')->
-            orLike('auth_groups.name', $search, 'both', true)->orLike('auth_groups.description', $search, 'both', true);
+            return $this->select('*')->join('auth_groups_users', 'users.id = auth_groups_users.user_id', 'right')
+                ->join('auth_groups', 'auth_groups_users.group_id = auth_groups.id', 'right')->orLike('auth_groups.name', $search, 'both', true)->orLike('auth_groups.description', $search, 'both', true);
         else if ($act == "") {
-            return $this->select('*')->join('auth_groups_users','users.id = auth_groups_users.user_id', 'right')
-            ->join('auth_groups','auth_groups_users.group_id = auth_groups.id', 'right')
+            return $this->select('*')->join('auth_groups_users', 'users.id = auth_groups_users.user_id', 'right')
+                ->join('auth_groups', 'auth_groups_users.group_id = auth_groups.id', 'right')
                 ->orLike('auth_groups.name', $search, 'both', true)
-                ->orLike('auth_groups.description', $search, 'both', true)->orderBy("auth_groups.".$order, "DESC");
+                ->orLike('auth_groups.description', $search, 'both', true)->orderBy("auth_groups." . $order, "DESC");
         } else if ($act == "a") {
-            return $this->select('*')->join('auth_groups_users','users.id = auth_groups_users.user_id', 'right')
-            ->join('auth_groups','auth_groups_users.group_id = auth_groups.id', 'right')
+            return $this->select('*')->join('auth_groups_users', 'users.id = auth_groups_users.user_id', 'right')
+                ->join('auth_groups', 'auth_groups_users.group_id = auth_groups.id', 'right')
                 ->orLike('auth_groups.name', $search, 'both', true)
-                ->orLike('auth_groups.description', $search, 'both', true)->orderBy("auth_groups.".$order, "ASC");
+                ->orLike('auth_groups.description', $search, 'both', true)->orderBy("auth_groups." . $order, "ASC");
         }
     }
 
@@ -259,27 +264,26 @@ class UserModel extends Model
     public function roleListPager($nElements, $order, $act)
     {
         if ($order == "")
-            return $this->select('*')->join('auth_groups_users','users.id = auth_groups_users.user_id', 'right')
-            ->join('auth_groups','auth_groups_users.group_id = auth_groups.id', 'right')->paginate($nElements);
+            return $this->select('*')->join('auth_groups_users', 'users.id = auth_groups_users.user_id', 'right')
+                ->join('auth_groups', 'auth_groups_users.group_id = auth_groups.id', 'right')->paginate($nElements);
         else if ($act == "") {
-            return $this->select('*')->join('auth_groups_users','users.id = auth_groups_users.user_id', 'right')
-            ->join('auth_groups','auth_groups_users.group_id = auth_groups.id', 'right')->orderBy("auth_groups.".$order, "DESC")->paginate($nElements);
+            return $this->select('*')->join('auth_groups_users', 'users.id = auth_groups_users.user_id', 'right')
+                ->join('auth_groups', 'auth_groups_users.group_id = auth_groups.id', 'right')->orderBy("auth_groups." . $order, "DESC")->paginate($nElements);
         } else if ($act == "a") {
-            return $this->select('*')->join('auth_groups_users','users.id = auth_groups_users.user_id', 'right')
-            ->join('auth_groups','auth_groups_users.group_id = auth_groups.id', 'right')->paginate($nElements);
+            return $this->select('*')->join('auth_groups_users', 'users.id = auth_groups_users.user_id', 'right')
+                ->join('auth_groups', 'auth_groups_users.group_id = auth_groups.id', 'right')->paginate($nElements);
         }
     }
 
-    public function getMissingRoles($id) {
-        return $this->select('auth_groups.id, auth_groups.name')->join('auth_groups_users','users.id = auth_groups_users.user_id', 'right')
-        ->join('auth_groups','auth_groups_users.group_id = auth_groups.id', 'right')->where('users.id !='. $id)->findAll();
-    }
-    
-    public function getRoles($id) {
-        return $this->select('auth_groups.id, auth_groups.name')->join('auth_groups_users','users.id = auth_groups_users.user_id', 'right')
-        ->join('auth_groups','auth_groups_users.group_id = auth_groups.id', 'right')->where('users.id',  $id)->findAll();
+    public function getMissingRoles($id)
+    {
+        return $this->select('auth_groups.id, auth_groups.name')->join('auth_groups_users', 'users.id = auth_groups_users.user_id', 'right')
+            ->join('auth_groups', 'auth_groups_users.group_id = auth_groups.id', 'right')->where('users.id !=' . $id)->findAll();
     }
 
-    
-
+    public function getRoles($id)
+    {
+        return $this->select('auth_groups.id, auth_groups.name')->join('auth_groups_users', 'users.id = auth_groups_users.user_id', 'right')
+            ->join('auth_groups', 'auth_groups_users.group_id = auth_groups.id', 'right')->where('users.id',  $id)->findAll();
+    }
 }

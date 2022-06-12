@@ -104,11 +104,11 @@ $routes->group("api", function ($routes) {
         $routes->options("createRole","API\APIUserController::createRole");
         $routes->post("createRole","API\APIUserController::createRole", ['filter'=>'jwt']);
 
-        $routes->options("updateRole/(:any)","API\APIUserController::updateRole/$1");
-        $routes->post("updateRole/(:any)", "API\APIUserController::updateRole/$1", ['filter'=>'jwt']);
+        $routes->options("updateRole","API\APIUserController::updateRole");
+        $routes->post("updateRole", "API\APIUserController::updateRole", ['filter'=>'jwt']);
 
-        $routes->options("deleteRole/(:any)","API\APIUserController::deleteRole/$1");
-        $routes->post("deleteRole/(:any)","API\APIUserController::deleteRole/$1", ['filter'=>'jwt']);
+        $routes->options("deleteRole","API\APIUserController::deleteRole");
+        $routes->post("deleteRole","API\APIUserController::deleteRole", ['filter'=>'jwt']);
 
         $routes->options("assignRole","API\APIUserController::assignRoleUser");
         $routes->post("assignRole","API\APIUserController::assignRoleUser", ['filter'=>'jwt']);
@@ -130,6 +130,9 @@ $routes->group("api", function ($routes) {
         $routes->options("contact", "API\APIUserController::contactAdmin");
         $routes->post("contact", "API\APIUserController::contactAdmin", ['filter'=>'jwt']);
 
+        $routes->options("adminContact", "API\APIUserController::sendMessage");
+        $routes->post("adminContact", "API\APIUserController::sendMessage", ['filter'=>'jwt']);
+
         $routes->options("discharge", "API\APIUserController::dischargeRestaurant");
         $routes->post("discharge", "API\APIUserController::dischargeRestaurant", ['filter'=>'jwt']);
     });
@@ -149,11 +152,13 @@ $routes->group("api", function ($routes) {
         $routes->options("getRestaurantUsers","API\APIRestaurantController::getAllRestaurantsFromUsers");
         $routes->post("getRestaurantUsers","API\APIRestaurantController::getAllRestaurantsFromUsers", ['filter'=>'jwt']);
 
+        $routes->options("restaurantDischarged","API\APIRestaurantController::restaurantDischarged");
+        $routes->post("restaurantDischarged","API\APIRestaurantController::restaurantDischarged", ['filter'=>'jwt']);
+
         $routes->get("getReviews/(:any)", "API\APIRestaurantController::getReviews/$1");
 
-        $routes->options("create","API\APIRestaurantController::createRestaurant");
-       // $routes->post("create","API\APIRestaurantController::createRestaurant", ['filter'=>'jwt']);
-        $routes->post("create","API\APIRestaurantController::createRestaurant");
+        $routes->options("add","API\APIRestaurantController::addRestaurant");
+        $routes->post("add","API\APIRestaurantController::addRestaurant", ['filter'=>'jwt']);
 
         $routes->options("update/(:any)","API\APIRestaurantController::updateRestaurant/$1");
         $routes->post("update/(:any)","API\APIRestaurantController::updateRestaurant/$1", ['filter'=>'jwt']);
@@ -233,6 +238,22 @@ $routes->group("api", function ($routes) {
 
         $routes->options("create","API\APIMessagesController::createMessages");
         $routes->post("create","API\APIMessagesController::createMessages", ['filter'=>'jwt']);
+
+    });
+
+    ////////////////////////////////////
+    ////////// THEME ROUTES ////////////
+    ////////////////////////////////////
+
+    $routes->group("theme", function ($routes) {
+        $routes->options("create","API\APIMessagesController::themeCreate");
+        $routes->post("create","API\APIMessagesController::themeCreate", ['filter'=>'jwt']);
+
+        $routes->options("update","API\APIMessagesController::themeUpdate");
+        $routes->post("update","API\APIMessagesController::themeUpdate", ['filter'=>'jwt']);
+        
+        $routes->options("delete","API\APIMessagesController::themeDelete");
+        $routes->post("delete","API\APIMessagesController::themeDelete", ['filter'=>'jwt']);
 
     });
 
@@ -322,8 +343,8 @@ $routes->group("admin", function ($routes) {
 
         $routes->group("themes", function ($routes) {
             $routes->get("create", 'AdminCrudController::createTheme', ['filter'=>'role:administrador']);
-            $routes->get('update', 'AdminCrudController::updateTheme', ['filter'=>'role:administrador']);
-            $routes->get('delete', 'AdminCrudController::deleteTheme', ['filter'=>'role:administrador']);
+            $routes->get('update/(:any)', 'AdminCrudController::updateTheme/$1', ['filter'=>'role:administrador']);
+            $routes->get('delete/(:any)', 'AdminCrudController::deleteTheme/$1', ['filter'=>'role:administrador']);
         });
 
         $routes->get('messages', 'AdminCrudController::listMessages', ['filter'=>'role:administrador']);
@@ -337,7 +358,14 @@ $routes->group("admin", function ($routes) {
 //RESPONSABLE ROUTES
 
 $routes->group("responsable", function ($routes) {
-    $routes->get('restaurants', 'ResponsableCrudController::view', ['filter'=>'role:responsable']);
+    $routes->get('restaurants', 'ResponsableCrudController::list_restaurants', ['filter'=>'role:responsable']);
+
+    $routes->group("restaurants", function ($routes) {
+        $routes->get("create", 'ResponsableCrudController::addRestaurant', ['filter'=>'role:responsable']);
+        $routes->get('update/(:any)', 'ResponsableCrudController::updateRestaurant/$1', ['filter'=>'role:responsable']);
+        $routes->get('delete/(:any)', 'ResponsableCrudController::deleteRestaurant/$1', ['filter'=>'role:responsable']);
+        $routes->get("manage/(:any)", 'ResponsableCrudController::manageRestaurant/$1', ['filter'=>'role:responsable']);
+    });
 
 });
 

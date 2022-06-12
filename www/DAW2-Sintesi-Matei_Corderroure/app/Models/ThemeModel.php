@@ -41,11 +41,12 @@ class ThemeModel extends Model
     protected $afterDelete    = [];
 
 
-    public function getAllThemes() {
+    public function getAllThemes()
+    {
         return $this->findAll();
     }
 
-     /**
+    /**
      * getByTitleOrText
      * $search
      */
@@ -74,4 +75,30 @@ class ThemeModel extends Model
             return $this->select('*')->orderBy($order, "ASC")->paginate($nElements);
         }
     }
+
+    public function checkTheme($name) {
+        return $this->select('*')->where('name', $name)->first();
+    }
+
+    public function themeCreate($name)
+    {
+        $data = [
+            "name" => $name
+        ];
+        $this->insert($data);
+    }
+
+    public function themeUpdate($oldName, $name)
+    {
+        $data = [
+            "name" => $name
+        ];
+        $this->update($oldName, $data);
+    }
+
+    public function themeDelete($name)
+    {
+        $this->delete($name);
+    }
+
 }

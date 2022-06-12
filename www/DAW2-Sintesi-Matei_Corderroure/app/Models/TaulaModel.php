@@ -53,7 +53,7 @@ class TaulaModel extends Model
     }
 
     public function getAvailableTables($id_restaurant) {
-       return $this->select('*')->where('id_restaurant', $id_restaurant)->where('state', null)->findAll();
+       return $this->select('*')->where('id_restaurant', $id_restaurant)->where('toTakeAway!=',null) ->where('state', null)->findAll();
         
     }
 }

@@ -82,6 +82,10 @@ class RestaurantModel extends Model
         return $this->where('id', $id_restaurant)->first();
     }
 
+    public function getSpecificRestaurantDischarged($id_restaurant) {
+        return $this->where('id', $id_restaurant)->where('discharged!=', null)->first();
+    }
+
     public function getAllRestaurantsFromResponsable($id_responsable) {
 
         $this->select('*');
@@ -124,6 +128,25 @@ class RestaurantModel extends Model
         $this->insert($data);
         
     }
+
+    public function addRestaurant($name, $city, $street, $postal_code, $phone, $description, $twitter, $instagram, $facebook) {
+
+        $data = [
+            'name' => $name, 
+            'city' => $city, 
+            'street' => $street, 
+            'postal_code' => $postal_code, 
+            'phone' => $phone, 
+            'description' => $description,
+            'twitter' => $twitter, 
+            'instagram' => $instagram, 
+            'facebook' => $facebook
+        ];
+
+        $this->insert($data);
+        
+    }
+
 
     public function insertGallery($name, $city, $street, $postal_code, $phone, $img_gallery) {
 
@@ -185,4 +208,51 @@ class RestaurantModel extends Model
             return $this->select('*')->where('discharged', null)->orderBy($order, "ASC")->paginate($nElements);
         }
     }
+
+    public function restaurantSearchResponsable($search, $order, $act, $id_responsable)
+    {
+        if ($order == "")
+            return $this->select('*')->join('user_restaurant', 'user_restaurant.id_restaurant = restaurant.id', 'left')
+            ->where('user_restaurant.id_user', $id_responsable)->where('discharged!=', null)->orLike('id', $search, 'both', true)
+            ->orLike('name', $search, 'both', true)
+            ->orLike('city', $search, 'both', true)
+            ->orLike('street', $search, 'both', true)
+            ->orLike('postal_code', $search, 'both', true)
+            ;
+        else if ($act == "") {
+            return $this->select('*')->join('user_restaurant', 'user_restaurant.id_restaurant = restaurant.id', 'left')
+            ->where('user_restaurant.id_user', $id_responsable)->where('discharged!=', null)
+            ->orLike('name', $search, 'both', true)->orderBy($order, "DESC");
+        } else if ($act == "a") {
+            return $this->select('*')->join('user_restaurant', 'user_restaurant.id_restaurant = restaurant.id', 'left')
+            ->where('user_restaurant.id_user', $id_responsable)->where('discharged!=', null)->orLike('name', $search, 'both', true)->orderBy($order, "ASC");
+        }
+    }
+
+    /**
+     * getAllPaged
+     * $nElements
+     */
+    public function restaurantListPagerResponsable($nElements, $order, $act, $id_responsable)
+    {
+        if ($order == "")
+            return $this->select('*')->join('user_restaurant', 'user_restaurant.id_restaurant = restaurant.id', 'left')
+            ->where('user_restaurant.id_user', $id_responsable)->where('discharged!=', null)->paginate($nElements);
+        else if ($act == "") {
+            return $this->select('*')->join('user_restaurant', 'user_restaurant.id_restaurant = restaurant.id', 'left')
+            ->where('user_restaurant.id_user', $id_responsable)->where('discharged!=', null)->orderBy($order, "DESC")->paginate($nElements);
+        } else if ($act == "a") {
+            return $this->select('*')->join('user_restaurant', 'user_restaurant.id_restaurant = restaurant.id', 'left')
+            ->where('user_restaurant.id_user', $id_responsable)->where('discharged!=', null)->orderBy($order, "ASC")->paginate($nElements);
+        }
+    }
+
+    public function deleteRestaurant($id_restaurant) {
+        $this->delete($id_restaurant);
+    }
+
+    public function updateRestaurant($id_restaurant, $data, $files) {
+
+    }
+
 }
