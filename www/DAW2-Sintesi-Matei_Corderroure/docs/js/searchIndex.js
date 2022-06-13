@@ -6,60 +6,95 @@ Search.appendIndex(
             "summary": "Class\u0020BaseController",
             "url": "classes/App-Controllers-AdminCrudController.html"
         },                {
-            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AhashNewPassword\u0028\u0029",
-            "name": "hashNewPassword",
-            "summary": "",
-            "url": "classes/App-Controllers-AdminCrudController.html#method_hashNewPassword"
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AlistUsers\u0028\u0029",
+            "name": "listUsers",
+            "summary": "Gets\u0020and\u0020display\u0020the\u0020users",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_listUsers"
         },                {
-            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AhashEditPassword\u0028\u0029",
-            "name": "hashEditPassword",
-            "summary": "",
-            "url": "classes/App-Controllers-AdminCrudController.html#method_hashEditPassword"
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AlistRoles\u0028\u0029",
+            "name": "listRoles",
+            "summary": "Gets\u0020and\u0020display\u0020the\u0020roles",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_listRoles"
         },                {
-            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AseeMessages\u0028\u0029",
-            "name": "seeMessages",
-            "summary": "",
-            "url": "classes/App-Controllers-AdminCrudController.html#method_seeMessages"
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AlistMessages\u0028\u0029",
+            "name": "listMessages",
+            "summary": "Gets\u0020and\u0020display\u0020the\u0020messages",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_listMessages"
         },                {
-            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AassignRoles\u0028\u0029",
-            "name": "assignRoles",
-            "summary": "",
-            "url": "classes/App-Controllers-AdminCrudController.html#method_assignRoles"
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AlistThemes\u0028\u0029",
+            "name": "listThemes",
+            "summary": "Gets\u0020and\u0020display\u0020the\u0020themes",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_listThemes"
         },                {
-            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AmanageRole\u0028\u0029",
-            "name": "manageRole",
-            "summary": "",
-            "url": "classes/App-Controllers-AdminCrudController.html#method_manageRole"
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AlistRestaurants\u0028\u0029",
+            "name": "listRestaurants",
+            "summary": "Gets\u0020and\u0020display\u0020the\u0020restaurants",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_listRestaurants"
         },                {
-            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AmanageThemes\u0028\u0029",
-            "name": "manageThemes",
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AcreateUser\u0028\u0029",
+            "name": "createUser",
             "summary": "",
-            "url": "classes/App-Controllers-AdminCrudController.html#method_manageThemes"
+            "url": "classes/App-Controllers-AdminCrudController.html#method_createUser"
         },                {
-            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AdischargeRestaurant\u0028\u0029",
-            "name": "dischargeRestaurant",
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AupdateUser\u0028\u0029",
+            "name": "updateUser",
             "summary": "",
-            "url": "classes/App-Controllers-AdminCrudController.html#method_dischargeRestaurant"
+            "url": "classes/App-Controllers-AdminCrudController.html#method_updateUser"
         },                {
-            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AmanageUser\u0028\u0029",
-            "name": "manageUser",
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AdeleteUser\u0028\u0029",
+            "name": "deleteUser",
             "summary": "",
-            "url": "classes/App-Controllers-AdminCrudController.html#method_manageUser"
+            "url": "classes/App-Controllers-AdminCrudController.html#method_deleteUser"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APIAdministracioController",
-            "name": "APIAdministracioController",
-            "summary": "",
-            "url": "classes/App-Controllers-API-APIAdministracioController.html"
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AassignRole\u0028\u0029",
+            "name": "assignRole",
+            "summary": "Assigns\u0020a\u0020role\u0020to\u0020the\u0020user",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_assignRole"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APIAdministracioController\u003A\u003AtestApi\u0028\u0029",
-            "name": "testApi",
-            "summary": "",
-            "url": "classes/App-Controllers-API-APIAdministracioController.html#method_testApi"
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AremoveRole\u0028\u0029",
+            "name": "removeRole",
+            "summary": "Removes\u0020the\u0020role\u0020of\u0020the\u0020user",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_removeRole"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APIAdministracioController\u003A\u003A\u0024helpers",
-            "name": "helpers",
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AcreateRole\u0028\u0029",
+            "name": "createRole",
             "summary": "",
-            "url": "classes/App-Controllers-API-APIAdministracioController.html#property_helpers"
+            "url": "classes/App-Controllers-AdminCrudController.html#method_createRole"
+        },                {
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AupdateRole\u0028\u0029",
+            "name": "updateRole",
+            "summary": "",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_updateRole"
+        },                {
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AdeleteRole\u0028\u0029",
+            "name": "deleteRole",
+            "summary": "",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_deleteRole"
+        },                {
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AcreateTheme\u0028\u0029",
+            "name": "createTheme",
+            "summary": "",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_createTheme"
+        },                {
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AupdateTheme\u0028\u0029",
+            "name": "updateTheme",
+            "summary": "",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_updateTheme"
+        },                {
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AdeleteTheme\u0028\u0029",
+            "name": "deleteTheme",
+            "summary": "",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_deleteTheme"
+        },                {
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AsendMessage\u0028\u0029",
+            "name": "sendMessage",
+            "summary": "",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_sendMessage"
+        },                {
+            "fqsen": "\\App\\Controllers\\AdminCrudController\u003A\u003AdischargeRestaurants\u0028\u0029",
+            "name": "dischargeRestaurants",
+            "summary": "",
+            "url": "classes/App-Controllers-AdminCrudController.html#method_dischargeRestaurants"
         },                {
             "fqsen": "\\App\\Controllers\\API\\APIAllergenController",
             "name": "APIAllergenController",
@@ -68,7 +103,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controllers\\API\\APIAllergenController\u003A\u003AgetAllAllergens\u0028\u0029",
             "name": "getAllAllergens",
-            "summary": "",
+            "summary": "Gets\u0020all\u0020the\u0020allergens\u0020that\u0020the\u0020dish\u0020has",
             "url": "classes/App-Controllers-API-APIAllergenController.html#method_getAllAllergens"
         },                {
             "fqsen": "\\App\\Controllers\\API\\APICategoryController",
@@ -76,25 +111,20 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controllers-API-APICategoryController.html"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APICategoryController\u003A\u003Aindex\u0028\u0029",
-            "name": "index",
-            "summary": "",
-            "url": "classes/App-Controllers-API-APICategoryController.html#method_index"
+            "fqsen": "\\App\\Controllers\\API\\APICategoryController\u003A\u003AgetAllCategories\u0028\u0029",
+            "name": "getAllCategories",
+            "summary": "Get\u0020the\u0020categories\u0020of\u0020an\u0020specific\u0020dish",
+            "url": "classes/App-Controllers-API-APICategoryController.html#method_getAllCategories"
         },                {
             "fqsen": "\\App\\Controllers\\API\\APIDishController",
             "name": "APIDishController",
             "summary": "",
             "url": "classes/App-Controllers-API-APIDishController.html"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APIDishController\u003A\u003AgetAll\u0028\u0029",
-            "name": "getAll",
-            "summary": "",
-            "url": "classes/App-Controllers-API-APIDishController.html#method_getAll"
-        },                {
-            "fqsen": "\\App\\Controllers\\API\\APIDishController\u003A\u003AgetAllDishesFromARestaurant\u0028\u0029",
-            "name": "getAllDishesFromARestaurant",
-            "summary": "",
-            "url": "classes/App-Controllers-API-APIDishController.html#method_getAllDishesFromARestaurant"
+            "fqsen": "\\App\\Controllers\\API\\APIDishController\u003A\u003AgetAllDishesFromRestaurant\u0028\u0029",
+            "name": "getAllDishesFromRestaurant",
+            "summary": "Get\u0020all\u0020dishes\u0020from\u0020a\u0020restaurant",
+            "url": "classes/App-Controllers-API-APIDishController.html#method_getAllDishesFromRestaurant"
         },                {
             "fqsen": "\\App\\Controllers\\API\\APIMessagesController",
             "name": "APIMessagesController",
@@ -106,6 +136,26 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controllers-API-APIMessagesController.html#method_index"
         },                {
+            "fqsen": "\\App\\Controllers\\API\\APIMessagesController\u003A\u003AgetMessagesFromUser\u0028\u0029",
+            "name": "getMessagesFromUser",
+            "summary": "",
+            "url": "classes/App-Controllers-API-APIMessagesController.html#method_getMessagesFromUser"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIMessagesController\u003A\u003AgetMessageNumber\u0028\u0029",
+            "name": "getMessageNumber",
+            "summary": "",
+            "url": "classes/App-Controllers-API-APIMessagesController.html#method_getMessageNumber"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIMessagesController\u003A\u003AthemeCreate\u0028\u0029",
+            "name": "themeCreate",
+            "summary": "Create\u0020theme",
+            "url": "classes/App-Controllers-API-APIMessagesController.html#method_themeCreate"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIMessagesController\u003A\u003AthemeUpdate\u0028\u0029",
+            "name": "themeUpdate",
+            "summary": "Updates\u0020the\u0020theme",
+            "url": "classes/App-Controllers-API-APIMessagesController.html#method_themeUpdate"
+        },                {
             "fqsen": "\\App\\Controllers\\API\\APIOrderController",
             "name": "APIOrderController",
             "summary": "",
@@ -115,6 +165,11 @@ Search.appendIndex(
             "name": "index",
             "summary": "",
             "url": "classes/App-Controllers-API-APIOrderController.html#method_index"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIOrderController\u003A\u003AcreateOrder\u0028\u0029",
+            "name": "createOrder",
+            "summary": "Creates\u0020an\u0020order",
+            "url": "classes/App-Controllers-API-APIOrderController.html#method_createOrder"
         },                {
             "fqsen": "\\App\\Controllers\\API\\APIRestaurantController",
             "name": "APIRestaurantController",
@@ -126,6 +181,11 @@ Search.appendIndex(
             "summary": "Get\u0020all\u0020restaurants\u0020in\u0020the\u0020database",
             "url": "classes/App-Controllers-API-APIRestaurantController.html#method_getAllRestaurants"
         },                {
+            "fqsen": "\\App\\Controllers\\API\\APIRestaurantController\u003A\u003AgetAllRestaurantsWithReviews\u0028\u0029",
+            "name": "getAllRestaurantsWithReviews",
+            "summary": "",
+            "url": "classes/App-Controllers-API-APIRestaurantController.html#method_getAllRestaurantsWithReviews"
+        },                {
             "fqsen": "\\App\\Controllers\\API\\APIRestaurantController\u003A\u003AgetSpecificRestaurant\u0028\u0029",
             "name": "getSpecificRestaurant",
             "summary": "Get\u0020an\u0020specific\u0020restaurant",
@@ -136,30 +196,20 @@ Search.appendIndex(
             "summary": "Get\u0020an\u0020specific\u0020restaurant",
             "url": "classes/App-Controllers-API-APIRestaurantController.html#method_getAllRestaurantsFromUsers"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APIRestaurantController\u003A\u003AcreateRestaurant\u0028\u0029",
-            "name": "createRestaurant",
+            "fqsen": "\\App\\Controllers\\API\\APIRestaurantController\u003A\u003AaddRestaurant\u0028\u0029",
+            "name": "addRestaurant",
             "summary": "Creates\u0020a\u0020restaurant",
-            "url": "classes/App-Controllers-API-APIRestaurantController.html#method_createRestaurant"
+            "url": "classes/App-Controllers-API-APIRestaurantController.html#method_addRestaurant"
         },                {
             "fqsen": "\\App\\Controllers\\API\\APIRestaurantController\u003A\u003AupdateRestaurant\u0028\u0029",
             "name": "updateRestaurant",
             "summary": "Updates\u0020a\u0020restaurant",
             "url": "classes/App-Controllers-API-APIRestaurantController.html#method_updateRestaurant"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APIRestaurantController\u003A\u003AdeleteRestaurant\u0028\u0029",
-            "name": "deleteRestaurant",
-            "summary": "Deletes\u0020a\u0020restaurant",
-            "url": "classes/App-Controllers-API-APIRestaurantController.html#method_deleteRestaurant"
-        },                {
             "fqsen": "\\App\\Controllers\\API\\APIRestaurantController\u003A\u003AgetReviews\u0028\u0029",
             "name": "getReviews",
             "summary": "Get\u0020the\u0020valorations\u0020of\u0020an\u0020specific\u0020restaurant",
             "url": "classes/App-Controllers-API-APIRestaurantController.html#method_getReviews"
-        },                {
-            "fqsen": "\\App\\Controllers\\API\\APIRestaurantController\u003A\u003AcreateReviews\u0028\u0029",
-            "name": "createReviews",
-            "summary": "",
-            "url": "classes/App-Controllers-API-APIRestaurantController.html#method_createReviews"
         },                {
             "fqsen": "\\App\\Controllers\\API\\APISupplementController",
             "name": "APISupplementController",
@@ -171,50 +221,55 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controllers-API-APISupplementController.html#method_index"
         },                {
+            "fqsen": "\\App\\Controllers\\API\\APISupplementController\u003A\u003AgetAllSupplements\u0028\u0029",
+            "name": "getAllSupplements",
+            "summary": "",
+            "url": "classes/App-Controllers-API-APISupplementController.html#method_getAllSupplements"
+        },                {
             "fqsen": "\\App\\Controllers\\API\\APITaulaController",
             "name": "APITaulaController",
             "summary": "",
             "url": "classes/App-Controllers-API-APITaulaController.html"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APITaulaController\u003A\u003Aindex\u0028\u0029",
-            "name": "index",
-            "summary": "",
-            "url": "classes/App-Controllers-API-APITaulaController.html#method_index"
+            "fqsen": "\\App\\Controllers\\API\\APITaulaController\u003A\u003AcreateTable\u0028\u0029",
+            "name": "createTable",
+            "summary": "Creates\u0020a\u0020table",
+            "url": "classes/App-Controllers-API-APITaulaController.html#method_createTable"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APITaulaController\u003A\u003AgetOnlineTables\u0028\u0029",
+            "name": "getOnlineTables",
+            "summary": "Get\u0020the\u0020online\u0020tables\u0020of\u0020an\u0020specific\u0020restaurant",
+            "url": "classes/App-Controllers-API-APITaulaController.html#method_getOnlineTables"
         },                {
             "fqsen": "\\App\\Controllers\\API\\APIUserController",
             "name": "APIUserController",
             "summary": "",
             "url": "classes/App-Controllers-API-APIUserController.html"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003Aregister\u0028\u0029",
-            "name": "register",
-            "summary": "Registers\u0020a\u0020user\u0020in\u0020the\u0020Database",
-            "url": "classes/App-Controllers-API-APIUserController.html#method_register"
+            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AchangePassword\u0028\u0029",
+            "name": "changePassword",
+            "summary": "Changes\u0020the\u0020password\u0020of\u0020the\u0020user",
+            "url": "classes/App-Controllers-API-APIUserController.html#method_changePassword"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003Alogin\u0028\u0029",
-            "name": "login",
-            "summary": "Logs\u0020in\u0020the\u0020user",
-            "url": "classes/App-Controllers-API-APIUserController.html#method_login"
+            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AupdateUserSpecific\u0028\u0029",
+            "name": "updateUserSpecific",
+            "summary": "Updates\u0020the\u0020information\u0020of\u0020an\u0020specific\u0020user",
+            "url": "classes/App-Controllers-API-APIUserController.html#method_updateUserSpecific"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003Alogout\u0028\u0029",
-            "name": "logout",
-            "summary": "Log\u0020off\u0020a\u0020user\u0020that\u0020is\u0020currently\u0020logged\u0020in",
-            "url": "classes/App-Controllers-API-APIUserController.html#method_logout"
-        },                {
-            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AisUserAuthenticated\u0028\u0029",
-            "name": "isUserAuthenticated",
-            "summary": "Checks\u0020if\u0020the\u0020user\u0020is\u0020currently\u0020logged\u0020in",
-            "url": "classes/App-Controllers-API-APIUserController.html#method_isUserAuthenticated"
+            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AupdateUser\u0028\u0029",
+            "name": "updateUser",
+            "summary": "Updates\u0020the\u0020users\u0020data",
+            "url": "classes/App-Controllers-API-APIUserController.html#method_updateUser"
         },                {
             "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AgetAllUsers\u0028\u0029",
             "name": "getAllUsers",
             "summary": "Get\u0020all\u0020Users\u0020in\u0020the\u0020Database",
             "url": "classes/App-Controllers-API-APIUserController.html#method_getAllUsers"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AgetAllRoles\u0028\u0029",
-            "name": "getAllRoles",
-            "summary": "Get\u0020all\u0020roles\u0020available",
-            "url": "classes/App-Controllers-API-APIUserController.html#method_getAllRoles"
+            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AgetUser\u0028\u0029",
+            "name": "getUser",
+            "summary": "",
+            "url": "classes/App-Controllers-API-APIUserController.html#method_getUser"
         },                {
             "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AcreateRole\u0028\u0029",
             "name": "createRole",
@@ -226,20 +281,40 @@ Search.appendIndex(
             "summary": "Updates\u0020a\u0020role",
             "url": "classes/App-Controllers-API-APIUserController.html#method_updateRole"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AdeleteRole\u0028\u0029",
-            "name": "deleteRole",
-            "summary": "Delete\u0020the\u0020role",
-            "url": "classes/App-Controllers-API-APIUserController.html#method_deleteRole"
-        },                {
-            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AassignRole\u0028\u0029",
-            "name": "assignRole",
+            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AassignRoleUser\u0028\u0029",
+            "name": "assignRoleUser",
             "summary": "Assigns\u0020a\u0020role\u0020to\u0020a\u0020user",
-            "url": "classes/App-Controllers-API-APIUserController.html#method_assignRole"
+            "url": "classes/App-Controllers-API-APIUserController.html#method_assignRoleUser"
         },                {
-            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003A\u0024helpers",
-            "name": "helpers",
+            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AremoveRoleUser\u0028\u0029",
+            "name": "removeRoleUser",
+            "summary": "Deassigns\u0020a\u0020role\u0020that\u0020a\u0020user\u0020has",
+            "url": "classes/App-Controllers-API-APIUserController.html#method_removeRoleUser"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AreturnUserImage\u0028\u0029",
+            "name": "returnUserImage",
+            "summary": "Gets\u0020the\u0020img\u0020from\u0020the\u0020db\u0020of\u0020the\u0020user\u0020and\u0020returns\u0020it\u0020with\u0020base64",
+            "url": "classes/App-Controllers-API-APIUserController.html#method_returnUserImage"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AcreateValorations\u0028\u0029",
+            "name": "createValorations",
+            "summary": "Create\u0020a\u0020valoration",
+            "url": "classes/App-Controllers-API-APIUserController.html#method_createValorations"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AcontactAdmin\u0028\u0029",
+            "name": "contactAdmin",
+            "summary": "Creates\u0020a\u0020contact\u0020message\u0020that\u0020can\u0020be\u0020seen\u0020by\u0020the\u0020admins",
+            "url": "classes/App-Controllers-API-APIUserController.html#method_contactAdmin"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AdischargeRestaurant\u0028\u0029",
+            "name": "dischargeRestaurant",
+            "summary": "Creates\u0020a\u0020contact\u0020message\u0020that\u0020can\u0020be\u0020seen\u0020by\u0020the\u0020admins",
+            "url": "classes/App-Controllers-API-APIUserController.html#method_dischargeRestaurant"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIUserController\u003A\u003AsendMessage\u0028\u0029",
+            "name": "sendMessage",
             "summary": "",
-            "url": "classes/App-Controllers-API-APIUserController.html#property_helpers"
+            "url": "classes/App-Controllers-API-APIUserController.html#method_sendMessage"
         },                {
             "fqsen": "\\App\\Controllers\\AuthController",
             "name": "AuthController",
@@ -366,25 +441,110 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controllers-HomePageController.html#method_index"
         },                {
-            "fqsen": "\\App\\Controllers\\HomePageController\u003A\u003Alogin\u0028\u0029",
-            "name": "login",
-            "summary": "",
-            "url": "classes/App-Controllers-HomePageController.html#method_login"
-        },                {
-            "fqsen": "\\App\\Controllers\\HomePageController\u003A\u003Alogout\u0028\u0029",
-            "name": "logout",
-            "summary": "",
-            "url": "classes/App-Controllers-HomePageController.html#method_logout"
-        },                {
             "fqsen": "\\App\\Controllers\\ResponsableCrudController",
             "name": "ResponsableCrudController",
             "summary": "Class\u0020BaseController",
             "url": "classes/App-Controllers-ResponsableCrudController.html"
         },                {
-            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003Aview\u0028\u0029",
-            "name": "view",
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AgetCategories\u0028\u0029",
+            "name": "getCategories",
             "summary": "",
-            "url": "classes/App-Controllers-ResponsableCrudController.html#method_view"
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_getCategories"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AaddCategory\u0028\u0029",
+            "name": "addCategory",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_addCategory"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AeditCategory\u0028\u0029",
+            "name": "editCategory",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_editCategory"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AdeleteCategory\u0028\u0029",
+            "name": "deleteCategory",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_deleteCategory"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AgetDishes\u0028\u0029",
+            "name": "getDishes",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_getDishes"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AaddDish\u0028\u0029",
+            "name": "addDish",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_addDish"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AeditDish\u0028\u0029",
+            "name": "editDish",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_editDish"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AdeleteDish\u0028\u0029",
+            "name": "deleteDish",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_deleteDish"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AassignSupplement\u0028\u0029",
+            "name": "assignSupplement",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_assignSupplement"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AassignAllergen\u0028\u0029",
+            "name": "assignAllergen",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_assignAllergen"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AgetSupplements\u0028\u0029",
+            "name": "getSupplements",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_getSupplements"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AaddSupplement\u0028\u0029",
+            "name": "addSupplement",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_addSupplement"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AeditSupplement\u0028\u0029",
+            "name": "editSupplement",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_editSupplement"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AdeleteSupplement\u0028\u0029",
+            "name": "deleteSupplement",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_deleteSupplement"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AgetAllergens\u0028\u0029",
+            "name": "getAllergens",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_getAllergens"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003Alist_restaurants\u0028\u0029",
+            "name": "list_restaurants",
+            "summary": "Gets\u0020and\u0020display\u0020the\u0020restaurants",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_list_restaurants"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AaddRestaurant\u0028\u0029",
+            "name": "addRestaurant",
+            "summary": "Returns\u0020a\u0020form\u0020to\u0020discharge\u0020restaurants",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_addRestaurant"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AupdateRestaurant\u0028\u0029",
+            "name": "updateRestaurant",
+            "summary": "Returns\u0020a\u0020form\u0020to\u0020update\u0020the\u0020restaurant",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_updateRestaurant"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AdeleteRestaurant\u0028\u0029",
+            "name": "deleteRestaurant",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_deleteRestaurant"
+        },                {
+            "fqsen": "\\App\\Controllers\\ResponsableCrudController\u003A\u003AmanageRestaurant\u0028\u0029",
+            "name": "manageRestaurant",
+            "summary": "",
+            "url": "classes/App-Controllers-ResponsableCrudController.html#method_manageRestaurant"
         },                {
             "fqsen": "\\App\\Controllers\\RestaurantPage",
             "name": "RestaurantPage",
@@ -405,6 +565,11 @@ Search.appendIndex(
             "name": "getAllAllergen",
             "summary": "",
             "url": "classes/App-Models-AllergenModel.html#method_getAllAllergen"
+        },                {
+            "fqsen": "\\App\\Models\\AllergenModel\u003A\u003AgetDishAllergen\u0028\u0029",
+            "name": "getDishAllergen",
+            "summary": "",
+            "url": "classes/App-Models-AllergenModel.html#method_getDishAllergen"
         },                {
             "fqsen": "\\App\\Models\\AllergenModel\u003A\u003A\u0024DBGroup",
             "name": "DBGroup",
@@ -545,6 +710,11 @@ Search.appendIndex(
             "name": "CategoryModel",
             "summary": "",
             "url": "classes/App-Models-CategoryModel.html"
+        },                {
+            "fqsen": "\\App\\Models\\CategoryModel\u003A\u003AgetCategory\u0028\u0029",
+            "name": "getCategory",
+            "summary": "",
+            "url": "classes/App-Models-CategoryModel.html#method_getCategory"
         },                {
             "fqsen": "\\App\\Models\\CategoryModel\u003A\u003A\u0024DBGroup",
             "name": "DBGroup",
@@ -966,6 +1136,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Models-DishModel.html"
         },                {
+            "fqsen": "\\App\\Models\\DishModel\u003A\u003AgetAllDishesSpecific\u0028\u0029",
+            "name": "getAllDishesSpecific",
+            "summary": "",
+            "url": "classes/App-Models-DishModel.html#method_getAllDishesSpecific"
+        },                {
+            "fqsen": "\\App\\Models\\DishModel\u003A\u003AgetDish\u0028\u0029",
+            "name": "getDish",
+            "summary": "",
+            "url": "classes/App-Models-DishModel.html#method_getDish"
+        },                {
             "fqsen": "\\App\\Models\\DishModel\u003A\u003A\u0024DBGroup",
             "name": "DBGroup",
             "summary": "",
@@ -1105,6 +1285,11 @@ Search.appendIndex(
             "name": "DishSupplementModel",
             "summary": "",
             "url": "classes/App-Models-DishSupplementModel.html"
+        },                {
+            "fqsen": "\\App\\Models\\DishSupplementModel\u003A\u003Acheck\u0028\u0029",
+            "name": "check",
+            "summary": "",
+            "url": "classes/App-Models-DishSupplementModel.html#method_check"
         },                {
             "fqsen": "\\App\\Models\\DishSupplementModel\u003A\u003A\u0024DBGroup",
             "name": "DBGroup",
@@ -1321,6 +1506,41 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Models-MessagesModel.html"
         },                {
+            "fqsen": "\\App\\Models\\MessagesModel\u003A\u003AgetMessagesFromUser\u0028\u0029",
+            "name": "getMessagesFromUser",
+            "summary": "",
+            "url": "classes/App-Models-MessagesModel.html#method_getMessagesFromUser"
+        },                {
+            "fqsen": "\\App\\Models\\MessagesModel\u003A\u003AgetMessages\u0028\u0029",
+            "name": "getMessages",
+            "summary": "",
+            "url": "classes/App-Models-MessagesModel.html#method_getMessages"
+        },                {
+            "fqsen": "\\App\\Models\\MessagesModel\u003A\u003AcreateMessageAdmin\u0028\u0029",
+            "name": "createMessageAdmin",
+            "summary": "",
+            "url": "classes/App-Models-MessagesModel.html#method_createMessageAdmin"
+        },                {
+            "fqsen": "\\App\\Models\\MessagesModel\u003A\u003AcreateMessage\u0028\u0029",
+            "name": "createMessage",
+            "summary": "",
+            "url": "classes/App-Models-MessagesModel.html#method_createMessage"
+        },                {
+            "fqsen": "\\App\\Models\\MessagesModel\u003A\u003AcheckMessage\u0028\u0029",
+            "name": "checkMessage",
+            "summary": "",
+            "url": "classes/App-Models-MessagesModel.html#method_checkMessage"
+        },                {
+            "fqsen": "\\App\\Models\\MessagesModel\u003A\u003AmessageSearch\u0028\u0029",
+            "name": "messageSearch",
+            "summary": "getByTitleOrText\n\u0024search",
+            "url": "classes/App-Models-MessagesModel.html#method_messageSearch"
+        },                {
+            "fqsen": "\\App\\Models\\MessagesModel\u003A\u003AmessageListPager\u0028\u0029",
+            "name": "messageListPager",
+            "summary": "getAllPaged\n\u0024nElements",
+            "url": "classes/App-Models-MessagesModel.html#method_messageListPager"
+        },                {
             "fqsen": "\\App\\Models\\MessagesModel\u003A\u003A\u0024DBGroup",
             "name": "DBGroup",
             "summary": "",
@@ -1460,6 +1680,16 @@ Search.appendIndex(
             "name": "OrderDishModel",
             "summary": "",
             "url": "classes/App-Models-OrderDishModel.html"
+        },                {
+            "fqsen": "\\App\\Models\\OrderDishModel\u003A\u003AcreateOrderDish\u0028\u0029",
+            "name": "createOrderDish",
+            "summary": "",
+            "url": "classes/App-Models-OrderDishModel.html#method_createOrderDish"
+        },                {
+            "fqsen": "\\App\\Models\\OrderDishModel\u003A\u003AcheckOrderDish\u0028\u0029",
+            "name": "checkOrderDish",
+            "summary": "",
+            "url": "classes/App-Models-OrderDishModel.html#method_checkOrderDish"
         },                {
             "fqsen": "\\App\\Models\\OrderDishModel\u003A\u003A\u0024DBGroup",
             "name": "DBGroup",
@@ -1601,6 +1831,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Models-OrderDishSupplementModel.html"
         },                {
+            "fqsen": "\\App\\Models\\OrderDishSupplementModel\u003A\u003AcreateOrderDishSupplement\u0028\u0029",
+            "name": "createOrderDishSupplement",
+            "summary": "",
+            "url": "classes/App-Models-OrderDishSupplementModel.html#method_createOrderDishSupplement"
+        },                {
+            "fqsen": "\\App\\Models\\OrderDishSupplementModel\u003A\u003AcheckOrderDishSupplement\u0028\u0029",
+            "name": "checkOrderDishSupplement",
+            "summary": "",
+            "url": "classes/App-Models-OrderDishSupplementModel.html#method_checkOrderDishSupplement"
+        },                {
             "fqsen": "\\App\\Models\\OrderDishSupplementModel\u003A\u003A\u0024DBGroup",
             "name": "DBGroup",
             "summary": "",
@@ -1740,6 +1980,16 @@ Search.appendIndex(
             "name": "OrderModel",
             "summary": "",
             "url": "classes/App-Models-OrderModel.html"
+        },                {
+            "fqsen": "\\App\\Models\\OrderModel\u003A\u003AcreateOrder\u0028\u0029",
+            "name": "createOrder",
+            "summary": "",
+            "url": "classes/App-Models-OrderModel.html#method_createOrder"
+        },                {
+            "fqsen": "\\App\\Models\\OrderModel\u003A\u003AcheckOrder\u0028\u0029",
+            "name": "checkOrder",
+            "summary": "",
+            "url": "classes/App-Models-OrderModel.html#method_checkOrder"
         },                {
             "fqsen": "\\App\\Models\\OrderModel\u003A\u003A\u0024DBGroup",
             "name": "DBGroup",
@@ -1886,6 +2136,16 @@ Search.appendIndex(
             "summary": "Selects\u0020all\u0020the\u0020restaurants\u0020that\u0020are\u0020discharged",
             "url": "classes/App-Models-RestaurantModel.html#method_getAllRestaurantsDischarged"
         },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003AgetAllRestaurants\u0028\u0029",
+            "name": "getAllRestaurants",
+            "summary": "",
+            "url": "classes/App-Models-RestaurantModel.html#method_getAllRestaurants"
+        },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003AdischargeRestaurant\u0028\u0029",
+            "name": "dischargeRestaurant",
+            "summary": "",
+            "url": "classes/App-Models-RestaurantModel.html#method_dischargeRestaurant"
+        },                {
             "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003AgetAllRestaurantsNotDischarged\u0028\u0029",
             "name": "getAllRestaurantsNotDischarged",
             "summary": "Selects\u0020all\u0020the\u0020restaurants\u0020that\u0020are\u0020not\u0020discharged",
@@ -1896,6 +2156,11 @@ Search.appendIndex(
             "summary": "Selects\u0020an\u0020specific\u0020restaurant",
             "url": "classes/App-Models-RestaurantModel.html#method_getSpecificRestaurant"
         },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003AgetSpecificRestaurantDischarged\u0028\u0029",
+            "name": "getSpecificRestaurantDischarged",
+            "summary": "",
+            "url": "classes/App-Models-RestaurantModel.html#method_getSpecificRestaurantDischarged"
+        },                {
             "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003AgetAllRestaurantsFromResponsable\u0028\u0029",
             "name": "getAllRestaurantsFromResponsable",
             "summary": "",
@@ -1905,6 +2170,66 @@ Search.appendIndex(
             "name": "getRatedRestaurants",
             "summary": "",
             "url": "classes/App-Models-RestaurantModel.html#method_getRatedRestaurants"
+        },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003AexistsRestaurant\u0028\u0029",
+            "name": "existsRestaurant",
+            "summary": "",
+            "url": "classes/App-Models-RestaurantModel.html#method_existsRestaurant"
+        },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003AcreateRestaurant\u0028\u0029",
+            "name": "createRestaurant",
+            "summary": "",
+            "url": "classes/App-Models-RestaurantModel.html#method_createRestaurant"
+        },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003AaddRestaurant\u0028\u0029",
+            "name": "addRestaurant",
+            "summary": "",
+            "url": "classes/App-Models-RestaurantModel.html#method_addRestaurant"
+        },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003AinsertGallery\u0028\u0029",
+            "name": "insertGallery",
+            "summary": "",
+            "url": "classes/App-Models-RestaurantModel.html#method_insertGallery"
+        },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003AcheckRestaurantByID\u0028\u0029",
+            "name": "checkRestaurantByID",
+            "summary": "",
+            "url": "classes/App-Models-RestaurantModel.html#method_checkRestaurantByID"
+        },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003ArestaurantSearch\u0028\u0029",
+            "name": "restaurantSearch",
+            "summary": "getByTitleOrText\n\u0024search",
+            "url": "classes/App-Models-RestaurantModel.html#method_restaurantSearch"
+        },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003ArestaurantListPager\u0028\u0029",
+            "name": "restaurantListPager",
+            "summary": "getAllPaged\n\u0024nElements",
+            "url": "classes/App-Models-RestaurantModel.html#method_restaurantListPager"
+        },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003ArestaurantSearchResponsable\u0028\u0029",
+            "name": "restaurantSearchResponsable",
+            "summary": "",
+            "url": "classes/App-Models-RestaurantModel.html#method_restaurantSearchResponsable"
+        },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003ArestaurantListPagerResponsable\u0028\u0029",
+            "name": "restaurantListPagerResponsable",
+            "summary": "getAllPaged\n\u0024nElements",
+            "url": "classes/App-Models-RestaurantModel.html#method_restaurantListPagerResponsable"
+        },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003AdeleteRestaurant\u0028\u0029",
+            "name": "deleteRestaurant",
+            "summary": "",
+            "url": "classes/App-Models-RestaurantModel.html#method_deleteRestaurant"
+        },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003AupdateRestaurant\u0028\u0029",
+            "name": "updateRestaurant",
+            "summary": "",
+            "url": "classes/App-Models-RestaurantModel.html#method_updateRestaurant"
+        },                {
+            "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003AupdateGallery\u0028\u0029",
+            "name": "updateGallery",
+            "summary": "",
+            "url": "classes/App-Models-RestaurantModel.html#method_updateGallery"
         },                {
             "fqsen": "\\App\\Models\\RestaurantModel\u003A\u003A\u0024DBGroup",
             "name": "DBGroup",
@@ -2061,6 +2386,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Models-SupplementModel.html#method_deleteSupplement"
         },                {
+            "fqsen": "\\App\\Models\\SupplementModel\u003A\u003AgetAllSupplements\u0028\u0029",
+            "name": "getAllSupplements",
+            "summary": "",
+            "url": "classes/App-Models-SupplementModel.html#method_getAllSupplements"
+        },                {
+            "fqsen": "\\App\\Models\\SupplementModel\u003A\u003AcheckSupplement\u0028\u0029",
+            "name": "checkSupplement",
+            "summary": "",
+            "url": "classes/App-Models-SupplementModel.html#method_checkSupplement"
+        },                {
             "fqsen": "\\App\\Models\\SupplementModel\u003A\u003A\u0024DBGroup",
             "name": "DBGroup",
             "summary": "",
@@ -2196,150 +2531,45 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Models-SupplementModel.html#property_afterDelete"
         },                {
-            "fqsen": "\\App\\Models\\TableModel",
-            "name": "TableModel",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024DBGroup",
-            "name": "DBGroup",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_DBGroup"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024table",
-            "name": "table",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_table"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024primaryKey",
-            "name": "primaryKey",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_primaryKey"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024useAutoIncrement",
-            "name": "useAutoIncrement",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_useAutoIncrement"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024insertID",
-            "name": "insertID",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_insertID"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024returnType",
-            "name": "returnType",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_returnType"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024useSoftDeletes",
-            "name": "useSoftDeletes",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_useSoftDeletes"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024protectFields",
-            "name": "protectFields",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_protectFields"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024allowedFields",
-            "name": "allowedFields",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_allowedFields"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024useTimestamps",
-            "name": "useTimestamps",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_useTimestamps"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024dateFormat",
-            "name": "dateFormat",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_dateFormat"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024createdField",
-            "name": "createdField",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_createdField"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024updatedField",
-            "name": "updatedField",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_updatedField"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024deletedField",
-            "name": "deletedField",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_deletedField"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024validationRules",
-            "name": "validationRules",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_validationRules"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024validationMessages",
-            "name": "validationMessages",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_validationMessages"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024skipValidation",
-            "name": "skipValidation",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_skipValidation"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024cleanValidationRules",
-            "name": "cleanValidationRules",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_cleanValidationRules"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024allowCallbacks",
-            "name": "allowCallbacks",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_allowCallbacks"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024beforeInsert",
-            "name": "beforeInsert",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_beforeInsert"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024afterInsert",
-            "name": "afterInsert",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_afterInsert"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024beforeUpdate",
-            "name": "beforeUpdate",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_beforeUpdate"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024afterUpdate",
-            "name": "afterUpdate",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_afterUpdate"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024beforeFind",
-            "name": "beforeFind",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_beforeFind"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024afterFind",
-            "name": "afterFind",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_afterFind"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024beforeDelete",
-            "name": "beforeDelete",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_beforeDelete"
-        },                {
-            "fqsen": "\\App\\Models\\TableModel\u003A\u003A\u0024afterDelete",
-            "name": "afterDelete",
-            "summary": "",
-            "url": "classes/App-Models-TableModel.html#property_afterDelete"
-        },                {
             "fqsen": "\\App\\Models\\ThemeModel",
             "name": "ThemeModel",
             "summary": "",
             "url": "classes/App-Models-ThemeModel.html"
+        },                {
+            "fqsen": "\\App\\Models\\ThemeModel\u003A\u003AgetAllThemes\u0028\u0029",
+            "name": "getAllThemes",
+            "summary": "",
+            "url": "classes/App-Models-ThemeModel.html#method_getAllThemes"
+        },                {
+            "fqsen": "\\App\\Models\\ThemeModel\u003A\u003AthemeSearch\u0028\u0029",
+            "name": "themeSearch",
+            "summary": "getByTitleOrText\n\u0024search",
+            "url": "classes/App-Models-ThemeModel.html#method_themeSearch"
+        },                {
+            "fqsen": "\\App\\Models\\ThemeModel\u003A\u003AthemeListPager\u0028\u0029",
+            "name": "themeListPager",
+            "summary": "getAllPaged\n\u0024nElements",
+            "url": "classes/App-Models-ThemeModel.html#method_themeListPager"
+        },                {
+            "fqsen": "\\App\\Models\\ThemeModel\u003A\u003AcheckTheme\u0028\u0029",
+            "name": "checkTheme",
+            "summary": "",
+            "url": "classes/App-Models-ThemeModel.html#method_checkTheme"
+        },                {
+            "fqsen": "\\App\\Models\\ThemeModel\u003A\u003AthemeCreate\u0028\u0029",
+            "name": "themeCreate",
+            "summary": "",
+            "url": "classes/App-Models-ThemeModel.html#method_themeCreate"
+        },                {
+            "fqsen": "\\App\\Models\\ThemeModel\u003A\u003AthemeUpdate\u0028\u0029",
+            "name": "themeUpdate",
+            "summary": "",
+            "url": "classes/App-Models-ThemeModel.html#method_themeUpdate"
+        },                {
+            "fqsen": "\\App\\Models\\ThemeModel\u003A\u003AthemeDelete\u0028\u0029",
+            "name": "themeDelete",
+            "summary": "",
+            "url": "classes/App-Models-ThemeModel.html#method_themeDelete"
         },                {
             "fqsen": "\\App\\Models\\ThemeModel\u003A\u003A\u0024DBGroup",
             "name": "DBGroup",
@@ -2676,6 +2906,56 @@ Search.appendIndex(
             "summary": "It\u0020returns\u0020the\u0020user\u0020that\u0020has\u0020that\u0020email\u0020or\u0020username",
             "url": "classes/App-Models-UserModel.html#method_getUserByMailOrUsername"
         },                {
+            "fqsen": "\\App\\Models\\UserModel\u003A\u003AgetUserByID\u0028\u0029",
+            "name": "getUserByID",
+            "summary": "It\u0020returns\u0020the\u0020user\u0020that\u0020has\u0020that\u0020id",
+            "url": "classes/App-Models-UserModel.html#method_getUserByID"
+        },                {
+            "fqsen": "\\App\\Models\\UserModel\u003A\u003AdeleteUser\u0028\u0029",
+            "name": "deleteUser",
+            "summary": "Deletes\u0020the\u0020user",
+            "url": "classes/App-Models-UserModel.html#method_deleteUser"
+        },                {
+            "fqsen": "\\App\\Models\\UserModel\u003A\u003AupdateUser\u0028\u0029",
+            "name": "updateUser",
+            "summary": "",
+            "url": "classes/App-Models-UserModel.html#method_updateUser"
+        },                {
+            "fqsen": "\\App\\Models\\UserModel\u003A\u003AchangePassword\u0028\u0029",
+            "name": "changePassword",
+            "summary": "",
+            "url": "classes/App-Models-UserModel.html#method_changePassword"
+        },                {
+            "fqsen": "\\App\\Models\\UserModel\u003A\u003AuserSearch\u0028\u0029",
+            "name": "userSearch",
+            "summary": "getByTitleOrText\n\u0024search",
+            "url": "classes/App-Models-UserModel.html#method_userSearch"
+        },                {
+            "fqsen": "\\App\\Models\\UserModel\u003A\u003AuserListPager\u0028\u0029",
+            "name": "userListPager",
+            "summary": "getAllPaged\n\u0024nElements",
+            "url": "classes/App-Models-UserModel.html#method_userListPager"
+        },                {
+            "fqsen": "\\App\\Models\\UserModel\u003A\u003AroleSearch\u0028\u0029",
+            "name": "roleSearch",
+            "summary": "getByTitleOrText\n\u0024search",
+            "url": "classes/App-Models-UserModel.html#method_roleSearch"
+        },                {
+            "fqsen": "\\App\\Models\\UserModel\u003A\u003AroleListPager\u0028\u0029",
+            "name": "roleListPager",
+            "summary": "getAllPaged\n\u0024nElements",
+            "url": "classes/App-Models-UserModel.html#method_roleListPager"
+        },                {
+            "fqsen": "\\App\\Models\\UserModel\u003A\u003AgetMissingRoles\u0028\u0029",
+            "name": "getMissingRoles",
+            "summary": "",
+            "url": "classes/App-Models-UserModel.html#method_getMissingRoles"
+        },                {
+            "fqsen": "\\App\\Models\\UserModel\u003A\u003AgetRoles\u0028\u0029",
+            "name": "getRoles",
+            "summary": "",
+            "url": "classes/App-Models-UserModel.html#method_getRoles"
+        },                {
             "fqsen": "\\App\\Models\\UserModel\u003A\u003A\u0024table",
             "name": "table",
             "summary": "",
@@ -2735,6 +3015,16 @@ Search.appendIndex(
             "name": "UserRestaurantModel",
             "summary": "",
             "url": "classes/App-Models-UserRestaurantModel.html"
+        },                {
+            "fqsen": "\\App\\Models\\UserRestaurantModel\u003A\u003AaddUserRestaurant\u0028\u0029",
+            "name": "addUserRestaurant",
+            "summary": "",
+            "url": "classes/App-Models-UserRestaurantModel.html#method_addUserRestaurant"
+        },                {
+            "fqsen": "\\App\\Models\\UserRestaurantModel\u003A\u003AcheckUserRestaurant\u0028\u0029",
+            "name": "checkUserRestaurant",
+            "summary": "",
+            "url": "classes/App-Models-UserRestaurantModel.html#method_checkUserRestaurant"
         },                {
             "fqsen": "\\App\\Models\\UserRestaurantModel\u003A\u003A\u0024DBGroup",
             "name": "DBGroup",
@@ -2881,6 +3171,16 @@ Search.appendIndex(
             "summary": "Get\u0020all\u0020valorations\u0020from\u0020an\u0020especific\u0020restaurant\u0020ID",
             "url": "classes/App-Models-ValorationsModel.html#method_getAllValorations"
         },                {
+            "fqsen": "\\App\\Models\\ValorationsModel\u003A\u003AcreateValoration\u0028\u0029",
+            "name": "createValoration",
+            "summary": "",
+            "url": "classes/App-Models-ValorationsModel.html#method_createValoration"
+        },                {
+            "fqsen": "\\App\\Models\\ValorationsModel\u003A\u003AcheckValoration\u0028\u0029",
+            "name": "checkValoration",
+            "summary": "",
+            "url": "classes/App-Models-ValorationsModel.html#method_checkValoration"
+        },                {
             "fqsen": "\\App\\Models\\ValorationsModel\u003A\u003A\u0024DBGroup",
             "name": "DBGroup",
             "summary": "",
@@ -3015,6 +3315,421 @@ Search.appendIndex(
             "name": "afterDelete",
             "summary": "",
             "url": "classes/App-Models-ValorationsModel.html#property_afterDelete"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIAuthController",
+            "name": "APIAuthController",
+            "summary": "",
+            "url": "classes/App-Controllers-API-APIAuthController.html"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIAuthController\u003A\u003Aregister\u0028\u0029",
+            "name": "register",
+            "summary": "Registers\u0020a\u0020user\u0020in\u0020the\u0020Database",
+            "url": "classes/App-Controllers-API-APIAuthController.html#method_register"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIAuthController\u003A\u003Alogin\u0028\u0029",
+            "name": "login",
+            "summary": "Logs\u0020in\u0020the\u0020user",
+            "url": "classes/App-Controllers-API-APIAuthController.html#method_login"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIAuthController\u003A\u003Alogout\u0028\u0029",
+            "name": "logout",
+            "summary": "Log\u0020off\u0020a\u0020user\u0020that\u0020is\u0020currently\u0020logged\u0020in",
+            "url": "classes/App-Controllers-API-APIAuthController.html#method_logout"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIAuthController\u003A\u003AisUserAuthenticated\u0028\u0029",
+            "name": "isUserAuthenticated",
+            "summary": "Checks\u0020if\u0020the\u0020user\u0020is\u0020currently\u0020logged\u0020in",
+            "url": "classes/App-Controllers-API-APIAuthController.html#method_isUserAuthenticated"
+        },                {
+            "fqsen": "\\App\\Controllers\\API\\APIAuthController\u003A\u003A\u0024helpers",
+            "name": "helpers",
+            "summary": "",
+            "url": "classes/App-Controllers-API-APIAuthController.html#property_helpers"
+        },                {
+            "fqsen": "\\App\\Controllers\\FileExplorerController",
+            "name": "FileExplorerController",
+            "summary": "Class\u0020BaseController",
+            "url": "classes/App-Controllers-FileExplorerController.html"
+        },                {
+            "fqsen": "\\App\\Controllers\\FileExplorerController\u003A\u003AgetImageUser\u0028\u0029",
+            "name": "getImageUser",
+            "summary": "",
+            "url": "classes/App-Controllers-FileExplorerController.html#method_getImageUser"
+        },                {
+            "fqsen": "\\App\\Controllers\\FileExplorerController\u003A\u003AgetRestaurantImg\u0028\u0029",
+            "name": "getRestaurantImg",
+            "summary": "",
+            "url": "classes/App-Controllers-FileExplorerController.html#method_getRestaurantImg"
+        },                {
+            "fqsen": "\\App\\Controllers\\FileExplorerController\u003A\u003Amanager\u0028\u0029",
+            "name": "manager",
+            "summary": "",
+            "url": "classes/App-Controllers-FileExplorerController.html#method_manager"
+        },                {
+            "fqsen": "\\App\\Controllers\\FileExplorerController\u003A\u003Aconnector\u0028\u0029",
+            "name": "connector",
+            "summary": "",
+            "url": "classes/App-Controllers-FileExplorerController.html#method_connector"
+        },                {
+            "fqsen": "\\App\\Controllers\\FileExplorerController\u003A\u003AelfinderAccess\u0028\u0029",
+            "name": "elfinderAccess",
+            "summary": "",
+            "url": "classes/App-Controllers-FileExplorerController.html#method_elfinderAccess"
+        },                {
+            "fqsen": "\\App\\Controllers\\PrivateController",
+            "name": "PrivateController",
+            "summary": "Class\u0020BaseController",
+            "url": "classes/App-Controllers-PrivateController.html"
+        },                {
+            "fqsen": "\\App\\Controllers\\PrivateController\u003A\u003Aview\u0028\u0029",
+            "name": "view",
+            "summary": "",
+            "url": "classes/App-Controllers-PrivateController.html#method_view"
+        },                {
+            "fqsen": "\\App\\Controllers\\PrivateController\u003A\u003AdischargeRestaurant\u0028\u0029",
+            "name": "dischargeRestaurant",
+            "summary": "",
+            "url": "classes/App-Controllers-PrivateController.html#method_dischargeRestaurant"
+        },                {
+            "fqsen": "\\App\\Controllers\\PrivateController\u003A\u003AcontactAdmin\u0028\u0029",
+            "name": "contactAdmin",
+            "summary": "",
+            "url": "classes/App-Controllers-PrivateController.html#method_contactAdmin"
+        },                {
+            "fqsen": "\\App\\Controllers\\PrivateController\u003A\u003AchangeData\u0028\u0029",
+            "name": "changeData",
+            "summary": "",
+            "url": "classes/App-Controllers-PrivateController.html#method_changeData"
+        },                {
+            "fqsen": "\\App\\Controllers\\RestaurantSingularPage",
+            "name": "RestaurantSingularPage",
+            "summary": "Class\u0020BaseController",
+            "url": "classes/App-Controllers-RestaurantSingularPage.html"
+        },                {
+            "fqsen": "\\App\\Controllers\\RestaurantSingularPage\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "",
+            "url": "classes/App-Controllers-RestaurantSingularPage.html#method_index"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel",
+            "name": "RoleModel",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003AdeleteRole\u0028\u0029",
+            "name": "deleteRole",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#method_deleteRole"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003AgetRoleByID\u0028\u0029",
+            "name": "getRoleByID",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#method_getRoleByID"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003AcheckRole\u0028\u0029",
+            "name": "checkRole",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#method_checkRole"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003AgetAllRoles\u0028\u0029",
+            "name": "getAllRoles",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#method_getAllRoles"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024DBGroup",
+            "name": "DBGroup",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_DBGroup"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024table",
+            "name": "table",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_table"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024primaryKey",
+            "name": "primaryKey",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_primaryKey"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024useAutoIncrement",
+            "name": "useAutoIncrement",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_useAutoIncrement"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024insertID",
+            "name": "insertID",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_insertID"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024returnType",
+            "name": "returnType",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_returnType"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024useSoftDeletes",
+            "name": "useSoftDeletes",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_useSoftDeletes"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024protectFields",
+            "name": "protectFields",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_protectFields"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024allowedFields",
+            "name": "allowedFields",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_allowedFields"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024useTimestamps",
+            "name": "useTimestamps",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_useTimestamps"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024dateFormat",
+            "name": "dateFormat",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_dateFormat"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024createdField",
+            "name": "createdField",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_createdField"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024updatedField",
+            "name": "updatedField",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_updatedField"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024deletedField",
+            "name": "deletedField",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_deletedField"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024validationRules",
+            "name": "validationRules",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_validationRules"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024validationMessages",
+            "name": "validationMessages",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_validationMessages"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024skipValidation",
+            "name": "skipValidation",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_skipValidation"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024cleanValidationRules",
+            "name": "cleanValidationRules",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_cleanValidationRules"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024allowCallbacks",
+            "name": "allowCallbacks",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_allowCallbacks"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024beforeInsert",
+            "name": "beforeInsert",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_beforeInsert"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024afterInsert",
+            "name": "afterInsert",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_afterInsert"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024beforeUpdate",
+            "name": "beforeUpdate",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_beforeUpdate"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024afterUpdate",
+            "name": "afterUpdate",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_afterUpdate"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024beforeFind",
+            "name": "beforeFind",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_beforeFind"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024afterFind",
+            "name": "afterFind",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_afterFind"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024beforeDelete",
+            "name": "beforeDelete",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_beforeDelete"
+        },                {
+            "fqsen": "\\App\\Models\\RoleModel\u003A\u003A\u0024afterDelete",
+            "name": "afterDelete",
+            "summary": "",
+            "url": "classes/App-Models-RoleModel.html#property_afterDelete"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel",
+            "name": "TaulaModel",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003AcreateTable\u0028\u0029",
+            "name": "createTable",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#method_createTable"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003AgetAvailableTables\u0028\u0029",
+            "name": "getAvailableTables",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#method_getAvailableTables"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003AcheckTaula\u0028\u0029",
+            "name": "checkTaula",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#method_checkTaula"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003AoccupyTable\u0028\u0029",
+            "name": "occupyTable",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#method_occupyTable"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024DBGroup",
+            "name": "DBGroup",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_DBGroup"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024table",
+            "name": "table",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_table"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024primaryKey",
+            "name": "primaryKey",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_primaryKey"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024useAutoIncrement",
+            "name": "useAutoIncrement",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_useAutoIncrement"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024insertID",
+            "name": "insertID",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_insertID"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024returnType",
+            "name": "returnType",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_returnType"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024useSoftDeletes",
+            "name": "useSoftDeletes",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_useSoftDeletes"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024protectFields",
+            "name": "protectFields",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_protectFields"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024allowedFields",
+            "name": "allowedFields",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_allowedFields"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024useTimestamps",
+            "name": "useTimestamps",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_useTimestamps"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024dateFormat",
+            "name": "dateFormat",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_dateFormat"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024createdField",
+            "name": "createdField",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_createdField"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024updatedField",
+            "name": "updatedField",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_updatedField"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024deletedField",
+            "name": "deletedField",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_deletedField"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024validationRules",
+            "name": "validationRules",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_validationRules"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024validationMessages",
+            "name": "validationMessages",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_validationMessages"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024skipValidation",
+            "name": "skipValidation",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_skipValidation"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024cleanValidationRules",
+            "name": "cleanValidationRules",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_cleanValidationRules"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024allowCallbacks",
+            "name": "allowCallbacks",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_allowCallbacks"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024beforeInsert",
+            "name": "beforeInsert",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_beforeInsert"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024afterInsert",
+            "name": "afterInsert",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_afterInsert"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024beforeUpdate",
+            "name": "beforeUpdate",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_beforeUpdate"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024afterUpdate",
+            "name": "afterUpdate",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_afterUpdate"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024beforeFind",
+            "name": "beforeFind",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_beforeFind"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024afterFind",
+            "name": "afterFind",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_afterFind"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024beforeDelete",
+            "name": "beforeDelete",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_beforeDelete"
+        },                {
+            "fqsen": "\\App\\Models\\TaulaModel\u003A\u003A\u0024afterDelete",
+            "name": "afterDelete",
+            "summary": "",
+            "url": "classes/App-Models-TaulaModel.html#property_afterDelete"
         },                {
             "fqsen": "\\",
             "name": "\\",

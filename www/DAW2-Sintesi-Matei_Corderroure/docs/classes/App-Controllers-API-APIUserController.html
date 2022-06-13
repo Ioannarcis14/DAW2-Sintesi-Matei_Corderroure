@@ -119,7 +119,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -139,19 +139,26 @@
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/App-Controllers-API-APIUserController.html#property_helpers">$helpers</a>
-    <span>
-                        &nbsp;: mixed            </span>
-</dt>
-<dd></dd>
-
-                <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Controllers-API-APIUserController.html#method_assignRole">assignRole()</a>
+                        <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Controllers-API-APIUserController.html#method_assignRoleUser">assignRoleUser()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd>Assigns a role to a user</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Controllers-API-APIUserController.html#method_changePassword">changePassword()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Changes the password of the user</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Controllers-API-APIUserController.html#method_contactAdmin">contactAdmin()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Creates a contact message that can be seen by the admins</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Controllers-API-APIUserController.html#method_createRole">createRole()</a>
@@ -161,18 +168,18 @@
 <dd>Create a Role</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Controllers-API-APIUserController.html#method_deleteRole">deleteRole()</a>
+    <a href="classes/App-Controllers-API-APIUserController.html#method_createValorations">createValorations()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Delete the role</dd>
+<dd>Create a valoration</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Controllers-API-APIUserController.html#method_getAllRoles">getAllRoles()</a>
+    <a href="classes/App-Controllers-API-APIUserController.html#method_dischargeRestaurant">dischargeRestaurant()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Get all roles available</dd>
+<dd>Creates a contact message that can be seen by the admins</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Controllers-API-APIUserController.html#method_getAllUsers">getAllUsers()</a>
@@ -182,32 +189,32 @@
 <dd>Get all Users in the Database</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Controllers-API-APIUserController.html#method_isUserAuthenticated">isUserAuthenticated()</a>
+    <a href="classes/App-Controllers-API-APIUserController.html#method_getUser">getUser()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Checks if the user is currently logged in</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Controllers-API-APIUserController.html#method_login">login()</a>
+    <a href="classes/App-Controllers-API-APIUserController.html#method_removeRoleUser">removeRoleUser()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Logs in the user</dd>
+<dd>Deassigns a role that a user has</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Controllers-API-APIUserController.html#method_logout">logout()</a>
-    <span>
-                                &nbsp;: null    </span>
-</dt>
-<dd>Log off a user that is currently logged in</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Controllers-API-APIUserController.html#method_register">register()</a>
+    <a href="classes/App-Controllers-API-APIUserController.html#method_returnUserImage">returnUserImage()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Registers a user in the Database</dd>
+<dd>Gets the img from the db of the user and returns it with base64</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Controllers-API-APIUserController.html#method_sendMessage">sendMessage()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Controllers-API-APIUserController.html#method_updateRole">updateRole()</a>
@@ -216,6 +223,20 @@
 </dt>
 <dd>Updates a role</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Controllers-API-APIUserController.html#method_updateUser">updateUser()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Updates the users data</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Controllers-API-APIUserController.html#method_updateUserSpecific">updateUserSpecific()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Updates the information of an specific user</dd>
+
         </dl>
 
 
@@ -223,46 +244,6 @@
         
 
         
-    <section class="phpdocumentor-properties">
-        <h3 class="phpdocumentor-elements__header" id="properties">
-            Properties
-            <a href="classes/App-Controllers-API-APIUserController.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
-        </h3>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_helpers">
-        $helpers
-        <a href="classes/App-Controllers-API-APIUserController.html#property_helpers" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">17</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">$helpers</span>
-     = <span class="phpdocumentor-signature__default-value">[&#039;auth&#039;]</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
@@ -275,14 +256,14 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_assignRole">
-        assignRole()
-        <a href="classes/App-Controllers-API-APIUserController.html#method_assignRole" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_assignRoleUser">
+        assignRoleUser()
+        <a href="classes/App-Controllers-API-APIUserController.html#method_assignRoleUser" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">418</span>
+    <span class="phpdocumentor-element-found-in__line">526</span>
 
     </aside>
 
@@ -290,7 +271,94 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">assignRole</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">assignRoleUser</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_changePassword">
+        changePassword()
+        <a href="classes/App-Controllers-API-APIUserController.html#method_changePassword" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">46</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Changes the password of the user</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">changePassword</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+        <section class="phpdocumentor-description"><p>When the user changes the password using the function at the profile page, it will retrieve the token and the password and confirmation password</p>
+<p>URL: localhost:80/api/users/changePass</p>
+<ul>
+<li>Mètode: POST</li>
+</ul>
+<p>Parameters introduced by the User (sended by JSON or a form-data):</p>
+<ul>
+<li>$email</li>
+</ul>
+<p>The email of the user introducing the new password</p>
+<ul>
+<li>$newPass</li>
+</ul>
+<p>The new password that the user wants to use</p>
+<ul>
+<li>$newPassConfirm</li>
+</ul>
+<p>The repetition of the new password to ensure that the user remembers the password</p>
+</section>
+
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>It returns a message indicating if the password has been changed or an error has occurred</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_contactAdmin">
+        contactAdmin()
+        <a href="classes/App-Controllers-API-APIUserController.html#method_contactAdmin" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">781</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Creates a contact message that can be seen by the admins</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">contactAdmin</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
     
@@ -315,7 +383,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">391</span>
+    <span class="phpdocumentor-element-found-in__line">404</span>
 
     </aside>
 
@@ -341,36 +409,25 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_deleteRole">
-        deleteRole()
-        <a href="classes/App-Controllers-API-APIUserController.html#method_deleteRole" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_createValorations">
+        createValorations()
+        <a href="classes/App-Controllers-API-APIUserController.html#method_createValorations" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">409</span>
+    <span class="phpdocumentor-element-found-in__line">714</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Delete the role</p>
+        <p class="phpdocumentor-summary">Create a valoration</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">deleteRole</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id_role</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">createValorations</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$id_role</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
+    
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
@@ -385,22 +442,22 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getAllRoles">
-        getAllRoles()
-        <a href="classes/App-Controllers-API-APIUserController.html#method_getAllRoles" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_dischargeRestaurant">
+        dischargeRestaurant()
+        <a href="classes/App-Controllers-API-APIUserController.html#method_dischargeRestaurant" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">362</span>
+    <span class="phpdocumentor-element-found-in__line">835</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Get all roles available</p>
+        <p class="phpdocumentor-summary">Creates a contact message that can be seen by the admins</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getAllRoles</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">dischargeRestaurant</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
     
@@ -425,7 +482,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">333</span>
+    <span class="phpdocumentor-element-found-in__line">350</span>
 
     </aside>
 
@@ -459,35 +516,42 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_isUserAuthenticated">
-        isUserAuthenticated()
-        <a href="classes/App-Controllers-API-APIUserController.html#method_isUserAuthenticated" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getUser">
+        getUser()
+        <a href="classes/App-Controllers-API-APIUserController.html#method_getUser" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">284</span>
+    <span class="phpdocumentor-element-found-in__line">375</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Checks if the user is currently logged in</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">isUserAuthenticated</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">getUser</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"><p>Checks if the token is still valid and the user currently exists</p>
-</section>
+        <section class="phpdocumentor-description"></section>
 
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$user</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+            </dl>
+
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-            <section class="phpdocumentor-description"><p>It returns a refresh token if everything goes right, if there is any error in the procedure it will return that error</p>
-</section>
-
+        
     
 </article>
                     <article
@@ -496,48 +560,31 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_login">
-        login()
-        <a href="classes/App-Controllers-API-APIUserController.html#method_login" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_removeRoleUser">
+        removeRoleUser()
+        <a href="classes/App-Controllers-API-APIUserController.html#method_removeRoleUser" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">194</span>
+    <span class="phpdocumentor-element-found-in__line">598</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Logs in the user</p>
+        <p class="phpdocumentor-summary">Deassigns a role that a user has</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">login</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">removeRoleUser</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"><p>When the user tries to log in, the auth service will verify if that user exists in the DB, if the user exists it will return a token for future authentications if not it will return an error</p>
-<ul>
-<li>
-<p>URL: localhost:80/api/login</p>
-</li>
-<li>
-<p>Method: POST</p>
-</li>
-</ul>
-<p>Parameters introduced by the User (sended by JSON or a form-data):</p>
-<p>$login = string</p>
-<p>This parameter can be used to put the email or the username, so the user can put one of those parameters for loggin in
-$password = mixed</p>
-<p>The password of the user</p>
-</section>
-
+    
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-            <section class="phpdocumentor-description"><p>It returns a token with information about the user if everything goes right, if there is any error it will return that error</p>
-</section>
-
+        
     
 </article>
                     <article
@@ -546,39 +593,31 @@ $password = mixed</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_logout">
-        logout()
-        <a href="classes/App-Controllers-API-APIUserController.html#method_logout" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_returnUserImage">
+        returnUserImage()
+        <a href="classes/App-Controllers-API-APIUserController.html#method_returnUserImage" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">272</span>
+    <span class="phpdocumentor-element-found-in__line">670</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Log off a user that is currently logged in</p>
+        <p class="phpdocumentor-summary">Gets the img from the db of the user and returns it with base64</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">logout</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                    <span class="phpdocumentor-signature__name">returnUserImage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"><p>It exhausts the use of the token and doesn't respond so the token cannot renew by himself</p>
-<p>URL: localhost:80/api/logout</p>
-<ul>
-<li>Method: POST</li>
-</ul>
-</section>
-
+    
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-            <section class="phpdocumentor-description"><p>It doesn't return anything, cuz it doesn't want to respond with a refresh token</p>
-</section>
-
+        
     
 </article>
                     <article
@@ -587,70 +626,23 @@ $password = mixed</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_register">
-        register()
-        <a href="classes/App-Controllers-API-APIUserController.html#method_register" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_sendMessage">
+        sendMessage()
+        <a href="classes/App-Controllers-API-APIUserController.html#method_sendMessage" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">962</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Registers a user in the Database</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">register</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">sendMessage</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"><p>It compiles the data, that the user is giving us and if the data passes through the validation, the user is created</p>
-<p>URL: localhost:80/api/register</p>
-<ul>
-<li>Method: POST</li>
-</ul>
-<p>Parameters introduced by the User (sended by JSON or a form-data):</p>
-<ul>
-<li>$username: string</li>
-</ul>
-<p>This is username, that the future user will be known for</p>
-<ul>
-<li>$name: string</li>
-</ul>
-<p>The real name of the User</p>
-<ul>
-<li>$surname: string</li>
-</ul>
-<p>The real surname of the User</p>
-<ul>
-<li>$password: mixed</li>
-</ul>
-<p>The password that the user will have to introduce</p>
-<ul>
-<li>$pass_confirm: mixed</li>
-</ul>
-<p>This parameter will be used to verify that the user knows the password that he is introducing</p>
-<ul>
-<li>$phone: int</li>
-</ul>
-<p>A phone number, that the user will have</p>
-<ul>
-<li>$city: string</li>
-</ul>
-<p>The city, the user is currently located</p>
-<ul>
-<li>$street: string</li>
-</ul>
-<p>The street, that the user lives</p>
-<ul>
-<li>$postal_code: string</li>
-</ul>
-<p>The postal code of the location</p>
-<ul>
-<li>$img_profile: mixed = null</li>
-</ul>
-<p>The user can give and img, that will be used as a profile picture each time he enters his profile</p>
-</section>
+        <section class="phpdocumentor-description"></section>
 
     
     
@@ -658,9 +650,7 @@ $password = mixed</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-            <section class="phpdocumentor-description"><p>It returns a message indicating if the user has been registered or an error has occurred</p>
-</section>
-
+        
     
 </article>
                     <article
@@ -676,7 +666,7 @@ $password = mixed</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">400</span>
+    <span class="phpdocumentor-element-found-in__line">465</span>
 
     </aside>
 
@@ -684,13 +674,79 @@ $password = mixed</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">updateRole</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id_role</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">updateRole</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_updateUser">
+        updateUser()
+        <a href="classes/App-Controllers-API-APIUserController.html#method_updateUser" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">238</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Updates the users data</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">updateUser</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_updateUserSpecific">
+        updateUserSpecific()
+        <a href="classes/App-Controllers-API-APIUserController.html#method_updateUserSpecific" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APIUserController.php"><a href="files/app-controllers-api-apiusercontroller.html"><abbr title="app/Controllers/API/APIUserController.php">APIUserController.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">131</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Updates the information of an specific user</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">updateUserSpecific</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$id_role</span>
+                <span class="phpdocumentor-signature__argument__name">$id</span>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">

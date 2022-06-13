@@ -244,9 +244,6 @@ class RestaurantModel extends Model
     }
 
     public function updateGallery($id_restaurant, $img_gallery) {
-        
-        $description = "";
-
         if($img_gallery != null) {
             $oldFiles = $this->select(['img_gallery'])->where('id', $id_restaurant)->first();
             if(!empty($oldFiles['img_gallery'])) {

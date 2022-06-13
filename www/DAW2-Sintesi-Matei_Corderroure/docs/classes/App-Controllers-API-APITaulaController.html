@@ -119,7 +119,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APITaulaController.php"><a href="files/app-controllers-api-apitaulacontroller.html"><abbr title="app/Controllers/API/APITaulaController.php">APITaulaController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">7</span>
+    <span class="phpdocumentor-element-found-in__line">12</span>
 
     </aside>
 
@@ -140,11 +140,18 @@
 
 <dl class="phpdocumentor-table-of-contents">
                         <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-Controllers-API-APITaulaController.html#method_index">index()</a>
+    <a href="classes/App-Controllers-API-APITaulaController.html#method_createTable">createTable()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd></dd>
+<dd>Creates a table</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Controllers-API-APITaulaController.html#method_getOnlineTables">getOnlineTables()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Get the online tables of an specific restaurant</dd>
 
         </dl>
 
@@ -165,23 +172,46 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_index">
-        index()
-        <a href="classes/App-Controllers-API-APITaulaController.html#method_index" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_createTable">
+        createTable()
+        <a href="classes/App-Controllers-API-APITaulaController.html#method_createTable" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APITaulaController.php"><a href="files/app-controllers-api-apitaulacontroller.html"><abbr title="app/Controllers/API/APITaulaController.php">APITaulaController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Creates a table</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">index</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">createTable</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>It creates a table for the restaurant that its specified by the id and if the table can be used as an &quot;on-line table&quot; or an &quot;offline table&quot;</p>
+<ul>
+<li>
+<p>URL: localhost:80/api/taula/create</p>
+</li>
+<li>
+<p>Method: POST</p>
+</li>
+</ul>
+<p>Parameters introduced by the User (sended by JSON or a form-data):</p>
+<ul>
+<li>$token_data: mixed</li>
+</ul>
+<p>This is the JWT_Token that contains the information encrypted of the user and allows him to use functions of the API if this one has the permissions to do so</p>
+<ul>
+<li>$id_restaurant: int</li>
+</ul>
+<p>This is the id of the restaurant that the user owns and the table will be associated with</p>
+<ul>
+<li>$toTakeAway: int|null</li>
+</ul>
+<p>Its the parameter to indicate if the table will be used on-line or offline</p>
+</section>
 
     
     
@@ -189,7 +219,63 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>It returns a message indicating if the table has been created or an error has occurred</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getOnlineTables">
+        getOnlineTables()
+        <a href="classes/App-Controllers-API-APITaulaController.html#method_getOnlineTables" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Controllers/API/APITaulaController.php"><a href="files/app-controllers-api-apitaulacontroller.html"><abbr title="app/Controllers/API/APITaulaController.php">APITaulaController.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">109</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Get the online tables of an specific restaurant</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getOnlineTables</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+        <section class="phpdocumentor-description"><p>It gets the online tables that are currently available</p>
+<ul>
+<li>
+<p>URL: localhost:80/api/taula/getOnline</p>
+</li>
+<li>
+<p>Method: POST</p>
+</li>
+</ul>
+<p>Parameters introduced by the User (sended by JSON or a form-data):</p>
+<ul>
+<li>$token_data: mixed</li>
+</ul>
+<p>This is the JWT_Token that contains the information encrypted of the user and allows him to use functions of the API if this one has the permissions to do so</p>
+<ul>
+<li>$id_restaurant: int</li>
+</ul>
+<p>This is the id of the restaurant that the user owns and the table will be associated with</p>
+</section>
+
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>It returns a message indicating if there's a table available or there isn't any tables available</p>
+</section>
+
     
 </article>
             </section>
