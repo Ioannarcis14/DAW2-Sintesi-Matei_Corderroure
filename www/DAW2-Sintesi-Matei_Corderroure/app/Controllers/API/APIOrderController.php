@@ -19,6 +19,30 @@ class APIOrderController extends ResourceController
     {
         //
     }
+
+    public function getAllOrders($id_responable)
+    {
+        $orderModel = new OrderModel();
+        $orders = $orderModel->selectOrders($id_responable);
+
+        if (!empty($orders)) {
+            $response = [
+                'status' => 200,
+                "error" => false,
+                'messages' => 'Order data found',
+                'data' => $orders
+            ];
+        } else {
+            $response = [
+                'status' => 404,
+                "error" => true,
+                'messages' => 'No order found',
+                'data' => []
+            ];
+        }
+
+        return $this->respond($response);
+    }
     /** 
      * Checks if the user is currently logged in
      * 
