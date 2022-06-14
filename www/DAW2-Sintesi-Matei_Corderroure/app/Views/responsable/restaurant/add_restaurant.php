@@ -67,7 +67,7 @@
                 <input type="text" id="instagramRestaurant" class="form-control <?php if (session('errors.instagramRestaurant')) : ?>is-invalid<?php endif ?>" name="instagramRestaurant" placeholder="<?= lang('Auth.instagramRestaurant') ?>" value="">
             </div>
             <div class="form-group">
-                <label for="userfile[]" class="form-label"> <?= lang('Auth.ImgRestaurant') ?></label>
+                <label for="userfile[]" class="form-label"> <?= lang('Auth.newImgRestaurant') ?></label>
                 <input type="file" id="userfile[]" class=" <?php if (session('errors.ImgRestaurant')) : ?>is-invalid<?php endif ?>" name="userfile[]" multiple placeholder="<?= lang('Auth.ImgRestaurant') ?>" value="">
             </div>
 

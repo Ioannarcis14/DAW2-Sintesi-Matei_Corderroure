@@ -75,7 +75,7 @@ return [
     'forgotPassword'            => 'Forgot Your Password?',
     'enterEmailForInstructions' => 'No problem! Enter your email below and we will send instructions to reset your password.',
     'email'                     => 'Email',
-    'newEmail'                  => 'New Email',
+    'newEmail'                  => 'New email',
     'emailAddress'              => 'Email Address',
     'sendInstructions'          => 'Send Instructions',
     'loginTitle'                => 'Login',
@@ -84,7 +84,7 @@ return [
     'needAnAccount'             => 'Need an account?',
     'forgotYourPassword'        => 'Forgot your password?',
     'password'                  => 'Password',
-    'repeatPassword'            => 'Repeat Password',
+    'repeatPassword'            => 'Repeat password',
     'emailOrUsername'           => 'Email or username',
     'username'                  => 'Username',
     'name'                      => 'Name',
@@ -92,16 +92,16 @@ return [
     'phone'                     => 'Phone',
     'city'                      => 'City',
     'street'                    => 'Street',
-    'postal_code'               => 'Postal Code',
+    'postal_code'               => 'Zip code',
     'img'                       => 'Profile picture',
-    'newUsername'               => 'New Username',
-    'newName'                   => 'New Name',
-    'newSurname'                => 'New Surname',
-    'newPhone'                  => 'New Phone',
-    'newCity'                   => 'New City',
-    'newStreet'                 => 'New Street',
-    'newPostal_code'            => 'New Postal Code',
-    'newImg'                    => 'New Profile picture',
+    'newUsername'               => 'New username',
+    'newName'                   => 'New name',
+    'newSurname'                => 'New surname',
+    'newPhone'                  => 'New phone',
+    'newCity'                   => 'New city',
+    'newStreet'                 => 'New street',
+    'newPostal_code'            => 'New zip code',
+    'newImg'                    => 'New profile picture',
     'register'                  => 'Register',
     'signIn'                    => 'Sign In',
     'alreadyRegistered'         => 'Already registered?',
@@ -109,7 +109,55 @@ return [
     'resetYourPassword'         => 'Reset Your Password',
     'enterCodeEmailPassword'    => 'Enter the code you received via email, your email address, and your new password.',
     'token'                     => 'Token',
-    'newPassword'               => 'New Password',
-    'newPasswordRepeat'         => 'Repeat New Password',
+    'newPassword'               => 'New password',
+    'newPasswordRepeat'         => 'Repeat the password',
     'resetPassword'             => 'Reset Password',
+
+    //Contact view
+
+    'theme'                     => 'What is your problem?',
+    'commentary'                => 'Explain your problem',
+
+    //Discharge restaurants
+
+
+    'descriptionRestaurant'     => 'Description of your restaurant',
+    'nameRestaurant'            => 'Name your restaurant',
+    'cityRestaurant'            => 'City',
+    'streetRestaurant'          => 'Street',
+    'postal_codeRestaurant'     => 'Zip Code',
+    'phoneRestaurant'           => 'Contact number',
+    'twitterRestaurant'         => 'Twitter',
+    'facebookRestaurant'        => 'Facebook',
+    'instagramRestaurant'       => 'Instagram',
+    'newImgRestaurant'          => 'Put images of your restaurant',
+
+    'newDescriptionRestaurant'  => 'Update the description',
+    'newNameRestaurant'         => 'New name',
+    'newCityRestaurant'            => 'New city',
+    'newStreetRestaurant'          => 'New street',
+    'newPostal_codeRestaurant'     => 'New zip code',
+    'newPhoneRestaurant'           => 'New contact number',
+    'newTwitterRestaurant'         => 'Update your Twitter',
+    'newFacebookRestaurant'        => 'Update your Facebook',
+    'newInstagramRestaurant'       => 'Update your Instagram',
+    'newImgRestaurant'          => 'Replace the images of the restaurant',
+
+    //Send messages to other users(admin)
+
+    'receiver'                  => 'Which users will see this message?',
+    'theme'                     => 'Subject of the message',
+    'message'                   => 'Write the message',
+    'themeName'                 => 'Theme name',
+    'newThemeName'              => 'New theme name',
+
+    //Role views
+
+    'roles'                     => 'Roles available',
+    'roleName'                  => 'Role name',
+    'roleDescription'           => 'Description',
+    'newRoleName'               => 'New role name',
+    'newRoleDescription'           => 'New description',
+
+
 ];

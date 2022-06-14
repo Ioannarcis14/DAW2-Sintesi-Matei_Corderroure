@@ -1,0 +1,631 @@
+{
+	"info": {
+		"_postman_id": "5bd4e2c5-26b1-4b3f-96cc-c300df68f24c",
+		"name": "Joc de Proves",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20193172"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "register",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "holaquetal321@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "usuarideprova2",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "perdonanohovoliafer1234.",
+									"type": "text"
+								},
+								{
+									"key": "pass_confirm",
+									"value": "perdonanohovoliafer1234.",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "sdfsadfdsa",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "dsfasd",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "123123123",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "dsfdsafsadfds",
+									"type": "text"
+								},
+								{
+									"key": "street",
+									"value": "dasfdsafds",
+									"type": "text"
+								},
+								{
+									"key": "postal_code",
+									"value": "123453",
+									"type": "text"
+								},
+								{
+									"key": "userfile",
+									"type": "file",
+									"src": "Screenshot_19.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/api/register",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "login",
+									"value": "responsable",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:80/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "test",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:80/api/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTIzNjcwMDcsImlzcyI6ImRhdy1jb21wYW55IiwiYXVkIjoiZGF3LWNvbXBhbnkudXNlci1kYiIsInN1YiI6InNlY3VyZS5qd3QudjEuZGF3IiwibmJmIjoxNjUyMzY1MjA3LCJpYXQiOjE2NTIzNjUyMDcsImp0aSI6ImNlYmYwZmJkLWZhMDktNGE3NC1iMTQ0LTllYWZkZjRiZDUxNCIsInVpZCI6IjEiLCJuYW1lIjoiSm9zZXAiLCJlbWFpbCI6ImFkbWluQG1lLmxvY2FsIiwiZ3JvdXAiOnsiMSI6ImFkbWluaXN0cmFkb3IifX0.W_zhl7AyehhtrKsb0tTR5bVHduuI6lnuayU916nkMHc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:80/api/validate",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Administration",
+			"item": [
+				{
+					"name": "getAllUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users/getAll",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "testingUser@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "socunusuarideprova",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789Aa.",
+									"type": "text"
+								},
+								{
+									"key": "pass_confirm",
+									"value": "123456789Aa.",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Usuari",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "De prova",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "694 849 738",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Lleida",
+									"type": "text"
+								},
+								{
+									"key": "street",
+									"value": "Carrer Vall D'Aran",
+									"type": "text"
+								},
+								{
+									"key": "postal_code",
+									"value": "08009",
+									"type": "text"
+								},
+								{
+									"key": "img_profile",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:80/api/register",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "assignGroup",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restaurant",
+			"item": [
+				{
+					"name": "Taules",
+					"item": [
+						{
+							"name": "CreateTable",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTQwMjA5NjgsImlzcyI6ImRhdy1jb21wYW55IiwiYXVkIjoiZGF3LWNvbXBhbnkudXNlci1kYiIsInN1YiI6InNlY3VyZS5qd3QudjEuZGF3IiwibmJmIjoxNjU0MDE5MTY4LCJpYXQiOjE2NTQwMTkxNjgsImp0aSI6Ijk0NmNlYTI3LWZlYmMtNDBhYy1hYjlmLTNiNDNmNGEzNzg4ZiIsInVpZCI6IjEiLCJuYW1lIjoiSm9zZXAiLCJlbWFpbCI6ImFkbWluQG1lLmxvY2FsIiwiZ3JvdXAiOnsiMSI6ImFkbWluaXN0cmFkb3IifX0.576O5khPprdN28y8h-8ZV3awbNONTbhIDQ2Y2dXRgoE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_restaurant\": 2,\r\n  \"toTakeAway\": \"yes\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:80/api/taula/create",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"taula",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetOnlineTables",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTQ3ODQzNzgsImlzcyI6ImRhdy1jb21wYW55IiwiYXVkIjoiZGF3LWNvbXBhbnkudXNlci1kYiIsInN1YiI6InNlY3VyZS5qd3QudjEuZGF3IiwibmJmIjoxNjU0NzgyNTc4LCJpYXQiOjE2NTQ3ODI1NzgsImp0aSI6IjY4NDQ2YjA5LWNmMWQtNDEwZC04Mjk3LWFhMjdiOTczNGFkMSIsInVpZCI6IjUiLCJuYW1lIjoiSW9hbiIsImVtYWlsIjoiaWRrd2hhdHRvcHV0aGVyZUBtZS5sb2NhbCIsImdyb3VwIjp7IjYiOiJ1c3VhcmkiLCIyIjoicmVzcG9uc2FibGUifX0.fr7yJMz9kE8qdEmJi9Va4h6j2B-hpe3-pNrjG2CwYlc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_restaurant\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:80/api/taula/getOnline",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"taula",
+										"getOnline"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GetAllRestaurants",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost:80/api/restaurant/getAllRestReviews",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"restaurant",
+								"getAllRestReviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSpecificRestaurant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:80/api/restaurant/getRestaurant/2",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"restaurant",
+								"getRestaurant",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetReviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:80/api/restaurant/getReviews/3",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"restaurant",
+								"getReviews",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createRestaurant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTI5MDAwNjcsImlzcyI6ImRhdy1jb21wYW55IiwiYXVkIjoiZGF3LWNvbXBhbnkudXNlci1kYiIsInN1YiI6InNlY3VyZS5qd3QudjEuZGF3IiwibmJmIjoxNjUyODk4MjY3LCJpYXQiOjE2NTI4OTgyNjcsImp0aSI6IjJhM2MxMGExLWFjNGUtNGVlZC04MjI0LTgzZjllNmI0ZDU1NSIsInVpZCI6IjIiLCJuYW1lIjoiTWFyaWEiLCJlbWFpbCI6InJlc3BvbnNhYmxlQG1lLmxvY2FsIiwiZ3JvdXAiOnsiMiI6InJlc3BvbnNhYmxlIn19.UWanBo2yIu75DDaBQVRfFS4nT6QO94gEp1ZeEhH-83k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "RestaurantDeProva",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Barcelona",
+									"type": "text"
+								},
+								{
+									"key": "street",
+									"value": "Carrer Ausias March",
+									"type": "text"
+								},
+								{
+									"key": "postal_code",
+									"value": "08012",
+									"type": "text"
+								},
+								{
+									"key": "twitter",
+									"value": "https://twitter.com/home/",
+									"type": "text"
+								},
+								{
+									"key": "facebook",
+									"value": "https://facebook.com/restaurantbcn/",
+									"type": "text"
+								},
+								{
+									"key": "instagram",
+									"value": "https://instagram.com/disfrutarbcn/",
+									"type": "text"
+								},
+								{
+									"key": "img_gallery",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "phone",
+									"value": "693 912 212",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:80/api/restaurant/create",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"restaurant",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addValoration",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTQ3OTYzMzEsImlzcyI6ImRhdy1jb21wYW55IiwiYXVkIjoiZGF3LWNvbXBhbnkudXNlci1kYiIsInN1YiI6InNlY3VyZS5qd3QudjEuZGF3IiwibmJmIjoxNjU0Nzk0NTMxLCJpYXQiOjE2NTQ3OTQ1MzEsImp0aSI6IjU2ODUwMGU5LTRmYzMtNGZjNS04MGEwLTk2NzdiN2JjYmEwYiIsInVpZCI6IjUiLCJuYW1lIjoiSW9hbiIsImVtYWlsIjoidXNlckBtZS5sb2NhbCIsImdyb3VwIjp7IjYiOiJ1c3VhcmkifX0.h88Ofem4jKgAIjEKY6vBFSL_21hoPPQXpwl4MrjLyx0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_restaurant\": 2,\r\n    \"rating\": 8,\r\n    \"observation\": \"hola que tal\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:80/api/users/createValorations",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"users",
+								"createValorations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "createOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTUwNDk3MjksImlzcyI6ImRhdy1jb21wYW55IiwiYXVkIjoiZGF3LWNvbXBhbnkudXNlci1kYiIsInN1YiI6InNlY3VyZS5qd3QudjEuZGF3IiwibmJmIjoxNjU1MDQ3OTI5LCJpYXQiOjE2NTUwNDc5MjksImp0aSI6ImRjNDM5Nzk4LTJlMjUtNDMyNi04MTU4LTdiOTMzY2E1OTk4NiIsInVpZCI6IjUiLCJuYW1lIjoiSW9hbiIsImVtYWlsIjoidXNlckBtZS5sb2NhbCIsImdyb3VwIjp7IjYiOiJ1c3VhcmkifX0.4nZOyMV9pquVch5atxowCc-M6WKT_Z3B4PZb6BB3JA8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"order\": \"{\\\"id_rest\\\":2,\\\"id_client\\\":5,\\\"id_taula\\\":2,\\\"dishes\\\":[{\\\"id_dish\\\":2,\\\"quantity\\\":3,\\\"observation\\\":\\\"hofdadsfiosajfos\\\",\\\"id_supplement\\\":null},{\\\"id_dish\\\":4,\\\"quantity\\\":3,\\\"observation\\\":\\\"ddsfsafsaf\\\",\\\"id_supplement\\\":1},{\\\"id_dish\\\":4,\\\"quantity\\\":10,\\\"observation\\\":null,\\\"id_supplement\\\":2}]}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:80/api/order/create",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"api",
+						"order",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

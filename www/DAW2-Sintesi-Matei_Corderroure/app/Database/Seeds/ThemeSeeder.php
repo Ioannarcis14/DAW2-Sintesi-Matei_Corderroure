@@ -13,85 +13,25 @@ class ThemeSeeder extends Seeder
         $theme = model(ThemeModel::class);
 
         $row = [
-            'name' => "Cereals, gluten...",
+            'name' => "Bugs or glitches in the website",
         ];
         
         $theme->insert($row);
 
         $row = [
-            'name' => "Crustàcis",
+            'name' => "The profile page doesn't work properly",
         ];
 
         $theme->insert($row);
 
         $row = [
-            'name' => "Ous o derivats",
+            'name' => "I cannot discharge my restaurant",
         ];
 
         $theme->insert($row);
 
         $row = [
-            'name' => "Peix",
-        ];
-
-        $theme->insert($row);
-
-        $row = [
-            'name' => "Cacauets",
-        ];
-
-        $theme->insert($row);
-
-        $row = [
-            'name' => "Soja",
-        ];
-
-        $theme->insert($row);
-
-        $row = [
-            'name' => "Llet i derivats",
-        ];
-
-        $theme->insert($row);
-
-        $row = [
-            'name' => "Fruits secs",
-        ];
-
-        $theme->insert($row);
-
-        $row = [
-            'name' =>"Api i derivats",
-        ];
-
-        $theme->insert($row);
-
-        $row = [
-            'name' => "Mostassa i derivats",
-        ];
-
-        $theme->insert($row);
-
-        $row = [
-            'name' => "Sessam i derivats",
-        ];
-
-        $theme->insert($row);
-
-        $row = [
-            'name' => "Sulfits",
-        ];
-
-        $theme->insert($row);
-
-        $row = [
-            'name' => "Tramús i productes amb base tramusos",
-        ];
-
-        $theme->insert($row);
-
-        $row = [
-            'name' => "Moluscos i productes amb base molusc",
+            'name' => "There's a missing component in the webpage of my restaurant",
         ];
 
         $theme->insert($row);

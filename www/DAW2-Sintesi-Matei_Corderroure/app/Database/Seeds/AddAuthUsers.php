@@ -67,13 +67,13 @@ class AddAuthUsers extends Seeder
         $user->username = 'cambrer';
         $user->password = '1234';
         $user->name = 'Joan';
-        $user->surname = 'Corderroure ';
+        $user->surname = 'Corderroure';
         $user->email = 'cambrer@me.local';
         $user->img_profile = null;
         $user->phone = 967248372;
-        $user->city = 'Angels';
-        $user->street = 'Cerveró';
-        $user->postal_code = 'Carrer de les Palmes';
+        $user->city = 'Lleida';
+        $user->street = 'Carrer de la Pau';
+        $user->postal_code = '25010';
 
         $userId = $users->insert($user);
         $authorize->addUserToGroup($userId, 'cambrer');
@@ -86,9 +86,9 @@ class AddAuthUsers extends Seeder
         $user->email = 'user@me.local';
         $user->img_profile = null;
         $user->phone = 967248372;
-        $user->city = 'Angels';
-        $user->street = 'Cerveró';
-        $user->postal_code = 'Carrer de les Palmes';
+        $user->city = 'Lleida';
+        $user->street = 'Carrer de les Palmes';
+        $user->postal_code = '25007';
 
         $userId = $users->insert($user);
         $authorize->addUserToGroup($userId, 'usuari');
