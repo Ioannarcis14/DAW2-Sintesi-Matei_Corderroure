@@ -125,7 +125,7 @@ class RestaurantModel extends Model
             'facebook' => $facebook
         ];
 
-        $this->insert($data);
+        return $this->insert($data, true);
         
     }
 
