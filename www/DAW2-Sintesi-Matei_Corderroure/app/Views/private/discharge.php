@@ -118,7 +118,7 @@
                     alert(data.messages);
                     console.log(data)
                     window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-                    window.location = "<?php echo base_url(); ?>/home";
+                    window.location = "<?php echo base_url(); ?>/";
                 } else {
                     if (data.status == 400) {
                         alert(data.messages);

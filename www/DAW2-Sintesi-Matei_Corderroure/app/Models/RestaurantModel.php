@@ -98,6 +98,7 @@ class RestaurantModel extends Model
 
         $this->select(['restaurant.id', 'restaurant.name','restaurant.city','restaurant.street','restaurant.postal_code', 'restaurant.phone', 'AVG(valorations.score) as nota', 'restaurant.img_gallery']);
         $this->join('valorations', 'valorations.id_restaurant = restaurant.id', 'left');
+        $this->where('discharged!=', null);
         $this->groupBy('restaurant.id');
 
         return $this->findAll();

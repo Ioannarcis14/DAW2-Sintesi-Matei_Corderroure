@@ -157,7 +157,8 @@ return [
     'roleName'                  => 'Role name',
     'roleDescription'           => 'Description',
     'newRoleName'               => 'New role name',
-    'newRoleDescription'           => 'New description',
-
+    'newRoleDescription'        => 'New description',
+    'rating'                    => 'Rating',
+    'observation'               => 'Explain your experience'
 
 ];

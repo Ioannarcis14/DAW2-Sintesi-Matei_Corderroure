@@ -890,7 +890,7 @@ class APIUserController extends ResourceController
                 if (!empty($files)) {
                     foreach ($files['userfile'] as $img) {
                         if ($img->isValid() && !$img->hasMoved()) {
-                            $filepath = WRITEPATH . 'uploads/' . $img->store("restaurant/" . $check['id'] . "/");
+                            $filepath = WRITEPATH . 'uploads/' . $img->store("restaurant/" . $id . "/");
                             $Filetest = new File($filepath);
                         } else {
                             $response = [
@@ -900,16 +900,11 @@ class APIUserController extends ResourceController
                             ];
                             return $this->respond($response);
                         }
-                        $file = explode("restaurant/" . $check['id'] . "/", $Filetest, 2);
+                        $file = explode("restaurant/" . $id . "/", $Filetest, 2);
                         $fileNames .= "," . $file[1];
                     }
-
                     $restModel->insertGallery(
-                        $this->request->getPost('nameRestaurant'),
-                        $this->request->getPost('cityRestaurant'),
-                        $this->request->getPost('streetRestaurant'),
-                        $this->request->getPost('postal_codeRestaurant'),
-                        $this->request->getPost('phoneRestaurant'),
+                        $id,
                         $fileNames
                     );
                 }

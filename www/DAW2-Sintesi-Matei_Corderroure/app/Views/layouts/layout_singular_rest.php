@@ -78,36 +78,44 @@
             <div class="col-md-6">
                 <h1>About us</h1>
                 <div class="fa fa-cutlery fa-2x"></div>
-                <p class="desc-text"><?php echo $restaurant['description'] ?></div>
-            <div class="col-md-6">
-                <div class="img-section">
+                <p class="desc-text">
                     <?php
-
-                if(empty($restaurant['img_gallery'])){
-
-                    $imageProperties2 = [
-                        'src'    => 'img/demo_rest.jpg',
-                        'width'  => '250px',
-                        'height' => '220px'
-                    ]; 
-                    echo img($imageProperties2); 
-                    echo img($imageProperties2);
-                    echo '<div class="img-section-space"></div>';
-                    echo img($imageProperties2);
-                    echo img($imageProperties2);                               
-                
-                } else {
-
-                 $imgs = explode(",",$restaurant['img_gallery']);
-                    for ($i = 1; count($imgs) > $i; $i++) {
-                        echo '<img src="'.base_url("/filegetRestaurant").'/'. $restaurant['id']. '/'. $imgs[$i] . '" width="250px" height="220px" alt="Image of the restaurant">';
+                    if (empty($restaurant['description'])) {
+                        echo "Restaurant is a place for simplicity. Good food, good beer, and good service. Simple is the name of the game, and we’re good at finding it in all the right places, even in your dining experience. We’re a small group from Denver, Colorado who make simple food possible. Come join us and see what simplicity tastes like";
+                    } else {
+                        echo $restaurant['description'];
                     }
-                }
-                  
-                   ?>
+                    ?>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="img-section">
+                        <?php
+
+                        if (empty($restaurant['img_gallery'])) {
+
+                            $imageProperties2 = [
+                                'src'    => 'img/demo_rest.jpg',
+                                'width'  => '250px',
+                                'height' => '220px'
+                            ];
+                            echo img($imageProperties2);
+                            echo img($imageProperties2);
+                            echo '<div class="img-section-space"></div>';
+                            echo img($imageProperties2);
+                            echo img($imageProperties2);
+                        } else {
+
+                            $imgs = explode(",", $restaurant['img_gallery']);
+                            for ($i = 1; count($imgs) > $i; $i++) {
+                                echo '<img src="' . base_url("/filegetRestaurant") . '/' . $restaurant['id'] . '/' . $imgs[$i] . '" width="250px" height="220px" alt="Image of the restaurant">';
+                            }
+                        }
+
+                        ?>
+                    </div>
                 </div>
             </div>
-        </div>
     </section>
 
 
@@ -252,24 +260,24 @@
             }
 
             response.json().then((data) => {
-                    if (data.status == false) {
+                if (data.status == false) {
+                    alert(data.messages);
+                    window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
+                } else {
+                    if (data.status == 400) {
                         alert(data.messages);
                         window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
                     } else {
-                         if (data.status == 400) {
-                            alert(data.messages);
-                            window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-                        } else {
-                            alert(data.messages);
-                            var token = window.sessionStorage.removeItem("tokenRefresh");
-                            window.location = "<?php echo base_url(); ?>/logout";
-                        }           
+                        alert(data.messages);
+                        var token = window.sessionStorage.removeItem("tokenRefresh");
+                        window.location = "<?php echo base_url(); ?>/logout";
                     }
-                }).catch(error => {
-                    alert("Unexpected error");
-                    var token = window.sessionStorage.removeItem("tokenRefresh");
-                    window.location = "<?php echo base_url(); ?>/logout";
-                });
+                }
+            }).catch(error => {
+                alert("Unexpected error");
+                var token = window.sessionStorage.removeItem("tokenRefresh");
+                window.location = "<?php echo base_url(); ?>/logout";
+            });
         }
     </script>
 

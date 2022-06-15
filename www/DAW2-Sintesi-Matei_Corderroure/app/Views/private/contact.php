@@ -90,12 +90,12 @@
             if (data.error == false) {
                 alert(data.messages);
                 window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-                window.location = "<?php echo base_url(); ?>/home";
+                window.location = "<?php echo base_url(); ?>/";
             } else {
                 if (data.status == 400) {
                     alert(data.messages);
                     window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
-                    window.location = "<?php echo base_url(); ?>/home";
+                    window.location = "<?php echo base_url(); ?>/";
                 } else {
                     alert(data.messages);
                     window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
