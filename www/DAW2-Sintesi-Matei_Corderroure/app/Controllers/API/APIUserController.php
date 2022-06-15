@@ -870,7 +870,7 @@ class APIUserController extends ResourceController
             $restModel = new RestaurantModel();
             $restUserModel = new UserRestaurantModel();
 
-            $restModel->createRestaurant(
+            $id = $restModel->createRestaurant(
                 $this->request->getPost('nameRestaurant'),
                 $this->request->getPost('cityRestaurant'),
                 $this->request->getPost('streetRestaurant'),
@@ -882,13 +882,7 @@ class APIUserController extends ResourceController
             );
 
 
-            $check = $restModel->checkRestaurant(
-                $this->request->getPost('nameRestaurant'),
-                $this->request->getPost('cityRestaurant'),
-                $this->request->getPost('streetRestaurant'),
-                $this->request->getPost('postal_codeRestaurant'),
-                $this->request->getPost('phoneRestaurant')
-            );
+            $check = $restModel->checkRestaurantByID($id);
 
             if (!empty($check)) {
                 $files = $this->request->getFiles();

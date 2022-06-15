@@ -115,16 +115,16 @@
             .then(response => response.json())
             .then((data) => {
                 if (data.status == 200) {
-                    alert(data);
+                    alert(data.messages);
                     console.log(data)
                     window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
                     window.location = "<?php echo base_url(); ?>/home";
                 } else {
                     if (data.status == 400) {
-                        alert(data);
+                        alert(data.messages);
                         window.sessionStorage.setItem("tokenRefresh", data.refreshToken);
                     } else {
-                        alert(data);
+                        alert(data.messages);
                         window.sessionStorage.removeItem("tokenRefresh");
                         window.location = "<?php echo base_url(); ?>/logout";
                     }
